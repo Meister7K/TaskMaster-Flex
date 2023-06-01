@@ -1,0 +1,29 @@
+/* Navbar Sign In Form */
+.navbar-sign-in-form {
+  height: 85px;
+  padding: 0 10px;
+  border: 1px solid #fff;
+  display: flex;
+  align-items: center;
+}
+
+.form-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.navbar-input {
+  margin-bottom: 5px;
+  height: 2rem !important;
+  width: 168px;;
+}
+
+.navbar-btn {
+  margin-left: 10px;
+}
+
+h5 {
+  color: #fff;
+  margin-bottom: 3px;
+}
