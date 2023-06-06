@@ -19,7 +19,7 @@ function CardItem(props) {
       props.src
     }
 
-    alt="Travel Image" className="cards-item-img" /> </figure> <div className="cards-item-info" > <h5 className="cards-item-text" > {
+    alt="Travel" className="cards-item-img" /> </figure> <div className="cards-item-info" > <h5 className="cards-item-text" > {
       props.text
     }
 
