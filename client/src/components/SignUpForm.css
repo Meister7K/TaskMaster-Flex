@@ -1,0 +1,33 @@
+.sign-up-form {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    min-height: 100vw;
+    align-items: center;
+}
+
+.sign-up-form h5 {
+    color: black;
+}
+
+.btn-div {
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.signUpform-input-container {
+   min-width: 60%;
+   border: 3px solid black;
+}
+
+.signup-password,
+.signup-email,
+.signup-username {
+    min-width: 95%;
+    justify-content: center;
+}
+
+.signUp-btn {
+    color: black;
+}
