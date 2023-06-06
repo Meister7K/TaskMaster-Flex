@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button } from "./Button";
 import "./SignUpForm.css";
 
 function SignUpForm() {
@@ -8,18 +7,18 @@ function SignUpForm() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    
+    if (username.length < 3 || username.length > 20) {
+        alert("Username field must be between 3 and 20 characters.");
+        return;
+    }
 
     const usernameRegex = /^[a-zA-Z0-9]+$/;
     if (!usernameRegex.test(username)) {
       alert("Username must only contain letters and numbers.");
       return;
-    }
-
-    if (username.length < 3 || username.length > 20) {
-        alert("Username field must be between 3 and 20 characters.");
-        return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -56,6 +55,19 @@ function SignUpForm() {
     console.log("Email:", email);
     console.log("Password:", password);
     console.log("Confirm Password:", confirmPassword);
+
+    const userData = {
+      username,
+      email,
+      password,
+    };
+
+    // try {
+    //   const data = await signup(userData);
+    //   console.log(data);
+    // } catch (error) {
+    //   console.log(error)
+    // }
   };
 
   return (
