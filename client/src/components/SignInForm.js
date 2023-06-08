@@ -1,26 +1,90 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "./Button";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../utils/mutations";
 import "./SignInForm.css";
 
-function SignInForm() {
+import Auth from "../utils/auth";
+
+const SignInForm = (props) => {
+  const [formState, setFormState] = useState({ email: "", password: "" });
+  const [login, { error, data }] = useMutation(LOGIN_USER);
+
+  // update state based on form input changes
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  // submit form
+  const handleFormSubmit = async (event) => {
+    console.log("bing");
+    event.preventDefault();
+    try {
+      const { data } = await login({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
+
+    // clear form values
+    setFormState({
+      email: "",
+      password: "",
+    });
+  };
+
   return (
-    <>
-      <div className="navbar-sign-in-form">
-        <div className="form-input-container">
-          <h5>Please Sign In To Play:</h5>
-          <input className="navbar-input" type="text" placeholder="Username" />
-          <input
-            className="navbar-input"
-            type="password"
-            placeholder="Password"
-          />
-        </div>
-        <Button className="navbar-btn" buttonstyle="btn-outline">
-          Sign In
-        </Button>
+    <div className="navbar-sign-in-form">
+      <div className="form-input-container">
+        {data ? (
+          <p>
+            You are now signed in!
+          </p>
+        ) : (
+          <form onSubmit={handleFormSubmit}>
+            <h5>Please Sign In To Play:</h5>
+            <input
+              className="navbar-input"
+              name="email"
+              type="email"
+              placeholder="Enter email"
+              value={formState.email}
+              onChange={handleChange}
+            />
+            <input
+              className="navbar-input"
+              name="password"
+              type="password"
+              placeholder="Enter password"
+              value={formState.password}
+              onChange={handleChange}
+            />
+
+            <button
+              className="navbar-btn"
+              buttonstyle="btn-outline"
+              style={{ cursor: "pointer" }}
+              type="submit"
+            >
+              Sign In
+            </button>
+          </form>
+        )}
       </div>
-    </>
+      {error && (
+        <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
+      )}
+    </div>
   );
-}
+};
 
 export default SignInForm;

@@ -4,7 +4,6 @@ import './Navbar.css';
 import { Button } from './Button';
 import SignInForm from './SignInForm';
 
-
 function Navbar() {
   const [click, setClick] = useState(false);
 
