@@ -12,14 +12,14 @@ const SignInForm = (props) => {
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
   // update state based on form input changes
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+ const handleChange = (event) => {
+   const { name, value } = event.target;
 
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
+   setFormState((prevState) => ({
+     ...prevState,
+     [name]: name === "email" ? value.toLowerCase() : value,
+   }));
+ };
 
   // submit form
   const handleFormSubmit = async (event) => {
