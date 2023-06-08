@@ -2,8 +2,9 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    min-height: 100vw;
+    min-height: 100%;
     align-items: center;
+    margin-top: 2rem;
 }
 
 .sign-up-form h5 {
