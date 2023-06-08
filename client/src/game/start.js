@@ -1,29 +1,14 @@
 import Phaser from 'phaser';
+import Scene1 from './scenes/Scene1'
+import Scene2 from './scenes/Scene2'
 
 const config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
-    scene:{
-        preload: preload,
-        create: create,
-        update: update
-    }
+    backgroundColor: 'black',
+    scene:[Scene1, Scene2]
 };
 
 const game = new Phaser.Game(config);
 
-function preload ()
-{
-
-}
-
-function create ()
-{
-
-}
-
-function update ()
-{
-    
-}
