@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5932c65a.css",
+    "main.js": "/static/js/main.f018ea00.js",
+    "static/media/keyboard.jpg": "/static/media/keyboard.3f30eb814f6a8b1da6e9.jpg",
+    "static/media/greenBG.jpg": "/static/media/greenBG.52143ce33f2eb1271a00.jpg",
+    "index.html": "/index.html",
+    "main.5932c65a.css.map": "/static/css/main.5932c65a.css.map",
+    "main.f018ea00.js.map": "/static/js/main.f018ea00.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5932c65a.css",
+    "static/js/main.f018ea00.js"
+  ]
+}
