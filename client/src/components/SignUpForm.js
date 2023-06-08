@@ -97,6 +97,8 @@ function SignUpForm() {
   };
 
   return (
+     <>
+      <video src="/videos/home-video-1.mp4" autoPlay loop muted />
     <div className="sign-up-form">
       <div className="signUpform-input-container">
         {data ? (
@@ -156,6 +158,7 @@ function SignUpForm() {
         )}
       </div>
     </div>
+    </>
   );
 }
 
