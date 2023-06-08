@@ -52,6 +52,8 @@ const SignInForm = (props) => {
         ) : (
           <form onSubmit={handleFormSubmit}>
             <h5>Please Sign In To Play:</h5>
+            <div className="login-form-wrapper">
+            <div className="input-columns">
             <input
               className="navbar-input"
               name="email"
@@ -68,15 +70,18 @@ const SignInForm = (props) => {
               value={formState.password}
               onChange={handleChange}
             />
-
+            </div>
+            <div>
             <button
-              className="navbar-btn"
+              className="navbar-btn login-submit-btn"
               buttonstyle="btn-outline"
               style={{ cursor: "pointer" }}
               type="submit"
             >
               Sign In
             </button>
+            </div>
+            </div>
           </form>
         )}
       </div>
