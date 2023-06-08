@@ -11,7 +11,6 @@ function Game() {
     <div className='canvas'>
       <canvas/>
     </div>
-    <Phaser/>
     </>
     
   )
