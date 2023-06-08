@@ -22,10 +22,12 @@ function SignUpForm() {
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    const lowercaseEmail = email.toLowerCase();
+    if (!emailRegex.test(lowercaseEmail)) {
       alert("Invalid email address.");
       return;
     }
+
 
     if (password.length < 6 || password.length > 20) {
       alert("Password must be between 6 and 20 characters.");
