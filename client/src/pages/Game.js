@@ -2,6 +2,8 @@ import React from 'react'
 import { appendScript } from '../utils/appender'
 import start from '../game/start'
 
+//TODO fix script for phazer 
+
 
 
 
