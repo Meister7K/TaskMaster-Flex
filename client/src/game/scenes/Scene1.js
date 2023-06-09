@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import back from '../game-assets/background.png'
 
 
+
 class Scene1 extends Phaser.Scene {
   constructor() {
     super("loadGame");
