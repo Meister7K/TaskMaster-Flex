@@ -1,7 +1,7 @@
 import React from 'react'
-import '../../App.css';
-import Cards from '../AboutCards';
-import Footer from '../Footer';
+import '../App';
+import Cards from '../components/card-item/CardItem';
+import Footer from '../components/footer/Footer';
 
 function About () {
   return (

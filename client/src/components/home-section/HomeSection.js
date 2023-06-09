@@ -1,6 +1,6 @@
 import React from "react";
-import "../App.css";
-import { Button } from "./Button";
+import "../../App";
+import { Button } from "../button/Button";
 import "./HomeSection.css";
 
 function HomeSection() {

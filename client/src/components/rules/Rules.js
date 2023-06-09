@@ -1,6 +1,6 @@
 import React from "react";
 import "./Rules.css";
-import { Button } from "./Button";
+import { Button } from "../button/Button";
 
 function Rules() {
   const scrollToTop = () => {
