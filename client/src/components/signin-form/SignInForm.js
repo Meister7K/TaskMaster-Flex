@@ -60,7 +60,6 @@ const SignInForm = (props) => {
                 style={{ cursor: "pointer" }}
                 onClick={() => {
                   Auth.logout();
-                  navigate("/");
                 }}
               >
                 Logout
