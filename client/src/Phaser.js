@@ -16,9 +16,15 @@ const config = {
 		default: 'arcade',
 		arcade: {
 			gravity: { y: 0 },
+			debug: true
 		},
+		plugins:{
+			scene:[{
+				plugin: Phaser
+			}]
+		}
 	},
 	scene: [Scene1,Scene2],
 }
-// eslint-disable-next-line import/no-anonymous-default-export
+
 export default new Phaser.Game(config)
