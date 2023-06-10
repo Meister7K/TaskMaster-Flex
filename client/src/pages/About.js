@@ -1,12 +1,13 @@
 import React from 'react'
 import '../App';
-import Cards from '../components/card-item/CardItem';
+import AboutCards from '../components/about-cards/AboutCards';
 import Footer from '../components/footer/Footer';
+
 
 function About () {
   return (
     <>
-      <Cards />
+      <AboutCards />
       <Footer />
     </>
   );
