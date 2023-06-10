@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-
+import Back from "../game-assets/background.png";
 import Pony from "../game-assets/pixel-pony.png";
 import Bat from "../game-assets/bat.png";
 
@@ -9,18 +9,26 @@ class Scene2 extends Phaser.Scene {
   }
 
   preload() {
-    
-    this.load.spritesheet("bat", Bat, {
-      frameWidth: 36,
-      frameHeight: 36,
-    });
+
+
+
+    // this.load.spritesheet("bat", Bat, {
+    //   frameWidth: 36,
+    //   frameHeight: 36,
+    // });
+
+    this.load.image("background", Back);
   }
 
   create() {
     this.background = this.add.image(0, 0, "background");
     this.background.setOrigin(0, 0);
 
-    this.player = this.physics.add.sprite(100, 100, "bat");
+    this.player = this.physics.add.sprite( 500, 500, "pony");
+
+    this.pony = this.add.image(0,0, "pony");
+    this.pony.setOrigin(0,0);
+    
 
     // this.anims.create({
     //   key: "idle",
@@ -31,6 +39,7 @@ class Scene2 extends Phaser.Scene {
     //   repeat: -1,
     // });
 
+
     this.player.setCollideWorldBounds(true);
 
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -40,7 +49,7 @@ class Scene2 extends Phaser.Scene {
       fill: "white",
     });
 
-    this.pony1 =this.add.image(20,20, 'pony1')
+ 
   }
 
   update() {
