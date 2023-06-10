@@ -24,10 +24,14 @@ const Account = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    
+    setPasswordState({
+      ...passwordState,
+      [name]: value,
+    });
 
-
-
+    if(name === "updateEmail") {
+      setUpdateEmail(value);
+    }
 
   }
   if (!user) {
