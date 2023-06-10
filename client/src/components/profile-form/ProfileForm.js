@@ -21,7 +21,7 @@ function ProfileForm() {
           </select>
         </div>
         <div className="form-q3">
-            <h2
+            <h2></h2>
         </div>
       </form>
     </>
