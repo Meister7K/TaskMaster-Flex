@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
   ApolloClient,
@@ -14,6 +13,8 @@ import Home from './pages/Home.js';
 import About from './pages/About';
 import Game from './pages/Game';
 import SignUp from './pages/SignUp';
+import Account from './pages/Account';
+import Auth from "../src/utils/auth";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -39,6 +40,8 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+const user = Auth.loggedIn() ? Auth.getProfile().data.username : null;
+
 function App() {
   return (
     <ApolloProvider client={client}>
@@ -49,6 +52,7 @@ function App() {
           <Route exact path="/about" element={<About />} />
           <Route exact path="/game" element={<Game />} />
           <Route exact path="/sign-up" element={<SignUp />} />
+          <Route exact path={`/account/${user}`} element={<Account/>}/>
         </Routes>
       </Router>
     </ApolloProvider>

@@ -66,7 +66,7 @@ const SignInForm = (props) => {
               className="navbar-btn login-submit-btn"
               buttonstyle="btn-outline"
               style={{ cursor: "pointer" }}
-              onClick={() => navigate("/account")}
+              onClick={() => navigate(`/account/${user}`)}
             >
               Account
             </button>
