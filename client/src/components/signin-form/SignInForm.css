@@ -58,3 +58,23 @@ h5 {
   color: #fff;
   margin-bottom: 3px;
 }
+
+/* Logout Message Start */
+
+.logout-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.logout-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.hello-user {
+  color: #fff;
+}
+
+/* Logout User End */
