@@ -14,12 +14,18 @@ function HomeSection() {
     });
   };
 
+  const isLoggedIn = localStorage.getItem("id_token") !== null;
+
   return (
     <>
       <div className="home-container" id="topOfPage">
         <video src="/videos/home-video-1.mp4" autoPlay loop muted />
         <h1>TASKMASTER FLEX</h1>
-        <p>Level up your life, one task at a time!</p>
+        {isLoggedIn ? (
+          <p>Thanks for logging in, now you can play the game!</p>
+        ) : (
+          <p>Level up your life, one task at a time!</p>
+        )}
         <div className="home-btns">
           <Button
             className="btns"
