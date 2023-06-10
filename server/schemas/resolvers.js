@@ -36,6 +36,17 @@ const resolvers = {
 
       return { token, user };
     },
+    updateUser: async (parent, { email, password }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          context.user._id,
+          { email, password },
+          { new: true }
+        );
+        return updatedUser;
+      }
+      throw new AuthenticationError("Not logged in");
+    },
   },
 };
 
