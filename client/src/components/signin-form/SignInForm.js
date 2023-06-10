@@ -53,23 +53,25 @@ const SignInForm = (props) => {
         {user ? (
           <div className="logout-container">
             <div className="logout-wrapper">
-            <p className="hello-user">Hello {user}!</p>
-            <button
-              className="navbar-btn login-submit-btn"
-              buttonstyle="btn-outline"
-              style={{ cursor: "pointer" }}
-              onClick={Auth.logout}
-            >
-              Logout
-            </button>
-            <button
-              className="navbar-btn login-submit-btn"
-              buttonstyle="btn-outline"
-              style={{ cursor: "pointer" }}
-              onClick={() => navigate("/account")}
-            >
-              Account
-            </button>
+              <p className="hello-user">Hello {user}!</p>
+              <button
+                className="navbar-btn login-submit-btn"
+                buttonstyle="btn-outline"
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  Auth.logout();
+                }}
+              >
+                Logout
+              </button>
+              <button
+                className="navbar-btn login-submit-btn"
+                buttonstyle="btn-outline"
+                style={{ cursor: "pointer" }}
+                onClick={() => navigate(`/account/${user}`)}
+              >
+                Account
+              </button>
             </div>
           </div>
         ) : (
