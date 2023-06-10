@@ -4,6 +4,7 @@ import back from '../game-assets/background.png'
 
 
 class Scene1 extends Phaser.Scene {
+  
   constructor() {
     super("loadGame");
   }
@@ -17,6 +18,10 @@ class Scene1 extends Phaser.Scene {
   }
 
   update() {}
+
+  createNewGame(){
+    this.scene.launch('game')
+  }
 }
 
 export default Scene1

@@ -21,8 +21,10 @@ function ProfileForm() {
           </select>
         </div>
         <div className="form-q3">
-            <h2></h2>
+            <h2>customize your Fit</h2>
+            {/* add formatting to change character color(hue?) */}
         </div>
+        <input className='hidden submit-btn' type='submit' value='submit'>Submit</input>
       </form>
     </>
   );
