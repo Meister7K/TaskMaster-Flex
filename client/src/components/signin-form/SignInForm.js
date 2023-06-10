@@ -12,18 +12,17 @@ const SignInForm = (props) => {
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
   // update state based on form input changes
- const handleChange = (event) => {
-   const { name, value } = event.target;
+  const handleChange = (event) => {
+    const { name, value } = event.target;
 
-   setFormState((prevState) => ({
-     ...prevState,
-     [name]: name === "email" ? value.toLowerCase() : value,
-   }));
- };
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: name === "email" ? value.toLowerCase() : value,
+    }));
+  };
 
   // submit form
   const handleFormSubmit = async (event) => {
-    console.log("bing");
     event.preventDefault();
     try {
       const { data } = await login({
@@ -42,45 +41,55 @@ const SignInForm = (props) => {
     });
   };
 
+  const user = Auth.loggedIn() ? Auth.getProfile().data.username : null;
+
   return (
     <div className="navbar-sign-in-form">
       <div className="form-input-container">
-        {data ? (
-          <p>
-            You are now signed in!
-          </p>
-        ) : (
-          <form onSubmit={handleFormSubmit}>
-            <h5>Please Sign In To Play:</h5>
-            <div className="login-form-wrapper">
-            <div className="input-columns">
-            <input
-              className="navbar-input"
-              name="email"
-              type="email"
-              placeholder="Enter email"
-              value={formState.email}
-              onChange={handleChange}
-            />
-            <input
-              className="navbar-input"
-              name="password"
-              type="password"
-              placeholder="Enter password"
-              value={formState.password}
-              onChange={handleChange}
-            />
-            </div>
-            <div>
+        {user ? (
+          <div>
+            <p>Hello {user}!</p>
             <button
               className="navbar-btn login-submit-btn"
               buttonstyle="btn-outline"
               style={{ cursor: "pointer" }}
-              type="submit"
+              onClick={Auth.logout}
             >
-              Sign In
+              Logout
             </button>
-            </div>
+          </div>
+        ) : (
+          <form onSubmit={handleFormSubmit}>
+            <h5>Please Sign In To Play:</h5>
+            <div className="login-form-wrapper">
+              <div className="input-columns">
+                <input
+                  className="navbar-input"
+                  name="email"
+                  type="email"
+                  placeholder="Enter email"
+                  value={formState.email}
+                  onChange={handleChange}
+                />
+                <input
+                  className="navbar-input"
+                  name="password"
+                  type="password"
+                  placeholder="Enter password"
+                  value={formState.password}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <button
+                  className="navbar-btn login-submit-btn"
+                  buttonstyle="btn-outline"
+                  style={{ cursor: "pointer" }}
+                  type="submit"
+                >
+                  Sign In
+                </button>
+              </div>
             </div>
           </form>
         )}
