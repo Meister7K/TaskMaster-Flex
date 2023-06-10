@@ -9,14 +9,13 @@ const config = {
 	backgroundColor: '#282c34',
 	scale: {
 		mode: Phaser.Scale.ScaleModes.RESIZE,
-		width: window.innerWidth,
-		height: window.innerHeight,
+		width: window.innerWidth/2,
+		height: window.innerHeight/2,
 	},
 	physics: {
 		default: 'arcade',
 		arcade: {
 			gravity: { y: 0 },
-			debug: true,
 		},
 	},
 	scene: [Scene1,Scene2],
