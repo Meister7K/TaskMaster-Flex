@@ -51,8 +51,9 @@ const SignInForm = (props) => {
     <div className="navbar-sign-in-form">
       <div className="form-input-container">
         {user ? (
-          <div>
-            <p>Hello {user}!</p>
+          <div className="logout-container">
+            <div className="logout-wrapper">
+            <p className="hello-user">Hello {user}!</p>
             <button
               className="navbar-btn login-submit-btn"
               buttonstyle="btn-outline"
@@ -69,6 +70,7 @@ const SignInForm = (props) => {
             >
               Account
             </button>
+            </div>
           </div>
         ) : (
           <form onSubmit={handleFormSubmit}>
