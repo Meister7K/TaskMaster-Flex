@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../button/Button";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
@@ -10,6 +10,7 @@ import Auth from "../../utils/auth";
 const SignInForm = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
+  const navigate = useNavigate();
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -30,6 +31,9 @@ const SignInForm = (props) => {
       });
 
       Auth.login(data.login.token);
+
+      // Redirect to the user's account page
+      navigate("/account");
     } catch (e) {
       console.error(e);
     }
@@ -47,16 +51,28 @@ const SignInForm = (props) => {
     <div className="navbar-sign-in-form">
       <div className="form-input-container">
         {user ? (
-          <div>
-            <p>Hello {user}!</p>
-            <button
-              className="navbar-btn login-submit-btn"
-              buttonstyle="btn-outline"
-              style={{ cursor: "pointer" }}
-              onClick={Auth.logout}
-            >
-              Logout
-            </button>
+          <div className="logout-container">
+            <div className="logout-wrapper">
+              <p className="hello-user">Hello {user}!</p>
+              <button
+                className="navbar-btn login-submit-btn"
+                buttonstyle="btn-outline"
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  Auth.logout();
+                }}
+              >
+                Logout
+              </button>
+              <button
+                className="navbar-btn login-submit-btn"
+                buttonstyle="btn-outline"
+                style={{ cursor: "pointer" }}
+                onClick={() => navigate(`/account/${user}`)}
+              >
+                Account
+              </button>
+            </div>
           </div>
         ) : (
           <form onSubmit={handleFormSubmit}>
