@@ -9,8 +9,8 @@ class Scene2 extends Phaser.Scene {
   }
 
   preload() {
-    
-    // this.load.image("pony", Pony);
+
+
 
     // this.load.spritesheet("bat", Bat, {
     //   frameWidth: 36,
