@@ -1,9 +1,17 @@
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Auth from "../utils/auth";
 
-const user = Auth.loggedIn() ? Auth.getProfile().data.username : null;
 const Account = () => {
+  const user = Auth.loggedIn() ? Auth.getProfile().data.username : null;
+  const navigate = useNavigate();
 
-  // Fetch the user's account data based on the username
+  useEffect(() => {
+    if (!Auth.loggedIn()) {
+      // User is not logged in, redirect to home page
+      navigate("/");
+    }
+  }, [navigate]);
 
   return (
     <div>

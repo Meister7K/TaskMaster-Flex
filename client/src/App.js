@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import {
   ApolloClient,
   InMemoryCache,
@@ -6,30 +6,30 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/navbar/Navbar';
-import './App.css';
-import Home from './pages/Home.js';
-import About from './pages/About';
-import Game from './pages/Game';
-import SignUp from './pages/SignUp';
-import Account from './pages/Account';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/navbar/Navbar";
+import "./App.css";
+import Home from "./pages/Home.js";
+import About from "./pages/About";
+import Game from "./pages/Game";
+import SignUp from "./pages/SignUp";
+import Account from "./pages/Account";
 import Auth from "../src/utils/auth";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: "/graphql",
 });
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
-  const token = localStorage.getItem('id_token');
+  const token = localStorage.getItem("id_token");
   // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -40,9 +40,16 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const user = Auth.loggedIn() ? Auth.getProfile().data.username : null;
-
 function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const loggedInUser = Auth.loggedIn()
+      ? Auth.getProfile().data.username
+      : null;
+    setUser(loggedInUser);
+  }, []);
+
   return (
     <ApolloProvider client={client}>
       <Router>
@@ -52,7 +59,11 @@ function App() {
           <Route exact path="/about" element={<About />} />
           <Route exact path="/game" element={<Game />} />
           <Route exact path="/sign-up" element={<SignUp />} />
-          <Route exact path={`/account/${user}`} element={<Account/>}/>
+          <Route
+            exact
+            path="/account/:username"
+            element={<Account />}
+          />
         </Routes>
       </Router>
     </ApolloProvider>
