@@ -84,6 +84,9 @@ const Account = () => {
         setReenterEmail("");
         setEmailPassword("");
       } catch (error) {
+        alert(
+          "Password verification failed. Please make sure you entered the correct password."
+        );
         console.log(error);
       }
     }
@@ -112,6 +115,14 @@ const Account = () => {
 
       alert("Password successfully changed!")
     } catch (error) {
+      alert(
+        "Password verification failed. Please make sure you entered the correct password."
+      );
+      setPasswordState({
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+      });
       console.log(error);
     }
   };
