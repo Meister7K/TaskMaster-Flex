@@ -22,7 +22,7 @@ function HomeSection() {
         <video src="/videos/home-video-1.mp4" autoPlay loop muted />
         <h1>TASKMASTER FLEX</h1>
         {isLoggedIn ? (
-          <p>Thanks for logging in, now you can play the game!</p>
+          <p>Thanks for logging in, you may now play the game!</p>
         ) : (
           <p>Level up your life, one task at a time!</p>
         )}

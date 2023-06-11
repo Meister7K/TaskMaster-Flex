@@ -9,17 +9,22 @@ const config = {
 	backgroundColor: '#282c34',
 	scale: {
 		mode: Phaser.Scale.ScaleModes.RESIZE,
-		width: window.innerWidth,
-		height: window.innerHeight,
+		width: window.innerWidth/2,
+		height: window.innerHeight/2,
 	},
 	physics: {
 		default: 'arcade',
 		arcade: {
 			gravity: { y: 0 },
-			debug: true,
+			debug: true
 		},
+		plugins:{
+			scene:[{
+				plugin: Phaser
+			}]
+		}
 	},
 	scene: [Scene1,Scene2],
 }
-// eslint-disable-next-line import/no-anonymous-default-export
+
 export default new Phaser.Game(config)
