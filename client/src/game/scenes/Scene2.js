@@ -44,6 +44,8 @@ this.load.image('jinx', Jinx)
     // this.ball.setScale(.2);
     // this.ball.setOrigin(0,0);
 
+    
+
 
 
     // this.anims.create({
@@ -57,23 +59,35 @@ this.load.image('jinx', Jinx)
 
 
   const batImg = new Image();
-  batImg.onload = () => {
-    const texture = this.textures.addSpriteSheet('batSheet', batImg, {
+    batImg.onload = () => {
+      const texture = this.textures.addSpriteSheet('batSheet', batImg, {
       frameWidth: 32,
       frameHeight: 32,
-    });
-    const bat = this.add.sprite(0, 0, 'batSheet');
-    bat.setOrigin(0, 0);
-    this.anims.create({
+      });
+      // const bat = this.add.sprite(0, 0, 'batSheet');
+      // bat.setOrigin(0, 0);
+      this.anims.create({
       key: 'batAnimation',
       frames: this.anims.generateFrameNumbers('batSheet', { start: 0, end: 4 }),
       frameRate: 8,
       repeat: -1,
-    });
-    bat.play('batAnimation');
+      });
+      
+    const numBats = 7;
+    
+    for (let i = 0; i < numBats; i++) {
+      const randomX = Phaser.Math.Between(0, this.game.config.width);
+      const randomY = Phaser.Math.Between(0, this.game.config.height);
+
+      const bat = this.add.sprite(randomX, randomY, 'batSheet');
+      bat.setOrigin(0, 0);
+      bat.play('batAnimation');
+    }
   };
   batImg.src = Bat;
 
+
+  
     this.player.setCollideWorldBounds(true);
 
     this.cursors = this.input.keyboard.createCursorKeys();

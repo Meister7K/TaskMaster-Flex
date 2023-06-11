@@ -52,8 +52,11 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 5. The article 'Element: scrollTo() method' from developer.mozilla.org was used to figure out how to use the offset properties to navigate up and down our page.  Here is a link to the article: https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTo 
 
-6. 
+6. We used the article "Loading Assets as Data URI in Phaser 3" to help figure out URI errors when rendering the bat spritesheet in Phaser.  Here is a link to the article:  https://supernapie.com/blog/loading-assets-as-data-uri-in-phaser-3/ 
 
+7. We used this thread "Random Spawning" to learn how to randomly spawn multiple bat sprites.  Here is a link to the page: https://phaser.discourse.group/t/random-spawning/3318/3 
+
+8. 
 
 ## License
 
