@@ -8,8 +8,7 @@ const Account = () => {
   const user = Auth.loggedIn() ? Auth.getProfile().data : null;
   const navigate = useNavigate();
   const [updateUser, { loading, error, data }] = useMutation(UPDATE_USER);
-  const [changePassword, { loading2, error2, data2 }] =
-    useMutation(CHANGE_PASSWORD);
+  const [changePassword, { loading2, error2, data2 }] = useMutation(CHANGE_PASSWORD);
   const [deleteUser, { loading3, error3, data3 }] = useMutation(DELETE_USER);
   const [emailPassword, setEmailPassword] = useState("");
   const [updateEmail, setUpdateEmail] = useState("");
@@ -193,68 +192,85 @@ const Account = () => {
     return null;
   }
 
-  return (
-    <div>
-      <h1>{user.username}'s Account</h1>
-      <div>
-        <h2>{user.email}</h2>
-        <form onSubmit={handleEmailUpdate}>
-          <h2>Change Email</h2>
-          <input
-            name="updateEmail"
-            placeholder="New email"
-            value={updateEmail}
-            onChange={handleChange}
-          />
-          <input
-            name="reenterEmail"
-            placeholder="Reenter email"
-            value={reenterEmail}
-            onChange={handleChange}
-          />
-          <input
-            type="password"
-            name="emailPassword"
-            placeholder="Current password"
-            value={emailPassword}
-            onChange={handleChange}
-          />
-          <button type="submit">Update Email</button>
-        </form>
-      </div>
-      <div>
-        <form onSubmit={handlePasswordUpdate}>
-          <h2>Change Password</h2>
-          <input
-            type="password"
-            name="currentPassword"
-            placeholder="Current password"
-            value={passwordState.currentPassword}
-            onChange={handleChange}
-          />
-          <input
-            type="password"
-            name="newPassword"
-            placeholder="New password"
-            value={passwordState.newPassword}
-            onChange={handleChange}
-          />
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirm new password"
-            value={passwordState.confirmPassword}
-            onChange={handleChange}
-          />
-          <button type="submit">Update Password</button>
-        </form>
-      </div>
-      <div>
-        <button onClick={handleDeleteAccount}>Delete Account</button>
-      </div>
-      {/* Display other user account information */}
-    </div>
-  );
+ return (
+   <div className="account-container">
+     <h1 className="account-title">{user.username}'s Account</h1>
+     <div className="account-info">
+       <h2 className="account-subtitle">User Email: {user.email}</h2>
+     </div>
+     <div className="account-sections">
+       <div className="account-section">
+         <form className="account-form" onSubmit={handleEmailUpdate}>
+           <h2 className="account-subtitle">Change Email</h2>
+           <input
+             className="account-input"
+             name="updateEmail"
+             placeholder="New email"
+             value={updateEmail}
+             onChange={handleChange}
+           />
+           <input
+             className="account-input"
+             name="reenterEmail"
+             placeholder="Reenter email"
+             value={reenterEmail}
+             onChange={handleChange}
+           />
+           <input
+             className="account-input"
+             type="password"
+             name="emailPassword"
+             placeholder="Current password"
+             value={emailPassword}
+             onChange={handleChange}
+           />
+           <button className="account-button" type="submit">
+             Update Email
+           </button>
+         </form>
+       </div>
+       <div className="account-section">
+         <form className="account-form" onSubmit={handlePasswordUpdate}>
+           <h2 className="account-subtitle">Change Password</h2>
+           <input
+             className="account-input"
+             type="password"
+             name="currentPassword"
+             placeholder="Current password"
+             value={passwordState.currentPassword}
+             onChange={handleChange}
+           />
+           <input
+             className="account-input"
+             type="password"
+             name="newPassword"
+             placeholder="New password"
+             value={passwordState.newPassword}
+             onChange={handleChange}
+           />
+           <input
+             className="account-input"
+             type="password"
+             name="confirmPassword"
+             placeholder="Confirm new password"
+             value={passwordState.confirmPassword}
+             onChange={handleChange}
+           />
+           <button className="account-button" type="submit">
+             Update Password
+           </button>
+         </form>
+       </div>
+     </div>
+     <div className="delete-account">
+       <h2 className="account-subtitle">Delete Account</h2>
+       <button className="account-button" onClick={handleDeleteAccount}>
+         Delete Account
+       </button>
+     </div>
+     {/* Display other user account information */}
+   </div>
+ );
 };
 
 export default Account;
