@@ -1,42 +1,23 @@
 import Phaser from "phaser";
-import Back from "../game-assets/background.png";
-import Pony from "../game-assets/pixel-pony.png";
-// import Ball from '../game-assets/ball.png';
-import Jinx from '../game-assets/jinx1.png';
 import Bat from '../game-assets/bat.png';
-import Minotaur from '../game-assets/Minotaur2Spritesheet.png';
 
 class Scene2 extends Phaser.Scene {
   constructor() {
     super("play game");
+    this.minotaurs = [];
   }
 
   preload() {
 
     //! potential work around if Karl can't fix image sizes
-    this.load.image('jinx', Jinx)
-    // this.load.image('ball',Ball)
-
+    
     // let dataURI = localStorage.getItem(Pony)
-
+    
     // let data = new Image();
-
+    
     // data.src = dataURI
-
+    
     // this.textures.addBase64(Pony, dataURI, data)
-
-
-    // this.load.spritesheet("bat", Bat, {
-    //   frameWidth: 36,
-    //   frameHeight: 36,
-    // });
-
-    this.load.spritesheet("minotaur", Minotaur, {
-      frameWidth: 96,
-      frameHeight: 80,
-    });
-
-    this.load.image("background", Back);
   }
 
   create() {
@@ -45,15 +26,6 @@ class Scene2 extends Phaser.Scene {
 
     this.player = this.physics.add.sprite( 500, 500, "jinx");
     this.player.setScale(.1);
-
-    // this.ball = this.add.image(0,0, "ball");
-    // this.ball.setScale(.2);
-    // this.ball.setOrigin(0,0);
-
-    // this.minotaur = this.add.sprite(100, 100, "minotaur");
-    // this.minotaur.setOrigin(0.5, 0.5);
-
-
 
     this.anims.create({
       key: "minotaurAnimation",
@@ -85,6 +57,8 @@ class Scene2 extends Phaser.Scene {
 
         minotaur.setOrigin(0.5, 0.5);
         minotaur.play('minotaurAnimation');
+
+        this.minotaurs.push(minotaur);
       }
 
   
@@ -94,8 +68,7 @@ class Scene2 extends Phaser.Scene {
           frameWidth: 32,
           frameHeight: 32,
         });
-        // const bat = this.add.sprite(0, 0, 'batSheet');
-        // bat.setOrigin(0, 0);
+
         this.anims.create({
           key: 'batAnimation',
           frames: this.anims.generateFrameNumbers('batSheet', { start: 0, end: 4 }),
@@ -156,9 +129,15 @@ class Scene2 extends Phaser.Scene {
     } else {
       this.player.setVelocityY(0);
     }
+
+    this.minotaurs.forEach((minotaur) => {
+      if (minotaur.body.velocity.x < 0) {
+        minotaur.setFlipX(true);
+      } else {
+        minotaur.setFlipX(false);
+      }
+    });
   }
 }
-
-// console.log(Ball)
 
 export default Scene2;
