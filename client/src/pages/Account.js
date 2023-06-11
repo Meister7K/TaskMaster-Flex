@@ -11,6 +11,7 @@ const Account = () => {
   const [loginUser, { loading1, error1, data1 }] = useMutation(LOGIN_USER);
   const [emailPassword, setEmailPassword] = useState("");
   const [updateEmail, setUpdateEmail] = useState("");
+  const [reenterEmail, setReenterEmail] = useState("");
   const [passwordState, setPasswordState] = useState({
     currentPassword: "",
     newPassword: "",
@@ -35,6 +36,10 @@ const Account = () => {
       setUpdateEmail(value);
     }
 
+    if (name === "reenterEmail") {
+      setReenterEmail(value);
+    }
+
     if (name === "emailPassword") {
       setEmailPassword(value); 
     }
@@ -48,6 +53,10 @@ const Account = () => {
 
     if (!emailRegex.test(lowercaseEmail)) {
       alert("Invalid email address.");
+    } else if (updateEmail !== reenterEmail) {
+      alert("Emails do not match. Please reenter the email.");
+      setUpdateEmail("");
+      setReenterEmail("");
     } else {
       try {
         const { data } = await updateUser({
@@ -61,6 +70,7 @@ const Account = () => {
           Auth.logout();
         }
         setUpdateEmail("");
+        setReenterEmail("");
         setEmailPassword("");
       } catch (error) {
         console.log(error);
@@ -108,6 +118,12 @@ const Account = () => {
             name="updateEmail"
             placeholder="New email"
             value={updateEmail}
+            onChange={handleChange}
+          />
+          <input
+            name="reenterEmail"
+            placeholder="Reenter email"
+            value={reenterEmail}
             onChange={handleChange}
           />
           <input
