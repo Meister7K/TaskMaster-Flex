@@ -13,16 +13,16 @@ class Scene2 extends Phaser.Scene {
   preload() {
 
     //! potential work around if Karl can't fix image sizes
-this.load.image('jinx', Jinx)
-// this.load.image('ball',Ball)
+    this.load.image('jinx', Jinx)
+    // this.load.image('ball',Ball)
 
-// let dataURI = localStorage.getItem(Pony)
+    // let dataURI = localStorage.getItem(Pony)
 
-// let data = new Image();
+    // let data = new Image();
 
-// data.src = dataURI
+    // data.src = dataURI
 
-// this.textures.addBase64(Pony, dataURI, data)
+    // this.textures.addBase64(Pony, dataURI, data)
 
 
     // this.load.spritesheet("bat", Bat, {
@@ -60,52 +60,53 @@ this.load.image('jinx', Jinx)
   
     const batImg = new Image();
     batImg.onload = () => {
-      const texture = this.textures.addSpriteSheet('batSheet', batImg, {
-        frameWidth: 32,
-        frameHeight: 32,
-      });
-      // const bat = this.add.sprite(0, 0, 'batSheet');
-      // bat.setOrigin(0, 0);
-      this.anims.create({
-        key: 'batAnimation',
-        frames: this.anims.generateFrameNumbers('batSheet', { start: 0, end: 4 }),
-        frameRate: 8,
-        repeat: -1,
-      });
+        const texture = this.textures.addSpriteSheet('batSheet', batImg, {
+          frameWidth: 32,
+          frameHeight: 32,
+        });
+        // const bat = this.add.sprite(0, 0, 'batSheet');
+        // bat.setOrigin(0, 0);
+        this.anims.create({
+          key: 'batAnimation',
+          frames: this.anims.generateFrameNumbers('batSheet', { start: 0, end: 4 }),
+          frameRate: 8,
+          repeat: -1,
+        });
+        
+      const numBats = 7;
       
-    const numBats = 7;
-    
-    for (let i = 0; i < numBats; i++) {
-      const randomX = Phaser.Math.Between(0, this.game.config.width);
-      const randomY = Phaser.Math.Between(0, this.game.config.height);
-      const randomXVelocity = Phaser.Math.Between(7,15);
-      const randomYVelocity = Phaser.Math.Between(7,15);
+      for (let i = 0; i < numBats; i++) {
+        const randomX = Phaser.Math.Between(0, this.game.config.width);
+        const randomY = Phaser.Math.Between(0, this.game.config.height);
+        const randomXVelocity = Phaser.Math.Between(-30,30);
+        const randomYVelocity = Phaser.Math.Between(-30,30);
 
-      const bat = this.add.sprite(randomX, randomY, 'batSheet');
-      this.physics.add.existing(bat);
+        const bat = this.add.sprite(randomX, randomY, 'batSheet');
+        this.physics.add.existing(bat);
 
-      bat.body.velocity.setTo(randomXVelocity, randomYVelocity);
-      bat.body.bounce.set(2);
+        bat.body.velocity.setTo(randomXVelocity, randomYVelocity);
+        bat.body.bounce.set(1);
+        bat.body.collideWorldBounds = true;
 
-      bat.setOrigin(0, 0);
-      bat.play('batAnimation');
-    }
-  };
-  batImg.src = Bat;
-
-
-
+        bat.setOrigin(0, 0);
+        bat.play('batAnimation');
+      }
+    };
+    batImg.src = Bat;
+  
+  
+  
     this.player.setCollideWorldBounds(true);
-
+  
     this.cursors = this.input.keyboard.createCursorKeys();
-
+  
     this.add.text(20, 20, `Playing Game`, {
       font: "25px Arial",
       fill: "white",
     });
-
- 
+    
   }
+
 
   update() {
     const { left, right, up, down } = this.cursors;
