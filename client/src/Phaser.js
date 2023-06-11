@@ -8,9 +8,9 @@ const config = {
 	parent: 'phaser-container',
 	backgroundColor: '#282c34',
 	scale: {
-		mode: Phaser.Scale.ScaleModes.RESIZE,
-		width: window.innerWidth/2,
-		height: window.innerHeight/2,
+		mode: Phaser.Scale.FIT,
+		width: 1632,
+		height: 1632,
 	},
 	physics: {
 		default: 'arcade',
