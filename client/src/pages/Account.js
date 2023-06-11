@@ -60,6 +60,13 @@ const Account = () => {
       setEmailPassword("");
     } else {
       try {
+        await changePassword({
+          variables: {
+            currentPassword: emailPassword,
+            newPassword: emailPassword,
+          },
+        });
+
         const { data } = await updateUser({
           variables: { email: updateEmail },
         });
@@ -72,6 +79,7 @@ const Account = () => {
           );
           Auth.logout();
         }
+
         setUpdateEmail("");
         setReenterEmail("");
         setEmailPassword("");
@@ -81,6 +89,7 @@ const Account = () => {
     }
   };
 
+
   const handlePasswordUpdate = async (event) => {
     event.preventDefault();
     const { currentPassword, newPassword, confirmPassword } = passwordState;
@@ -89,8 +98,6 @@ const Account = () => {
       alert("New password and confirmed password do not match.");
       return;
     }
-
-    console.log(passwordState)
 
     try {
       await changePassword({
@@ -102,6 +109,8 @@ const Account = () => {
         newPassword: "",
         confirmPassword: "",
       });
+
+      alert("Password successfully changed!")
     } catch (error) {
       console.log(error);
     }
