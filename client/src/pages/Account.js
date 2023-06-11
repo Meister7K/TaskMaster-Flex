@@ -268,7 +268,6 @@ const Account = () => {
          Delete Account
        </button>
      </div>
-     {/* Display other user account information */}
    </div>
  );
 };
