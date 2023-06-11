@@ -4,6 +4,7 @@ import Pony from "../game-assets/pixel-pony.png";
 // import Ball from '../game-assets/ball.png';
 import Jinx from '../game-assets/jinx1.png';
 import Bat from '../game-assets/bat.png';
+import Minotaur from '../game-assets/Minotaur2Spritesheet.png';
 
 class Scene2 extends Phaser.Scene {
   constructor() {
@@ -30,6 +31,11 @@ class Scene2 extends Phaser.Scene {
     //   frameHeight: 36,
     // });
 
+    this.load.spritesheet("minotaur", Minotaur, {
+      frameWidth: 96,
+      frameHeight: 80,
+    });
+
     this.load.image("background", Back);
   }
 
@@ -44,18 +50,42 @@ class Scene2 extends Phaser.Scene {
     // this.ball.setScale(.2);
     // this.ball.setOrigin(0,0);
 
-    
+    // this.minotaur = this.add.sprite(100, 100, "minotaur");
+    // this.minotaur.setOrigin(0.5, 0.5);
 
 
 
-    // this.anims.create({
-    //   key: "idle",
-    //   frames: this.anims.generateFrameNumbers("bat", {
-    //     frames: [0, 1, 2, 3, 4],
-    //   }),
-    //   frameRate: 8,
-    //   repeat: -1,
-    // });
+    this.anims.create({
+      key: "minotaurAnimation",
+      frames: [
+        { key: "minotaur", frame: 0 },
+        { key: "minotaur", frame: 1 },
+        { key: "minotaur", frame: 2 },
+        { key: "minotaur", frame: 3 },
+        { key: "minotaur", frame: 4 }
+      ],
+      frameRate: 8,
+      repeat: -1,
+    });
+
+    const numMinotaurs = 3;
+      
+      for (let i = 0; i < numMinotaurs; i++) {
+        const randomX = Phaser.Math.Between(0, this.game.config.width);
+        const randomY = Phaser.Math.Between(0, this.game.config.height);
+        const randomXVelocity = Phaser.Math.Between(-30,30);
+        const randomYVelocity = Phaser.Math.Between(-30,30);
+
+        const minotaur = this.add.sprite(randomX, randomY, 'minotaur');
+        this.physics.add.existing(minotaur);
+
+        minotaur.body.velocity.setTo(randomXVelocity, randomYVelocity);
+        minotaur.body.bounce.set(1);
+        minotaur.body.collideWorldBounds = true;
+
+        minotaur.setOrigin(0.5, 0.5);
+        minotaur.play('minotaurAnimation');
+      }
 
   
     const batImg = new Image();
