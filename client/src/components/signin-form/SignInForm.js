@@ -31,9 +31,6 @@ const SignInForm = (props) => {
       });
 
       Auth.login(data.login.token);
-
-      // Redirect to the user's account page
-      navigate("/account");
     } catch (e) {
       console.error(e);
     }

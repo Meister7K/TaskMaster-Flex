@@ -36,15 +36,20 @@ const resolvers = {
 
       return { token, user };
     },
-    updateUser: async (parent, { email, password }, context) => {
+    updateUser: async (parent, { user, email, password }, context) => {
       if (context.user) {
         const updatedUser = await User.findByIdAndUpdate(
           context.user._id,
           { email, password },
           { new: true }
         );
-        return updatedUser;
+  
+        const user = await User.findOne({ email });
+
+        const token = signToken(user);
+        return ( token, user );
       }
+
       throw new AuthenticationError("Not logged in");
     },
   },

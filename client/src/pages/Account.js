@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
-import { UPDATE_USER } from "../utils/mutations";
+import { UPDATE_USER, LOGIN_USER } from "../utils/mutations";
 
 const Account = () => {
   const user = Auth.loggedIn() ? Auth.getProfile().data : null;
   const navigate = useNavigate();
-  const [updateUser, { error, data }] = useMutation(UPDATE_USER);
+  const [updateUser, { loading, error, data }] = useMutation(UPDATE_USER);
+  const [loginUser, { loading1, error1, data1 }] = useMutation(LOGIN_USER);
+  const [emailPassword, setEmailPassword] = useState("");
   const [updateEmail, setUpdateEmail] = useState("");
   const [passwordState, setPasswordState] = useState({
     currentPassword: "",
@@ -17,7 +19,6 @@ const Account = () => {
 
   useEffect(() => {
     if (!Auth.loggedIn()) {
-      // User is not logged in, redirect to home page
       navigate("/");
     }
   }, [navigate]);
@@ -33,12 +34,18 @@ const Account = () => {
     if (name === "updateEmail") {
       setUpdateEmail(value);
     }
+
+    if (name === "emailPassword") {
+      setEmailPassword(value); 
+    }
   };
 
   const handleEmailUpdate = async (event) => {
     event.preventDefault();
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const lowercaseEmail = updateEmail.toLowerCase();
+
     if (!emailRegex.test(lowercaseEmail)) {
       alert("Invalid email address.");
     } else {
@@ -46,12 +53,21 @@ const Account = () => {
         const { data } = await updateUser({
           variables: { email: updateEmail },
         });
-        console.log(data);
+
+        if (!data) {
+          alert("Email not updated!");
+        } else {
+          alert("Email successfully updated! You must sign in again to proceed.");
+          Auth.logout();
+        }
+        setUpdateEmail("");
+        setEmailPassword("");
       } catch (error) {
         console.log(error);
       }
     }
   };
+
 
   const handlePasswordUpdate = async (event) => {
     event.preventDefault();
@@ -66,8 +82,7 @@ const Account = () => {
       const { data } = await updateUser({
         variables: { password: newPassword },
       });
-      console.log(data);
-      // Clear password fields after update
+
       setPasswordState({
         currentPassword: "",
         newPassword: "",
@@ -93,6 +108,13 @@ const Account = () => {
             name="updateEmail"
             placeholder="New email"
             value={updateEmail}
+            onChange={handleChange}
+          />
+          <input
+            type="password"
+            name="emailPassword"
+            placeholder="Current password"
+            value={emailPassword}
             onChange={handleChange}
           />
           <button type="submit">Update Email</button>
