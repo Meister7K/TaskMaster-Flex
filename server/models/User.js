@@ -22,7 +22,7 @@ const userSchema = new Schema({
     required: true,
     match: [
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&a-zA-Z\d])[a-zA-Z\d@$!%*#?&]+$/,
-      "Password must contain at least one lowercase letter, one uppercase letter, and one number. Password may include special characters.",
+      "Password must contain at least one lowercase letter, one uppercase letter, and one number. Password may include special characters!",
     ],
     validate: [
       {

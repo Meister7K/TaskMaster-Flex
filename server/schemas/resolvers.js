@@ -1,6 +1,7 @@
 const { User } = require("../models");
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
+const bcrypt = require("bcrypt");
 
 const resolvers = {
   Query: {
@@ -43,11 +44,31 @@ const resolvers = {
           { email, password },
           { new: true }
         );
-  
+
         const user = await User.findOne({ email });
 
-        const token = signToken(user);
-        return ( token, user );
+        return user;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+    changePassword: async (
+      parent,
+      { currentPassword, newPassword },
+      context
+    ) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id);
+        const correctPw = await user.isCorrectPassword(currentPassword);
+
+        if (!correctPw) {
+          throw new AuthenticationError("Current password is incorrect");
+        }
+
+        user.password = newPassword;
+        await user.save();
+
+        return user;
       }
 
       throw new AuthenticationError("Not logged in");
