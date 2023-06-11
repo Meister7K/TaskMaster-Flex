@@ -1,23 +1,22 @@
 import Phaser from "phaser";
 import Back from "../game-assets/background.png";
-import Pony from "../game-assets/pixel-pony.png";
-import Bat from "../game-assets/bat.png";
-
-
+import Jinx from '../game-assets/jinx1.png';
+import Minotaur from '../game-assets/Minotaur2Spritesheet.png';
 
 class Scene1 extends Phaser.Scene {
   constructor() {
     super("loadGame");
   }
   preload() {
-    //this.load.image("pony", 'game-assets/pixel-pony.png');
 
-    // this.load.spritesheet("bat", Bat, {
-    //   frameWidth: 36,
-    //   frameHeight: 36,
-    // });
+    this.load.image('jinx', Jinx)
 
-    //this.load.image("background", Back);
+    this.load.spritesheet("minotaur", Minotaur, {
+      frameWidth: 96,
+      frameHeight: 80,
+    });
+
+    this.load.image("background", Back);
 
   }
 
