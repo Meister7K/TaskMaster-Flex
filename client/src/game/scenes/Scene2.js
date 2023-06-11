@@ -57,20 +57,20 @@ this.load.image('jinx', Jinx)
     //   repeat: -1,
     // });
 
-
-  const batImg = new Image();
+  
+    const batImg = new Image();
     batImg.onload = () => {
       const texture = this.textures.addSpriteSheet('batSheet', batImg, {
-      frameWidth: 32,
-      frameHeight: 32,
+        frameWidth: 32,
+        frameHeight: 32,
       });
       // const bat = this.add.sprite(0, 0, 'batSheet');
       // bat.setOrigin(0, 0);
       this.anims.create({
-      key: 'batAnimation',
-      frames: this.anims.generateFrameNumbers('batSheet', { start: 0, end: 4 }),
-      frameRate: 8,
-      repeat: -1,
+        key: 'batAnimation',
+        frames: this.anims.generateFrameNumbers('batSheet', { start: 0, end: 4 }),
+        frameRate: 8,
+        repeat: -1,
       });
       
     const numBats = 7;
@@ -78,8 +78,15 @@ this.load.image('jinx', Jinx)
     for (let i = 0; i < numBats; i++) {
       const randomX = Phaser.Math.Between(0, this.game.config.width);
       const randomY = Phaser.Math.Between(0, this.game.config.height);
+      const randomXVelocity = Phaser.Math.Between(7,15);
+      const randomYVelocity = Phaser.Math.Between(7,15);
 
       const bat = this.add.sprite(randomX, randomY, 'batSheet');
+      this.physics.add.existing(bat);
+
+      bat.body.velocity.setTo(randomXVelocity, randomYVelocity);
+      bat.body.bounce.set(2);
+
       bat.setOrigin(0, 0);
       bat.play('batAnimation');
     }
@@ -87,7 +94,7 @@ this.load.image('jinx', Jinx)
   batImg.src = Bat;
 
 
-  
+
     this.player.setCollideWorldBounds(true);
 
     this.cursors = this.input.keyboard.createCursorKeys();

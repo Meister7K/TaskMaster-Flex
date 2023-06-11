@@ -56,7 +56,7 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 7. We used this thread "Random Spawning" to learn how to randomly spawn multiple bat sprites.  Here is a link to the page: https://phaser.discourse.group/t/random-spawning/3318/3 
 
-8. 
+8. We used the github repo "Phaser Cheatsheet" to learn how to add physics to the bat sprites.  Here is a link to the page: https://gist.github.com/woubuc/6ef002051aeef453a95b
 
 ## License
 
