@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
-import { UPDATE_USER, LOGIN_USER } from "../utils/mutations";
+import { UPDATE_USER, LOGIN_USER, CHANGE_PASSWORD } from "../utils/mutations";
 
 const Account = () => {
   const user = Auth.loggedIn() ? Auth.getProfile().data : null;
   const navigate = useNavigate();
   const [updateUser, { loading, error, data }] = useMutation(UPDATE_USER);
-  const [loginUser, { loading1, error1, data1 }] = useMutation(LOGIN_USER);
+  const [changePassword, { loading2, error2, data2 }] = useMutation(CHANGE_PASSWORD);
   const [emailPassword, setEmailPassword] = useState("");
   const [updateEmail, setUpdateEmail] = useState("");
   const [reenterEmail, setReenterEmail] = useState("");
@@ -41,7 +41,7 @@ const Account = () => {
     }
 
     if (name === "emailPassword") {
-      setEmailPassword(value); 
+      setEmailPassword(value);
     }
   };
 
@@ -57,6 +57,7 @@ const Account = () => {
       alert("Emails do not match. Please reenter the email.");
       setUpdateEmail("");
       setReenterEmail("");
+      setEmailPassword("");
     } else {
       try {
         const { data } = await updateUser({
@@ -66,7 +67,9 @@ const Account = () => {
         if (!data) {
           alert("Email not updated!");
         } else {
-          alert("Email successfully updated! You must sign in again to proceed.");
+          alert(
+            "Email successfully updated! You must sign in again to proceed."
+          );
           Auth.logout();
         }
         setUpdateEmail("");
@@ -78,7 +81,6 @@ const Account = () => {
     }
   };
 
-
   const handlePasswordUpdate = async (event) => {
     event.preventDefault();
     const { currentPassword, newPassword, confirmPassword } = passwordState;
@@ -88,9 +90,11 @@ const Account = () => {
       return;
     }
 
+    console.log(passwordState)
+
     try {
-      const { data } = await updateUser({
-        variables: { password: newPassword },
+      await changePassword({
+        variables: { currentPassword, newPassword },
       });
 
       setPasswordState({
@@ -140,21 +144,21 @@ const Account = () => {
         <form onSubmit={handlePasswordUpdate}>
           <h2>Change Password</h2>
           <input
-            type="password"
+            type="text"
             name="currentPassword"
             placeholder="Current password"
             value={passwordState.currentPassword}
             onChange={handleChange}
           />
           <input
-            type="password"
+            type="text"
             name="newPassword"
             placeholder="New password"
             value={passwordState.newPassword}
             onChange={handleChange}
           />
           <input
-            type="password"
+            type="text"
             name="confirmPassword"
             placeholder="Confirm new password"
             value={passwordState.confirmPassword}
