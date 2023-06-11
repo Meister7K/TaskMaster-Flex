@@ -24,8 +24,101 @@ class Scene2 extends Phaser.Scene {
     this.background = this.add.image(0, 0, "background");
     this.background.setOrigin(0, 0);
 
-    this.player = this.physics.add.sprite( 500, 500, "jinx");
-    this.player.setScale(.1);
+    // this.player = this.physics.add.sprite( 500, 500, "jinx");
+    // this.player.setScale(.1);
+
+    this.player = this.physics.add.sprite( 500, 500, "warrior1front");
+    this.player.setScale(1);
+
+    this.anims.create({
+      key: "warrior1FrontAnimation",
+      frames: [
+        { key: "warrior1front", frame: 0 },
+        { key: "warrior1front", frame: 1 },
+        { key: "warrior1front", frame: 2 },
+        { key: "warrior1front", frame: 3 },
+        { key: "warrior1front", frame: 4 },
+        { key: "warrior1front", frame: 5 },
+        { key: "warrior1front", frame: 6 },
+        { key: "warrior1front", frame: 7 },
+        { key: "warrior1front", frame: 8 },
+        { key: "warrior1front", frame: 9 },
+        { key: "warrior1front", frame: 10 },
+        { key: "warrior1front", frame: 11 },
+        { key: "warrior1front", frame: 12 },
+        { key: "warrior1front", frame: 13 }
+      ],
+      frameRate: 16,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "warrior1BackAnimation",
+      frames: [
+        { key: "warrior1back", frame: 0 },
+        { key: "warrior1back", frame: 1 },
+        { key: "warrior1back", frame: 2 },
+        { key: "warrior1back", frame: 3 },
+        { key: "warrior1back", frame: 4 },
+        { key: "warrior1back", frame: 5 },
+        { key: "warrior1back", frame: 6 },
+        { key: "warrior1back", frame: 7 },
+        { key: "warrior1back", frame: 8 },
+        { key: "warrior1back", frame: 9 },
+        { key: "warrior1back", frame: 10 },
+        { key: "warrior1back", frame: 11 },
+        { key: "warrior1back", frame: 12 },
+        { key: "warrior1back", frame: 13 }
+      ],
+      frameRate: 16,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "warrior1LeftAnimation",
+      frames: [
+        { key: "warrior1left", frame: 0 },
+        { key: "warrior1left", frame: 1 },
+        { key: "warrior1left", frame: 2 },
+        { key: "warrior1left", frame: 3 },
+        { key: "warrior1left", frame: 4 },
+        { key: "warrior1left", frame: 5 },
+        { key: "warrior1left", frame: 6 },
+        { key: "warrior1left", frame: 7 },
+        { key: "warrior1left", frame: 8 },
+        { key: "warrior1left", frame: 9 },
+        { key: "warrior1left", frame: 10 },
+        { key: "warrior1left", frame: 11 },
+        { key: "warrior1left", frame: 12 },
+        { key: "warrior1left", frame: 13 }
+      ],
+      frameRate: 16,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "warrior1RightAnimation",
+      frames: [
+        { key: "warrior1right", frame: 0 },
+        { key: "warrior1right", frame: 1 },
+        { key: "warrior1right", frame: 2 },
+        { key: "warrior1right", frame: 3 },
+        { key: "warrior1right", frame: 4 },
+        { key: "warrior1right", frame: 5 },
+        { key: "warrior1right", frame: 6 },
+        { key: "warrior1right", frame: 7 },
+        { key: "warrior1right", frame: 8 },
+        { key: "warrior1right", frame: 9 },
+        { key: "warrior1right", frame: 10 },
+        { key: "warrior1right", frame: 11 },
+        { key: "warrior1right", frame: 12 },
+        { key: "warrior1right", frame: 13 }
+      ],
+      frameRate: 16,
+      repeat: -1,
+    });
+
+
 
     this.anims.create({
       key: "minotaurAnimation",
@@ -45,8 +138,8 @@ class Scene2 extends Phaser.Scene {
       for (let i = 0; i < numMinotaurs; i++) {
         const randomX = Phaser.Math.Between(0, this.game.config.width);
         const randomY = Phaser.Math.Between(0, this.game.config.height);
-        const randomXVelocity = Phaser.Math.Between(-30,30);
-        const randomYVelocity = Phaser.Math.Between(-30,30);
+        const randomXVelocity = Phaser.Math.Between(-30,-20) + Phaser.Math.Between(0, 1) * 40;
+        const randomYVelocity = Phaser.Math.Between(-30,-20) + Phaser.Math.Between(0, 1) * 40;
 
         const minotaur = this.add.sprite(randomX, randomY, 'minotaur');
         this.physics.add.existing(minotaur);
@@ -114,20 +207,36 @@ class Scene2 extends Phaser.Scene {
   update() {
     const { left, right, up, down } = this.cursors;
 
+    let isMoving = false;
+
     if (left.isDown) {
       this.player.setVelocityX(-100);
+      this.player.anims.play("warrior1LeftAnimation", true);
+      isMoving = true;
     } else if (right.isDown) {
       this.player.setVelocityX(100);
+      this.player.anims.play("warrior1RightAnimation", true);
+      isMoving = true;
     } else {
       this.player.setVelocityX(0);
     }
 
     if (up.isDown) {
       this.player.setVelocityY(-100);
+      this.player.anims.play("warrior1BackAnimation", true);
+      isMoving = true;
     } else if (down.isDown) {
       this.player.setVelocityY(100);
+      this.player.anims.play("warrior1FrontAnimation", true);
+      isMoving = true;
     } else {
       this.player.setVelocityY(0);
+    }
+
+    if (!isMoving) {
+      this.player.anims.stop();
+    } else {
+      this.player.anims.resume();
     }
 
     this.minotaurs.forEach((minotaur) => {
