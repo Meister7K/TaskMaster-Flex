@@ -2,16 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
-import { UPDATE_USER, LOGIN_USER, CHANGE_PASSWORD } from "../utils/mutations";
+import { UPDATE_USER, CHANGE_PASSWORD, DELETE_USER } from "../utils/mutations";
 
 const Account = () => {
   const user = Auth.loggedIn() ? Auth.getProfile().data : null;
   const navigate = useNavigate();
   const [updateUser, { loading, error, data }] = useMutation(UPDATE_USER);
-  const [changePassword, { loading2, error2, data2 }] = useMutation(CHANGE_PASSWORD);
+  const [changePassword, { loading2, error2, data2 }] =
+    useMutation(CHANGE_PASSWORD);
+  const [deleteUser, { loading3, error3, data3 }] = useMutation(DELETE_USER);
   const [emailPassword, setEmailPassword] = useState("");
   const [updateEmail, setUpdateEmail] = useState("");
   const [reenterEmail, setReenterEmail] = useState("");
+  const [deleteConfirmationCount, setDeleteConfirmationCount] = useState(0);
   const [passwordState, setPasswordState] = useState({
     currentPassword: "",
     newPassword: "",
@@ -92,7 +95,6 @@ const Account = () => {
     }
   };
 
-
   const handlePasswordUpdate = async (event) => {
     event.preventDefault();
     const { currentPassword, newPassword, confirmPassword } = passwordState;
@@ -113,7 +115,7 @@ const Account = () => {
         confirmPassword: "",
       });
 
-      alert("Password successfully changed!")
+      alert("Password successfully changed!");
     } catch (error) {
       alert(
         "Password verification failed. Please make sure you entered the correct password."
@@ -124,6 +126,66 @@ const Account = () => {
         confirmPassword: "",
       });
       console.log(error);
+    }
+  };
+
+  const handleDeleteAccount = async () => {
+    if (deleteConfirmationCount === 0) {
+      const confirmFirst = await new Promise((resolve) => {
+        setTimeout(() => {
+          const confirmed = window.confirm(
+            "Are you sure you want to delete your account? This action is irreversible."
+          );
+          resolve(confirmed);
+        }, 0);
+      });
+
+      if (confirmFirst) {
+        setDeleteConfirmationCount(1);
+      } else {
+        setDeleteConfirmationCount(0);
+      }
+    } else if (deleteConfirmationCount === 1) {
+      const confirmSecond = await new Promise((resolve) => {
+        setTimeout(() => {
+          const confirmed = window.confirm(
+            "Please confirm again. There is still time to change your mind. Are you sure you want to delete your account?"
+          );
+          resolve(confirmed);
+        }, 0);
+      });
+
+      if (confirmSecond) {
+        setDeleteConfirmationCount(2);
+      } else {
+        setDeleteConfirmationCount(0);
+      }
+    } else if (deleteConfirmationCount === 2) {
+      const confirmThird = await new Promise((resolve) => {
+        setTimeout(() => {
+          const confirmed = window.confirm(
+            "This is your last opportunity to reconsider. Deleting your account will permanently remove all your data and cannot be undone. Are you absolutely certain you want to proceed?"
+          );
+          resolve(confirmed);
+        }, 0);
+      });
+
+      if (confirmThird) {
+        try {
+          await deleteUser();
+
+          window.alert("Account successfully deleted!");
+          Auth.logout();
+          navigate("/");
+        } catch (error) {
+          window.alert("An error occurred while deleting the account.");
+          console.log(error);
+        } finally {
+          setDeleteConfirmationCount(0);
+        }
+      } else {
+        setDeleteConfirmationCount(0);
+      }
     }
   };
 
@@ -164,21 +226,21 @@ const Account = () => {
         <form onSubmit={handlePasswordUpdate}>
           <h2>Change Password</h2>
           <input
-            type="text"
+            type="password"
             name="currentPassword"
             placeholder="Current password"
             value={passwordState.currentPassword}
             onChange={handleChange}
           />
           <input
-            type="text"
+            type="password"
             name="newPassword"
             placeholder="New password"
             value={passwordState.newPassword}
             onChange={handleChange}
           />
           <input
-            type="text"
+            type="password"
             name="confirmPassword"
             placeholder="Confirm new password"
             value={passwordState.confirmPassword}
@@ -186,6 +248,9 @@ const Account = () => {
           />
           <button type="submit">Update Password</button>
         </form>
+      </div>
+      <div>
+        <button onClick={handleDeleteAccount}>Delete Account</button>
       </div>
       {/* Display other user account information */}
     </div>

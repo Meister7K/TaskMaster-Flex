@@ -46,3 +46,11 @@ export const CHANGE_PASSWORD = gql`
     }
   }
 `;
+
+export const DELETE_USER = gql`
+  mutation deleteUser {
+    deleteUser {
+      message
+    }
+  }
+`;
