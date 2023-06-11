@@ -8,7 +8,8 @@ const Account = () => {
   const user = Auth.loggedIn() ? Auth.getProfile().data : null;
   const navigate = useNavigate();
   const [updateUser, { loading, error, data }] = useMutation(UPDATE_USER);
-  const [changePassword, { loading2, error2, data2 }] = useMutation(CHANGE_PASSWORD);
+  const [changePassword, { loading2, error2, data2 }] =
+    useMutation(CHANGE_PASSWORD);
   const [emailPassword, setEmailPassword] = useState("");
   const [updateEmail, setUpdateEmail] = useState("");
   const [reenterEmail, setReenterEmail] = useState("");
@@ -92,7 +93,6 @@ const Account = () => {
     }
   };
 
-
   const handlePasswordUpdate = async (event) => {
     event.preventDefault();
     const { currentPassword, newPassword, confirmPassword } = passwordState;
@@ -113,7 +113,7 @@ const Account = () => {
         confirmPassword: "",
       });
 
-      alert("Password successfully changed!")
+      alert("Password successfully changed!");
     } catch (error) {
       alert(
         "Password verification failed. Please make sure you entered the correct password."
@@ -164,21 +164,21 @@ const Account = () => {
         <form onSubmit={handlePasswordUpdate}>
           <h2>Change Password</h2>
           <input
-            type="text"
+            type="password"
             name="currentPassword"
             placeholder="Current password"
             value={passwordState.currentPassword}
             onChange={handleChange}
           />
           <input
-            type="text"
+            type="password"
             name="newPassword"
             placeholder="New password"
             value={passwordState.newPassword}
             onChange={handleChange}
           />
           <input
-            type="text"
+            type="password"
             name="confirmPassword"
             placeholder="Confirm new password"
             value={passwordState.confirmPassword}
