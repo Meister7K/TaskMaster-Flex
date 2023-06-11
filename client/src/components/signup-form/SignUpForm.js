@@ -120,7 +120,7 @@ function SignUpForm() {
           {data ? (
             <p>
               Success! You may now head{" "}
-              <Link to="/">back to the homepage.</Link>
+            <Link to="/">back to the homepage.</Link> {/* TODO link to profilepage and profile form once completed */}
             </p>
           ) : (
             <form onSubmit={handleFormSubmit}>
