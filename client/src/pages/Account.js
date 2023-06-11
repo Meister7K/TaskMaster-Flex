@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
-import { UPDATE_USER, LOGIN_USER, CHANGE_PASSWORD } from "../utils/mutations";
+import { UPDATE_USER, CHANGE_PASSWORD, DELETE_USER } from "../utils/mutations";
 
 const Account = () => {
   const user = Auth.loggedIn() ? Auth.getProfile().data : null;
@@ -10,9 +10,11 @@ const Account = () => {
   const [updateUser, { loading, error, data }] = useMutation(UPDATE_USER);
   const [changePassword, { loading2, error2, data2 }] =
     useMutation(CHANGE_PASSWORD);
+  const [deleteUser, { loading3, error3, data3 }] = useMutation(DELETE_USER);
   const [emailPassword, setEmailPassword] = useState("");
   const [updateEmail, setUpdateEmail] = useState("");
   const [reenterEmail, setReenterEmail] = useState("");
+  const [deleteConfirmationCount, setDeleteConfirmationCount] = useState(0);
   const [passwordState, setPasswordState] = useState({
     currentPassword: "",
     newPassword: "",
@@ -127,6 +129,66 @@ const Account = () => {
     }
   };
 
+  const handleDeleteAccount = async () => {
+    if (deleteConfirmationCount === 0) {
+      const confirmFirst = await new Promise((resolve) => {
+        setTimeout(() => {
+          const confirmed = window.confirm(
+            "Are you sure you want to delete your account? This action is irreversible."
+          );
+          resolve(confirmed);
+        }, 0);
+      });
+
+      if (confirmFirst) {
+        setDeleteConfirmationCount(1);
+      } else {
+        setDeleteConfirmationCount(0);
+      }
+    } else if (deleteConfirmationCount === 1) {
+      const confirmSecond = await new Promise((resolve) => {
+        setTimeout(() => {
+          const confirmed = window.confirm(
+            "Please confirm again. There is still time to change your mind. Are you sure you want to delete your account?"
+          );
+          resolve(confirmed);
+        }, 0);
+      });
+
+      if (confirmSecond) {
+        setDeleteConfirmationCount(2);
+      } else {
+        setDeleteConfirmationCount(0);
+      }
+    } else if (deleteConfirmationCount === 2) {
+      const confirmThird = await new Promise((resolve) => {
+        setTimeout(() => {
+          const confirmed = window.confirm(
+            "This is your last opportunity to reconsider. Deleting your account will permanently remove all your data and cannot be undone. Are you absolutely certain you want to proceed?"
+          );
+          resolve(confirmed);
+        }, 0);
+      });
+
+      if (confirmThird) {
+        try {
+          await deleteUser();
+
+          window.alert("Account successfully deleted!");
+          Auth.logout();
+          navigate("/");
+        } catch (error) {
+          window.alert("An error occurred while deleting the account.");
+          console.log(error);
+        } finally {
+          setDeleteConfirmationCount(0);
+        }
+      } else {
+        setDeleteConfirmationCount(0);
+      }
+    }
+  };
+
   if (!user) {
     return null;
   }
@@ -186,6 +248,9 @@ const Account = () => {
           />
           <button type="submit">Update Password</button>
         </form>
+      </div>
+      <div>
+        <button onClick={handleDeleteAccount}>Delete Account</button>
       </div>
       {/* Display other user account information */}
     </div>

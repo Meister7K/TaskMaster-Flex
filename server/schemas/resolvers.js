@@ -73,6 +73,18 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
+    deleteUser: async (parent, args, context) => {
+      if (context.user) {
+        try {
+          await User.findByIdAndDelete(context.user._id);
+          return { message: "Account successfully deleted!" };
+        } catch (error) {
+          throw new Error("An error occurred while deleting the account.");
+        }
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
   },
 };
 
