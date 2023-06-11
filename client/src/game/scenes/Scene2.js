@@ -26,9 +26,22 @@ class Scene2 extends Phaser.Scene {
 
     // this.player = this.physics.add.sprite( 500, 500, "jinx");
     // this.player.setScale(.1);
-
-    this.player = this.physics.add.sprite( 500, 500, "warrior1front");
+    //!Player
+    this.player = this.physics.add.sprite( 840, 780, "warrior1front");
     this.player.setScale(1);
+
+    this.player.setCollideWorldBounds(true);
+  
+    this.cursors = this.input.keyboard.createCursorKeys();
+
+    //! add wsad keys if time
+    this.inputKeys = this.input.keyboard.addKeys({
+      up: Phaser.Input.Keyboard.KeyCodes.W,
+      down: Phaser.Input.Keyboard.KeyCodes.S,
+      left: Phaser.Input.Keyboard.KeyCodes.A,
+      right: Phaser.Input.Keyboard.KeyCodes.D,
+      attack: Phaser.Input.Keyboard.KeyCodes.SPACE
+    })
 
     this.anims.create({
       key: "warrior1FrontAnimation",
@@ -190,12 +203,6 @@ class Scene2 extends Phaser.Scene {
     };
     batImg.src = Bat;
   
-  
-  
-    this.player.setCollideWorldBounds(true);
-  
-    this.cursors = this.input.keyboard.createCursorKeys();
-  
     this.add.text(20, 20, `Playing Game`, {
       font: "25px Arial",
       fill: "white",
@@ -203,17 +210,16 @@ class Scene2 extends Phaser.Scene {
     
   }
 
-
   update() {
-    const { left, right, up, down } = this.cursors;
+    const { left, right, up, down, input } = this.cursors;
 
     let isMoving = false;
 
-    if (left.isDown) {
+    if (left.isDown || this.inputKeys.left.isDown) {
       this.player.setVelocityX(-100);
       this.player.anims.play("warrior1LeftAnimation", true);
       isMoving = true;
-    } else if (right.isDown) {
+    } else if (right.isDown || this.inputKeys.right.isDown) {
       this.player.setVelocityX(100);
       this.player.anims.play("warrior1RightAnimation", true);
       isMoving = true;
@@ -221,11 +227,11 @@ class Scene2 extends Phaser.Scene {
       this.player.setVelocityX(0);
     }
 
-    if (up.isDown) {
+    if (up.isDown || this.inputKeys.up.isDown) {
       this.player.setVelocityY(-100);
       this.player.anims.play("warrior1BackAnimation", true);
       isMoving = true;
-    } else if (down.isDown) {
+    } else if (down.isDown || this.inputKeys.down.isDown) {
       this.player.setVelocityY(100);
       this.player.anims.play("warrior1FrontAnimation", true);
       isMoving = true;
@@ -233,11 +239,22 @@ class Scene2 extends Phaser.Scene {
       this.player.setVelocityY(0);
     }
 
+    //!normalize
+
     if (!isMoving) {
       this.player.anims.stop();
     } else {
       this.player.anims.resume();
     }
+
+    //TODO add attack animation & interaction
+    // if(input.isDown || this.inputKeys.attack.isDown){
+    //   this.player.anims.play("warrior1AttackAnimation", true);
+    // }
+
+    // if(input.isDown & inEventArea){
+    //   //!activate event
+    // }
 
     this.minotaurs.forEach((minotaur) => {
       if (minotaur.body.velocity.x < 0) {
