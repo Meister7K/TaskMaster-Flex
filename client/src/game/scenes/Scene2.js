@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 import Back from "../game-assets/background.png";
 import Pony from "../game-assets/pixel-pony.png";
-import Ball from '../game-assets/ball.png';
+// import Ball from '../game-assets/ball.png';
 import Jinx from '../game-assets/jinx1.png';
 import Bat from '../game-assets/bat.png';
 
@@ -14,7 +14,7 @@ class Scene2 extends Phaser.Scene {
 
     //! potential work around if Karl can't fix image sizes
 this.load.image('jinx', Jinx)
-this.load.image('ball',Ball)
+// this.load.image('ball',Ball)
 
 // let dataURI = localStorage.getItem(Pony)
 
@@ -40,29 +40,11 @@ this.load.image('ball',Ball)
     this.player = this.physics.add.sprite( 500, 500, "jinx");
     this.player.setScale(.1);
 
-    this.ball = this.add.image(0,0, "ball");
-    this.ball.setScale(.2);
-    this.ball.setOrigin(0,0);
-    
-  //     const batImg = new Image();
-  //     batImg.onload = () => {
-  //     const texture = this.textures.addSpriteSheet('batSheet', batImg, {
-  //       frameWidth: 32,
-  //       frameHeight: 32,
-  //     });
-  //   const bat = this.add.sprite(0, 0, 'batSheet');
-  //   bat.setOrigin(50, 50);
-  //   this.anims.create({
-  //     key: 'batAnimation',
-  //     frames: this.anims.generateFrameNumbers('batSheet', { start: 0, end: 4 }),
-  //     frameRate: 8,
-  //     repeat: -1,
-  //   });
-  //   bat.play('batAnimation');
-  // };
-  // batImg.src = Bat;
+    // this.ball = this.add.image(0,0, "ball");
+    // this.ball.setScale(.2);
+    // this.ball.setOrigin(0,0);
 
-  
+
 
     // this.anims.create({
     //   key: "idle",
@@ -73,6 +55,24 @@ this.load.image('ball',Ball)
     //   repeat: -1,
     // });
 
+
+  const batImg = new Image();
+  batImg.onload = () => {
+    const texture = this.textures.addSpriteSheet('batSheet', batImg, {
+      frameWidth: 32,
+      frameHeight: 32,
+    });
+    const bat = this.add.sprite(0, 0, 'batSheet');
+    bat.setOrigin(0, 0);
+    this.anims.create({
+      key: 'batAnimation',
+      frames: this.anims.generateFrameNumbers('batSheet', { start: 0, end: 4 }),
+      frameRate: 8,
+      repeat: -1,
+    });
+    bat.play('batAnimation');
+  };
+  batImg.src = Bat;
 
     this.player.setCollideWorldBounds(true);
 
