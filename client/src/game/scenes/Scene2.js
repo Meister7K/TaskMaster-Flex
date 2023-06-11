@@ -1,7 +1,8 @@
 import Phaser from "phaser";
 import Back from "../game-assets/background.png";
 import Pony from "../game-assets/pixel-pony.png";
-import Bat from "../game-assets/bat.png";
+import Ball from '../game-assets/ball.png';
+import Jinx from '../game-assets/jinx1.png';
 
 class Scene2 extends Phaser.Scene {
   constructor() {
@@ -10,6 +11,17 @@ class Scene2 extends Phaser.Scene {
 
   preload() {
 
+    //! potential work around if Karl can't fix image sizes
+this.load.image('jinx', Jinx)
+this.load.image('ball',Ball)
+
+// let dataURI = localStorage.getItem(Pony)
+
+// let data = new Image();
+
+// data.src = dataURI
+
+// this.textures.addBase64(Pony, dataURI, data)
 
 
     // this.load.spritesheet("bat", Bat, {
@@ -24,10 +36,12 @@ class Scene2 extends Phaser.Scene {
     this.background = this.add.image(0, 0, "background");
     this.background.setOrigin(0, 0);
 
-    this.player = this.physics.add.sprite( 500, 500, "pony");
+    this.player = this.physics.add.sprite( 500, 500, "jinx");
+    this.player.setScale(.1);
 
-    this.pony = this.add.image(0,0, "pony");
-    this.pony.setOrigin(0,0);
+    this.ball = this.add.image(0,0, "ball");
+    this.ball.setScale(.2);
+    this.ball.setOrigin(0,0);
     
 
     // this.anims.create({
@@ -72,5 +86,7 @@ class Scene2 extends Phaser.Scene {
     }
   }
 }
+
+console.log(Ball)
 
 export default Scene2;
