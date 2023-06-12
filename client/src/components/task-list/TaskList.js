@@ -59,11 +59,7 @@ function TaskList() {
             name="difficulty"
             value={taskState.difficulty}
             onChange={handleChange}
-            defaultValue="easy"
           >
-            <option value="" disabled>
-              Select difficulty
-            </option>
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
@@ -75,11 +71,8 @@ function TaskList() {
             name="category"
             value={taskState.category}
             onChange={handleChange}
-            defaultValue="none"
           >
-            <option value="" disabled>
-              Select category
-            </option>
+            <option value="none">Select category</option>
             <option value="school">School</option>
             <option value="work">Work</option>
             <option value="chores">Chores</option>

@@ -14,7 +14,7 @@ import About from "./pages/About";
 import Game from "./pages/Game";
 import SignUp from "./pages/SignUp";
 import Account from "./pages/Account";
-import Auth from "../src/utils/auth";
+import Auth from "./utils/auth";
 import ProfileSetup from "./pages/ProfileSetup";
 import Tasks from "./pages/Tasks";
 
@@ -53,23 +53,25 @@ function App() {
     setUser(loggedInUser);
   }, []);
 
+  const homePath = user ? `/${user}` : "/";
+
   return (
     <ApolloProvider client={client}>
       <Router>
         <Navbar />
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route exact path={homePath} element={<Home />} />
           <Route exact path="/about" element={<About />} />
           <Route
             exact
-            path="/game"
+            path="/:username/play"
             element={<Game />}
             // element={isAuthenticated ? <Game /> : <Home />} need to uncomment this line and remove the line above when we push to production
           />
           <Route exact path="/sign-up" element={<SignUp />} />
           <Route exact path="/profilesetup" element={<ProfileSetup />} />
-          <Route exact path=":username/account" element={<Account />} />
-          <Route exact path=":username/tasks" element={<Tasks />} />
+          <Route exact path="/:username/account" element={<Account />} />
+          <Route exact path="/:username/tasks" element={<Tasks />} />
         </Routes>
       </Router>
     </ApolloProvider>

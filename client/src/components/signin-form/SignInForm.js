@@ -29,8 +29,12 @@ const SignInForm = (props) => {
       const { data } = await login({
         variables: { ...formState },
       });
-
       Auth.login(data.login.token);
+      const loggedInUser = Auth.loggedIn()
+        ? Auth.getProfile().data.username
+        : null;
+
+      window.location.assign(`/${loggedInUser}`);
     } catch (e) {
       console.error(e);
     }
