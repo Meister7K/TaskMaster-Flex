@@ -29,8 +29,12 @@ const SignInForm = (props) => {
       const { data } = await login({
         variables: { ...formState },
       });
-
       Auth.login(data.login.token);
+      const loggedInUser = Auth.loggedIn()
+        ? Auth.getProfile().data.username
+        : null;
+
+      window.location.assign(`/${loggedInUser}`);
     } catch (e) {
       console.error(e);
     }
@@ -65,7 +69,7 @@ const SignInForm = (props) => {
                 className="navbar-btn login-submit-btn"
                 buttonstyle="btn-outline"
                 style={{ cursor: "pointer" }}
-                onClick={() => navigate(`/account/${user}`)}
+                onClick={() => navigate(`/${user}/account`)}
               >
                 Account
               </button>

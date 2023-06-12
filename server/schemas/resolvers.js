@@ -1,4 +1,4 @@
-const { User } = require("../models");
+const { User, Task } = require("../models");
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
 const bcrypt = require("bcrypt");
@@ -7,6 +7,9 @@ const resolvers = {
   Query: {
     users: async () => {
       return await User.find({});
+    },
+    tasks: async () => {
+      return await Task.find({});
     },
   },
 
@@ -81,6 +84,51 @@ const resolvers = {
         } catch (error) {
           throw new Error("An error occurred while deleting the account.");
         }
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+    addTask: async (parent, { name, difficulty, category }, context) => {
+      if (context.user) {
+        const task = await Task.create({
+          name,
+          difficulty,
+          category,
+          user: context.user._id,
+        });
+
+        return { task };
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+    completeTask: async (parent, { taskId }, context) => {
+      if (context.user) {
+        const task = await Task.findById(taskId);
+
+        if (!task) {
+          throw new Error("Task not found");
+        }
+
+        task.isComplete = true;
+        await task.save();
+
+        return { task };
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+    deleteTask: async (parent, { taskId }, context) => {
+      if (context.user) {
+        const task = await Task.findById(taskId);
+
+        if (!task) {
+          throw new Error("Task not found");
+        }
+
+        await Task.findByIdAndDelete(taskId);
+
+        return { message: "Task deleted successfully" };
       }
 
       throw new AuthenticationError("Not logged in");
