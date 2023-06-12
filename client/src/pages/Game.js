@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import Phaser from "phaser";
 import config from "../Phaser";
+import './Game.css'
 
 let game;
 

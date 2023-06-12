@@ -29,11 +29,12 @@ class Scene2 extends Phaser.Scene {
     // this.player.setScale(.1);
     //!Player
     this.player = this.physics.add.sprite( 840, 780, "warrior1front");
-    this.player.setScale(1);
+    this.player.setScale(.5);
     // this.cameras.main.startFollow(this.player);
     // this.cameras.main.setBounds(0, 0, 1632, 1632);
     this.cameras.main.setBounds(0,0,1632,1632);
-    this.cameras.main.startFollow(this.player, true, 0.5, 0.5);
+    this.cameras.main.startFollow(this.player, true);
+    this.cameras.main.setZoom(3);
 
     console.log('character');
 
@@ -214,10 +215,21 @@ class Scene2 extends Phaser.Scene {
       font: "25px Arial",
       fill: "white",
     });
+
+    this.scale.displaySize.setAspectRatio(window.innerWidth/window.innerHeight);
+    this.scale.refresh();
     
   }
 
   update() {
+
+    // window.addEventListener('resize', ()=>{
+    //   this.scene.scale.width= window.innerWidth;
+    //   this.scene.scale.height=window.innerHeight;
+    //   game.scale.resize(window.innerWidth,window.innerHeight);
+    //   })
+ 
+
     const { left, right, up, down, input } = this.cursors;
 
     let isMoving = false;
