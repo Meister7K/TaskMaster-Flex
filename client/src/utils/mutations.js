@@ -54,3 +54,47 @@ export const DELETE_USER = gql`
     }
   }
 `;
+
+export const ADD_TASK = gql`
+  mutation addTask($name: String!, $difficulty: String, $category: String) {
+    addTask(name: $name, difficulty: $difficulty, category: $category) {
+      _id
+      name
+      difficulty
+      category
+      isComplete
+      user {
+        _id
+        username
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
+export const COMPLETE_TASK = gql`
+  mutation completeTask($taskId: ID!) {
+    completeTask(taskId: $taskId) {
+      _id
+      name
+      difficulty
+      category
+      isComplete
+      user {
+        _id
+        username
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
+export const DELETE_TASK = gql`
+  mutation deleteTask($taskId: ID!) {
+    deleteTask(taskId: $taskId) {
+      message
+    }
+  }
+`;
