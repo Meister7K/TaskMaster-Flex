@@ -8,8 +8,8 @@ const config = {
   backgroundColor: "#282c34",
   scale: {
     mode: Phaser.Scale.FIT,
-    width: 1632,
-    height: 1632,
+    width: 1000,
+    height: 1000,
   },
   physics: {
     default: "arcade",
