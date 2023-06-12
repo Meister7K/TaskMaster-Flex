@@ -60,7 +60,7 @@ function App() {
           <Route exact path="/about" element={<About />} />
           <Route exact path="/game" element={<Game />} />
           <Route exact path="/sign-up" element={<SignUp />} />
-          <Route exact path="/ProfileSetup" element={<ProfileSetup />} />
+          <Route exact path="/profilesetup" element={<ProfileSetup />} />
           <Route
             exact
             path="/account/:username"

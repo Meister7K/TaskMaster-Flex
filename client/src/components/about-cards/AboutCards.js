@@ -5,7 +5,7 @@ import "./AboutCards.css";
 function AboutCards() {
   return (
     <>
-      <h1 className="about">About the Developers</h1>
+      <h1 className="about">Meet the Developers</h1>
       <div className="cards">
         <div className="cards-container">
           <div className="cards-wrapper">
