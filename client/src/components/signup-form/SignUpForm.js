@@ -30,7 +30,7 @@ function SignUpForm() {
     if (name === "username") {
       setUsername(value);
     }
-    
+
     if (name === "email") {
       setEmail(value);
     }
@@ -67,10 +67,10 @@ function SignUpForm() {
 
     if (password.length < 6 || password.length > 20) {
       alert("Password must be between 6 and 20 characters.");
-       setFormState({
-         ...formState,
-         password: "",
-       });
+      setFormState({
+        ...formState,
+        password: "",
+      });
       setConfirmPassword("");
       setPassword("");
       return;
@@ -78,10 +78,10 @@ function SignUpForm() {
 
     if (password !== confirmPassword) {
       alert("Passwords do not match, please try again.");
-       setFormState({
-         ...formState,
-         password: "",
-       });
+      setFormState({
+        ...formState,
+        password: "",
+      });
       setConfirmPassword("");
       setPassword("");
       return;
@@ -92,10 +92,10 @@ function SignUpForm() {
       alert(
         "Password must contain an uppercase letter, a lowercase letter, and a number."
       );
-       setFormState({
-         ...formState,
-         password: "",
-       });
+      setFormState({
+        ...formState,
+        password: "",
+      });
       setConfirmPassword("");
       setPassword("");
       return;
@@ -107,6 +107,8 @@ function SignUpForm() {
       });
 
       Auth.login(data.addUser.token);
+      const user = Auth.loggedIn() ? Auth.getProfile().data.username : null;
+      window.location.assign(`/${user}`);
     } catch (e) {
       console.error(e);
     }
@@ -119,8 +121,8 @@ function SignUpForm() {
         <div className="signUpform-input-container">
           {data ? (
             <p>
-              Success! You may now head{" "}
-            <Link to="/">back to the homepage.</Link> {/* TODO link to profilepage and profile form once completed */}
+              Success! You may now head back to the homepage.{" "}
+              {/* TODO link to profilepage and profile form once completed */}
             </p>
           ) : (
             <form onSubmit={handleFormSubmit}>
