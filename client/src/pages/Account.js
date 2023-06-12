@@ -215,6 +215,7 @@ const Account = () => {
              placeholder="Reenter email"
              value={reenterEmail}
              onChange={handleChange}
+             autoComplete="new-password"
            />
            <input
              className="account-input"
