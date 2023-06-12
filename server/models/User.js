@@ -27,7 +27,7 @@ const userSchema = new Schema({
     validate: [
       {
         validator: (value) => {
-          return (value.length >= 6 && value.length <= 20);
+          return value.length >= 6 && value.length <= 20;
         },
         message: "Password must be between 6 and 20 characters long.",
       },
