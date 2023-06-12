@@ -16,6 +16,7 @@ import SignUp from "./pages/SignUp";
 import Account from "./pages/Account";
 import Auth from "../src/utils/auth";
 import ProfileSetup from "./pages/ProfileSetup";
+import Tasks from "./pages/Tasks";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -67,7 +68,8 @@ function App() {
           />
           <Route exact path="/sign-up" element={<SignUp />} />
           <Route exact path="/profilesetup" element={<ProfileSetup />} />
-          <Route exact path="/account/:username" element={<Account />} />
+          <Route exact path=":username/account" element={<Account />} />
+          <Route exact path=":username/tasks" element={<Tasks />} />
         </Routes>
       </Router>
     </ApolloProvider>
