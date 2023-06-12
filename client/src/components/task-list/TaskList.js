@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import "./TaskList.css";
 import Auth from "../../utils/auth";
 
 import { ADD_TASK, COMPLETE_TASK, DELETE_TASK } from "../../utils/mutations";
+import { GET_TASKS } from "../../utils/queries";
 
 function TaskList() {
   const [taskState, setTaskState] = useState({
@@ -11,9 +12,12 @@ function TaskList() {
     difficulty: "",
     category: "",
   });
-  const [addTask, { error, data }] = useMutation(ADD_TASK);
+  const [addTask, { error }] = useMutation(ADD_TASK, {
+    refetchQueries: [{ query: GET_TASKS }],
+  });
   const [completeTask, { error1, data1 }] = useMutation(COMPLETE_TASK);
   const [deleteTask, { error2, data2 }] = useMutation(DELETE_TASK);
+  const { loading, error: queryError, data: taskData } = useQuery(GET_TASKS);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -39,6 +43,16 @@ function TaskList() {
         console.error(error);
       });
   };
+
+  if (loading) {
+    return <div>Loading tasks...</div>;
+  }
+
+  if (error || queryError) {
+    return <div>Error: {error?.message || queryError?.message}</div>;
+  }
+
+  const tasks = taskData.tasks;
 
   return (
     <div>
@@ -83,6 +97,16 @@ function TaskList() {
         </label>
         <button type="submit">Add Task</button>
       </form>
+      <div>
+        {tasks.map((task) => (
+          <div key={task._id}>
+            <h3>{task.name}</h3>
+            <p>Difficulty: {task.difficulty}</p>
+            <p>Category: {task.category}</p>
+            <hr />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
