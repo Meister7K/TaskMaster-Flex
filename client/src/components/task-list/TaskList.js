@@ -15,8 +15,12 @@ function TaskList() {
   const [addTask, { error }] = useMutation(ADD_TASK, {
     refetchQueries: [{ query: GET_TASKS }],
   });
-  const [completeTask, { error1, data1 }] = useMutation(COMPLETE_TASK);
-  const [deleteTask, { error2, data2 }] = useMutation(DELETE_TASK);
+  const [completeTask, { error: completeError }] = useMutation(COMPLETE_TASK, {
+    refetchQueries: [{ query: GET_TASKS }],
+  });
+  const [deleteTask, { error: deleteError }] = useMutation(DELETE_TASK, {
+    refetchQueries: [{ query: GET_TASKS }],
+  });
   const { loading, error: queryError, data: taskData } = useQuery(GET_TASKS);
 
   const handleChange = (event) => {
@@ -27,32 +31,44 @@ function TaskList() {
     }));
   };
 
-  const handleSubmitTask = (event) => {
+  const handleSubmitTask = async (event) => {
     event.preventDefault();
 
-    addTask({ variables: taskState })
-      .then((response) => {
-        console.log(response);
-        setTaskState({
-          name: "",
-          difficulty: "",
-          category: "",
-        });
-      })
-      .catch((error) => {
-        console.error(error);
+    try {
+      const response = await addTask({ variables: taskState });
+      setTaskState({
+        name: "",
+        difficulty: "",
+        category: "",
       });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  if (loading) {
-    return <div>Loading tasks...</div>;
-  }
+  const handleCompleteTask = async (taskId) => {
+    try {
+      const response = await completeTask({
+        variables: { taskId },
+      });
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  if (error || queryError) {
-    return <div>Error: {error?.message || queryError?.message}</div>;
-  }
+  const handleDeleteTask = async (taskId) => {
+    try {
+      const response = await deleteTask({ variables: { taskId } });
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  const tasks = taskData.tasks;
+  const activeTasks = taskData?.tasks.filter((task) => !task.isComplete) || [];
+  const completedTasks =
+    taskData?.tasks.filter((task) => task.isComplete) || [];
 
   return (
     <div>
@@ -74,9 +90,10 @@ function TaskList() {
             value={taskState.difficulty}
             onChange={handleChange}
           >
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
+            <option value="none">Select difficulty</option>
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
           </select>
         </label>
         <label>
@@ -87,25 +104,79 @@ function TaskList() {
             onChange={handleChange}
           >
             <option value="none">Select category</option>
-            <option value="school">School</option>
-            <option value="work">Work</option>
-            <option value="chores">Chores</option>
-            <option value="creative">Creative</option>
-            <option value="health">Health</option>
-            <option value="exercise">Exercise</option>
+            <option value="School">School</option>
+            <option value="Work">Work</option>
+            <option value="Chores">Chores</option>
+            <option value="Creative">Creative</option>
+            <option value="Health">Health</option>
+            <option value="Exercise">Exercise</option>
           </select>
         </label>
         <button type="submit">Add Task</button>
       </form>
       <div>
-        {tasks.map((task) => (
-          <div key={task._id}>
-            <h3>{task.name}</h3>
-            <p>Difficulty: {task.difficulty}</p>
-            <p>Category: {task.category}</p>
-            <hr />
-          </div>
-        ))}
+        <h2>Active Tasks</h2>
+        {loading ? (
+          <div>Loading...</div>
+        ) : (
+          <ul className="task-list">
+            {activeTasks.map((task) => (
+              <li key={task._id} className="task">
+                <div className="task-card">
+                  <div className="task-details">
+                    <span className="task-name">{task.name}</span>
+                    <span className="task-difficulty">
+                      Difficulty: {task.difficulty}
+                    </span>
+                    <span className="task-category">
+                      Category: {task.category}
+                    </span>
+                    <span className="task-completed-date">
+                      Created{" "}
+                      {new Date(parseInt(task.createdAt)).toLocaleString()}
+                    </span>
+                  </div>
+                  <div className="task-actions">
+                    <button onClick={() => handleCompleteTask(task._id)}>
+                      Complete
+                    </button>
+                    <button onClick={() => handleDeleteTask(task._id)}>
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <div>
+        <h2>Completed Tasks</h2>
+        {loading ? (
+          <div>Loading...</div>
+        ) : (
+          <ul className="task-list">
+            {completedTasks.map((task) => (
+              <li key={task._id} className="task">
+                <div className="task-card">
+                  <div className="task-details">
+                    <span className="task-name">{task.name}</span>
+                    <span className="task-difficulty">
+                      Difficulty: {task.difficulty}
+                    </span>
+                    <span className="task-category">
+                      Category: {task.category}
+                    </span>
+                    <span className="task-completed-date">
+                      Completed{" "}
+                      {new Date(parseInt(task.updatedAt)).toLocaleString()}
+                    </span>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
