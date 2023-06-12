@@ -24,7 +24,7 @@ function SignUpForm() {
 
     setFormState({
       ...formState,
-      [name]: value,
+      [name]: name === "email" ? value.toLowerCase() : value,
     });
 
     if (name === "username") {
