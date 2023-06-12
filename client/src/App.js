@@ -43,7 +43,7 @@ const client = new ApolloClient({
 
 function App() {
   const [user, setUser] = useState(null);
-  const isAuthenticated = Auth.loggedIn();
+  // const isAuthenticated = Auth.loggedIn(); uncomment this when pushing to production. requires user to be logged in to play game
 
   useEffect(() => {
     const loggedInUser = Auth.loggedIn()
@@ -62,7 +62,8 @@ function App() {
           <Route
             exact
             path="/game"
-            element={isAuthenticated ? <Game /> : <Home />}
+            element={<Game />}
+            // element={isAuthenticated ? <Game /> : <Home />} need to uncomment this line and remove the line above when we push to production
           />
           <Route exact path="/sign-up" element={<SignUp />} />
           <Route exact path="/profilesetup" element={<ProfileSetup />} />
