@@ -21,6 +21,7 @@ class Scene2 extends Phaser.Scene {
   }
 
   create() {
+    this.physics.world.setBounds(0, 0, 1632, 1632);
     this.background = this.add.image(0, 0, "background");
     this.background.setOrigin(0, 0);
 
@@ -29,6 +30,12 @@ class Scene2 extends Phaser.Scene {
     //!Player
     this.player = this.physics.add.sprite( 840, 780, "warrior1front");
     this.player.setScale(1);
+    // this.cameras.main.startFollow(this.player);
+    // this.cameras.main.setBounds(0, 0, 1632, 1632);
+    this.cameras.main.setBounds(0,0,1632,1632);
+    this.cameras.main.startFollow(this.player, true, 0.5, 0.5);
+
+    console.log('character');
 
     this.player.setCollideWorldBounds(true);
   
@@ -237,6 +244,22 @@ class Scene2 extends Phaser.Scene {
       isMoving = true;
     } else {
       this.player.setVelocityY(0);
+    }
+
+    // Adjust camera bounds when character reaches near the edge
+    let cameraBounds = this.cameras.main.getBounds();
+    let buffer = 0;
+
+    if (this.player.x < cameraBounds.x + buffer) {
+      this.cameras.main.setBounds(this.player.x - buffer, cameraBounds.y, cameraBounds.width, cameraBounds.height);
+    } else if (this.player.x > cameraBounds.x + cameraBounds.width - buffer) {
+      this.cameras.main.setBounds(this.player.x + buffer - cameraBounds.width, cameraBounds.y, cameraBounds.width, cameraBounds.height);
+    }
+
+    if (this.player.y < cameraBounds.y + buffer) {
+      this.cameras.main.setBounds(cameraBounds.x, this.player.y - buffer, cameraBounds.width, cameraBounds.height);
+    } else if (this.player.y > cameraBounds.y + cameraBounds.height - buffer) {
+      this.cameras.main.setBounds(cameraBounds.x, this.player.y + buffer - cameraBounds.height, cameraBounds.width, cameraBounds.height);
     }
 
     //!normalize
