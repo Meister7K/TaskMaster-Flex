@@ -28,7 +28,7 @@ class Scene2 extends Phaser.Scene {
     // this.player = this.physics.add.sprite( 500, 500, "jinx");
     // this.player.setScale(.1);
     //!Player
-    this.player = this.physics.add.sprite( 840, 780, "warrior1front");
+    this.player = this.physics.add.sprite( 840, 780, "warrior0front");
     this.player.setScale(.5);
     // this.cameras.main.startFollow(this.player);
     // this.cameras.main.setBounds(0, 0, 1632, 1632);
@@ -139,6 +139,94 @@ class Scene2 extends Phaser.Scene {
       repeat: -1,
     });
 
+    this.anims.create({
+      key: "warrior0FrontAnimation",
+      frames: [
+        { key: "warrior0front", frame: 0 },
+        { key: "warrior0front", frame: 1 },
+        { key: "warrior0front", frame: 2 },
+        { key: "warrior0front", frame: 3 },
+        { key: "warrior0front", frame: 4 },
+        { key: "warrior0front", frame: 5 },
+        { key: "warrior0front", frame: 6 },
+        { key: "warrior0front", frame: 7 },
+        { key: "warrior0front", frame: 8 },
+        { key: "warrior0front", frame: 9 },
+        { key: "warrior0front", frame: 10 },
+        { key: "warrior0front", frame: 11 },
+        { key: "warrior0front", frame: 12 },
+        { key: "warrior0front", frame: 13 }
+      ],
+      frameRate: 16,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "warrior0BackAnimation",
+      frames: [
+        { key: "warrior0back", frame: 0 },
+        { key: "warrior0back", frame: 1 },
+        { key: "warrior0back", frame: 2 },
+        { key: "warrior0back", frame: 3 },
+        { key: "warrior0back", frame: 4 },
+        { key: "warrior0back", frame: 5 },
+        { key: "warrior0back", frame: 6 },
+        { key: "warrior0back", frame: 7 },
+        { key: "warrior0back", frame: 8 },
+        { key: "warrior0back", frame: 9 },
+        { key: "warrior0back", frame: 10 },
+        { key: "warrior0back", frame: 11 },
+        { key: "warrior0back", frame: 12 },
+        { key: "warrior0back", frame: 13 }
+      ],
+      frameRate: 16,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "warrior0LeftAnimation",
+      frames: [
+        { key: "warrior0left", frame: 0 },
+        { key: "warrior0left", frame: 1 },
+        { key: "warrior0left", frame: 2 },
+        { key: "warrior0left", frame: 3 },
+        { key: "warrior0left", frame: 4 },
+        { key: "warrior0left", frame: 5 },
+        { key: "warrior0left", frame: 6 },
+        { key: "warrior0left", frame: 7 },
+        { key: "warrior0left", frame: 8 },
+        { key: "warrior0left", frame: 9 },
+        { key: "warrior0left", frame: 10 },
+        { key: "warrior0left", frame: 11 },
+        { key: "warrior0left", frame: 12 },
+        { key: "warrior0left", frame: 13 }
+      ],
+      frameRate: 16,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "warrior0RightAnimation",
+      frames: [
+        { key: "warrior0right", frame: 0 },
+        { key: "warrior0right", frame: 1 },
+        { key: "warrior0right", frame: 2 },
+        { key: "warrior0right", frame: 3 },
+        { key: "warrior0right", frame: 4 },
+        { key: "warrior0right", frame: 5 },
+        { key: "warrior0right", frame: 6 },
+        { key: "warrior0right", frame: 7 },
+        { key: "warrior0right", frame: 8 },
+        { key: "warrior0right", frame: 9 },
+        { key: "warrior0right", frame: 10 },
+        { key: "warrior0right", frame: 11 },
+        { key: "warrior0right", frame: 12 },
+        { key: "warrior0right", frame: 13 }
+      ],
+      frameRate: 16,
+      repeat: -1,
+    });
+
 
 
     this.anims.create({
@@ -236,11 +324,11 @@ class Scene2 extends Phaser.Scene {
 
     if (left.isDown || this.inputKeys.left.isDown) {
       this.player.setVelocityX(-100);
-      this.player.anims.play("warrior1LeftAnimation", true);
+      this.player.anims.play("warrior0LeftAnimation", true);
       isMoving = true;
     } else if (right.isDown || this.inputKeys.right.isDown) {
       this.player.setVelocityX(100);
-      this.player.anims.play("warrior1RightAnimation", true);
+      this.player.anims.play("warrior0RightAnimation", true);
       isMoving = true;
     } else {
       this.player.setVelocityX(0);
@@ -248,11 +336,11 @@ class Scene2 extends Phaser.Scene {
 
     if (up.isDown || this.inputKeys.up.isDown) {
       this.player.setVelocityY(-100);
-      this.player.anims.play("warrior1BackAnimation", true);
+      this.player.anims.play("warrior0BackAnimation", true);
       isMoving = true;
     } else if (down.isDown || this.inputKeys.down.isDown) {
       this.player.setVelocityY(100);
-      this.player.anims.play("warrior1FrontAnimation", true);
+      this.player.anims.play("warrior0FrontAnimation", true);
       isMoving = true;
     } else {
       this.player.setVelocityY(0);
