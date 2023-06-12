@@ -48,7 +48,7 @@ function HomeSection() {
             className="btns play-btn"
             buttonstyle="btn-outline"
             buttonSize="btn-large"
-            destination="/game"
+            destination="/:username/play"
           >
             Play Game <i className="far fa-play-circle" />
           </Button>
