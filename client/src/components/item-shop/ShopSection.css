@@ -1,0 +1,44 @@
+.shopSection{
+    border: 5px solid black;
+    border-radius: 25px;
+    background: url(https://static.vecteezy.com/system/resources/previews/000/134/115/original/large-wood-planks-vector-background.jpg);
+    padding: 20px;
+    margin: 20px 50px
+}
+.blacksmithTitle{
+    border: 5px solid black;
+    border-radius: 25px;
+    background: url(https://tse4.mm.bing.net/th?id=OIP.bwkJGkRFN24Irs9-nb3xIAHaHa&pid=Api);
+    color:white;
+    text-shadow: 2px 2px black;
+    
+
+}
+
+.generalStoreTitle{
+    border: 5px solid black;
+    border-radius: 25px;
+    background: url(https://s-media-cache-ak0.pinimg.com/originals/b9/4c/c9/b94cc9753e674518e4bb3ef1bc3fd9f3.jpg);
+    color:white;
+    text-shadow: 2px 2px black;
+
+}
+.premiumStoreTitle{
+    border: 5px solid black;
+    border-radius: 25px;
+    background: url(http://clipart-library.com/images/yTkrk8yGc.png);
+    color: White;
+    text-shadow: 2px 2px black;
+
+}
+.subTitle{
+    margin: 20px;
+    padding: 5px;
+    width: 110px;
+    
+    
+}
+.itemList{
+    align-items: center;
+    margin: 20px 130px;
+}

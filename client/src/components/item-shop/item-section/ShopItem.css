@@ -1,0 +1,18 @@
+.itemContainer{
+    border: 10px solid black;
+    background: url(https://image.freepik.com/free-vector/colorful-texture-cartoon-style-stones_1110-881.jpg);
+    border-radius: 25px;
+    
+
+}
+
+.imgContainer{
+    border: solid 5px white;
+    border-radius: 5px;
+    width: 80px;
+    height: 100px;
+}
+.itemImg{
+    object-fit: fill;
+    
+}
