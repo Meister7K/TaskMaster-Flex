@@ -60,6 +60,15 @@ function Navbar() {
                   Play
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link
+                  to={`/${user}/shop`}
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  Shop
+                </Link>
+              </li>
             </ul>
           </div>
         </nav>
