@@ -7,15 +7,13 @@ video {
 }
 
 .home-container {
-  /* This is where we will put image if we decide not to use a video */
-  /* background: url('') center center/cover no-repeat; */
   height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+  /* box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2); */
   object-fit: contain;
 }
 
