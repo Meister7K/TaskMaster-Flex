@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import Bat from '../game-assets/bat.png';
+import Bat from '../game-assets/gameSprites/bat.png';
 
 class Scene2 extends Phaser.Scene {
   constructor() {
