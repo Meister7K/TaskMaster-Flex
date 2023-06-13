@@ -1,6 +1,6 @@
-import Character from './Character'
+import GameObject from './GameObject'
 
-class Enemies extends Character{
+class Enemies extends GameObject{
     constructor(){
 
     }
