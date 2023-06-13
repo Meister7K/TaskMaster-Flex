@@ -21,7 +21,14 @@ function TaskList() {
   const [deleteTask, { error: deleteError }] = useMutation(DELETE_TASK, {
     refetchQueries: [{ query: GET_TASKS }],
   });
-  const { loading, error: queryError, data: taskData } = useQuery(GET_TASKS);
+  const user = Auth.getProfile();
+  const {
+    loading,
+    error: queryError,
+    data: taskData,
+  } = useQuery(GET_TASKS, {
+    variables: { userId: user.data._id },
+  });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -30,6 +37,7 @@ function TaskList() {
       [name]: value,
     }));
   };
+
 
   const handleSubmitTask = async (event) => {
     event.preventDefault();
@@ -66,9 +74,25 @@ function TaskList() {
     }
   };
 
-  const activeTasks = taskData?.tasks.filter((task) => !task.isComplete) || [];
+  const activeTasks =
+    taskData?.tasks.filter(
+      (task) => !task.isComplete && task.user._id === user.data._id
+    ) || [];
+
   const completedTasks =
-    taskData?.tasks.filter((task) => task.isComplete) || [];
+    taskData?.tasks.filter(
+      (task) => task.isComplete && task.user._id === user.data._id
+    ) || [];
+
+// console.log("Active Tasks:");
+// activeTasks.forEach((task) => {
+//   console.log(task);
+// });
+
+console.log("Completed Tasks:");
+completedTasks.forEach((task) => {
+  console.log(task.user._id);
+});
 
   return (
     <div>
