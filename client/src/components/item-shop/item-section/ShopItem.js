@@ -1,20 +1,38 @@
-import React from 'react'
-import './ShopItem.css'
+import {React} from "react";
+import "./ShopItem.css";
+import { useQuery } from "@apollo/client";
+import { ALL_CONSUMABLES,ALL_ITEMS, ALL_ARMORS } from "../../../utils/queries";
 
-function ShopItem(props){
+function ShopItem(props) {
+  
 
-    return (
-        <div className='itemContainer'>
-            <div className='imgContainer'> 
-            {/* <img className="itemImg" src="https://www.mariowiki.com/images/thumb/f/fc/ItemBoxMK8.png/1200px-ItemBoxMK8.png"/> */}
-            </div>
-            <div className='itemInfo'>
-                <h3>Name: {props.itemName}</h3>
-                <p>{props.itemDesc}</p>
-                <button>${props.price || 20}</button>
-            </div>
-        </div>
-    );
+  const { loading, data: itemsList } = useQuery(props.itemTypes === 'armor'? ALL_ARMORS : ALL_CONSUMABLES);
 
+  //const itemsList= (data ? {...data} : []);
+  const toMap= ([{...itemsList}][0]).armors || ([{...itemsList}][0]).consumables || []
+  console.log(toMap)
+  let ShopItemXML=()=> <div>loading</div>;
+
+  if(!loading && itemsList){
+    ShopItemXML =()=> {return toMap.map((item, i) => (
+    <div key={item.name+"_"+i} className="itemContainer">
+      <div className="imgContainer">
+        <img className="itemImg" src={item.itemImage}/>
+      </div>
+      <div className="itemInfo">
+        <h3>Name: {item.name || "loading"}</h3>
+        <p>{item.desc || "loading"}</p>
+        <button>${item.value || "loading"}</button>
+      </div>
+    </div>
+  ));}
+  }
+  
+
+  return (
+    <>
+    {ShopItemXML()}
+    </>
+    )
 }
-export default ShopItem
+export default ShopItem;
