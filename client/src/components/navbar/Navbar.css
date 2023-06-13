@@ -1,5 +1,5 @@
 .navbar {
-  background-image: url("../../../public/images/Screenshot\ 2023-06-13\ 130316.png");
+  background-image: url("../../../public/images/navbar-bg.png");
   height: 100px;
   display: flex;
   justify-content: center;
@@ -8,6 +8,9 @@
   position: sticky;
   top: 0;
   z-index: 9999;
+  border: 5px solid black;
+  filter: drop-shadow(0 0 0.75rem #201B15);
+  cursor: url("../../../public/images/dagger-cursor1.png")4 12, auto;
 }
 
 .navbar-container {
@@ -47,7 +50,7 @@
 .nav-item {
   height: 80px;
   margin-right: 2rem;
-  background-image: url("../../../public/images/buttonStock1h.png");
+  background-image: url("../../../public/images/navlink-bg.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -70,6 +73,8 @@
   width: 150px;
   text-align: center;
   justify-content: center;
+  user-select: none;
+  cursor: url("../../../public/images/dagger-cursor1.png")4 12, auto;
 }
 
 .fa-bars {
@@ -88,7 +93,6 @@
 .navbar-sign-in-form {
   height:80px;
   padding: 0 3px 0 3px;
-  border: 1px solid #fff;
   display: flex;
   align-items: center;
 }
@@ -181,7 +185,6 @@
     background-color: transparent;
     color: #fff;
     padding: 14px 20px;
-    border: 1px solid #fff;
     transition: all 0.3s ease-out;
     height: auto;
   }

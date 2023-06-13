@@ -86,14 +86,18 @@ function Navbar() {
 
             <ul className={click ? "nav-menu active" : "nav-menu"}>
               <li className="nav-item">
-                <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+                <Link
+                  to="/"
+                  className="nav-links custom-cursor"
+                  onClick={closeMobileMenu}
+                >
                   Home
                 </Link>
               </li>
               <li className="nav-item">
                 <Link
                   to="/about"
-                  className="nav-links"
+                  className="nav-links custom-cursor"
                   onClick={closeMobileMenu}
                 >
                   About Us
@@ -102,7 +106,7 @@ function Navbar() {
               <li className="nav-item">
                 <Link
                   to="/sign-up"
-                  className="nav-links"
+                  className="nav-links custom-cursor"
                   onClick={closeMobileMenu}
                 >
                   Sign Up
