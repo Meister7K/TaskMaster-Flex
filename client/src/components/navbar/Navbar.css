@@ -1,5 +1,5 @@
 .navbar {
-  background: #1a1a1a;
+  background-image: url("../../../public/images/navbar-bg.png");
   height: 100px;
   display: flex;
   justify-content: center;
@@ -8,6 +8,9 @@
   position: sticky;
   top: 0;
   z-index: 9999;
+  border: 5px solid black;
+  filter: drop-shadow(0 0 0.75rem #201B15);
+  cursor: url("../../../public/images/dagger-cursor1.png")4 12, auto;
 }
 
 .navbar-container {
@@ -15,7 +18,8 @@
   justify-content: center;
   align-items: center;
   height: 80px;
-  max-width: 1500px;
+  max-width: 1700px;
+  min-width: 1000px;
 }
 
 .navbar-project-name {
@@ -36,8 +40,9 @@
   list-style: none;
   text-align: center;
   width: 55vw;
-  justify-content: end;
+  justify-content: flex-end;
   margin-right: 2rem;
+  margin-left: auto;
 }
 
 .nav-menu li {
@@ -45,8 +50,18 @@
 }
 
 .nav-item {
-  height: 80px;
+  height: 90px;
   margin-right: 2rem;
+  background-image: url("../../../public/images/navlink-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.nav-item:hover {
+  filter: drop-shadow(0 0 0.90rem crimson);
+  transform: scale(1.05);
 }
 
 .nav-links-mobile,
@@ -57,12 +72,11 @@
   text-decoration: none;
   padding: 0.5rem 1rem;
   height: 100%;
-}
-
-.nav-links-mobile:hover,
-.nav-links:hover {
-  border-bottom: 4px solid #fff;
-  transition: all 0.2s ease-out;
+  width: 125px;
+  text-align: center;
+  justify-content: center;
+  user-select: none;
+  cursor: url("../../../public/images/dagger-cursor1.png")4 12, auto;
 }
 
 .fa-bars {
@@ -81,9 +95,9 @@
 .navbar-sign-in-form {
   height:80px;
   padding: 0 3px 0 3px;
-  border: 1px solid #fff;
   display: flex;
   align-items: center;
+  user-select: none;
 }
 
 .form-input-container {
@@ -174,7 +188,6 @@
     background-color: transparent;
     color: #fff;
     padding: 14px 20px;
-    border: 1px solid #fff;
     transition: all 0.3s ease-out;
     height: auto;
   }

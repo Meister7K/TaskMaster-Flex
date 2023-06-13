@@ -27,7 +27,7 @@ function Navbar() {
       <>
         <nav className="navbar">
           <div className="navbar-container">
-            <SignInForm />
+              <SignInForm />
             <div className="menu-icon" onClick={handleClick}>
               <i className={click ? "fas fa-times" : "fas fa-bars"} />
             </div>
@@ -86,23 +86,27 @@ function Navbar() {
 
             <ul className={click ? "nav-menu active" : "nav-menu"}>
               <li className="nav-item">
-                <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+                <Link
+                  to="/"
+                  className="nav-links custom-cursor"
+                  onClick={closeMobileMenu}
+                >
                   Home
                 </Link>
               </li>
               <li className="nav-item">
                 <Link
                   to="/about"
-                  className="nav-links"
+                  className="nav-links custom-cursor"
                   onClick={closeMobileMenu}
                 >
-                  About Us
+                  About
                 </Link>
               </li>
               <li className="nav-item">
                 <Link
                   to="/sign-up"
-                  className="nav-links-mobile"
+                  className="nav-links custom-cursor"
                   onClick={closeMobileMenu}
                 >
                   Sign Up

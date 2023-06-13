@@ -38,7 +38,6 @@ function TaskList() {
     }));
   };
 
-
   const handleSubmitTask = async (event) => {
     event.preventDefault();
 
@@ -83,16 +82,6 @@ function TaskList() {
     taskData?.tasks.filter(
       (task) => task.isComplete && task.user._id === user.data._id
     ) || [];
-
-// console.log("Active Tasks:");
-// activeTasks.forEach((task) => {
-//   console.log(task);
-// });
-
-console.log("Completed Tasks:");
-completedTasks.forEach((task) => {
-  console.log(task.user._id);
-});
 
   return (
     <div className="task-container">
