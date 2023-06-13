@@ -17,7 +17,7 @@ function ShopItem(props) {
     ShopItemXML =()=> {return toMap.map((item, i) => (
     <div key={item.name+"_"+i} className="itemContainer">
       <div className="imgContainer">
-        <img className="itemImg" src={item.itemImage}/>
+        <img className="itemImg" src={"data:image/png;base64,"+item.itemImage}/>
       </div>
       <div className="itemInfo">
         <h3>Name: {item.name || "loading"}</h3>

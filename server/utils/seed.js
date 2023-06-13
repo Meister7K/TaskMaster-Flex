@@ -2,11 +2,15 @@ require('dotenv').config();
 const connection = require('../config/connection');
 const Item = require('../models/Item');
 connection.on('error', (err) => err);
+const imgToString =require("./imageData")
 
 connection.once('open', async () => {
-  console.log('connected');
+  console.log(imgToString("utils/shopAssets/Warrior1.png",(result)=>{
+    return result;
+  }));
   await Item.deleteMany({})
-  const items= [
+  const items=[
+
     {
         name: "Sword of Valor",
         itemType: "weapon",
@@ -15,7 +19,8 @@ connection.once('open', async () => {
         consumable: false,
         value: 1000,
         itemImage: "https://thomaskinkade.com/wp-content/uploads/2020/08/mystery-box-7.jpg"
-      },
+
+    },
       {
         name: "Shield of Protection",
         itemType: "armor",
@@ -24,6 +29,7 @@ connection.once('open', async () => {
         consumable: false,
         value: 800,
         itemImage: "https://thomaskinkade.com/wp-content/uploads/2020/08/mystery-box-7.jpg"
+      
       },
       {
         name: "Health Potion",
@@ -34,7 +40,6 @@ connection.once('open', async () => {
         value: 50,
         itemImage: "https://thomaskinkade.com/wp-content/uploads/2020/08/mystery-box-7.jpg"
       },
-      // Add more items here...
       {
         name: "Fireball Scroll",
         itemType: "consumable",
@@ -51,9 +56,8 @@ connection.once('open', async () => {
         desc: "Heavy armor made from sturdy plates.",
         consumable: false,
         value: 1200,
-        itemImage: "https://thomaskinkade.com/wp-content/uploads/2020/08/mystery-box-7.jpg"
+        itemImage: await imgToString("utils/shopAssets/Warrior2.png")
       },
-      // Additional items
       {
         name: "Staff of Wisdom",
         itemType: "weapon",
@@ -64,14 +68,15 @@ connection.once('open', async () => {
         itemImage: "https://thomaskinkade.com/wp-content/uploads/2020/08/mystery-box-7.jpg"
       },
       {
-        name: "Leather Gloves",
+        name: "Light Armor",
         itemType: "armor",
         stats: ["defense", "agility"],
-        desc: "Lightweight gloves made from supple leather.",
+        desc: "Lightweight armor made from supple leather.",
         consumable: false,
         value: 300,
-        itemImage: "https://thomaskinkade.com/wp-content/uploads/2020/08/mystery-box-7.jpg"
+        itemImage: await imgToString("utils/shopAssets/Warrior1.png")
       },
+
       {
         name: "Mana Potion",
         itemType: "consumable",

@@ -11,6 +11,7 @@
 
 .imgContainer{
     border: solid 5px white;
+    background-color: black;
     border-radius: 5px;
     width: 150px;
     height: 150px;
