@@ -1,7 +1,10 @@
 .itemContainer{
+    color:white !important;
+    text-shadow: 2px 2px black;
     border: 10px solid black;
-    background: url(https://image.freepik.com/free-vector/colorful-texture-cartoon-style-stones_1110-881.jpg);
+    background: url(http://wallpapercave.com/wp/aLwvoHY.jpg);
     border-radius: 25px;
+    margin: 25px;
     
 
 }
@@ -9,10 +12,12 @@
 .imgContainer{
     border: solid 5px white;
     border-radius: 5px;
-    width: 80px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
 }
 .itemImg{
-    object-fit: fill;
-    
+    display: flex;
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
 }
