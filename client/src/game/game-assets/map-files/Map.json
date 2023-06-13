@@ -56,7 +56,6 @@
                  "objectgroup":
                     {
                      "draworder":"index",
-                     "id":2,
                      "name":"",
                      "objects":[
                             {
@@ -89,7 +88,7 @@
                     },
                  "properties":[
                         {
-                         "name":"Collide",
+                         "name":"Collides",
                          "type":"bool",
                          "value":true
                         }]
@@ -99,7 +98,6 @@
                  "objectgroup":
                     {
                      "draworder":"index",
-                     "id":2,
                      "name":"",
                      "objects":[
                             {
@@ -121,7 +119,7 @@
                     },
                  "properties":[
                         {
-                         "name":"Collide",
+                         "name":"Collides",
                          "type":"bool",
                          "value":true
                         }]
@@ -164,7 +162,7 @@
                     },
                  "properties":[
                         {
-                         "name":"Collide",
+                         "name":"Collides",
                          "type":"bool",
                          "value":true
                         }]
@@ -174,7 +172,6 @@
                  "objectgroup":
                     {
                      "draworder":"index",
-                     "id":2,
                      "name":"",
                      "objects":[
                             {
@@ -196,7 +193,7 @@
                     },
                  "properties":[
                         {
-                         "name":"Collide",
+                         "name":"Collides",
                          "type":"bool",
                          "value":true
                         }]
@@ -206,7 +203,6 @@
                  "objectgroup":
                     {
                      "draworder":"index",
-                     "id":2,
                      "name":"",
                      "objects":[
                             {
@@ -228,7 +224,7 @@
                     },
                  "properties":[
                         {
-                         "name":"Collide",
+                         "name":"Collides",
                          "type":"bool",
                          "value":true
                         }]
@@ -238,7 +234,6 @@
                  "objectgroup":
                     {
                      "draworder":"index",
-                     "id":3,
                      "name":"",
                      "objects":[
                             {
@@ -271,7 +266,7 @@
                     },
                  "properties":[
                         {
-                         "name":"Collide",
+                         "name":"Collides",
                          "type":"bool",
                          "value":true
                         }]
@@ -281,7 +276,6 @@
                  "objectgroup":
                     {
                      "draworder":"index",
-                     "id":2,
                      "name":"",
                      "objects":[
                             {
@@ -303,7 +297,7 @@
                     },
                  "properties":[
                         {
-                         "name":"Collide",
+                         "name":"Collides",
                          "type":"bool",
                          "value":true
                         }]
@@ -313,7 +307,6 @@
                  "objectgroup":
                     {
                      "draworder":"index",
-                     "id":3,
                      "name":"",
                      "objects":[
                             {
@@ -346,7 +339,7 @@
                     },
                  "properties":[
                         {
-                         "name":"Collide",
+                         "name":"Collides",
                          "type":"bool",
                          "value":true
                         }]
