@@ -34,6 +34,11 @@ const userSchema = new Schema(
         },
       ],
     },
+    playerChar : {
+      type: [Schema.Types.ObjectId],
+        ref: "playerCharacter",
+        required: true,
+    }
   },
   { timestamps: true }
 );

@@ -6,7 +6,7 @@ const itemSchema = new Schema({
     required: true,
     unique: true,
   },
-  type: {
+  itemType: {
     type: String,
     required: true,
     validate: {
@@ -18,10 +18,11 @@ const itemSchema = new Schema({
   },
   stats: {
     type: [String],
+    //Item
     //damage x2 health x4 etc ...
   },
   desc: {
-    type: Text,
+    type: String,
     required: true,
     //text describing item
   },
@@ -35,7 +36,10 @@ const itemSchema = new Schema({
     required: true,
     //$$$$$$$$$$$
   },
+  itemImage: {
+    type: String
+  }
 });
 
-const Item = new model("item", itemSchema);
+const Item = model("item", itemSchema);
 module.exports=Item;

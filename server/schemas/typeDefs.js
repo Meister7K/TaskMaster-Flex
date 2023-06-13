@@ -1,6 +1,17 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
+
+  type PlayerCharacter{
+  _id: ID
+  level: Int
+  health: Int
+  energy: Int
+  gold: Int
+  inventory: [Item]
+  
+  }
+
   type User {
     _id: ID
     username: String
@@ -8,6 +19,7 @@ const typeDefs = gql`
     password: String
     createdAt: String
     updatedAt: String
+    playerChar: [PlayerCharacter]
   }
 
   type Task {
@@ -21,6 +33,17 @@ const typeDefs = gql`
     updatedAt: String
   }
 
+  type Item {
+    _id: ID
+    name: String
+    itemType: String
+    stats: [String]
+    desc: String
+    consumable: Boolean
+    value: Int
+    itemImage: String
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -29,6 +52,11 @@ const typeDefs = gql`
   type Query {
     users: [User]
     tasks: [Task]
+    items: [Item]
+    playerCharacters: [PlayerCharacter]
+    weapons: [Item]
+    armors: [Item]
+    consumables: [Item]
   }
 
   type Mutation {
