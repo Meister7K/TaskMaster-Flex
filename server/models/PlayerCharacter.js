@@ -30,11 +30,12 @@ const playerSchema = new Schema({
     
     inventory : {
 
-        type: [Item],
+        type: [Schema.Types.ObjectId],
+        ref: "item",
         required: true,
         //array of [items] ref Item.js
     }
 });
 
-const PlayerCharacter = new model("playerCharacter", playerSchema);
+const PlayerCharacter = model("playerCharacter", playerSchema);
 module.exports=PlayerCharacter;

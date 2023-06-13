@@ -1,16 +1,31 @@
-const { User, Task } = require("../models");
+const { User, Task, Item, PlayerCharacter } = require("../models");
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
 const bcrypt = require("bcrypt");
 
 const resolvers = {
   Query: {
+    playerCharacters: async()=>{
+      return await PlayerCharacter.find({})
+    },
     users: async () => {
-      return await User.find({});
+      return await User.find({}).populate("playerCharacter")
     },
     tasks: async () => {
       return await Task.find({}).populate("user");
     },
+    items: async()=>{
+      return await Item.find({});
+    },
+    weapons: async()=>{
+      return await Item.find({itemType: "weapon"});
+    },
+    armors: async()=>{
+      return await Item.find({itemType: "armor"});
+    },
+    consumables: async()=>{
+      return await Item.find({itemType: "consumable"});
+    }
   },
 
   Mutation: {
