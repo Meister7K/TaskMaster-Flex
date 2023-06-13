@@ -12,41 +12,35 @@ function ShopSection(props) {
       <div>
         <h3 className="subTitle blacksmithTitle">Armor:</h3>
         <div className="itemList">
-            <ShopItem/>
-        </div>
-      </div>
-      <div>
-        <h3 className="subTitle blacksmithTitle">Weapons:</h3>
-        <div className="itemList">
-        <ShopItem/>
+          <ShopItem itemTypes="armor" />
         </div>
       </div>
     </div>
   );
 
   const generalStore = (
-    <div div className="shopSection" id="itemShop">
+    <div className="shopSection" id="itemShop">
       <div className="generalStoreTitle">
         <h2>General Store</h2>
       </div>
       <div>
         <h3 className="subTitle generalStoreTitle">Items:</h3>
         <div className="itemList">
-        <ShopItem/>
+          <ShopItem itemTypes="consumables" />
         </div>
       </div>
     </div>
   );
 
   const premiumStore = (
-    <div div className="shopSection premium" id="premium">
+    <div className="shopSection premium" id="premium">
       <div className="premiumStoreTitle">
         <h2>Premium Items</h2>
       </div>
       <div>
         <h3 className="subTitle premiumStoreTitle">Currency:</h3>
         <div className="itemList">
-        <ShopItem/>
+          {/* <ShopItem itemTypes="premium" /> */}
         </div>
       </div>
     </div>
