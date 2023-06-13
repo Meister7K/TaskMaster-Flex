@@ -10,7 +10,7 @@
   z-index: 9999;
   border: 5px solid black;
   filter: drop-shadow(0 0 0.75rem #201B15);
-  cursor: url("../../../public/images/dagger-cursor1.png")16 12, auto;
+  cursor: url("../../../public/images/dagger-cursor1.png")18 14, auto;
 }
 
 .navbar-container {
@@ -76,7 +76,7 @@
   text-align: center;
   justify-content: center;
   user-select: none;
-  cursor: url("../../../public/images/dagger-cursor1.png")4 12, auto;
+  cursor: url("../../../public/images/dagger-cursor1.png")18 14, auto;
 }
 
 .fa-bars {
