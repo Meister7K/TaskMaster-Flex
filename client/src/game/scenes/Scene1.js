@@ -1,6 +1,5 @@
 import Phaser from "phaser";
 import Back from "../game-assets/Taskmap1.png";
-import Jinx from '../game-assets/jinx1.png';
 import Minotaur from '../game-assets/MinotaurSpritesheet.png';
 import Warrior0Front from '../game-assets/Warrior0FrontSpritesheet.png';
 import Warrior0Back from '../game-assets/Warrior0BackSpritesheet.png';
@@ -16,8 +15,6 @@ class Scene1 extends Phaser.Scene {
     super("loadGame");
   }
   preload() {
-
-    this.load.image('jinx', Jinx)
 
     this.load.spritesheet("minotaur", Minotaur, {
       frameWidth: 96,

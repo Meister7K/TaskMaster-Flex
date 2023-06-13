@@ -9,10 +9,17 @@
     border: 5px solid black;
     border-radius: 25px;
     background: url(https://tse4.mm.bing.net/th?id=OIP.bwkJGkRFN24Irs9-nb3xIAHaHa&pid=Api);
-    color:white;
+    color:white !important;
     text-shadow: 2px 2px black;
-    
 
+}
+
+.premiumStoreTitle h2,
+.generalStoreTitle h2,
+.blacksmithTitle h2 {
+   font-size: 3rem;
+   color: #fff !important;
+-webkit-text-stroke: 2px black;
 }
 
 .generalStoreTitle{
