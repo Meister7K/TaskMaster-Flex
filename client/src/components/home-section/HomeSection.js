@@ -22,7 +22,7 @@ function HomeSection() {
   return (
     <>
       <div className="home-container" id="topOfPage">
-        <video src="/videos/home-video-1.mp4" autoPlay loop muted />
+        <video src="/videos/Taskmaster-Demo.mp4" autoPlay loop muted />
         <div className="home-warrior-container">
           <div className="home-warrior-wrapper">
             <img className="warrior-0" src={Warrior0} alt="Warrior 0" />
