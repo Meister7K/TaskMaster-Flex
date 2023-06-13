@@ -32,6 +32,19 @@ video {
   font-family: 'Play', sans-serif;
 }
 
+.home-warrior-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-warrior-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap:50px;
+}
+
 .home-btns {
   margin-top: 32px;
 }
