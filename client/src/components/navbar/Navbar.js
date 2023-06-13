@@ -100,7 +100,7 @@ function Navbar() {
                   className="nav-links custom-cursor"
                   onClick={closeMobileMenu}
                 >
-                  About Us
+                  About
                 </Link>
               </li>
               <li className="nav-item">
