@@ -1,0 +1,43 @@
+.task-list {
+    list-style: none;
+    padding: 0;
+}
+
+.task {
+    margin-bottom: 10px;
+}
+
+.task-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.task-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-name {
+    font-weight: bold;
+}
+
+.task-difficulty {
+    margin-left: 10px;
+    font-style: italic;
+}
+
+.task-category {
+    margin-left: 10px;
+}
+
+.task-completed-date {
+    margin-top: 10px;
+    font-size: 12px;
+    color: gray;
+}
+
+.task-actions button {
+    margin-left: 5px;
+}

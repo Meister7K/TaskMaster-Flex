@@ -9,7 +9,7 @@ const resolvers = {
       return await User.find({});
     },
     tasks: async () => {
-      return await Task.find({});
+      return await Task.find({}).populate("user");
     },
   },
 
