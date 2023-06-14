@@ -31,9 +31,75 @@
          "width":51,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":3,
+         "name":"Object Layer 1",
+         "objects":[
+                {
+                 "height":95.6758597208035,
+                 "id":1,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.40483486550909,
+                 "x":860.061287027579,
+                 "y":736.295539666326
+                }, 
+                {
+                 "height":3.2345931222336,
+                 "id":2,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":95.1651344909773,
+                 "x":768.130745658836,
+                 "y":735.7848144365
+                }, 
+                {
+                 "height":94.9948927477017,
+                 "id":3,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.06435137895812,
+                 "x":768.130745658836,
+                 "y":736.636023152877
+                }, 
+                {
+                 "height":3.74531835205994,
+                 "id":4,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":30.9839972761322,
+                 "x":768.300987402111,
+                 "y":827.885597548519
+                }, 
+                {
+                 "height":4.59652706843724,
+                 "id":5,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":31.8352059925094,
+                 "x":831.97139938713,
+                 "y":827.034388832142
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":3,
- "nextobjectid":1,
+ "nextlayerid":4,
+ "nextobjectid":6,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.1",
@@ -129,7 +195,6 @@
                  "objectgroup":
                     {
                      "draworder":"index",
-                     "id":2,
                      "name":"",
                      "objects":[
                             {

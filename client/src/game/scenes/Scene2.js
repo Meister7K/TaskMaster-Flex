@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import Bat from '../game-assets/bat.png';
+import Bat from "../game-assets/gameSprites/bat.png";
 
 class Scene2 extends Phaser.Scene {
   constructor() {
@@ -8,38 +8,82 @@ class Scene2 extends Phaser.Scene {
   }
 
   preload() {
-
     //! potential work around if Karl can't fix image sizes
-    
     // let dataURI = localStorage.getItem(Pony)
-    
     // let data = new Image();
-    
     // data.src = dataURI
-    
     // this.textures.addBase64(Pony, dataURI, data)
   }
 
   create() {
+    
     this.physics.world.setBounds(0, 0, 1632, 1632);
     this.background = this.add.image(0, 0, "background");
     this.background.setOrigin(0, 0);
 
-    // this.player = this.physics.add.sprite( 500, 500, "jinx");
-    // this.player.setScale(.1);
-    //!Player
-    this.player = this.physics.add.sprite( 840, 780, "warrior0front");
-    this.player.setScale(.5);
-    // this.cameras.main.startFollow(this.player);
-    // this.cameras.main.setBounds(0, 0, 1632, 1632);
-    this.cameras.main.setBounds(0,0,1632,1632);
-    this.cameras.main.startFollow(this.player, true);
-    this.cameras.main.setZoom(3);
-
-    console.log('character');
-
-    this.player.setCollideWorldBounds(true);
   
+    //! test area start
+    let map = this.make.tilemap({ key: "map1" });
+    let tiles = map.addTilesetImage(
+      "set1",
+      "tile1",
+      32,
+      32,
+      0,
+      0
+    );
+      const mapArr=[]
+      console.log(map.objects);
+
+      
+    map.layers.forEach((layer,index)=>{
+      
+      let newlayer= map.createLayer(layer.name,'set1',0,0);
+    
+      // newlayer.setCollisionByProperty({Collides:true});
+     
+  
+      mapArr.push(newlayer)
+    }
+    )
+    let blockGroup = [];
+
+    map.objects[0].objects.forEach(obj =>{
+      let block = this.physics.add.sprite(obj.x,obj.y,null,null).setVisible(false).setActive(true).setOrigin(0,0);
+      
+      block.body.width = obj.width;
+      block.body.height = obj.height;
+      block.body.setImmovable(true);
+      // block.body.collider(player1,block)
+      blockGroup.push(block);
+    })
+   
+
+    //! test area end
+
+      //!Player
+      this.player = this.physics.add.sprite(840, 780, "warrior0front");
+     let player1=this.player;
+      player1.setScale(0.3);
+      player1.setCircle(30,10,20);
+
+      this.physics.add.collider(player1, this.minotaurs);
+
+      // !this.physics.add.collider(player1, mapArr[0]);
+      this.physics.add.collider(player1, map.objects);
+  
+      this.physics.add.collider(player1, blockGroup );
+      
+      this.physics.add.collider(this.minotaurs, blockGroup);
+     
+      this.cameras.main.setBounds(0, 0, 1632, 1632);
+      this.cameras.main.startFollow(this.player, true);
+      this.cameras.main.setZoom(3);
+  
+  
+  
+  player1.setCollideWorldBounds(true);
+
     this.cursors = this.input.keyboard.createCursorKeys();
 
     //! add wsad keys if time
@@ -48,8 +92,8 @@ class Scene2 extends Phaser.Scene {
       down: Phaser.Input.Keyboard.KeyCodes.S,
       left: Phaser.Input.Keyboard.KeyCodes.A,
       right: Phaser.Input.Keyboard.KeyCodes.D,
-      attack: Phaser.Input.Keyboard.KeyCodes.SPACE
-    })
+      attack: Phaser.Input.Keyboard.KeyCodes.SPACE,
+    });
 
     this.anims.create({
       key: "warrior1FrontAnimation",
@@ -67,7 +111,7 @@ class Scene2 extends Phaser.Scene {
         { key: "warrior1front", frame: 10 },
         { key: "warrior1front", frame: 11 },
         { key: "warrior1front", frame: 12 },
-        { key: "warrior1front", frame: 13 }
+        { key: "warrior1front", frame: 13 },
       ],
       frameRate: 16,
       repeat: -1,
@@ -89,7 +133,7 @@ class Scene2 extends Phaser.Scene {
         { key: "warrior1back", frame: 10 },
         { key: "warrior1back", frame: 11 },
         { key: "warrior1back", frame: 12 },
-        { key: "warrior1back", frame: 13 }
+        { key: "warrior1back", frame: 13 },
       ],
       frameRate: 16,
       repeat: -1,
@@ -111,7 +155,7 @@ class Scene2 extends Phaser.Scene {
         { key: "warrior1left", frame: 10 },
         { key: "warrior1left", frame: 11 },
         { key: "warrior1left", frame: 12 },
-        { key: "warrior1left", frame: 13 }
+        { key: "warrior1left", frame: 13 },
       ],
       frameRate: 16,
       repeat: -1,
@@ -133,7 +177,7 @@ class Scene2 extends Phaser.Scene {
         { key: "warrior1right", frame: 10 },
         { key: "warrior1right", frame: 11 },
         { key: "warrior1right", frame: 12 },
-        { key: "warrior1right", frame: 13 }
+        { key: "warrior1right", frame: 13 },
       ],
       frameRate: 16,
       repeat: -1,
@@ -155,7 +199,7 @@ class Scene2 extends Phaser.Scene {
         { key: "warrior0front", frame: 10 },
         { key: "warrior0front", frame: 11 },
         { key: "warrior0front", frame: 12 },
-        { key: "warrior0front", frame: 13 }
+        { key: "warrior0front", frame: 13 },
       ],
       frameRate: 16,
       repeat: -1,
@@ -177,7 +221,7 @@ class Scene2 extends Phaser.Scene {
         { key: "warrior0back", frame: 10 },
         { key: "warrior0back", frame: 11 },
         { key: "warrior0back", frame: 12 },
-        { key: "warrior0back", frame: 13 }
+        { key: "warrior0back", frame: 13 },
       ],
       frameRate: 16,
       repeat: -1,
@@ -199,7 +243,7 @@ class Scene2 extends Phaser.Scene {
         { key: "warrior0left", frame: 10 },
         { key: "warrior0left", frame: 11 },
         { key: "warrior0left", frame: 12 },
-        { key: "warrior0left", frame: 13 }
+        { key: "warrior0left", frame: 13 },
       ],
       frameRate: 16,
       repeat: -1,
@@ -221,13 +265,11 @@ class Scene2 extends Phaser.Scene {
         { key: "warrior0right", frame: 10 },
         { key: "warrior0right", frame: 11 },
         { key: "warrior0right", frame: 12 },
-        { key: "warrior0right", frame: 13 }
+        { key: "warrior0right", frame: 13 },
       ],
       frameRate: 16,
       repeat: -1,
     });
-
-
 
     this.anims.create({
       key: "minotaurAnimation",
@@ -236,57 +278,61 @@ class Scene2 extends Phaser.Scene {
         { key: "minotaur", frame: 1 },
         { key: "minotaur", frame: 2 },
         { key: "minotaur", frame: 3 },
-        { key: "minotaur", frame: 4 }
+        { key: "minotaur", frame: 4 },
       ],
       frameRate: 8,
       repeat: -1,
     });
 
     const numMinotaurs = 3;
-      
-      for (let i = 0; i < numMinotaurs; i++) {
-        const randomX = Phaser.Math.Between(0, this.game.config.width);
-        const randomY = Phaser.Math.Between(0, this.game.config.height);
-        const randomXVelocity = Phaser.Math.Between(-30,-20) + Phaser.Math.Between(0, 1) * 40;
-        const randomYVelocity = Phaser.Math.Between(-30,-20) + Phaser.Math.Between(0, 1) * 40;
 
-        const minotaur = this.add.sprite(randomX, randomY, 'minotaur');
-        this.physics.add.existing(minotaur);
+    for (let i = 0; i < numMinotaurs; i++) {
+      const randomX = Phaser.Math.Between(0, this.game.config.width);
+      const randomY = Phaser.Math.Between(0, this.game.config.height);
+      const randomXVelocity =
+        Phaser.Math.Between(-30, -20) + Phaser.Math.Between(0, 1) * 40;
+      const randomYVelocity =
+        Phaser.Math.Between(-30, -20) + Phaser.Math.Between(0, 1) * 40;
 
-        minotaur.body.velocity.setTo(randomXVelocity, randomYVelocity);
-        minotaur.body.bounce.set(1);
-        minotaur.body.collideWorldBounds = true;
+      const minotaur = this.add.sprite(randomX, randomY, "minotaur");
+      this.physics.add.existing(minotaur);
 
-        minotaur.setOrigin(0.5, 0.5);
-        minotaur.play('minotaurAnimation');
+      minotaur.body.velocity.setTo(randomXVelocity, randomYVelocity);
+      minotaur.body.bounce.set(1);
+      minotaur.body.collideWorldBounds = true;
 
-        this.minotaurs.push(minotaur);
-      }
+      minotaur.setOrigin(0.5, 0.5);
+      minotaur.play("minotaurAnimation");
 
-  
+      this.minotaurs.push(minotaur);
+    }
+
     const batImg = new Image();
     batImg.onload = () => {
-        const texture = this.textures.addSpriteSheet('batSheet', batImg, {
-          frameWidth: 32,
-          frameHeight: 32,
-        });
+      const texture = this.textures.addSpriteSheet("batSheet", batImg, {
+        frameWidth: 32,
+        frameHeight: 32,
+      });
 
-        this.anims.create({
-          key: 'batAnimation',
-          frames: this.anims.generateFrameNumbers('batSheet', { start: 0, end: 4 }),
-          frameRate: 8,
-          repeat: -1,
-        });
-        
+      this.anims.create({
+        key: "batAnimation",
+        frames: this.anims.generateFrameNumbers("batSheet", {
+          start: 0,
+          end: 4,
+        }),
+        frameRate: 8,
+        repeat: -1,
+      });
+
       const numBats = 7;
-      
+
       for (let i = 0; i < numBats; i++) {
         const randomX = Phaser.Math.Between(0, this.game.config.width);
         const randomY = Phaser.Math.Between(0, this.game.config.height);
-        const randomXVelocity = Phaser.Math.Between(-30,30);
-        const randomYVelocity = Phaser.Math.Between(-30,30);
+        const randomXVelocity = Phaser.Math.Between(-30, 30);
+        const randomYVelocity = Phaser.Math.Between(-30, 30);
 
-        const bat = this.add.sprite(randomX, randomY, 'batSheet');
+        const bat = this.add.sprite(randomX, randomY, "batSheet");
         this.physics.add.existing(bat);
 
         bat.body.velocity.setTo(randomXVelocity, randomYVelocity);
@@ -294,29 +340,28 @@ class Scene2 extends Phaser.Scene {
         bat.body.collideWorldBounds = true;
 
         bat.setOrigin(0, 0);
-        bat.play('batAnimation');
+        bat.play("batAnimation");
       }
     };
     batImg.src = Bat;
-  
+
     this.add.text(20, 20, `Playing Game`, {
       font: "25px Arial",
       fill: "white",
     });
 
-    this.scale.displaySize.setAspectRatio(window.innerWidth/window.innerHeight);
+    this.scale.displaySize.setAspectRatio(
+      window.innerWidth / window.innerHeight
+    );
     this.scale.refresh();
-    
   }
 
   update() {
-
     // window.addEventListener('resize', ()=>{
     //   this.scene.scale.width= window.innerWidth;
     //   this.scene.scale.height=window.innerHeight;
     //   game.scale.resize(window.innerWidth,window.innerHeight);
     //   })
- 
 
     const { left, right, up, down, input } = this.cursors;
 
@@ -351,15 +396,35 @@ class Scene2 extends Phaser.Scene {
     let buffer = 0;
 
     if (this.player.x < cameraBounds.x + buffer) {
-      this.cameras.main.setBounds(this.player.x - buffer, cameraBounds.y, cameraBounds.width, cameraBounds.height);
+      this.cameras.main.setBounds(
+        this.player.x - buffer,
+        cameraBounds.y,
+        cameraBounds.width,
+        cameraBounds.height
+      );
     } else if (this.player.x > cameraBounds.x + cameraBounds.width - buffer) {
-      this.cameras.main.setBounds(this.player.x + buffer - cameraBounds.width, cameraBounds.y, cameraBounds.width, cameraBounds.height);
+      this.cameras.main.setBounds(
+        this.player.x + buffer - cameraBounds.width,
+        cameraBounds.y,
+        cameraBounds.width,
+        cameraBounds.height
+      );
     }
 
     if (this.player.y < cameraBounds.y + buffer) {
-      this.cameras.main.setBounds(cameraBounds.x, this.player.y - buffer, cameraBounds.width, cameraBounds.height);
+      this.cameras.main.setBounds(
+        cameraBounds.x,
+        this.player.y - buffer,
+        cameraBounds.width,
+        cameraBounds.height
+      );
     } else if (this.player.y > cameraBounds.y + cameraBounds.height - buffer) {
-      this.cameras.main.setBounds(cameraBounds.x, this.player.y + buffer - cameraBounds.height, cameraBounds.width, cameraBounds.height);
+      this.cameras.main.setBounds(
+        cameraBounds.x,
+        this.player.y + buffer - cameraBounds.height,
+        cameraBounds.width,
+        cameraBounds.height
+      );
     }
 
     //!normalize

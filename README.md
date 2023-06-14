@@ -74,6 +74,8 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 9. Augusta and Augusta font shadow used from Copyright (c) Typographer Mediengestaltung, 2000. All rights reserved. Full character set added by Dieter Steffmann, Kreuztal. Link to [page](https://www.1001fonts.com/augusta-font.html).
 
+10. Special Thanks to the Man SuperTommy at Ourcade: https://www.youtube.com/@ourcadetv.
+
 ## License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
