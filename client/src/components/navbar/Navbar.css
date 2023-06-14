@@ -19,7 +19,7 @@
   align-items: center;
   height: 80px;
   max-width: 1700px;
-  min-width: 1000px;
+  /* min-width: 1000px; */
 }
 
 .navbar-project-name {
