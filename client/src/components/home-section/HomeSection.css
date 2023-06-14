@@ -28,7 +28,7 @@ video {
   margin-top: 8px;
   color: rgba(255, 255, 255, 0.8) !important;
   font-size: 32px;
-  font-family: "Play", sans-serif;
+  /* font-family: "Play", sans-serif; */
 }
 
 .home-warrior-container {
