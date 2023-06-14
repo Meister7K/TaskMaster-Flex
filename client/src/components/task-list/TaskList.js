@@ -88,7 +88,9 @@ function TaskList() {
       <div className="task-container">
         <div className="task-wrapper">
           <div className="scroll-content">
-            <h1>Task List</h1>
+            <div className="task-list-header">
+              <h1>Task List</h1>
+            </div>
           <div className="task-form-wrapper">
             <form onSubmit={handleSubmitTask}>
               <div className="question">
@@ -146,8 +148,10 @@ function TaskList() {
               </div>
             </form>
           </div>
+            <div className="active-tasks-header">
+              <h2>Active Tasks:</h2>
+            </div>
           <div className="active-tasks-container">
-            <h2>Active Tasks:</h2>
             {loading ? (
               <div>Loading...</div>
             ) : (
@@ -195,8 +199,10 @@ function TaskList() {
               </ul>
             )}
           </div>
+            <div className="completed-tasks-header">
+              <h2>Completed Tasks:</h2>
+            </div>
           <div className="completed-tasks-container">
-            <h2>Completed Tasks:</h2>
             {loading ? (
               <div>Loading...</div>
             ) : (
