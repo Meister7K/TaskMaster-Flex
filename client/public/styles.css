@@ -1,17 +1,17 @@
 @font-face {
   font-family: "Augusta";
-  src: url('/Augusta.ttf') format('truetype'),
-       url('/Augusta.ttf') format('embedded-opentype'),
-       url('/Augusta.ttf') format('woff2'),
-       url('/Augusta.ttf') format('woff');
+  src: url('./fonts/Augusta.ttf') format('truetype'),
+       url('./fonts/Augusta.ttf') format('embedded-opentype'),
+       url('./fonts/Augusta.ttf') format('woff2'),
+       url('./fonts/Augusta.ttf') format('woff');
 }
 
 @font-face {
   font-family: "Augusta-Shadow";
-  src: url('/Augusta-Shadow.ttf') format('truetype'),
-       url('/Augusta-Shadow.ttf') format('embedded-opentype'),
-       url('/Augusta-Shadow.ttf') format('woff2'),
-       url('/Augusta-Shadow.ttf') format('woff');
+  src: url('./fonts/Augusta-Shadow.ttf') format('truetype'),
+       url('./fonts/Augusta-Shadow.ttf') format('embedded-opentype'),
+       url('./fonts/Augusta-Shadow.ttf') format('woff2'),
+       url('./fonts/Augusta-Shadow.ttf') format('woff');
 }
 
 body {

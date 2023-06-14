@@ -1,5 +1,5 @@
 :root {
-  --white: #ffffff;
+  /* --white: #ffffff; */
 }
 
 .btn {
@@ -11,9 +11,8 @@
 }
 
 .btn-solid {
-  background-color: var(--white);
   color: #242424;
-  border: 1px solid var(--white);
+  background: none;
 }
 
 .btn-outline {
@@ -55,10 +54,10 @@
   box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2)
 }
 
-.btn-medium {
+/* .btn-medium {
   padding: 8px 20px;
   font-size: 20px;
-}
+} */
 
 .btn-large {
   padding: 12px 26px;
@@ -66,12 +65,12 @@
   /* transition: font-size 0.3s ease-in-out; */
 }
 
-.btn-medium:hover,
+/* .btn-medium:hover,
 .btn-large:hover {
   background: #fff;
   color: #269add;
   transition: all 0.3s ease-out;
-}
+} */
 
 .btn-outline-rules {
   background-color: transparent;
@@ -86,4 +85,17 @@
   background: rgba(7, 23, 38, .8) !important;
   color: rgba(255, 255, 255, .85) !important;
   transition: all 0.3s ease-out;
+}
+
+.bttbtn {
+   font-family: "Augusta", cursive, "Times New Roman", Times, serif;
+   background: none;
+   font-size: 3.5rem;
+   font-style: italic;
+   background: none;
+}
+
+.bttbtn:hover {
+  color: #fff;
+  filter: drop-shadow(0 0 .5rem black);
 }

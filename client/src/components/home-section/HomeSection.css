@@ -74,16 +74,7 @@ video {
 
 /* Changing the background color for our buttons only on the HomeSection */
 
-.btn-solid {
-  background-color: rgba(255, 255, 255, 0.8) !important;
-}
 
-.btn-medium:hover,
-.btn-large:hover {
-  background: rgba(255, 255, 255, 0.8) !important;
-  color: #025483;
-  transition: all 0.3s ease-out;
-}
 
 @media screen and (max-width: 960px) {
   .home-container h1 {
