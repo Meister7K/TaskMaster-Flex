@@ -7,7 +7,6 @@ import { ADD_TASK, COMPLETE_TASK, DELETE_TASK } from "../../utils/mutations";
 import { GET_TASKS } from "../../utils/queries";
 
 function TaskList() {
-  const user = Auth.getProfile();
   const [taskState, setTaskState] = useState({
     name: "",
     difficulty: "",
@@ -22,6 +21,7 @@ function TaskList() {
   const [deleteTask, { error: deleteError }] = useMutation(DELETE_TASK, {
     refetchQueries: [{ query: GET_TASKS }],
   });
+  const user = Auth.getProfile();
   const {
     loading,
     error: queryError,
@@ -84,15 +84,18 @@ function TaskList() {
     ) || [];
 
   return (
-    <div className="task-background">
+    <div className="outside-task-container">
       <div className="task-container">
         <div className="task-wrapper">
-          <h1>Task List</h1>
+          <div className="scroll-content">
+            <h1>Task List</h1>
           <div className="task-form-wrapper">
             <form onSubmit={handleSubmitTask}>
               <div className="question">
                 <label>
-                  <div className="label-name">Task Name:</div>
+                  <div className="label-name">
+                    Task Name:
+                  </div>
                   <input
                     type="text"
                     name="name"
@@ -103,7 +106,9 @@ function TaskList() {
               </div>
               <div className="question">
                 <label>
-                  <div className="label-name">Difficulty:</div>
+                  <div className="label-name">
+                    Difficulty:
+                  </div>
                   <select
                     name="difficulty"
                     value={taskState.difficulty}
@@ -118,7 +123,9 @@ function TaskList() {
               </div>
               <div className="question">
                 <label>
-                  <div className="label-name">Category:</div>
+                  <div className="label-name">
+                    Category:
+                  </div>
                   <select
                     name="category"
                     value={taskState.category}
@@ -135,9 +142,7 @@ function TaskList() {
                 </label>
               </div>
               <div className="question">
-                <button type="submit" className="addTaskButton">
-                  Add Task
-                </button>
+              <button type="submit" className="addTaskButton">Add Task</button>
               </div>
             </form>
           </div>
@@ -159,9 +164,7 @@ function TaskList() {
                             <span className="task-difficulty-label">
                               Difficulty:
                             </span>
-                            <span
-                              className={`task-difficulty ${task.difficulty.toLowerCase()}`}
-                            >
+                            <span className={`task-difficulty ${task.difficulty.toLowerCase()}`}>
                               {task.difficulty}
                             </span>
                           </div>
@@ -174,9 +177,7 @@ function TaskList() {
                         <div className="task-created-container">
                           <span className="task-completed-date">
                             Created{" "}
-                            {new Date(
-                              parseInt(task.createdAt)
-                            ).toLocaleString()}
+                            {new Date(parseInt(task.createdAt)).toLocaleString()}
                           </span>
                         </div>
                       </div>
@@ -220,9 +221,7 @@ function TaskList() {
                         <div className="task-created-container">
                           <span className="task-completed-date">
                             Completed{" "}
-                            {new Date(
-                              parseInt(task.updatedAt)
-                            ).toLocaleString()}
+                            {new Date(parseInt(task.updatedAt)).toLocaleString()}
                           </span>
                         </div>
                       </div>
@@ -231,6 +230,7 @@ function TaskList() {
                 ))}
               </ul>
             )}
+            </div>
           </div>
         </div>
       </div>
