@@ -1,20 +1,27 @@
 import Phaser from "phaser";
-import Back from "../game-assets/Taskmap1.png";
-import Minotaur from '../game-assets/MinotaurSpritesheet.png';
-import Warrior0Front from '../game-assets/Warrior0FrontSpritesheet.png';
-import Warrior0Back from '../game-assets/Warrior0BackSpritesheet.png';
-import Warrior0Left from '../game-assets/Warrior0LeftSpritesheet.png';
-import Warrior0Right from '../game-assets/Warrior0RightSpritesheet.png';
-import Warrior1Front from '../game-assets/Warrior1FrontSpritesheet.png';
-import Warrior1Back from '../game-assets/Warrior1BackSpritesheet.png';
-import Warrior1Left from '../game-assets/Warrior1LeftSpritesheet.png';
-import Warrior1Right from '../game-assets/Warrior1RightSpritesheet.png';
+import Back from "../game-assets/map-files/Taskmap1.png";
+import Minotaur from '../game-assets/gameSprites/MinotaurSpritesheet.png';
+import Warrior0Front from '../game-assets/gameSprites/Warrior0FrontSpritesheet.png';
+import Warrior0Back from '../game-assets/gameSprites/Warrior0BackSpritesheet.png';
+import Warrior0Left from '../game-assets/gameSprites/Warrior0LeftSpritesheet.png';
+import Warrior0Right from '../game-assets/gameSprites/Warrior0RightSpritesheet.png';
+import Warrior1Front from '../game-assets/gameSprites/Warrior1FrontSpritesheet.png';
+import Warrior1Back from '../game-assets/gameSprites/Warrior1BackSpritesheet.png';
+import Warrior1Left from '../game-assets/gameSprites/Warrior1LeftSpritesheet.png';
+import Warrior1Right from '../game-assets/gameSprites/Warrior1RightSpritesheet.png';
+import startMap from '../game-assets/map-files/Map.json'
+import tiles from'../game-assets/map-files/tileSet1.png'
 
 class Scene1 extends Phaser.Scene {
+
   constructor() {
     super("loadGame");
   }
   preload() {
+
+
+ this.load.image('tile1', tiles);
+    this.load.tilemapTiledJSON('map1',startMap);
 
     this.load.spritesheet("minotaur", Minotaur, {
       frameWidth: 96,
