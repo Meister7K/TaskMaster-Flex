@@ -6,7 +6,12 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import "./App.css";
 import Home from "./pages/Home.js";
@@ -54,14 +59,12 @@ function App() {
     setUser(loggedInUser);
   }, []);
 
-  const homePath = user ? `/${user}` : "/";
-
   return (
     <ApolloProvider client={client}>
       <Router>
         <Navbar />
         <Routes>
-          <Route exact path={homePath} element={<Home />} />
+          <Route exact path="/" element={<Home />} />
           <Route exact path="/about" element={<About />} />
           <Route
             exact
@@ -74,6 +77,7 @@ function App() {
           <Route exact path="/:username/account" element={<Account />} />
           <Route exact path="/:username/tasks" element={<Tasks />} />
           <Route exact path="/:username/shop" element={<Shop />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
     </ApolloProvider>

@@ -6,6 +6,7 @@ import Warrior0 from './homeAssets/Warrior0.png';
 import Warrior1 from './homeAssets/Warrior1.png';
 import Warrior2 from './homeAssets/Warrior2.png';
 import Logo from './homeAssets/TaskmasterLogo.png';
+import Auth from "../../utils/auth"
 
 function HomeSection() {
   const scrollToRules = () => {
@@ -18,8 +19,13 @@ function HomeSection() {
     });
   };
 
-  const isLoggedIn = localStorage.getItem("id_token") !== null;
-
+  const isLoggedIn = Auth.loggedIn();
+  let user = null;
+  
+  if(isLoggedIn) {
+    const userFind = Auth.getProfile();
+    user = userFind.data.username;
+  }
   return (
     <>
       <div className="home-container" id="topOfPage">
@@ -59,14 +65,25 @@ function HomeSection() {
             >
               Sign Up Now!
             </Button>
-            <Button
-              className="btns play-btn"
-              buttonstyle="btn-outline"
-              buttonSize="btn-large"
-              destination="/:username/play"
-            >
-              Play Game <i className="far fa-play-circle" />
-            </Button>
+            {isLoggedIn ? (
+              <Button
+                className="btns play-btn"
+                buttonstyle="btn-outline"
+                buttonSize="btn-large"
+                destination={`/${user}/play`}
+              >
+                Play Game <i className="far fa-play-circle" />
+              </Button>
+            ) : (
+              <Button
+                className="btns play-btn"
+                buttonstyle="btn-outline"
+                buttonSize="btn-large"
+                destination="/sign-up"
+              >
+                Play Game <i className="far fa-play-circle" />
+              </Button>
+            )}
           </div>
         </div>
       </div>
