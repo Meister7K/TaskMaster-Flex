@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
 import { UPDATE_USER, CHANGE_PASSWORD, DELETE_USER } from "../utils/mutations";
 
 const Account = () => {
   const user = Auth.loggedIn() ? Auth.getProfile().data : null;
-  const navigate = useNavigate();
+  if (!user) {
+    window.location.assign("/")
+  }
   const [updateUser, { loading, error, data }] = useMutation(UPDATE_USER);
   const [changePassword, { loading2, error2, data2 }] = useMutation(CHANGE_PASSWORD);
   const [deleteUser, { loading3, error3, data3 }] = useMutation(DELETE_USER);
@@ -20,11 +21,6 @@ const Account = () => {
     confirmPassword: "",
   });
 
-  useEffect(() => {
-    if (!Auth.loggedIn()) {
-      navigate("/");
-    }
-  }, [navigate]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -175,7 +171,7 @@ const Account = () => {
 
           window.alert("Account successfully deleted!");
           Auth.logout();
-          navigate("/");
+          window.location.assign("/");
         } catch (error) {
           window.alert("An error occurred while deleting the account.");
           console.log(error);

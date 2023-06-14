@@ -8,6 +8,7 @@ const typeDefs = gql`
   health: Int
   energy: Int
   gold: Int
+  equipment: [Item]
   inventory: [Item]
   
   }

@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt");
 const resolvers = {
   Query: {
     playerCharacters: async()=>{
-      return await PlayerCharacter.find({})
+      return await PlayerCharacter.find({}).populate("equipment")
     },
     users: async () => {
       return await User.find({}).populate("playerCharacter")

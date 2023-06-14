@@ -27,7 +27,10 @@ const playerSchema = new Schema({
         default: 0
         //num
     },
-    
+    equipment:{
+        type: [Schema.Types.ObjectId],
+        ref: "item",
+    },
     inventory : {
 
         type: [Schema.Types.ObjectId],
