@@ -1,5 +1,5 @@
 :root {
-  --white: #ffffff;
+  /* --white: #ffffff; */
 }
 
 .btn {
@@ -11,9 +11,8 @@
 }
 
 .btn-solid {
-  background-color: var(--white);
   color: #242424;
-  border: 1px solid var(--white);
+  background: none;
 }
 
 .btn-outline {
@@ -24,10 +23,41 @@
   transition: all 0.3s ease-out;
 }
 
-.btn-medium {
+.btn-red {
+  margin: 10px auto;
+    width: 250px;
+    letter-spacing: 2px;
+    border-radius: 8px;
+    font-family: 'Skranji', cursive;
+    color: #ffc000;
+    font-size: 18px;
+    font-weight: 400;
+    text-shadow: 0 1px 3px #000;
+    text-align: center;
+    padding: 10px 0;
+    background: radial-gradient(circle, #8b0000, #8b0000);
+    border-top: 4px ridge #ffb000;
+    border-left: 4px groove #ffb000;
+    border-right: 4px ridge #ffb000;
+    border-bottom: 4px groove #ffb000;
+    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
+    opacity: 85%;
+}
+
+.btn-red:hover {
+  background: radial-gradient(circle, #e52b2b, #8b0000);
+  box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2)
+}
+
+.btn-red:active {
+  background: radial-gradient(circle, #ec6a6a, #e52b2b);
+  box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2)
+}
+
+/* .btn-medium {
   padding: 8px 20px;
   font-size: 20px;
-}
+} */
 
 .btn-large {
   padding: 12px 26px;
@@ -35,12 +65,12 @@
   /* transition: font-size 0.3s ease-in-out; */
 }
 
-.btn-medium:hover,
+/* .btn-medium:hover,
 .btn-large:hover {
   background: #fff;
   color: #269add;
   transition: all 0.3s ease-out;
-}
+} */
 
 .btn-outline-rules {
   background-color: transparent;
@@ -55,4 +85,17 @@
   background: rgba(7, 23, 38, .8) !important;
   color: rgba(255, 255, 255, .85) !important;
   transition: all 0.3s ease-out;
+}
+
+.bttbtn {
+   font-family: "Augusta", cursive, "Times New Roman", Times, serif;
+   background: none;
+   font-size: 7vh;
+   font-style: italic;
+   background: none;
+}
+
+.bttbtn:hover {
+  color: #fff;
+  filter: drop-shadow(0 0 .5rem black);
 }
