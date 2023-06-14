@@ -99,7 +99,7 @@
 .task-form-wrapper select {
   height: 2rem;
   width: 10rem;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .addTaskButton {
@@ -129,20 +129,58 @@
 
 .active-tasks-header,
 .completed-tasks-header {
-  margin-top:20px;
+  margin-top:30px;
 }
 
 .active-tasks-container,
-.completed-tasts-container {
+.completed-tasks-container {
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
+  /* background: rgba(213, 185, 145, 1); */
   overflow-y: scroll;
   width: 80%;
   max-height:500px;
   border: 2px solid #1a1a1a;
+  border-radius: 15px;
   padding:20px;
+}
+
+.active-tasks-container {
+  background: rgba(213, 185, 145, 1);
+}
+
+.completed-tasks-container {
+  background: rgba(221,196,158,1);
+}
+
+::-webkit-scrollbar {
+  display: block;
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #444444;
+  border-right: none;
+  border-left: none;
+  margin-right:10px !important;
+  height:90%;
+  border-radius: 5px;;
+}
+
+::-webkit-scrollbar-track-piece:end {
+  background: transparent;
+  margin-bottom: 10px;
+}
+
+::-webkit-scrollbar-track-piece:start {
+  background: transparent;
+  margin-top: 10px;
 }
 
 .completed-tasks-container {
@@ -150,8 +188,9 @@
 }
 
 .task-card {
-  border: 3px solid #646464;
-  border-radius: 5px;
+  background: rgba(157,107,64,.5);
+  /* border: 3px solid #646464; */
+  border-radius: 15px;
   padding: 10px;
   width: 100%;
 }
