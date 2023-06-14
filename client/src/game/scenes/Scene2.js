@@ -57,15 +57,14 @@ class Scene2 extends Phaser.Scene {
       // block.body.collider(player1,block)
       blockGroup.push(block);
     })
-   
-
+    
     //! test area end
 
       //!Player
       this.player = this.physics.add.sprite(840, 780, "warrior0front");
      let player1=this.player;
       player1.setScale(0.3);
-      player1.setCircle(30,10,20);
+      player1.setCircle(32,15,20);
 
       this.physics.add.collider(player1, this.minotaurs);
 
@@ -73,7 +72,7 @@ class Scene2 extends Phaser.Scene {
       this.physics.add.collider(player1, map.objects);
   
       this.physics.add.collider(player1, blockGroup );
-      
+
       this.physics.add.collider(this.minotaurs, blockGroup);
      
       this.cameras.main.setBounds(0, 0, 1632, 1632);
@@ -318,7 +317,7 @@ class Scene2 extends Phaser.Scene {
         key: "batAnimation",
         frames: this.anims.generateFrameNumbers("batSheet", {
           start: 0,
-          end: 4,
+          end: 3,
         }),
         frameRate: 8,
         repeat: -1,
