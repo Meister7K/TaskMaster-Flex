@@ -23,60 +23,48 @@ function Rules() {
               <div className="rules-wrapper">
                 <ol className="rules-items">
                   <li className="rules-list">
-                    Level Up Your Life: Transform your daily tasks into exciting
-                    adventures and level up your life one task at a time with
-                    Taskmaster Flex.
+                    Level Up Your Life: Transform tasks into exciting adventures
+                    and level up your life with Taskmaster Flex.
                   </li>
                   <li className="rules-list">
-                    Gamified Task Management: Turn your tasks into a thrilling
-                    game and earn experience points (XP), gold, and energy for
-                    completing real-life tasks on the task page.
+                    Gamified Task Management: Turn tasks into a thrilling game,
+                    earning XP, gold, and energy for real-life task completion.
                   </li>
                   <li className="rules-list">
                     Customize Your Character: Create and customize your
-                    character to embark on an epic journey of task completion,
-                    leveling up, and enhancing your skills.
+                    character for an epic journey of task completion and skill
+                    enhancement.
                   </li>
                   <li className="rules-list">
-                    Shop for Productivity: Use the gold you earn to visit the
-                    in-game shop and purchase items that boost your productivity
-                    and efficiency in real-life tasks.
+                    Shop for Productivity: Use earned gold to purchase
+                    productivity-boosting items from the in-game shop.
                   </li>
                   <li className="rules-list">
-                    Battle Against Procrastination: Face off against the
-                    challenging enemy of procrastination, and use your skills
-                    wisely to stay focused, complete tasks, and emerge
-                    victorious.
+                    Battle Against Procrastination: Face the challenge of
+                    procrastination, staying focused to emerge victorious.
                   </li>
                   <li className="rules-list">
-                    Restore Energy: Restore
-                    your energy by completing more real-life tasks and regain
-                    the vitality to continue your productive adventure.
+                    Restore Energy: Regain vitality by completing more tasks,
+                    restoring energy for your productive adventure.
                   </li>
                   <li className="rules-list">
-                    Exciting Task Actions: Spend your energy wisely to perform
-                    various in-game actions such as task prioritization,
-                    breaking tasks into smaller steps, and exploring new
-                    strategies for task completion.
+                    Exciting Task Actions: Use energy wisely for task
+                    prioritization, breaking tasks into steps, and exploring new
+                    strategies.
                   </li>
                   <li className="rules-list">
-                    Level Progression: Gain experience points (XP) by completing
-                    tasks and level up your character, unlocking new abilities,
-                    rewards, and challenges as you progress in your real-life
-                    task management journey.
+                    Level Progression: Gain XP, level up, and unlock new
+                    abilities, rewards, and challenges in your task management
+                    journey.
                   </li>
                   <li className="rules-list">
-                    Stay Motivated: Taskmaster Flex provides a fun and engaging
-                    way to stay motivated and accountable for your real-life
-                    tasks, getting rewarded for your hard work and enjoying the
-                    satisfaction of leveling up in both the game and your life.
+                    Stay Motivated: Taskmaster Flex keeps you accountable,
+                    motivated, and rewarded for your real-life tasks.
                   </li>
                   <li className="rules-list">
-                    Embrace the Productivity Adventure: Taskmaster Flex is an
-                    immersive task management app that transforms your daily
-                    routine into a captivating adventure of self-improvement,
-                    boosting your character's productivity and watching your own
-                    productivity soar.
+                    Embrace the Productivity Adventure: Taskmaster Flex
+                    transforms your routine into an immersive adventure of
+                    self-improvement and productivity boost.
                   </li>
                 </ol>
                 <div className="back-to-top">

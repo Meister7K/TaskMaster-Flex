@@ -2,9 +2,6 @@
   display: flex;
   flex-flow: column;
   align-items: center;
-  padding-top: 8%;
-  padding-bottom: 5%;
-  height: 100%;
   margin: 0 auto;
   border-radius: 10px;
 }
@@ -12,18 +9,20 @@
 #rules-bg {
   display: flex;
   background-image: url("../../../public/images/rules-bg.png") !important;
-  background-size: contain;
-  background-position: center;
+  background-size: cover;
+  background-position: center top;
   background-repeat: no-repeat;
+  background-size: 100% 100%;
   width: 100%;
   height: 100%;
   opacity: 85%;
-  padding: 5%;
+  padding: 20% 10%;
 }
 
 .rules {
-  padding: 1rem;
+ 
   width: 75%;
+  height: 100%;
 }
 
 .rules-items {
@@ -49,7 +48,7 @@
 .rules-title {
   font-family: "Augusta-Shadow", cursive, "Times New Roman", Times, serif;
   font-style: italic;
-  font-size: 3rem;
+  font-size: 6vh;
   font-weight: bolder;
 }
 
@@ -65,9 +64,8 @@ ol {
   justify-content: center;
   font-family: "Augusta", cursive, "Times New Roman", Times, serif;
   font-style: italic;
-  font-size: 1.756rem;
+  font-size: 4vh;
   width: 87%;
-  text-align: justify;
   margin: 0 auto;
   list-style: decimal inside !important;
   margin-bottom: 2%;
