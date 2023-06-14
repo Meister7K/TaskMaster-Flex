@@ -9,12 +9,19 @@ import Warrior1Front from '../game-assets/gameSprites/Warrior1FrontSpritesheet.p
 import Warrior1Back from '../game-assets/gameSprites/Warrior1BackSpritesheet.png';
 import Warrior1Left from '../game-assets/gameSprites/Warrior1LeftSpritesheet.png';
 import Warrior1Right from '../game-assets/gameSprites/Warrior1RightSpritesheet.png';
+import startMap from '../game-assets/map-files/Map.json'
+import tiles from'../game-assets/map-files/tileSet1.png'
 
 class Scene1 extends Phaser.Scene {
+
   constructor() {
     super("loadGame");
   }
   preload() {
+
+
+ this.load.image('tile1', tiles);
+    this.load.tilemapTiledJSON('map1',startMap);
 
     this.load.spritesheet("minotaur", Minotaur, {
       frameWidth: 96,

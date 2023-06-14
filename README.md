@@ -72,6 +72,8 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 8. We used the github repo "Phaser Cheatsheet" to learn how to add physics to the bat sprites.  Here is a link to the [page](https://gist.github.com/woubuc/6ef002051aeef453a95b)
 
+9. Special Thanks to the Man SuperTommy at Ourcade: https://www.youtube.com/@ourcadetv
+
 ## License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
