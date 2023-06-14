@@ -42,16 +42,16 @@ function HomeSection() {
         </div>
         <div className="home-bottom-container">
           {/* <h1>&nbsp;</h1> */}
-          {isLoggedIn ? (
+          {/* {isLoggedIn ? (
             <p>Thanks for logging in, you may now play the game!</p>
           ) : (
             <p>Level up your life, one task at a time!</p>
-          )}
+          )} */}
           <div className="home-btns">
             <Button
               className="btns"
-              buttonstyle="btn-outline"
-              buttonSize="btn-large"
+              buttonstyle="btn-red"
+              buttonSize="btn-red-large"
               onClick={scrollToRules}
               destination="#rules"
             >
@@ -59,8 +59,8 @@ function HomeSection() {
             </Button>
             <Button
               className="btns play-btn"
-              buttonstyle="btn-outline"
-              buttonSize="btn-large"
+              buttonstyle="btn-red"
+              buttonSize="btn-red-large"
               destination="/sign-up"
             >
               Sign Up Now!
@@ -68,8 +68,8 @@ function HomeSection() {
             {isLoggedIn ? (
               <Button
                 className="btns play-btn"
-                buttonstyle="btn-outline"
-                buttonSize="btn-large"
+                buttonstyle="btn-red"
+                buttonSize="btn-red-large"
                 destination={`/${user}/play`}
               >
                 Play Game <i className="far fa-play-circle" />
@@ -77,8 +77,8 @@ function HomeSection() {
             ) : (
               <Button
                 className="btns play-btn"
-                buttonstyle="btn-outline"
-                buttonSize="btn-large"
+                buttonstyle="btn-red"
+                buttonSize="btn-red-large"
                 destination="/sign-up"
               >
                 Play Game <i className="far fa-play-circle" />

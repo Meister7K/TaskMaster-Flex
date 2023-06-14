@@ -19,22 +19,22 @@ video {
 }
 
 .home-container h1 {
-  color: rgba(255, 255, 255, .8) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
   font-size: 100px;
   margin-top: -100px;
 }
 
 .home-container p {
   margin-top: 8px;
-  color: rgba(255, 255, 255, .8) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
   font-size: 32px;
-  font-family: 'Play', sans-serif;
+  font-family: "Play", sans-serif;
 }
 
 .home-warrior-container {
   display: flex;
   flex-direction: column;
-  margin-bottom:50px;
+  margin-bottom: 50px;
 }
 
 .home-warrior-wrapper {
@@ -42,11 +42,11 @@ video {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap:20px;
+  gap: 20px;
 }
 
 .warrior-1 {
-  margin-right:5px;
+  margin-right: 5px;
 }
 
 .home-bottom-container {
@@ -75,18 +75,15 @@ video {
 /* Changing the background color for our buttons only on the HomeSection */
 
 .btn-solid {
-  background-color: rgba(255, 255, 255, .8) !important;
+  background-color: rgba(255, 255, 255, 0.8) !important;
 }
 
 .btn-medium:hover,
 .btn-large:hover {
-  background: rgba(255, 255, 255, .8) !important;
+  background: rgba(255, 255, 255, 0.8) !important;
   color: #025483;
   transition: all 0.3s ease-out;
 }
-
-
-
 
 @media screen and (max-width: 960px) {
   .home-container h1 {
@@ -96,13 +93,12 @@ video {
 
   .warrior-1,
   .warrior-2 {
-  display:none;
+    display: none;
   }
 
   .taskmaster-logo {
     margin-bottom: 20px;
   }
-
 }
 
 @media screen and (max-width: 768px) {
