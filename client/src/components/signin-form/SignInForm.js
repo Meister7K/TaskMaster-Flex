@@ -57,7 +57,7 @@ const SignInForm = (props) => {
               <p className="hello-user">Hello {user}!</p>
               <button
                 className="navbar-btn login-submit-btn"
-                buttonstyle="btn-outline"
+                buttonstyle="signIn-btn"
                 style={{ cursor: "pointer" }}
                 onClick={() => {
                   Auth.logout();
@@ -67,7 +67,7 @@ const SignInForm = (props) => {
               </button>
               <button
                 className="navbar-btn login-submit-btn"
-                buttonstyle="btn-outline"
+                buttonstyle="singIn-btn"
                 style={{ cursor: "pointer" }}
                 onClick={() => navigate(`/${user}/account`)}
               >
@@ -100,7 +100,7 @@ const SignInForm = (props) => {
               <div>
                 <button
                   className="navbar-btn login-submit-btn"
-                  buttonstyle="btn-outline"
+                  buttonstyle="signIn-btn"
                   style={{ cursor: "pointer" }}
                   type="submit"
                 >
