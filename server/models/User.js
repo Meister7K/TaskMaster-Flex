@@ -35,7 +35,7 @@ const userSchema = new Schema(
       ],
     },
     playerChar : {
-      type: [Schema.Types.ObjectId],
+      type: Schema.Types.ObjectId,
         ref: "playerCharacter",
         required: true,
     }
@@ -58,7 +58,7 @@ userSchema.pre("save", async function (next) {
   }
 });
 
-userSchema.methods.isCorrectPassword = async function (password) {
+userSchema.methods.isCorrectPassword = async function (password){
   return bcrypt.compare(password, this.password);
 };
 
