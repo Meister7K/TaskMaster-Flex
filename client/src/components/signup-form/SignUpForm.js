@@ -116,7 +116,7 @@ function SignUpForm() {
 
   return (
     <>
-      <video src="/videos/home-video-1.mp4" autoPlay loop muted />
+      <video src="/videos/Taskmaster-Demo.mp4" autoPlay loop muted />
       <div className="sign-up-form">
         <div className="signUpform-input-container">
           {data ? (
@@ -126,7 +126,7 @@ function SignUpForm() {
             </p>
           ) : (
             <form onSubmit={handleFormSubmit}>
-              <h2>Create an account!</h2>
+              <h2>Create An Account!</h2>
               <h5>Enter a username</h5>
               <input
                 className="signup-username"
