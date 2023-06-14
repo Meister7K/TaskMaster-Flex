@@ -69,6 +69,7 @@ const typeDefs = gql`
     addTask(name: String!, difficulty: String, category: String): Task
     completeTask(taskId: ID!): Task
     deleteTask(taskId: ID!): TaskDeleteResponse!
+    addToInventory(playerId : ID!, itemId : ID!): PlayerCharacter
   }
 
   type UserDeleteResponse {

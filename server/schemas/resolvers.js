@@ -148,6 +148,13 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
+
+    addToInventory : async (parent, {playerId, itemId}, context)=>{
+      const player = await PlayerCharacter.findOneAndUpdate(
+        {id: playerId},
+        { $push: {inventory : itemId}}
+      );
+    }
   },
 };
 
