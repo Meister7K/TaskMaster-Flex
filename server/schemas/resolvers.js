@@ -9,7 +9,7 @@ const resolvers = {
       return await PlayerCharacter.find({}).populate("equipment")
     },
     users: async () => {
-      return await User.find({}).populate("playerCharacter")
+      return await User.find({}).populate("playerChar")
     },
     tasks: async () => {
       return await Task.find({}).populate("user");
@@ -29,11 +29,24 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
+    addUser: async (parent, { username, email, password }, context) => {
+      
+      const user = await User.create({ username, email, password});
       const token = signToken(user);
-      return { token, user };
+      if(user){
+        const newPC = await PlayerCharacter.create({});
+        const updatedUser = await User.findByIdAndUpdate(
+          user._id,
+          {playerChar: newPC._id },
+          { new: true }
+          
+        );
+
+      }
+      const userAndPlayer= await User.findById(user._id);
+      return { token, user: userAndPlayer};
     },
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
