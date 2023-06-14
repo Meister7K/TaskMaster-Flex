@@ -14,6 +14,16 @@
   width:75%;
 }
 
+h1, h2 {
+  font-family: 'Augusta-Shadow', cursive, 'Times New Roman', Times, serif;
+  font-style: italic;
+}
+
+li {
+  font-family: 'Augusta', cursive, 'Times New Roman', Times, serif;
+  font-style: italic;
+}
+
 h1 {
   text-align: center;
   font-size:3rem;

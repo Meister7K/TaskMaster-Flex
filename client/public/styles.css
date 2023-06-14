@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "Augusta";
+  src: url('/Augusta.ttf') format('truetype'),
+       url('/Augusta.ttf') format('embedded-opentype'),
+       url('/Augusta.ttf') format('woff2'),
+       url('/Augusta.ttf') format('woff');
+}
+
+@font-face {
+  font-family: "Augusta-Shadow";
+  src: url('/Augusta-Shadow.ttf') format('truetype'),
+       url('/Augusta-Shadow.ttf') format('embedded-opentype'),
+       url('/Augusta-Shadow.ttf') format('woff2'),
+       url('/Augusta-Shadow.ttf') format('woff');
+}
+
+body {
+  margin: 0;
+  background-color: hsl(0, 0%, 100%);
+  color: hsl(0, 0%, 10%);
+  line-height: 1.5;
+  font-family: "Augusta", Calibri, Tahoma, sans-serif;
+}
