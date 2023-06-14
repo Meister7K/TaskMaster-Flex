@@ -18,7 +18,7 @@ connection.once('open', async () => {
         desc: "A legendary sword imbued with great power.",
         consumable: false,
         value: 1000,
-        itemImage: "https://thomaskinkade.com/wp-content/uploads/2020/08/mystery-box-7.jpg"
+        itemImage: await imgToString("utils/shopAssets/SwordOfValor.png")
 
     },
       {
@@ -28,7 +28,7 @@ connection.once('open', async () => {
         desc: "A sturdy shield that provides excellent protection.",
         consumable: false,
         value: 800,
-        itemImage: "https://thomaskinkade.com/wp-content/uploads/2020/08/mystery-box-7.jpg"
+        itemImage: await imgToString("utils/shopAssets/Shield.png")
       
       },
       {
@@ -38,16 +38,7 @@ connection.once('open', async () => {
         desc: "A magical potion that restores health.",
         consumable: true,
         value: 50,
-        itemImage: "https://thomaskinkade.com/wp-content/uploads/2020/08/mystery-box-7.jpg"
-      },
-      {
-        name: "Fireball Scroll",
-        itemType: "consumable",
-        stats: ["damage"],
-        desc: "A scroll that unleashes a powerful fireball when used.",
-        consumable: true,
-        value: 200,
-        itemImage: "https://thomaskinkade.com/wp-content/uploads/2020/08/mystery-box-7.jpg"
+        itemImage: await imgToString("utils/shopAssets/hp_potion.png")
       },
       {
         name: "Plate Armor",
@@ -57,15 +48,6 @@ connection.once('open', async () => {
         consumable: false,
         value: 1200,
         itemImage: await imgToString("utils/shopAssets/Warrior2.png")
-      },
-      {
-        name: "Staff of Wisdom",
-        itemType: "weapon",
-        stats: ["damage", "intelligence"],
-        desc: "A staff infused with ancient knowledge and great power.",
-        consumable: false,
-        value: 1500,
-        itemImage: "https://thomaskinkade.com/wp-content/uploads/2020/08/mystery-box-7.jpg"
       },
       {
         name: "Light Armor",
@@ -81,19 +63,10 @@ connection.once('open', async () => {
         name: "Mana Potion",
         itemType: "consumable",
         stats: ["mana restoration"],
-        desc: "A potion that replenishes magical energy.",
+        desc: "A potion that replenishes energy.",
         consumable: true,
         value: 75,
-        itemImage: "https://thomaskinkade.com/wp-content/uploads/2020/08/mystery-box-7.jpg"
-      },
-      {
-        name: "Bow of Accuracy",
-        itemType: "weapon",
-        stats: ["damage", "precision"],
-        desc: "A finely crafted bow that enhances accuracy.",
-        consumable: false,
-        value: 900,
-        itemImage: "https://thomaskinkade.com/wp-content/uploads/2020/08/mystery-box-7.jpg"
+        itemImage: await imgToString("utils/shopAssets/mana_potion.png")
       },
       {
         name: "Amulet of Vitality",
@@ -102,7 +75,7 @@ connection.once('open', async () => {
         desc: "An enchanted amulet that boosts vitality and health.",
         consumable: false,
         value: 600,
-        itemImage: "https://thomaskinkade.com/wp-content/uploads/2020/08/mystery-box-7.jpg"
+        itemImage: await imgToString("utils/shopAssets/amulet.png")
       },
       {
         name: "Elixir of Strength",
@@ -111,7 +84,7 @@ connection.once('open', async () => {
         desc: "An elixir that temporarily enhances physical strength.",
         consumable: true,
         value: 100,
-        itemImage: "https://thomaskinkade.com/wp-content/uploads/2020/08/mystery-box-7.jpg"
+        itemImage: await imgToString("utils/shopAssets/strength_potion.png")
       }
       
 ]
