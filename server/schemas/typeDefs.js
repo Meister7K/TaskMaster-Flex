@@ -20,7 +20,7 @@ const typeDefs = gql`
     password: String
     createdAt: String
     updatedAt: String
-    playerChar: [PlayerCharacter]
+    playerChar: PlayerCharacter
   }
 
   type Task {
