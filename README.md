@@ -76,6 +76,8 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 10. Special Thanks to the Man SuperTommy at Ourcade: https://www.youtube.com/@ourcadetv.
 
+11. We found the way to customize the scroll bar look on our Task List containers from the Stack Overflow question "change scrollbar height" in an answer from the user "jilykate."  Here is a link to the page: https://stackoverflow.com/questions/50817727/change-scrollbar-height 
+
 ## License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
