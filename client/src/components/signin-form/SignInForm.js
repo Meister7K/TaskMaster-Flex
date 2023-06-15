@@ -80,7 +80,7 @@ const SignInForm = (props) => {
           </div>
         ) : (
           <form onSubmit={handleFormSubmit}>
-            <h5>Please Sign In To Play:</h5>
+            <h5>Sign In To Play:</h5>
             <div className="login-form-wrapper">
               <div className="input-columns">
                 <input
