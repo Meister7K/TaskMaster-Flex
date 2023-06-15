@@ -25,35 +25,36 @@
 
 .btn-red {
   margin: 10px auto;
-    width: 250px;
-    letter-spacing: 2px;
-    border-radius: 8px;
-    color: #ffc000;
-    font-size: 18px;
-    font-weight: 400;
-    text-shadow: 0 1px 3px #000;
-    text-align: center;
-    padding: 10px 0;
-    background: radial-gradient(circle, #8b0000, #8b0000);
-    border-top: 4px ridge #ffb000;
-    border-left: 4px groove #ffb000;
-    border-right: 4px ridge #ffb000;
-    border-bottom: 4px groove #ffb000;
-    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
-    opacity: 85%;
+  width: 250px;
+  letter-spacing: 2px;
+  border-radius: 8px;
+  color: #ffc000;
+  font-size: 18px;
+  font-weight: 400;
+  text-shadow: 0 1px 3px #000;
+  text-align: center;
+  padding: 10px 0;
+  background: radial-gradient(circle, #8b0000, #8b0000);
+  border-top: 4px ridge #ffb000;
+  border-left: 4px groove #ffb000;
+  border-right: 4px ridge #ffb000;
+  border-bottom: 4px groove #ffb000;
+  box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
+  opacity: 85%;
 }
 
 .btn-red:hover {
   background: radial-gradient(circle, #e52b2b, #8b0000);
   box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2);
   opacity: 100%;
-  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500,
+    0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
   color: #fff6a9;
 }
 
 .btn-red:active {
   background: radial-gradient(circle, #ec6a6a, #e52b2b);
-  box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2)
+  box-shadow: 0px 0 5px 5px rgba(255, 255, 255, 0.2);
 }
 
 .btn-large {
@@ -64,7 +65,7 @@
 
 .btn-outline-rules {
   background-color: transparent;
-  color: rgba(26, 26, 26, .8) !important;
+  color: rgba(26, 26, 26, 0.8) !important;
   padding: 8px 20px;
   border: 2px solid #1a1a1a;
   font-weight: 700;
@@ -72,8 +73,8 @@
 }
 
 .btn-large-rules:hover {
-  background: rgba(7, 23, 38, .8) !important;
-  color: rgba(255, 255, 255, .85) !important;
+  background: rgba(7, 23, 38, 0.8) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
   transition: all 0.3s ease-out;
 }
 
@@ -86,12 +87,9 @@
 }
 
 .bttbtn:hover {
-  color: #fff;
-  filter: drop-shadow(0 0 .5rem black);
-}
-
-.signIn-btn {
-  
+  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500,
+    0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+  color: #fff6a9;
 }
 
 /* .btn-medium {
