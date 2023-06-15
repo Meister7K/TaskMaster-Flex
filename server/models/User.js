@@ -11,9 +11,9 @@ const userSchema = new Schema(
       validate: [
         {
           validator: (value) => {
-            return value.length >= 3 && value.length <= 15;
+            return value.length >= 3 && value.length <= 20;
           },
-          message: "Username must be between 3 and 15 characters long.",
+          message: "Username must be between 3 and 20 characters long.",
         },
       ],
     },

@@ -100,6 +100,10 @@ h5 {
   max-width: 75px;
 }
 
+.small-font {
+  font-size: 0.75rem;
+}
+
 /* Logout User End */
 @media screen and (max-width: 960px) {
   .navbar-container {

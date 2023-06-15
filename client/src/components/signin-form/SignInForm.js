@@ -47,6 +47,7 @@ const SignInForm = (props) => {
   };
 
   const user = Auth.loggedIn() ? Auth.getProfile().data.username : null;
+  const helloUserClass = user && user.length > 15 ? "hello-user small-font" : "hello-user";
 
   return (
     <div className="navbar-sign-in-form">
@@ -54,7 +55,7 @@ const SignInForm = (props) => {
         {user ? (
           <div className="logout-container">
             <div className="logout-wrapper">
-              <p className="hello-user">{user}</p>
+              <p className={helloUserClass}>{user}</p>
               <div className="button-wrapper">
                 <button
                   className="navbar-btn login-submit-btn"
