@@ -24,7 +24,11 @@ const playerSchema = new Schema({
     gold: {
         type: Number,
         required: true,
-        default: 0
+        default: 0,
+        validate : {
+            validator : Number.isInteger,
+            message   : '{VALUE} is not an integer value'
+          }
         //num
     },
     equipment:{
