@@ -54,7 +54,7 @@ const SignInForm = (props) => {
         {user ? (
           <div className="logout-container">
             <div className="logout-wrapper">
-              <p className="hello-user">Hello {user}!</p>
+              <p className="hello-user">{user}</p>
               <div className="button-wrapper">
                 <button
                   className="navbar-btn login-submit-btn"
@@ -99,7 +99,7 @@ const SignInForm = (props) => {
                   onChange={handleChange}
                 />
               </div>
-              <div>
+              <div className="btn-bg">
                 <button
                   className="navbar-btn login-submit-btn"
                   buttonstyle="signIn-btn"
@@ -114,7 +114,9 @@ const SignInForm = (props) => {
         )}
       </div>
       {error && (
-        <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
+        <div className="login-warning-message">
+          <p>{error.message}</p>
+        </div>
       )}
     </div>
   );

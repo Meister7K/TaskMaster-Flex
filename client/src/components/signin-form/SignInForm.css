@@ -1,10 +1,11 @@
 /* Navbar Sign In Form */
 .navbar-sign-in-form {
   height: 85px;
-  padding: 0 10px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: row;
+  justify-content: center;
+  width: 40%;
 }
 
 .form-input-container {
@@ -42,7 +43,7 @@
 }
 
 .login-submit-btn:hover {
-  filter: drop-shadow(0 0 0.90rem crimson);
+  filter: drop-shadow(0 0 0.9rem crimson);
   transform: scale(1.05);
 }
 
@@ -52,7 +53,9 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  width: 100%;
+  width: 90px;
+  height: 50%;
+  font-size: 80%;
 }
 
 h5 {
@@ -84,13 +87,24 @@ h5 {
 }
 
 .navbar-container {
-  width: 70%;
+  width: 60%;
   display: flex;
   justify-content: center;
 }
 
-.signIn-form-wrapper {
-  width: 30%;
+.login-warning-message {
+  color: white;
+  font-size: .75rem;
+  max-width: 75px;
 }
 
 /* Logout User End */
+@media screen and (max-width: 960px) {
+  .navbar-container {
+    width: 25%;
+  }
+
+  .navbar-sign-in-form {
+    width: 75%;
+  }
+}

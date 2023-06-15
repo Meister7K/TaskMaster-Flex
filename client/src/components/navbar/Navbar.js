@@ -112,9 +112,7 @@ function Navbar() {
               </li>
             </ul>
           </div>
-          <div className="signIn-form-wrapper">
             <SignInForm />
-          </div>
         </nav>
       </>
     );
