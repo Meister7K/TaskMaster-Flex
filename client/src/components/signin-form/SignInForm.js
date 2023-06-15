@@ -54,25 +54,27 @@ const SignInForm = (props) => {
         {user ? (
           <div className="logout-container">
             <div className="logout-wrapper">
-              <p className="hello-user">Hello {user}!</p>
-              <button
-                className="navbar-btn login-submit-btn"
-                buttonstyle="btn-outline"
-                style={{ cursor: "pointer" }}
-                onClick={() => {
-                  Auth.logout();
-                }}
-              >
-                Logout
-              </button>
-              <button
-                className="navbar-btn login-submit-btn"
-                buttonstyle="btn-outline"
-                style={{ cursor: "pointer" }}
-                onClick={() => navigate(`/${user}/account`)}
-              >
-                Account
-              </button>
+              <p className="hello-user">{user}</p>
+              <div className="button-wrapper">
+                <button
+                  className="navbar-btn login-submit-btn"
+                  buttonstyle="signIn-btn"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    Auth.logout();
+                  }}
+                >
+                  Logout
+                </button>
+                <button
+                  className="navbar-btn login-submit-btn"
+                  buttonstyle="singIn-btn"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate(`/${user}/account`)}
+                >
+                  Account
+                </button>
+              </div>
             </div>
           </div>
         ) : (
@@ -97,10 +99,10 @@ const SignInForm = (props) => {
                   onChange={handleChange}
                 />
               </div>
-              <div>
+              <div className="btn-bg">
                 <button
                   className="navbar-btn login-submit-btn"
-                  buttonstyle="btn-outline"
+                  buttonstyle="signIn-btn"
                   style={{ cursor: "pointer" }}
                   type="submit"
                 >
@@ -112,7 +114,9 @@ const SignInForm = (props) => {
         )}
       </div>
       {error && (
-        <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
+        <div className="login-warning-message">
+          <p>{error.message}</p>
+        </div>
       )}
     </div>
   );

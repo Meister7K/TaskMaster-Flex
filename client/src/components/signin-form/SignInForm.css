@@ -1,11 +1,11 @@
 /* Navbar Sign In Form */
 .navbar-sign-in-form {
   height: 85px;
-  padding: 0 10px;
-  border: 1px solid #fff;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: row;
+  justify-content: center;
+  width: 40%;
 }
 
 .form-input-container {
@@ -30,28 +30,32 @@
 .navbar-input {
   margin-bottom: 5px;
   height: 1.5rem !important;
-  width: 168px;;
+  width: 168px;
 }
 
 .login-submit-btn {
-  padding: 10px !important;
-  border-radius: 2px;
   outline: none;
   border: none;
   cursor: pointer;
   background-color: transparent;
   color: #fff;
-  border: 1px solid var(--white);
   transition: all 0.3s ease-out;
 }
 
 .login-submit-btn:hover {
-  background-color: #ffffff;
-  color: #1a1a1a;
+  filter: drop-shadow(0 0 0.9rem crimson);
+  transform: scale(1.05);
 }
 
 .navbar-btn {
   margin-left: 10px;
+  background-image: url("../../../public/images/navlink-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 90px;
+  height: 50%;
+  font-size: 80%;
 }
 
 h5 {
@@ -77,4 +81,30 @@ h5 {
   color: #fff;
 }
 
+.button-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar-container {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+}
+
+.login-warning-message {
+  color: white;
+  font-size: .75rem;
+  max-width: 75px;
+}
+
 /* Logout User End */
+@media screen and (max-width: 960px) {
+  .navbar-container {
+    width: 25%;
+  }
+
+  .navbar-sign-in-form {
+    width: 75%;
+  }
+}
