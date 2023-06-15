@@ -23,7 +23,7 @@ class Player extends GameObject{
     preload(){
         this.player = this.physics.add.sprite( this.x, this.y, this.spriteSheet);
 
-        this.player.setScale(.5);
+        this.player.setScale(.3);
     }
 
     update(){

@@ -48,6 +48,10 @@ class Scene1 extends Phaser.Scene {
       frameHeight: 90,
     });
 
+
+
+    
+
     // this.load.spritesheet("warrior1front", Warrior1Front, {
     //   frameWidth: 141,
     //   frameHeight: 90,
