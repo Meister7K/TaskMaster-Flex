@@ -5,46 +5,43 @@ const bcrypt = require("bcrypt");
 
 const resolvers = {
   Query: {
-    playerCharacters: async()=>{
-      return await PlayerCharacter.find({}).populate("equipment")
+    playerCharacters: async () => {
+      return await PlayerCharacter.find({}).populate("equipment");
     },
     users: async () => {
-      return await User.find({}).populate("playerChar")
+      return await User.find({}).populate("playerChar");
     },
     tasks: async () => {
       return await Task.find({}).populate("user");
     },
-    items: async()=>{
+    items: async () => {
       return await Item.find({});
     },
-    weapons: async()=>{
-      return await Item.find({itemType: "weapon"});
+    weapons: async () => {
+      return await Item.find({ itemType: "weapon" });
     },
-    armors: async()=>{
-      return await Item.find({itemType: "armor"});
+    armors: async () => {
+      return await Item.find({ itemType: "armor" });
     },
-    consumables: async()=>{
-      return await Item.find({itemType: "consumable"});
-    }
+    consumables: async () => {
+      return await Item.find({ itemType: "consumable" });
+    },
   },
 
   Mutation: {
     addUser: async (parent, { username, email, password }, context) => {
-      
-      const user = await User.create({ username, email, password});
+      const user = await User.create({ username, email, password });
       const token = signToken(user);
-      if(user){
+      if (user) {
         const newPC = await PlayerCharacter.create({});
         const updatedUser = await User.findByIdAndUpdate(
           user._id,
-          {playerChar: newPC._id },
+          { playerChar: newPC._id },
           { new: true }
-          
         );
-
       }
-      const userAndPlayer= await User.findById(user._id);
-      return { token, user: userAndPlayer};
+      const userAndPlayer = await User.findById(user._id);
+      return { token, user: userAndPlayer };
     },
 
     login: async (parent, { email, password }) => {
@@ -162,12 +159,49 @@ const resolvers = {
       throw new AuthenticationError("Not logged in");
     },
 
-    addToInventory : async (parent, {playerId, itemId}, context)=>{
-      const player = await PlayerCharacter.findOneAndUpdate(
-        {id: playerId},
-        { $push: {inventory : itemId}}
-      );
-    }
+    addToInventory: async (parent, { userId, itemId }, context) => {
+      try {
+        const user = await User.findById(userId);
+        const player = await PlayerCharacter.findOneAndUpdate(
+          { _id: user.playerChar._id },
+          { $push: { inventory: itemId } },
+          { new: true }
+        );
+
+        return player;
+      } catch (err) {
+        return err;
+      }
+    },
+
+    addGold: async (parent, { userId, amount }, context) => {
+      try {
+        const user = await User.findById(userId);
+        const player = await PlayerCharacter.findOneAndUpdate(
+          { _id: user.playerChar._id },
+          { $inc: { gold: amount } },
+          { new: true }
+        );
+
+        return player;
+      } catch (err) {
+        return err;
+      }
+    },
+
+    removeGold: async (parent, { userId, amount }, context) => {
+      try {
+        const user = await User.findById(userId);
+        const player = await PlayerCharacter.findOneAndUpdate(
+          { _id: user.playerChar._id },
+          { $inc: { gold: -amount } },
+          { new: true }
+        );
+        return player;
+      } catch (err) {
+        return err;
+      }
+    },
   },
 };
 
