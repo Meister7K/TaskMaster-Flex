@@ -57,7 +57,7 @@ video {
 }
 
 .home-btns {
-  margin-top: 32px;
+  margin-bottom: 32px;
 }
 
 .home-btns .btn {
@@ -90,6 +90,15 @@ video {
   .taskmaster-logo {
     margin-bottom: 20px;
   }
+
+  .btn {
+    width: 200px;
+  }
+
+  .home-btns { 
+    display: flex;
+    flex-direction: row;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -109,5 +118,11 @@ video {
 
   .btn {
     width: 100%;
+  }
+
+  .home-btns { 
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
   }
 }
