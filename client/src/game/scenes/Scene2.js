@@ -1,6 +1,8 @@
-import Phaser from "phaser";
+ import Phaser from "phaser";
 import Bat from "../game-assets/gameSprites/bat.png";
-
+import createPlayerAnimations from "../classes/animations/PlayerAnims";
+import Player from "../classes/Player";
+import createMinotaurAnimations from "../classes/animations/MinotaurAnims";
 class Scene2 extends Phaser.Scene {
   constructor() {
     super("play game");
@@ -16,13 +18,16 @@ class Scene2 extends Phaser.Scene {
   }
 
   create() {
+
+    createMinotaurAnimations(this.anims);
+    createPlayerAnimations(this.anims);
     
     this.physics.world.setBounds(0, 0, 1632, 1632);
     this.background = this.add.image(0, 0, "background");
     this.background.setOrigin(0, 0);
 
   
-    //! test area start
+    //! Map area start
     let map = this.make.tilemap({ key: "map1" });
     let tiles = map.addTilesetImage(
       "set1",
@@ -54,11 +59,11 @@ class Scene2 extends Phaser.Scene {
       block.body.width = obj.width;
       block.body.height = obj.height;
       block.body.setImmovable(true);
-      // block.body.collider(player1,block)
+
       blockGroup.push(block);
     })
     
-    //! test area end
+    //! Map area end
 
       //!Player
       this.player = this.physics.add.sprite(840, 780, "warrior0front");
@@ -68,7 +73,7 @@ class Scene2 extends Phaser.Scene {
 
       this.physics.add.collider(player1, this.minotaurs);
 
-      // !this.physics.add.collider(player1, mapArr[0]);
+    
       this.physics.add.collider(player1, map.objects);
   
       this.physics.add.collider(player1, blockGroup );
@@ -94,194 +99,9 @@ class Scene2 extends Phaser.Scene {
       attack: Phaser.Input.Keyboard.KeyCodes.SPACE,
     });
 
-    this.anims.create({
-      key: "warrior1FrontAnimation",
-      frames: [
-        { key: "warrior1front", frame: 0 },
-        { key: "warrior1front", frame: 1 },
-        { key: "warrior1front", frame: 2 },
-        { key: "warrior1front", frame: 3 },
-        { key: "warrior1front", frame: 4 },
-        { key: "warrior1front", frame: 5 },
-        { key: "warrior1front", frame: 6 },
-        { key: "warrior1front", frame: 7 },
-        { key: "warrior1front", frame: 8 },
-        { key: "warrior1front", frame: 9 },
-        { key: "warrior1front", frame: 10 },
-        { key: "warrior1front", frame: 11 },
-        { key: "warrior1front", frame: 12 },
-        { key: "warrior1front", frame: 13 },
-      ],
-      frameRate: 16,
-      repeat: -1,
-    });
+    createPlayerAnimations(this.anims);
 
-    this.anims.create({
-      key: "warrior1BackAnimation",
-      frames: [
-        { key: "warrior1back", frame: 0 },
-        { key: "warrior1back", frame: 1 },
-        { key: "warrior1back", frame: 2 },
-        { key: "warrior1back", frame: 3 },
-        { key: "warrior1back", frame: 4 },
-        { key: "warrior1back", frame: 5 },
-        { key: "warrior1back", frame: 6 },
-        { key: "warrior1back", frame: 7 },
-        { key: "warrior1back", frame: 8 },
-        { key: "warrior1back", frame: 9 },
-        { key: "warrior1back", frame: 10 },
-        { key: "warrior1back", frame: 11 },
-        { key: "warrior1back", frame: 12 },
-        { key: "warrior1back", frame: 13 },
-      ],
-      frameRate: 16,
-      repeat: -1,
-    });
-
-    this.anims.create({
-      key: "warrior1LeftAnimation",
-      frames: [
-        { key: "warrior1left", frame: 0 },
-        { key: "warrior1left", frame: 1 },
-        { key: "warrior1left", frame: 2 },
-        { key: "warrior1left", frame: 3 },
-        { key: "warrior1left", frame: 4 },
-        { key: "warrior1left", frame: 5 },
-        { key: "warrior1left", frame: 6 },
-        { key: "warrior1left", frame: 7 },
-        { key: "warrior1left", frame: 8 },
-        { key: "warrior1left", frame: 9 },
-        { key: "warrior1left", frame: 10 },
-        { key: "warrior1left", frame: 11 },
-        { key: "warrior1left", frame: 12 },
-        { key: "warrior1left", frame: 13 },
-      ],
-      frameRate: 16,
-      repeat: -1,
-    });
-
-    this.anims.create({
-      key: "warrior1RightAnimation",
-      frames: [
-        { key: "warrior1right", frame: 0 },
-        { key: "warrior1right", frame: 1 },
-        { key: "warrior1right", frame: 2 },
-        { key: "warrior1right", frame: 3 },
-        { key: "warrior1right", frame: 4 },
-        { key: "warrior1right", frame: 5 },
-        { key: "warrior1right", frame: 6 },
-        { key: "warrior1right", frame: 7 },
-        { key: "warrior1right", frame: 8 },
-        { key: "warrior1right", frame: 9 },
-        { key: "warrior1right", frame: 10 },
-        { key: "warrior1right", frame: 11 },
-        { key: "warrior1right", frame: 12 },
-        { key: "warrior1right", frame: 13 },
-      ],
-      frameRate: 16,
-      repeat: -1,
-    });
-
-    this.anims.create({
-      key: "warrior0FrontAnimation",
-      frames: [
-        { key: "warrior0front", frame: 0 },
-        { key: "warrior0front", frame: 1 },
-        { key: "warrior0front", frame: 2 },
-        { key: "warrior0front", frame: 3 },
-        { key: "warrior0front", frame: 4 },
-        { key: "warrior0front", frame: 5 },
-        { key: "warrior0front", frame: 6 },
-        { key: "warrior0front", frame: 7 },
-        { key: "warrior0front", frame: 8 },
-        { key: "warrior0front", frame: 9 },
-        { key: "warrior0front", frame: 10 },
-        { key: "warrior0front", frame: 11 },
-        { key: "warrior0front", frame: 12 },
-        { key: "warrior0front", frame: 13 },
-      ],
-      frameRate: 16,
-      repeat: -1,
-    });
-
-    this.anims.create({
-      key: "warrior0BackAnimation",
-      frames: [
-        { key: "warrior0back", frame: 0 },
-        { key: "warrior0back", frame: 1 },
-        { key: "warrior0back", frame: 2 },
-        { key: "warrior0back", frame: 3 },
-        { key: "warrior0back", frame: 4 },
-        { key: "warrior0back", frame: 5 },
-        { key: "warrior0back", frame: 6 },
-        { key: "warrior0back", frame: 7 },
-        { key: "warrior0back", frame: 8 },
-        { key: "warrior0back", frame: 9 },
-        { key: "warrior0back", frame: 10 },
-        { key: "warrior0back", frame: 11 },
-        { key: "warrior0back", frame: 12 },
-        { key: "warrior0back", frame: 13 },
-      ],
-      frameRate: 16,
-      repeat: -1,
-    });
-
-    this.anims.create({
-      key: "warrior0LeftAnimation",
-      frames: [
-        { key: "warrior0left", frame: 0 },
-        { key: "warrior0left", frame: 1 },
-        { key: "warrior0left", frame: 2 },
-        { key: "warrior0left", frame: 3 },
-        { key: "warrior0left", frame: 4 },
-        { key: "warrior0left", frame: 5 },
-        { key: "warrior0left", frame: 6 },
-        { key: "warrior0left", frame: 7 },
-        { key: "warrior0left", frame: 8 },
-        { key: "warrior0left", frame: 9 },
-        { key: "warrior0left", frame: 10 },
-        { key: "warrior0left", frame: 11 },
-        { key: "warrior0left", frame: 12 },
-        { key: "warrior0left", frame: 13 },
-      ],
-      frameRate: 16,
-      repeat: -1,
-    });
-
-    this.anims.create({
-      key: "warrior0RightAnimation",
-      frames: [
-        { key: "warrior0right", frame: 0 },
-        { key: "warrior0right", frame: 1 },
-        { key: "warrior0right", frame: 2 },
-        { key: "warrior0right", frame: 3 },
-        { key: "warrior0right", frame: 4 },
-        { key: "warrior0right", frame: 5 },
-        { key: "warrior0right", frame: 6 },
-        { key: "warrior0right", frame: 7 },
-        { key: "warrior0right", frame: 8 },
-        { key: "warrior0right", frame: 9 },
-        { key: "warrior0right", frame: 10 },
-        { key: "warrior0right", frame: 11 },
-        { key: "warrior0right", frame: 12 },
-        { key: "warrior0right", frame: 13 },
-      ],
-      frameRate: 16,
-      repeat: -1,
-    });
-
-    this.anims.create({
-      key: "minotaurAnimation",
-      frames: [
-        { key: "minotaur", frame: 0 },
-        { key: "minotaur", frame: 1 },
-        { key: "minotaur", frame: 2 },
-        { key: "minotaur", frame: 3 },
-        { key: "minotaur", frame: 4 },
-      ],
-      frameRate: 8,
-      repeat: -1,
-    });
+    
 
     const numMinotaurs = 3;
 
@@ -356,11 +176,7 @@ class Scene2 extends Phaser.Scene {
   }
 
   update() {
-    // window.addEventListener('resize', ()=>{
-    //   this.scene.scale.width= window.innerWidth;
-    //   this.scene.scale.height=window.innerHeight;
-    //   game.scale.resize(window.innerWidth,window.innerHeight);
-    //   })
+   
 
     const { left, right, up, down, input } = this.cursors;
 
@@ -389,8 +205,16 @@ class Scene2 extends Phaser.Scene {
     } else {
       this.player.setVelocityY(0);
     }
+  //TODO add attack animation & interaction
+    // if(input.isDown || this.inputKeys.attack.isDown){
+    //   this.player.anims.play("warrior1AttackAnimation", true);
+    // }
 
-    // Adjust camera bounds when character reaches near the edge
+    // if(input.isDown & inEventArea){
+    //   //!activate event
+    // }
+
+    //! Adjust camera bounds when character reaches near the edge
     let cameraBounds = this.cameras.main.getBounds();
     let buffer = 0;
 
@@ -434,14 +258,7 @@ class Scene2 extends Phaser.Scene {
       this.player.anims.resume();
     }
 
-    //TODO add attack animation & interaction
-    // if(input.isDown || this.inputKeys.attack.isDown){
-    //   this.player.anims.play("warrior1AttackAnimation", true);
-    // }
-
-    // if(input.isDown & inEventArea){
-    //   //!activate event
-    // }
+  
 
     this.minotaurs.forEach((minotaur) => {
       if (minotaur.body.velocity.x < 0) {
