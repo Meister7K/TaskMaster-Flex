@@ -143,66 +143,68 @@ function SignUpForm() {
   return (
     <>
       <video src="/videos/Taskmaster-Demo.mp4" autoPlay loop muted />
-      <div className="sign-up-form">
-        <div className="signUpform-input-container">
-          {data ? (
-            <p>
-              Success! You may now head back to the homepage.{" "}
-              {/* TODO link to profilepage and profile form once completed */}
-            </p>
-          ) : (
-            <form onSubmit={handleFormSubmit}>
-              <h2>Create An Account!</h2>
-              <h5>Enter a username</h5>
-              <input
-                className="signup-username"
-                name="username"
-                type="text"
-                placeholder="Enter a unique username"
-                value={formState.username}
-                onChange={handleChange}
-              />
-              <h5>Enter an email</h5>
-              <input
-                className="signup-email"
-                name="email"
-                type="email"
-                placeholder="Enter a valid email address."
-                value={formState.email}
-                onChange={handleChange}
-              />
-              <h5>Enter a password</h5>
-              <input
-                className="signup-password"
-                name="password"
-                type="password"
-                placeholder="Password must include one uppercase letter, one lowercase letter, and one number."
-                value={formState.password}
-                onChange={handleChange}
-              />
-              <h5>Reenter your password</h5>
-              <input
-                className="signup-password"
-                name="confirmPassword"
-                type="password"
-                placeholder="Password must include one uppercase letter, one lowercase letter, and one number."
-                value={confirmPassword}
-                onChange={handleChange}
-              />
-              <div className="btn-div">
-                <button
-                  className="signUp-btn"
-                  onClick={handleFormSubmit}
-                  style={{ cursor: "pointer" }}
-                >
-                  Sign Up
-                </button>
-              </div>
-            </form>
-          )}
-          {error && (
-            <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
-          )}
+      <div className="sign-up-form-outer-container">
+        <div className="sign-up-form">
+          <div className="signUpform-input-container">
+            {data ? (
+              <p>
+                Success! You may now head back to the homepage.{" "}
+                {/* TODO link to profilepage and profile form once completed */}
+              </p>
+            ) : (
+              <form onSubmit={handleFormSubmit}>
+                <h2>Create An Account!</h2>
+                <h5>Enter a username</h5>
+                <input
+                  className="signup-username"
+                  name="username"
+                  type="text"
+                  placeholder="Enter a unique username"
+                  value={formState.username}
+                  onChange={handleChange}
+                />
+                <h5>Enter an email</h5>
+                <input
+                  className="signup-email"
+                  name="email"
+                  type="email"
+                  placeholder="Enter a valid email address."
+                  value={formState.email}
+                  onChange={handleChange}
+                />
+                <h5>Enter a password</h5>
+                <input
+                  className="signup-password"
+                  name="password"
+                  type="password"
+                  placeholder="Password must include one uppercase letter, one lowercase letter, and one number."
+                  value={formState.password}
+                  onChange={handleChange}
+                />
+                <h5>Reenter your password</h5>
+                <input
+                  className="signup-password"
+                  name="confirmPassword"
+                  type="password"
+                  placeholder="Password must include one uppercase letter, one lowercase letter, and one number."
+                  value={confirmPassword}
+                  onChange={handleChange}
+                />
+                <div className="btn-div">
+                  <button
+                    className="signUp-btn"
+                    onClick={handleFormSubmit}
+                    style={{ cursor: "pointer" }}
+                  >
+                    Sign Up
+                  </button>
+                </div>
+              </form>
+            )}
+            {error && (
+              <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
+            )}
+          </div>
         </div>
       </div>
     </>
