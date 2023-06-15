@@ -47,60 +47,6 @@ function SignUpForm() {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    if (username.length < 3 || username.length > 20) {
-      alert("Username field must be between 3 and 20 characters.");
-      return;
-    }
-
-    const usernameRegex = /^[a-zA-Z0-9]+$/;
-    if (!usernameRegex.test(username)) {
-      alert("Username must only contain letters and numbers.");
-      return;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const lowercaseEmail = email.toLowerCase();
-    if (!emailRegex.test(lowercaseEmail)) {
-      alert("Invalid email address.");
-      return;
-    }
-
-    if (password.length < 6 || password.length > 20) {
-      alert("Password must be between 6 and 20 characters.");
-      setFormState({
-        ...formState,
-        password: "",
-      });
-      setConfirmPassword("");
-      setPassword("");
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      alert("Passwords do not match, please try again.");
-      setFormState({
-        ...formState,
-        password: "",
-      });
-      setConfirmPassword("");
-      setPassword("");
-      return;
-    }
-
-    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
-    if (!passwordRegex.test(password)) {
-      alert(
-        "Password must contain an uppercase letter, a lowercase letter, and a number."
-      );
-      setFormState({
-        ...formState,
-        password: "",
-      });
-      setConfirmPassword("");
-      setPassword("");
-      return;
-    }
-
     try {
       const { data } = await addUser({
         variables: { ...formState },
@@ -110,7 +56,87 @@ function SignUpForm() {
       const user = Auth.loggedIn() ? Auth.getProfile().data.username : null;
       window.location.assign(`/${user}`);
     } catch (e) {
-      console.error(e);
+      console.error(e.message);
+      if (e.message.includes("username: Path `username` is required.")) {
+        e.message = "You must enter a username.";
+      } else if (
+        e.message.includes(
+          "user validation failed: email: Path `email` is required."
+        )
+      ) {
+        e.message = "You must enter an email.";
+      } else if (
+        e.message.includes(
+          "user validation failed: password: Path `password` is required."
+        )
+      ) {
+        e.message = "You must enter a password.";
+      } else if (
+        e.message.includes(
+          "username: Username must be between 3 and 20 characters long."
+        )
+      ) {
+        e.message = "Username must be between 3 and 20 characters long.";
+      } else if (
+        e.message.includes(
+          "username: Username may only include letters and numbers."
+        )
+      ) {
+        e.message = "Username may only include letters and numbers.";
+      } else if (
+        e.message.includes(
+          "user validation failed: email: Please enter a valid email address."
+        )
+      ) {
+        e.message = "Please enter a valid email address.";
+      } else if (
+        e.message.includes(
+          "user validation failed: password: Password must contain at least one lowercase letter, one uppercase letter, and one number. Password may include special characters!"
+        )
+      ) {
+        e.message =
+          "Password must contain at least one lowercase letter, one uppercase letter, and one number. Password may include special characters!";
+        setFormState({
+          ...formState,
+          password: "",
+        });
+        setConfirmPassword("");
+        setPassword("");
+      } else if (
+        e.message.includes(
+          "user validation failed: password: Password must be between 6 and 20 characters long."
+        )
+      ) {
+        e.message = "Password must be between 6 and 20 characters long.";
+        setFormState({
+          ...formState,
+          password: "",
+        });
+        setConfirmPassword("");
+        setPassword("");
+      } else if (
+        e.message.includes(
+          "E11000 duplicate key error collection: taskmaster-flex.users index: username"
+        )
+      ) {
+        e.message = "Username taken.";
+      } else if (
+        e.message.includes(
+          "E11000 duplicate key error collection: taskmaster-flex.users index: email"
+        )
+      ) {
+        e.message = "Email is already in use.";
+      }
+      if (password !== confirmPassword) {
+        e.message = "Passwords do not match, please try again.";
+        setFormState({
+          ...formState,
+          password: "",
+        });
+        setConfirmPassword("");
+        setPassword("");
+        return;
+      }
     }
   };
 
