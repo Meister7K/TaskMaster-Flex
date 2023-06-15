@@ -19,6 +19,10 @@ class Scene2 extends Phaser.Scene {
 
   create() {
 
+    const homeMusic = this.sound.add('homeAudio');
+    homeMusic.play();
+
+
     createMinotaurAnimations(this.anims);
     createPlayerAnimations(this.anims);
     
