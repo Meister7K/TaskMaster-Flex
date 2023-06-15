@@ -153,7 +153,7 @@ function SignUpForm() {
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
-                <h2>Create An Account!</h2>
+                <h2>Create an Account!</h2>
                 <h5>Enter a username</h5>
                 <input
                   className="signup-username"
