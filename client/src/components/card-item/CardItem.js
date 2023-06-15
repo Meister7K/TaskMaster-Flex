@@ -11,9 +11,10 @@ function CardItem(props) {
       props.path
     }
 
-    > <figure className="cards-item-pic-wrap" data-category= {
-      props.label
-    }
+    > <figure className="cards-item-pic-wrap" 
+    // data-category= {
+    //   props.label
+    // }
 
     > <img src= {
       props.src

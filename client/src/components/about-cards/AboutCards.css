@@ -1,6 +1,7 @@
 .cards {
   padding: 4em;
-  background: #fff;
+  background-image: url(../../../public/images/stonewall.png);
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.3);
 }
 
 h1 {
@@ -26,14 +27,43 @@ h1 {
   margin-bottom: 20px;
 }
 
+.about-scroll-bg {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../../public/images/scroll.png");
+  padding:10px;
+  margin:10px;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100%;
+  height: 100%;
+}
+
+.card-item-wrapper {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width:70%;
+}
+
+CardItem {
+  width:70%;
+}
+
 .cards-item {
   display: flex;
   flex: 1;
   margin: 0 1rem;
+  min-width: 100px;
   border-radius: 10px !important;
-  box-shadow: 0 6px 15px rgba(56, 125, 255, 0.5);
+  padding-top:20px;
+  text-align: center;
+  /* box-shadow: 0 6px 15px rgba(56, 125, 255, 0.5);
   -webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
-  filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+  filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017)); */
 }
 
 .cards-link {
@@ -76,7 +106,7 @@ h1 {
   font-size: 12px;
   font-weight: 700;
   color: #fff;
-  background-color: #1f98f4;
+  /* background-color: #1f98f4; */
   box-sizing: border-box;
 }
 
