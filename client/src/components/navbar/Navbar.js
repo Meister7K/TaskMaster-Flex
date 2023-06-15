@@ -70,11 +70,12 @@ function Navbar() {
                 </Link>
               </li>
               <li>
-                <Music/>
+                
               </li>
             </ul>
           </div>
           <SignInForm />
+          <Music/>
         </nav>
       </>
     );
