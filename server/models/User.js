@@ -8,6 +8,18 @@ const userSchema = new Schema(
       required: true,
       unique: true,
       trim: true,
+      match: [
+        /^[a-zA-Z0-9]+$/,
+        "Username may only include letters and numbers.",
+      ],
+      validate: [
+        {
+          validator: (value) => {
+            return value.length >= 3 && value.length <= 20;
+          },
+          message: "Username must be between 3 and 20 characters long.",
+        },
+      ],
     },
     email: {
       type: String,
@@ -15,7 +27,7 @@ const userSchema = new Schema(
       unique: true,
       match: [
         /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
-        "Please enter a valid email address",
+        "Please enter a valid email address.",
       ],
     },
     password: {
@@ -34,10 +46,10 @@ const userSchema = new Schema(
         },
       ],
     },
-    playerChar : {
+    playerChar: {
       type: Schema.Types.ObjectId,
-        ref: "playerCharacter",
-    }
+      ref: "playerCharacter",
+    },
   },
   { timestamps: true }
 );
@@ -57,7 +69,7 @@ userSchema.pre("save", async function (next) {
   }
 });
 
-userSchema.methods.isCorrectPassword = async function (password){
+userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 

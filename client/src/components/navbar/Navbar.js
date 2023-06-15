@@ -28,7 +28,6 @@ function Navbar() {
       <>
         <nav className="navbar">
           <div className="navbar-container">
-              <SignInForm />
             <div className="menu-icon" onClick={handleClick}>
               <i className={click ? "fas fa-times" : "fas fa-bars"} />
             </div>
@@ -75,6 +74,7 @@ function Navbar() {
               </li>
             </ul>
           </div>
+          <SignInForm />
         </nav>
       </>
     );
@@ -83,11 +83,9 @@ function Navbar() {
       <>
         <nav className="navbar">
           <div className="navbar-container">
-            <SignInForm />
             <div className="menu-icon" onClick={handleClick}>
               <i className={click ? "fas fa-times" : "fas fa-bars"} />
             </div>
-
             <ul className={click ? "nav-menu active" : "nav-menu"}>
               <li className="nav-item">
                 <Link
@@ -118,6 +116,7 @@ function Navbar() {
               </li>
             </ul>
           </div>
+            <SignInForm />
         </nav>
       </>
     );

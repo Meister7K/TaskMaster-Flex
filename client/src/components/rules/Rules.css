@@ -20,7 +20,6 @@
 }
 
 .rules {
- 
   width: 75%;
   height: 100%;
 }
@@ -31,9 +30,6 @@
   margin-bottom: 5%;
   list-style: decimal inside !important;
   flex-shrink: 2;
-}
-
-.rules-items {
   align-items: flex-start;
   margin-bottom: 5%;
   counter-reset: rule-counter;
@@ -69,6 +65,7 @@ ol {
   margin: 0 auto;
   list-style: decimal inside !important;
   margin-bottom: 2%;
+  
 }
 
 h1 {
