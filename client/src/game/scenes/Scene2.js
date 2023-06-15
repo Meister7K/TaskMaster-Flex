@@ -48,13 +48,11 @@ class Scene2 extends Phaser.Scene {
     map.layers.forEach((layer,index)=>{
       
       let newlayer= map.createLayer(layer.name,'set1',0,0);
-    
-      // newlayer.setCollisionByProperty({Collides:true});
-     
-  
+
       mapArr.push(newlayer)
     }
     )
+
     let blockGroup = [];
 
     map.objects[0].objects.forEach(obj =>{
@@ -210,9 +208,9 @@ class Scene2 extends Phaser.Scene {
       this.player.setVelocityY(0);
     }
   //TODO add attack animation & interaction
-    // if(input.isDown || this.inputKeys.attack.isDown){
-    //   this.player.anims.play("warrior1AttackAnimation", true);
-    // }
+    if(this.inputKeys.attack.isDown){
+      this.player.anims.play("warrior1AttackAnimation", true);
+    }
 
     // if(input.isDown & inEventArea){
     //   //!activate event
