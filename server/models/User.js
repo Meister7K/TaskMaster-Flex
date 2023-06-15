@@ -8,6 +8,14 @@ const userSchema = new Schema(
       required: true,
       unique: true,
       trim: true,
+      validate: [
+        {
+          validator: (value) => {
+            return value.length >= 3 && value.length <= 15;
+          },
+          message: "Username must be between 3 and 15 characters long.",
+        },
+      ],
     },
     email: {
       type: String,
@@ -34,10 +42,10 @@ const userSchema = new Schema(
         },
       ],
     },
-    playerChar : {
+    playerChar: {
       type: Schema.Types.ObjectId,
-        ref: "playerCharacter",
-    }
+      ref: "playerCharacter",
+    },
   },
   { timestamps: true }
 );
