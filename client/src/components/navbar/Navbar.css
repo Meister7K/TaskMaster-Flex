@@ -136,7 +136,9 @@
   }
 
   .nav-menu.active {
-    background: #353232;
+    background: rgba(100, 100, 100, .5);
+    box-shadow: 0 0 10px rgba(100, 100, 100, 1);
+    border: blur(5px);
     left: 0;
     opacity: 1;
     transition: all 0.5s ease;
