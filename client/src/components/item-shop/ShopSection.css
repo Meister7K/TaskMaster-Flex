@@ -41,8 +41,7 @@
 .subTitle{
     margin: 20px;
     padding: 5px;
-    width: 110px;
-    
+    width: fit-content;
     
 }
 .itemList{
