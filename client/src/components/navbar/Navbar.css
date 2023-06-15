@@ -40,9 +40,7 @@
   list-style: none;
   text-align: center;
   width: 55vw;
-  justify-content: flex-end;
-  margin-right: 2rem;
-  margin-left: auto;
+  justify-content: flex-start;
 }
 
 .nav-menu li {
