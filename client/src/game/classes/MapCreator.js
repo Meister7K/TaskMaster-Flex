@@ -1,14 +1,43 @@
 
 import Phaser from 'phaser'
 
-class World {
-    constructor(){
+class Map {
+    constructor(tileKey,tilePath,tilesetKey,mapKey,MapPath){
+        this.tileKey = tileKey;
+        this.tilePath = tilePath;
+        this.tilesetKey = tilesetKey;
+        this.mapKey = mapKey;
+        this.mapPath = mapPath;
         
     }
+    preload(){
+        this.load.image(this.tileKey, this.tilePath);
+    this.load.tilemapTiledJSON(this.mapKey, this.mapPath);
+    }
 
+    create(){
+        let map = this.make.tilemap({key: this.mapKey});
+        let tiles = map.addTilesetImage(this.tilesetKey, this.tileKey, 32,32,0,0);
+
+        let mapArr = [];
+        map.layers.forEach((layer,index)=>{
+            let newlayer = map.createLayer(layer.name, this.tilesetKey,0,0);
+
+            mapArr.push(newlayer);
+        })
+        let blockGroup = [];
+
+        map.objects[0].objects.forEach(obj =>{
+            let block = this.physics.add.sprite(obj.x,obj.y,null,null).setVisible(false).setActive(true).setOrigin(0,0);
+            block.body.width = obj.width;
+            block.body.height = obj.height;
+            block.body.setImmovable(true);
+            blockGroup.push(block);
+        })
+    }
 }
 
-export default World
+export default Map
 
 // const map = this.make.tilemap({key: 'map1'});
 // const tiles = map.addTilesetImage('hyptosis_tile-art-batch-1','tile1', 32, 32, 0,0);
