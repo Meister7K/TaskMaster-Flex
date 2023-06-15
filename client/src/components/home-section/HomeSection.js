@@ -7,6 +7,7 @@ import Warrior1 from './homeAssets/Warrior1.png';
 import Warrior2 from './homeAssets/Warrior2.png';
 import Logo from './homeAssets/TaskmasterLogo.png';
 import Auth from "../../utils/auth"
+import homeMusic from '../../game/game-assets/music/Soliloquy.mp3'
 
 function HomeSection() {
   const scrollToRules = () => {
