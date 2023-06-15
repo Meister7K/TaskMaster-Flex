@@ -1,6 +1,10 @@
 import React, {useState, useEffect, useRef} from "react";
 import homeMusic from '../../game/game-assets/music/Soliloquy.mp3'
-import './Music.css'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faVolumeXmark} from '@fortawesome/free-solid-svg-icons'
+import {faVolumeHigh} from '@fortawesome/free-solid-svg-icons'
+
+
 
 
 function Music(){
@@ -29,7 +33,7 @@ function Music(){
  
     return (
         <div className="music">
-            <button id='audio' onClick={toggle}>{playing ? 'Pause Audio' : 'Play Audio'}</button>
+            <button id='audio' onClick={toggle}>{playing ? <FontAwesomeIcon icon={faVolumeHigh} /> : <FontAwesomeIcon icon={faVolumeXmark} />} </button>
             {/* <audio src={homeMusic} loop controls autoPlay/> */}
         </div>
     )
