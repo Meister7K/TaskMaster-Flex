@@ -19,8 +19,6 @@ class Scene2 extends Phaser.Scene {
 
   create() {
 
-    const homeMusic = this.sound.add('homeAudio');
-    homeMusic.play();
 
 
     createMinotaurAnimations(this.anims);
@@ -165,11 +163,6 @@ class Scene2 extends Phaser.Scene {
       }
     };
     batImg.src = Bat;
-
-    this.add.text(20, 20, `Playing Game`, {
-      font: "25px Arial",
-      fill: "white",
-    });
 
     this.scale.displaySize.setAspectRatio(
       window.innerWidth / window.innerHeight

@@ -106,8 +106,9 @@
 }
 
 .addTaskButton {
-  width: 100px;
-  background-color: rgb(100, 83, 59);
+  /* width: 120px; */
+  background-color: #444444;
+  white-space: nowrap;
   color: white;
   font-size: 1rem;
   padding: 8px;

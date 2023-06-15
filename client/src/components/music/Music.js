@@ -17,16 +17,20 @@ function Music(){
         audio.addEventListener('ended',()=>setPlaying(true));
       //setPlaying(true);
        window.addEventListener('mousedown', ()=>setPlaying(true),{once: true});
+       return ()=>{
+        audio.removeEventListener('mousedown', setPlaying(false));
+       }
+       
         // toggle()
     }, []);
 
-//onMousemove
-
+ 
 
  
     return (
         <div className="music">
             <button id='audio' onClick={toggle}>{playing ? 'Pause Audio' : 'Play Audio'}</button>
+            {/* <audio src={homeMusic} loop controls autoPlay/> */}
         </div>
     )
   

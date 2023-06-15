@@ -4,6 +4,7 @@ import "./Navbar.css";
 import { Button } from "../button/Button";
 import SignInForm from "../signin-form/SignInForm";
 import Auth from "../../utils/auth";
+import Music from "../music/Music";
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -67,6 +68,9 @@ function Navbar() {
                 >
                   Shop
                 </Link>
+              </li>
+              <li>
+                <Music/>
               </li>
             </ul>
           </div>

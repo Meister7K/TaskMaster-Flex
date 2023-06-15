@@ -1,14 +1,12 @@
 .music{
    display: flex;
     position: sticky;
-    filter: opacity(.5);
     z-index: 10;
 
 }
 .audio{
     display: flex;
     position: sticky;
-    filter: opacity(.5);
     z-index: 10;
 
 }
