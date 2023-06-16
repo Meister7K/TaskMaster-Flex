@@ -3,6 +3,10 @@ import Bat from "../game-assets/gameSprites/bat.png";
 import createPlayerAnimations from "../classes/animations/PlayerAnims";
 import Player from "../classes/Player";
 import createMinotaurAnimations from "../classes/animations/MinotaurAnims";
+
+
+
+
 class Scene2 extends Phaser.Scene {
   constructor() {
     super("play game");
@@ -19,14 +23,19 @@ class Scene2 extends Phaser.Scene {
 
   create() {
 
+    this.add.sprite('warrior', 'warrior0front')
+
+    this.player = new Player(this,816,816,"warrior",1,100);
+
+    console.log(this.player);
 
 
     createMinotaurAnimations(this.anims);
     createPlayerAnimations(this.anims);
     
     this.physics.world.setBounds(0, 0, 1632, 1632);
-    this.background = this.add.image(0, 0, "background");
-    this.background.setOrigin(0, 0);
+    // this.background = this.add.image(0, 0, "background");
+    // this.background.setOrigin(0, 0);
 
   
     //! Map area start
@@ -66,17 +75,15 @@ class Scene2 extends Phaser.Scene {
     //! Map area end
 
       //!Player
-      this.player = this.physics.add.sprite(840, 780, "warrior0front");
-     let player1=this.player;
-      player1.setScale(0.3);
-      player1.setCircle(32,15,20);
 
-      this.physics.add.collider(player1, this.minotaurs);
+  
+
+      this.physics.add.collider(this.player, this.minotaurs);
 
     
-      this.physics.add.collider(player1, map.objects);
+      this.physics.add.collider(this.player, map.objects);
   
-      this.physics.add.collider(player1, blockGroup );
+      this.physics.add.collider(this.player, blockGroup );
 
       this.physics.add.collider(this.minotaurs, blockGroup);
      
@@ -86,22 +93,21 @@ class Scene2 extends Phaser.Scene {
   
   
   
-  player1.setCollideWorldBounds(true);
+  // this.player.setCollideWorldBounds(true);
 
-    this.cursors = this.input.keyboard.createCursorKeys();
+    // this.cursors = this.input.keyboard.createCursorKeys();
 
-    //! add wsad keys if time
-    this.inputKeys = this.input.keyboard.addKeys({
-      up: Phaser.Input.Keyboard.KeyCodes.W,
-      down: Phaser.Input.Keyboard.KeyCodes.S,
-      left: Phaser.Input.Keyboard.KeyCodes.A,
-      right: Phaser.Input.Keyboard.KeyCodes.D,
-      attack: Phaser.Input.Keyboard.KeyCodes.SPACE,
-    });
-
+    // //! add wsad keys if time
+    // this.inputKeys = this.input.keyboard.addKeys({
+    //   up: Phaser.Input.Keyboard.KeyCodes.W,
+    //   down: Phaser.Input.Keyboard.KeyCodes.S,
+    //   left: Phaser.Input.Keyboard.KeyCodes.A,
+    //   right: Phaser.Input.Keyboard.KeyCodes.D,
+    //   attack: Phaser.Input.Keyboard.KeyCodes.SPACE,
+    // });
+ 
     createPlayerAnimations(this.anims);
 
-    
 
     const numMinotaurs = 3;
 
@@ -153,10 +159,13 @@ class Scene2 extends Phaser.Scene {
 
         const bat = this.add.sprite(randomX, randomY, "batSheet");
         this.physics.add.existing(bat);
-
+        this.physics.add.collider(bat.body, this.player)
+        this.physics.add.collider(bat.body, this.minotaurs)
+        this.physics.add.collider(bat.body, blockGroup)
         bat.body.velocity.setTo(randomXVelocity, randomYVelocity);
         bat.body.bounce.set(1);
         bat.body.collideWorldBounds = true;
+        
 
         bat.setOrigin(0, 0);
         bat.play("batAnimation");
@@ -164,94 +173,97 @@ class Scene2 extends Phaser.Scene {
     };
     batImg.src = Bat;
 
+   
+  }
+
+  update() {
+
+    this.player.update();
+    
     this.scale.displaySize.setAspectRatio(
       window.innerWidth / window.innerHeight
     );
     this.scale.refresh();
-  }
 
-  update() {
-   
+    // const { left, right, up, down, input } = this.cursors;
 
-    const { left, right, up, down, input } = this.cursors;
+    // let isMoving = false;
 
-    let isMoving = false;
+  //   if (left.isDown || this.inputKeys.left.isDown) {
+  //     this.player.setVelocityX(-100);
+  //     this.player.anims.play("warrior0LeftAnimation", true);
+  //     isMoving = true;
+  //   } else if (right.isDown || this.inputKeys.right.isDown) {
+  //     this.player.setVelocityX(100);
+  //     this.player.anims.play("warrior0RightAnimation", true);
+  //     isMoving = true;
+  //   } else {
+  //     this.player.setVelocityX(0);
+  //   }
 
-    if (left.isDown || this.inputKeys.left.isDown) {
-      this.player.setVelocityX(-100);
-      this.player.anims.play("warrior0LeftAnimation", true);
-      isMoving = true;
-    } else if (right.isDown || this.inputKeys.right.isDown) {
-      this.player.setVelocityX(100);
-      this.player.anims.play("warrior0RightAnimation", true);
-      isMoving = true;
-    } else {
-      this.player.setVelocityX(0);
-    }
-
-    if (up.isDown || this.inputKeys.up.isDown) {
-      this.player.setVelocityY(-100);
-      this.player.anims.play("warrior0BackAnimation", true);
-      isMoving = true;
-    } else if (down.isDown || this.inputKeys.down.isDown) {
-      this.player.setVelocityY(100);
-      this.player.anims.play("warrior0FrontAnimation", true);
-      isMoving = true;
-    } else {
-      this.player.setVelocityY(0);
-    }
-  //TODO add attack animation & interaction
-    if(this.inputKeys.attack.isDown){
-      this.player.anims.play("warrior1AttackAnimation", true);
-    }
+  //   if (up.isDown || this.inputKeys.up.isDown) {
+  //     this.player.setVelocityY(-100);
+  //     this.player.anims.play("warrior0BackAnimation", true);
+  //     isMoving = true;
+  //   } else if (down.isDown || this.inputKeys.down.isDown) {
+  //     this.player.setVelocityY(100);
+  //     this.player.anims.play("warrior0FrontAnimation", true);
+  //     isMoving = true;
+  //   } else {
+  //     this.player.setVelocityY(0);
+  //   }
+  // //TODO add attack animation & interaction
+  //   if(this.inputKeys.attack.isDown){
+  //     this.player.anims.play("warrior1AttackAnimation", true);
+  //   }
 
     // if(input.isDown & inEventArea){
     //   //!activate event
     // }
 
     //! Adjust camera bounds when character reaches near the edge
-    let cameraBounds = this.cameras.main.getBounds();
-    let buffer = 0;
+    // let cameraBounds = this.cameras.main.getBounds();
+    // let buffer = 0;
 
-    if (this.player.x < cameraBounds.x + buffer) {
-      this.cameras.main.setBounds(
-        this.player.x - buffer,
-        cameraBounds.y,
-        cameraBounds.width,
-        cameraBounds.height
-      );
-    } else if (this.player.x > cameraBounds.x + cameraBounds.width - buffer) {
-      this.cameras.main.setBounds(
-        this.player.x + buffer - cameraBounds.width,
-        cameraBounds.y,
-        cameraBounds.width,
-        cameraBounds.height
-      );
-    }
+    // if (this.player.x < cameraBounds.x + buffer) {
+    //   this.cameras.main.setBounds(
+    //     this.player.x - buffer,
+    //     cameraBounds.y,
+    //     cameraBounds.width,
+    //     cameraBounds.height
+    //   );
+    // } else if (this.player.x > cameraBounds.x + cameraBounds.width - buffer) {
+    //   this.cameras.main.setBounds(
+    //     this.player.x + buffer - cameraBounds.width,
+    //     cameraBounds.y,
+    //     cameraBounds.width,
+    //     cameraBounds.height
+    //   );
+    // }
 
-    if (this.player.y < cameraBounds.y + buffer) {
-      this.cameras.main.setBounds(
-        cameraBounds.x,
-        this.player.y - buffer,
-        cameraBounds.width,
-        cameraBounds.height
-      );
-    } else if (this.player.y > cameraBounds.y + cameraBounds.height - buffer) {
-      this.cameras.main.setBounds(
-        cameraBounds.x,
-        this.player.y + buffer - cameraBounds.height,
-        cameraBounds.width,
-        cameraBounds.height
-      );
-    }
+    // if (this.player.y < cameraBounds.y + buffer) {
+    //   this.cameras.main.setBounds(
+    //     cameraBounds.x,
+    //     this.player.y - buffer,
+    //     cameraBounds.width,
+    //     cameraBounds.height
+    //   );
+    // } else if (this.player.y > cameraBounds.y + cameraBounds.height - buffer) {
+    //   this.cameras.main.setBounds(
+    //     cameraBounds.x,
+    //     this.player.y + buffer - cameraBounds.height,
+    //     cameraBounds.width,
+    //     cameraBounds.height
+    //   );
+    // }
 
-    //!normalize
+    // //!normalize
 
-    if (!isMoving) {
-      this.player.anims.stop();
-    } else {
-      this.player.anims.resume();
-    }
+    // if (!isMoving) {
+    //   this.player.anims.stop();
+    // } else {
+    //   this.player.anims.resume();
+    // }
 
   
 
