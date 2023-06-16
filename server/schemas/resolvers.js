@@ -27,6 +27,10 @@ const resolvers = {
     consumables: async () => {
       return await Item.find({ itemType: "consumable" });
     },
+    playerGold: async(parent, {userId})=>{
+      let user = await User.findOne({_id: userId}).populate({path : 'playerChar', populate: 'gold'});
+      return user.playerChar.gold;
+    }
   },
 
   Mutation: {
