@@ -1,12 +1,17 @@
 import { React } from "react";
 import "./ShopItem.css";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import {
   ALL_CONSUMABLES,
   ALL_ITEMS,
   ALL_ARMORS,
   ALL_WEAPONS,
+  
 } from "../../../utils/queries";
+
+import {ADD_TO_INVENTORY,
+  REMOVE_GOLD} from '../../../utils/mutations'
+
 
 function ShopItem(props) {
   const { loading, data: itemsList } = useQuery(
@@ -18,6 +23,13 @@ function ShopItem(props) {
       ? ALL_CONSUMABLES
       : ALL_ITEMS
   );
+
+  const [removeGold, {error, data}]=useMutation(REMOVE_GOLD)
+  const [addToInventory, {error2, data2}]=useMutation(ADD_TO_INVENTORY)
+
+  const purchaseItem= async(itemId,amount)=>{
+    
+  }
 
   //const itemsList= (data ? {...data} : []);
   const toMap =
@@ -43,7 +55,7 @@ function ShopItem(props) {
             <div className="itemInfo">
               <h3>Name: {item.name || "loading"}</h3>
               <p>{item.desc || "loading"}</p>
-              <button className="purchase-button">${item.value || "loading"}</button>
+              <button className="purchase-button" onClick={purchaseItem(item._id, item._value)}>${item.value || "loading"}</button>
             </div>
           </div>
         </div>
