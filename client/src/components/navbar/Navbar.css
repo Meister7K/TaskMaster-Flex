@@ -10,7 +10,7 @@
   z-index: 9999;
   border: 5px solid black;
   filter: drop-shadow(0 0 0.75rem #201B15);
-  cursor: url("../../../public/images/dagger-cursor1.png")18 14, auto;
+  cursor: url("../../../public/images/dagger-cursor1.png")18 14, auto !important;
 }
 
 .navbar-container {
@@ -75,7 +75,7 @@
   text-align: center;
   justify-content: center;
   user-select: none;
-  cursor: url("../../../public/images/dagger-cursor1.png")18 14, auto;
+  cursor: url("../../../public/images/dagger-cursor1.png")18 14, auto !important;
 }
 
 .fa-bars {
@@ -118,6 +118,8 @@
 #audio {
   width: 40px;
   margin-right: 10px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 @media screen and (max-width: 960px) {
