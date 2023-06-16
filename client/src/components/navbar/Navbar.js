@@ -117,7 +117,8 @@ function Navbar() {
               </li>
             </ul>
           </div>
-            <SignInForm />
+          <SignInForm />
+          <Music />
         </nav>
       </>
     );
