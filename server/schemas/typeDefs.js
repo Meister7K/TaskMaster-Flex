@@ -58,6 +58,7 @@ const typeDefs = gql`
     weapons: [Item]
     armors: [Item]
     consumables: [Item]
+    playerGold(userId: ID!): Int
   }
 
   type Mutation {
