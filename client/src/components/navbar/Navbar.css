@@ -115,6 +115,11 @@
   height: 100%;
 }
 
+#audio {
+  width: 40px;
+  margin-right: 10px;
+}
+
 @media screen and (max-width: 960px) {
   .NavbarItems {
     position: relative;
