@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
-import { UPDATE_USER, CHANGE_PASSWORD, DELETE_USER } from "../../utils/mutations";
+import {
+  UPDATE_USER,
+  CHANGE_PASSWORD,
+  DELETE_USER,
+} from "../../utils/mutations";
 import "./AccountManage.css";
-
+import ReactModal from "react-modal";
+import ShieldPic from "../signup-form/signUpAssets/Shield1.png";
 
 const AccountManage = () => {
   const user = Auth.loggedIn() ? Auth.getProfile().data : null;
@@ -22,6 +27,12 @@ const AccountManage = () => {
     currentPassword: "",
     newPassword: "",
     confirmPassword: "",
+  });
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalContent, setModalContent] = useState({
+    title: "",
+    message: "",
   });
 
   const handleChange = (event) => {
@@ -52,42 +63,62 @@ const AccountManage = () => {
     const lowercaseEmail = updateEmail.toLowerCase();
 
     if (!emailRegex.test(lowercaseEmail)) {
-      alert("Invalid email address.");
-    } else if (updateEmail !== reenterEmail) {
-      alert("Emails do not match. Please reenter the email.");
-      setUpdateEmail("");
-      setReenterEmail("");
+      setModalContent({
+        title: "Error!",
+        message: "Please enter a valid email address.",
+      });
       setEmailPassword("");
+      setModalIsOpen(true);
+    } else if (updateEmail !== reenterEmail) {
+      setModalContent({
+        title: "Error!",
+        message: "Emails do not match.",
+      });
+      setEmailPassword("");
+      setModalIsOpen(true);
     } else {
       try {
-        await changePassword({
-          variables: {
-            currentPassword: emailPassword,
-            newPassword: emailPassword,
-          },
-        });
-
         const { data } = await updateUser({
           variables: { email: updateEmail },
         });
 
         if (!data) {
-          alert("Email not updated!");
+          setModalContent({
+            title: "Error!",
+            message: "Email not updated!",
+          });
+          setEmailPassword("");
         } else {
-          alert(
-            "Email successfully updated! You must sign in again to proceed."
-          );
+          setModalContent({
+            title: "Success!",
+            message:
+              "Email successfully updated! You must sign in again to proceed.",
+          });
           Auth.logout();
         }
-
         setUpdateEmail("");
         setReenterEmail("");
         setEmailPassword("");
+        setModalIsOpen(true);
       } catch (error) {
-        alert(
-          "Password verification failed. Please make sure you entered the correct password."
-        );
-        console.log(error);
+        console.error(error);
+        if (
+          error.message.includes(
+            "duplicate key error collection: taskmaster-flex.users index: email"
+          )
+        ) {
+          setModalContent({
+            title: "Error!",
+            message: "Email already in use.",
+          });
+        } else if (error.message.includes("Current password is incorrect")) {
+          setModalContent({
+            title: "Error!",
+            message:
+              "Password verification failed. Please make sure you entered the correct password.",
+          });
+        }
+        setModalIsOpen(true);
       }
     }
   };
@@ -97,7 +128,16 @@ const AccountManage = () => {
     const { currentPassword, newPassword, confirmPassword } = passwordState;
 
     if (newPassword !== confirmPassword) {
-      alert("New password and confirmed password do not match.");
+      setModalContent({
+        title: "Error!",
+        message: "New password and confirmed password do not match.",
+      });
+      setPasswordState({
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+      });
+      setModalIsOpen(true);
       return;
     }
 
@@ -112,17 +152,24 @@ const AccountManage = () => {
         confirmPassword: "",
       });
 
-      alert("Password successfully changed!");
+      setModalContent({
+        title: "Success!",
+        message: "Password successfully changed!",
+      });
+      setModalIsOpen(true);
     } catch (error) {
-      alert(
-        "Password verification failed. Please make sure you entered the correct password."
-      );
+      setModalContent({
+        title: "Error!",
+        message:
+          "Password verification failed. Please make sure you enter the correct password.",
+      });
       setPasswordState({
         currentPassword: "",
         newPassword: "",
         confirmPassword: "",
       });
-      console.log(error);
+      console.error(error);
+      setModalIsOpen(true);
     }
   };
 
@@ -171,14 +218,19 @@ const AccountManage = () => {
         try {
           await deleteUser();
 
-          window.alert("Account successfully deleted!");
+          setModalContent({
+            message: "Account successfully deleted!",
+          });
           Auth.logout();
           window.location.assign("/");
         } catch (error) {
-          window.alert("An error occurred while deleting the account.");
+          setModalContent({
+            message: "An error occurred while deleting the account.",
+          });
           console.log(error);
         } finally {
           setDeleteConfirmationCount(0);
+          setModalIsOpen(true);
         }
       } else {
         setDeleteConfirmationCount(0);
@@ -191,83 +243,111 @@ const AccountManage = () => {
   }
 
   return (
-    <div className="account-container">
-      <h1 className="account-title">{user.username}</h1>
-      <div className="account-info">
-        <h2 className="account-subtitle">User Email: {user.email}</h2>
-      </div>
-      <div className="account-sections">
-        <div className="account-section">
-          <form className="account-form" onSubmit={handleEmailUpdate}>
-            <h2 className="account-subtitle">Change Email</h2>
-            <input
-              className="account-input"
-              name="updateEmail"
-              placeholder="New email"
-              value={updateEmail}
-              onChange={handleChange}
-            />
-            <input
-              className="account-input"
-              name="reenterEmail"
-              placeholder="Reenter email"
-              value={reenterEmail}
-              onChange={handleChange}
-              autoComplete="new-password"
-            />
-            <input
-              className="account-input"
-              type="password"
-              name="emailPassword"
-              placeholder="Current password"
-              value={emailPassword}
-              onChange={handleChange}
-            />
-            <button className="account-button" type="submit">
-              Update Email
-            </button>
-          </form>
+    <>
+      <div className="account-container">
+        <h1 className="account-title">{user.username}</h1>
+        <div className="account-info">
+          <h2 className="account-subtitle">User Email: {user.email}</h2>
         </div>
-        <div className="account-section">
-          <form className="account-form" onSubmit={handlePasswordUpdate}>
-            <h2 className="account-subtitle">Change Password</h2>
-            <input
-              className="account-input"
-              type="password"
-              name="currentPassword"
-              placeholder="Current password"
-              value={passwordState.currentPassword}
-              onChange={handleChange}
-            />
-            <input
-              className="account-input"
-              type="password"
-              name="newPassword"
-              placeholder="New password"
-              value={passwordState.newPassword}
-              onChange={handleChange}
-            />
-            <input
-              className="account-input"
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirm new password"
-              value={passwordState.confirmPassword}
-              onChange={handleChange}
-            />
-            <button className="account-button" type="submit">
-              Update Password
-            </button>
-          </form>
+        <div className="account-sections">
+          <div className="account-section">
+            <form className="account-form" onSubmit={handleEmailUpdate}>
+              <h2 className="account-subtitle">Change Email</h2>
+              <input
+                className="account-input"
+                name="updateEmail"
+                placeholder="New email"
+                value={updateEmail}
+                onChange={handleChange}
+              />
+              <input
+                className="account-input"
+                name="reenterEmail"
+                placeholder="Reenter email"
+                value={reenterEmail}
+                onChange={handleChange}
+                autoComplete="new-password"
+              />
+              <input
+                className="account-input"
+                type="password"
+                name="emailPassword"
+                placeholder="Current password"
+                value={emailPassword}
+                onChange={handleChange}
+              />
+              <button className="account-button" type="submit">
+                Update Email
+              </button>
+            </form>
+          </div>
+          <div className="account-section">
+            <form className="account-form" onSubmit={handlePasswordUpdate}>
+              <h2 className="account-subtitle">Change Password</h2>
+              <input
+                className="account-input"
+                type="password"
+                name="currentPassword"
+                placeholder="Current password"
+                value={passwordState.currentPassword}
+                onChange={handleChange}
+              />
+              <input
+                className="account-input"
+                type="password"
+                name="newPassword"
+                placeholder="New password"
+                value={passwordState.newPassword}
+                onChange={handleChange}
+              />
+              <input
+                className="account-input"
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm new password"
+                value={passwordState.confirmPassword}
+                onChange={handleChange}
+              />
+              <button className="account-button" type="submit">
+                Update Password
+              </button>
+            </form>
+          </div>
+        </div>
+        <div className="delete-account">
+          <h2 className="account-subtitle">Delete Account</h2>
+          <button className="account-button" onClick={handleDeleteAccount}>
+            Delete Account
+          </button>
         </div>
       </div>
-      <div className="delete-account">
-        <h2 className="account-subtitle">Delete Account</h2>
-        <button className="account-button" onClick={handleDeleteAccount}>
-          Delete Account
-        </button>
-      </div>
-    </div>
+      <ReactModal
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        contentLabel="Error Modal"
+        className="modal-container"
+        overlayClassName="modal-overlay"
+        ariaHideApp={false}
+      >
+        <div className="modal-content">
+          <img className="shield-image" src={ShieldPic} />
+          <h2>{modalContent.title}</h2>
+          <div className="errorText">
+            {modalContent.message && (
+              <div className="my-3 p-3 bg-danger text-white">
+                {modalContent.message}
+              </div>
+            )}
+          </div>
+          <button
+            className="modal-button"
+            onClick={() => setModalIsOpen(false)}
+          >
+            Close
+          </button>
+        </div>
+      </ReactModal>
+    </>
   );
 };
 
