@@ -26,6 +26,10 @@ const itemSchema = new Schema({
     required: true,
     //text describing item
   },
+  premium: {
+    type: Boolean,
+    required: tr
+  },
   consumable: {
     type: Boolean,
     required: true,
