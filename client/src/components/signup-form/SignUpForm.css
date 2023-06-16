@@ -26,13 +26,19 @@
 }
 
 .signUpform-input-container input::placeholder {
-  font-size: .75rem;
+  font-size: 0.75rem;
 }
 
 .sign-up-header h2 {
   margin-bottom: 20px;
   font-size: 3rem;
   color: #3b3423 !important;
+}
+
+.signup-email,
+.signup-username,
+.signup-password {
+  width: 100%;
 }
 
 /* .sign-up-form {
@@ -45,93 +51,113 @@
 } */
 
 video {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: -1;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: -1;
 }
 
 .warrior-image {
- display: block;
- margin: 0 auto;
+  display: block;
+  margin: 0 auto;
 }
 
 .sign-up-form h5 {
-    color: #3b3423;
+  color: #3b3423;
 }
 
 .btn-div {
-    min-width: 100%;
-    display: flex;
-    justify-content: center;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .signUpform-input-container {
-    min-width: 60%;
-    /* border: 3px solid black; */
-    background-color: rgba(255, 255, 255, 0);
-    padding: 20px;
-    border-radius: 15px;
-    max-width: 750px;
+  min-width: 60%;
+  /* border: 3px solid black; */
+  background-color: rgba(255, 255, 255, 0);
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 750px;
 }
 
 .signup-password,
 .signup-email,
 .signup-username {
-    min-width: 95%;
-    justify-content: center;
+  min-width: 95%;
+  justify-content: center;
 }
 
 .signUp-btn {
-    color: white;
+  color: white;
 }
 
 .modal-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .modal-content {
-    display: flex;
-    flex-direction:column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    border-radius: 10px;
-    width:500px;
-    height: 450px;
-    background-image: url("../../../public/images/scroll.png");
-    padding: 10px;
-    margin: 10px;
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  width: 500px;
+  height: 500px;
+  background-image: url("../../../public/images/scroll.png");
+  padding: 10px;
+  margin: 10px;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: #3b3423 !important;
+}
+
+.errorText {
+  width: 70%;
+  text-align: center;
 }
 
 .modal-button {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
+  width: 100px;
+  background-image: url("../../../public/images/navlink-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  border: none;
+  background-color: transparent;
+  color: white;
+  margin-top: 15px;
+}
+
+.modal-button:hover {
+  filter: drop-shadow(0 0 0.9rem crimson);
+  transform: scale(1.05);
 }
 
 .modal-overlay {
-    z-index: 1;
+  z-index: 1;
 }
 
+h2,
+.modal-content h2 {
+  color: #3b3423 !important;
+}
 
 @media (max-width: 999px) {
-    
   .sign-up-header h2 {
     font-size: 2rem;
   }
-
 }
