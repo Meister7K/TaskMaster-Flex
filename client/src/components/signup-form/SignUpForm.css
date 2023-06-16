@@ -29,6 +29,12 @@
   font-size: .75rem;
 }
 
+.sign-up-header h2 {
+  margin-bottom: 20px;
+  font-size: 3rem;
+  color: #3b3423 !important;
+}
+
 /* .sign-up-form {
     display: flex;
     justify-content: center;
@@ -46,8 +52,13 @@ video {
     z-index: -1;
 }
 
+.warrior-image {
+ display: block;
+ margin: 0 auto;
+}
+
 .sign-up-form h5 {
-    color: black;
+    color: #3b3423;
 }
 
 .btn-div {

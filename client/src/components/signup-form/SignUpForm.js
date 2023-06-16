@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./SignUpForm.css";
 import { Link } from "react-router-dom";
-
+import WarriorPic from './signUpAssets/WarriorSignUp4.png';
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
 
@@ -153,7 +153,10 @@ function SignUpForm() {
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
-                <h2>Create an Account!</h2>
+                <img className="warrior-image" src={WarriorPic} />
+                <div className="sign-up-header">
+                  <h2>Create an Account!</h2>
+                </div>
                 <h5>Enter a username</h5>
                 <input
                   className="signup-username"
@@ -181,7 +184,7 @@ function SignUpForm() {
                   value={formState.password}
                   onChange={handleChange}
                 />
-                <h5>Reenter your password</h5>
+                <h5>Re-enter your password</h5>
                 <input
                   className="signup-password"
                   name="confirmPassword"
