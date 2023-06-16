@@ -9,7 +9,7 @@ const config = {
   width: 1632,
   height: 1632,
   scale: {
-    mode: Phaser.Scale.FIT,
+    mode: Phaser.Scale.NONE,
 	height: window.innerHeight-100,
 	width: window.innerWidth,
   },
@@ -20,9 +20,34 @@ const config = {
       debug: true,
     },
   },
+  render:{
+    antialiasGL: false,
+    pixelArt: true,
+  },
+  callbacks: {
+    postBoot:()=>{
+      window.sizeChanged();
+    },
+  },
+  canvasStyle: `display:block; width: 100%, height: 100%`,
+  autoFocus:true,
+  audio: {
+    disableWebAudio: false,
+  },
   scene: [Scene1, Scene2],
 };
 
-
+window.sizeChanged = () => {
+  if (window.game) {
+    setTimeout(() => {
+      window.game.scale.resize(window.innerWidth, window.innerHeight);
+      window.game.canvas.setAttribute(
+        'style',
+        `display: block; width: ${window.innerWidth}px; height: ${window.innerHeight - 100}px;`,
+      );
+    }, 100);
+  }
+};
+window.onresize = () => window.sizeChanged();
 
 export default config;
