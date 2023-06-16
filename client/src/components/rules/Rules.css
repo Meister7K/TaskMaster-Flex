@@ -46,6 +46,7 @@
   font-style: italic;
   font-size: 6vh;
   font-weight: bolder;
+  color: #3b3423 !important;
 }
 
 ol {
@@ -65,7 +66,6 @@ ol {
   margin: 0 auto;
   list-style: decimal inside !important;
   margin-bottom: 2%;
-  
 }
 
 h1 {
@@ -81,7 +81,7 @@ h2 {
 }
 
 li {
-  color: rgba(26, 26, 26, 0.87) !important;
+  color: #3b3423 !important;
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1.25rem;
