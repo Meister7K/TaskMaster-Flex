@@ -341,7 +341,10 @@ const AccountManage = () => {
           </div>
           <button
             className="modal-button"
-            onClick={() => setModalIsOpen(false)}
+            onClick={() => {
+              setModalIsOpen(false);
+              setModalContent({ title: "", message: "" });
+            }}
           >
             Close
           </button>
