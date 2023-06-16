@@ -35,6 +35,12 @@
   color: #3b3423 !important;
 }
 
+.signup-email,
+.signup-username,
+.signup-password {
+  width: 100%;
+}
+
 /* .sign-up-form {
     display: flex;
     justify-content: center;
@@ -104,10 +110,10 @@ video {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   width: 500px;
-  height: 450px;
+  height: 500px;
   background-image: url("../../../public/images/scroll.png");
   padding: 10px;
   margin: 10px;
@@ -115,22 +121,39 @@ video {
   background-position: center top;
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  color: #3b3423 !important;
+}
+
+.errorText {
+  width: 70%;
+  text-align: center;
 }
 
 .modal-button {
-  display: flex;
-  justify-content: center;
-  height: 90px;
-  margin-right: 2rem;
+  width: 100px;
   background-image: url("../../../public/images/navlink-bg.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
+  border: none;
+  background-color: transparent;
+  color: white;
+  margin-top: 15px;
+}
+
+.modal-button:hover {
+  filter: drop-shadow(0 0 0.9rem crimson);
+  transform: scale(1.05);
 }
 
 .modal-overlay {
   z-index: 1;
+}
+
+h2,
+.modal-content h2 {
+  color: #3b3423 !important;
 }
 
 @media (max-width: 999px) {

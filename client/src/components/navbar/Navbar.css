@@ -49,8 +49,7 @@
 }
 
 .nav-item {
-  height: 50px;
-  width: 100%;
+  height: 90px;
   margin-right: 2rem;
   background-image: url("../../../public/images/navlink-bg.png");
   background-repeat: no-repeat;
