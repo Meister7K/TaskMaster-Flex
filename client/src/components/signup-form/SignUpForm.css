@@ -86,3 +86,12 @@ video {
 .signUp-btn {
     color: black;
 }
+
+
+@media (max-width: 999px) {
+    
+  .sign-up-header h2 {
+    font-size: 2rem;
+  }
+  
+}
