@@ -6,6 +6,7 @@ import ShieldPic from "./signUpAssets/Shield1.png";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
 import ReactModal from "react-modal";
+import { Button } from "../button/Button";
 
 import Auth from "../../utils/auth";
 
@@ -210,13 +211,14 @@ function SignUpForm() {
                   onChange={handleChange}
                 />
                 <div className="btn-div">
-                  <button
+                  <Button
                     className="signUp-btn"
+                    buttonstyle="btn-red"
                     onClick={handleFormSubmit}
                     style={{ cursor: "pointer" }}
                   >
                     Sign Up
-                  </button>
+                  </Button>
                 </div>
               </form>
             )}
@@ -246,16 +248,19 @@ function SignUpForm() {
           <img className="shield-image" src={ShieldPic} />
           <h2>Error</h2>
           {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-            )}
-            {passwordMismatchError && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {passwordMismatchError}
-              </div>
-            )}
-          <button className="modal-button" onClick={() => setModalIsOpen(false)}>Close</button>
+            <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
+          )}
+          {passwordMismatchError && (
+            <div className="my-3 p-3 bg-danger text-white">
+              {passwordMismatchError}
+            </div>
+          )}
+          <button
+            className="modal-button"
+            onClick={() => setModalIsOpen(false)}
+          >
+            Close
+          </button>
         </div>
       </ReactModal>
     </>
