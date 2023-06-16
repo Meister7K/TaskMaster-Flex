@@ -87,11 +87,36 @@ video {
     color: black;
 }
 
+.modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    width:500px;
+    height: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.modal-overlay {
+    z-index: 1;
+}
+
 
 @media (max-width: 999px) {
     
   .sign-up-header h2 {
     font-size: 2rem;
   }
-  
+
 }

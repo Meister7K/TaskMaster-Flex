@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import WarriorPic from "./signUpAssets/WarriorSignUp4.png";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
+import ReactModal from "react-modal";
 
 import Auth from "../../utils/auth";
 
@@ -19,6 +20,8 @@ function SignUpForm() {
     password: "",
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -147,6 +150,7 @@ function SignUpForm() {
       ) {
         e.message = "Email is already in use.";
       }
+      setModalIsOpen(true);
     }
   };
 
@@ -215,7 +219,31 @@ function SignUpForm() {
                 </div>
               </form>
             )}
-            {error && (
+            {/* {error && (
+              <div className="my-3 p-3 bg-danger text-white">
+                {error.message}
+              </div>
+            )}
+            {passwordMismatchError && (
+              <div className="my-3 p-3 bg-danger text-white">
+                {passwordMismatchError}
+              </div>
+            )} */}
+          </div>
+        </div>
+      </div>
+
+      <ReactModal
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        contentLabel="Error Modal"
+        className="modal-container"
+        overlayClassName="modal-overlay"
+        ariaHideApp={false}
+      >
+        <div className="modal-content">
+          <h2>Error</h2>
+          {error && (
               <div className="my-3 p-3 bg-danger text-white">
                 {error.message}
               </div>
@@ -225,9 +253,9 @@ function SignUpForm() {
                 {passwordMismatchError}
               </div>
             )}
-          </div>
+          <button onClick={() => setModalIsOpen(false)}>Close</button>
         </div>
-      </div>
+      </ReactModal>
     </>
   );
 }
