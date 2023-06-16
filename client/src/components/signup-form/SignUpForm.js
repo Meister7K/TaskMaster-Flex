@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./SignUpForm.css";
 import { Link } from "react-router-dom";
-import WarriorPic from './signUpAssets/WarriorSignUp4.png';
+import WarriorPic from "./signUpAssets/WarriorSignUp4.png";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
 
@@ -12,6 +12,7 @@ function SignUpForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordMismatchError, setPasswordMismatchError] = useState("");
   const [formState, setFormState] = useState({
     username: "",
     email: "",
@@ -48,16 +49,24 @@ function SignUpForm() {
     event.preventDefault();
 
     try {
+      setPasswordMismatchError("");
+      if (password !== confirmPassword) {
+        throw new Error("Passwords do not match, please try again.");
+      }
       const { data } = await addUser({
         variables: { ...formState },
       });
 
       Auth.login(data.addUser.token);
-      const user = Auth.loggedIn() ? Auth.getProfile().data.username : null;
-      window.location.assign(`/${user}`);
     } catch (e) {
-      console.error(e.message);
+      if(!e.message) {
+         console.error(e);
+      } else {
+         console.error(e.message);
+      }
+      
       if (e.message.includes("username: Path `username` is required.")) {
+        console.log(e)
         e.message = "You must enter a username.";
       } else if (
         e.message.includes(
@@ -103,6 +112,17 @@ function SignUpForm() {
         setConfirmPassword("");
         setPassword("");
       } else if (
+        e.message.includes("Passwords do not match, please try again.")
+      ) {
+        e.message = "Passwords do not match, please try again.";
+        setPasswordMismatchError(e.message);
+        setFormState({
+          ...formState,
+          password: "",
+        });
+        setConfirmPassword("");
+        setPassword("");
+      } else if (
         e.message.includes(
           "user validation failed: password: Password must be between 6 and 20 characters long."
         )
@@ -127,16 +147,6 @@ function SignUpForm() {
       ) {
         e.message = "Email is already in use.";
       }
-      if (password !== confirmPassword) {
-        e.message = "Passwords do not match, please try again.";
-        setFormState({
-          ...formState,
-          password: "",
-        });
-        setConfirmPassword("");
-        setPassword("");
-        return;
-      }
     }
   };
 
@@ -149,6 +159,7 @@ function SignUpForm() {
             {data ? (
               <p>
                 Success! You may now head back to the homepage.{" "}
+                {window.location.assign("/")}
                 {/* TODO link to profilepage and profile form once completed */}
               </p>
             ) : (
@@ -205,7 +216,14 @@ function SignUpForm() {
               </form>
             )}
             {error && (
-              <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
+              <div className="my-3 p-3 bg-danger text-white">
+                {error.message}
+              </div>
+            )}
+            {passwordMismatchError && (
+              <div className="my-3 p-3 bg-danger text-white">
+                {passwordMismatchError}
+              </div>
             )}
           </div>
         </div>
