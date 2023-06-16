@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./SignUpForm.css";
 import { Link } from "react-router-dom";
 import WarriorPic from "./signUpAssets/WarriorSignUp4.png";
+import ShieldPic from "./signUpAssets/Shield1.png";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
 import ReactModal from "react-modal";
@@ -242,6 +243,7 @@ function SignUpForm() {
         ariaHideApp={false}
       >
         <div className="modal-content">
+          <img className="shield-image" src={ShieldPic} />
           <h2>Error</h2>
           {error && (
               <div className="my-3 p-3 bg-danger text-white">
@@ -253,7 +255,7 @@ function SignUpForm() {
                 {passwordMismatchError}
               </div>
             )}
-          <button onClick={() => setModalIsOpen(false)}>Close</button>
+          <button className="modal-button" onClick={() => setModalIsOpen(false)}>Close</button>
         </div>
       </ReactModal>
     </>
