@@ -1,42 +1,62 @@
-import React, {useState, useEffect, useRef} from "react";
-import homeMusic from '../../game/game-assets/music/Soliloquy.mp3'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faVolumeXmark} from '@fortawesome/free-solid-svg-icons'
-import {faVolumeHigh} from '@fortawesome/free-solid-svg-icons'
+import React, { useState, useEffect } from "react";
+import homeMusic from "../../game/game-assets/music/Soliloquy.mp3";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faVolumeXmark } from "@fortawesome/free-solid-svg-icons";
+import { faVolumeHigh } from "@fortawesome/free-solid-svg-icons";
 
+function Music() {
+  const [audio] = useState(new Audio(homeMusic));
+  const [playing, setPlaying] = useState(false);
+  const [userInteracted, setUserInteracted] = useState(false);
 
+  const toggle = () => setPlaying(!playing);
 
+  const handleUserInteraction = () => {
+    if (!userInteracted) {
+      setUserInteracted(true);
+    }
+  };
 
-function Music(){
-    const [audio] = useState(new Audio(homeMusic));
-    const[playing, setPlaying] = useState(false);
+  useEffect(() => {
+    const storedPreference = localStorage.getItem("musicPreference");
+    const initialPreference = storedPreference
+      ? JSON.parse(storedPreference)
+      : true;
+    setPlaying(initialPreference);
 
-    const toggle =()=> setPlaying(!playing);
+    audio.addEventListener("ended", () => setPlaying(true));
 
-    useEffect(()=>{
-        playing ? audio.play(): audio.pause();
-    }, [playing]);
+    window.addEventListener("mousedown", handleUserInteraction, { once: true });
 
-    useEffect(()=>{
-        audio.addEventListener('ended',()=>setPlaying(true));
-      //setPlaying(true);
-       window.addEventListener('mousedown', ()=>setPlaying(true),{once: true});
-       return ()=>{
-        audio.removeEventListener('mousedown', setPlaying(false));
-       }
-       
-        // toggle()
-    }, []);
+    return () => {
+      audio.removeEventListener("ended", () => setPlaying(true));
+      window.removeEventListener("mousedown", handleUserInteraction);
+    };
+  }, []);
 
- 
+  useEffect(() => {
+    if (userInteracted) {
+      if (playing) {
+        audio.play().catch((error) => console.log(error));
+      } else {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+      localStorage.setItem("musicPreference", JSON.stringify(playing));
+    }
+  }, [playing, userInteracted]);
 
- 
-    return (
-        <div className="music">
-            <button id='audio' onClick={toggle}>{playing ? <FontAwesomeIcon icon={faVolumeHigh} /> : <FontAwesomeIcon icon={faVolumeXmark} />} </button>
-            {/* <audio src={homeMusic} loop controls autoPlay/> */}
-        </div>
-    )
-  
+  return (
+    <div className="music">
+      <button id="audio" onClick={toggle}>
+        {playing ? (
+          <FontAwesomeIcon icon={faVolumeHigh} />
+        ) : (
+          <FontAwesomeIcon icon={faVolumeXmark} />
+        )}
+      </button>
+    </div>
+  );
 }
+
 export default Music;
