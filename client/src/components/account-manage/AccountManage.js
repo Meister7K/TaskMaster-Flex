@@ -192,7 +192,7 @@ const AccountManage = () => {
 
   return (
     <div className="account-container">
-      <h1 className="account-title">{user.username}'s Account</h1>
+      <h1 className="account-title">{user.username}</h1>
       <div className="account-info">
         <h2 className="account-subtitle">User Email: {user.email}</h2>
       </div>
