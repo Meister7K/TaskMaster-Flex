@@ -28,7 +28,8 @@ const itemSchema = new Schema({
   },
   premium: {
     type: Boolean,
-    required: true
+    required: true,
+
   },
   consumable: {
     type: Boolean,

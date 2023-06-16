@@ -78,7 +78,7 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 11. We found the way to customize the scroll bar look on our Task List containers from the Stack Overflow question "change scrollbar height" in an answer from the user "jilykate."  Here is a link to the page: https://stackoverflow.com/questions/50817727/change-scrollbar-height 
 
-12. We used React-Modal to create the modal on the Sign-Up form when a field in entered incorrectly.  Here is a link to the documentation: https://www.npmjs.com/package/react-modal 
+12. We used React-Modal to create the modal on the Sign-Up form when a field is entered incorrectly.  Here is a link to the documentation: https://www.npmjs.com/package/react-modal 
 
 ## License
 
