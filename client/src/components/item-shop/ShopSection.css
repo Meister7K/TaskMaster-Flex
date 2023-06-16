@@ -1,36 +1,73 @@
-.shopSection{
+.shopSection {
     border: 5px solid black;
     border-radius: 25px;
-    background: url(https://static.vecteezy.com/system/resources/previews/000/134/115/original/large-wood-planks-vector-background.jpg);
+    /* background: url(https://static.vecteezy.com/system/resources/previews/000/134/115/original/large-wood-planks-vector-background.jpg); */
+    background-image: url("./item-shop-assets/stonewall.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     padding: 20px;
-    margin: 20px 50px
+    margin: 20px 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
-.blacksmithTitle{
-    border: 5px solid black;
-    border-radius: 25px;
-    background: url(https://tse4.mm.bing.net/th?id=OIP.bwkJGkRFN24Irs9-nb3xIAHaHa&pid=Api);
-    color:white !important;
-    text-shadow: 2px 2px black;
 
+.blacksmithTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    background-image: url("./item-shop-assets/darkwoodplank3.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white !important;
+    text-shadow: 2px 2px black;
+    height: 124px;
+    padding: 0 20px !important;
+    width: 100%;
+    margin-bottom: 20px;;
+}
+
+.blacksmithSubtitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 5px solid black; */
+    border-radius: 25px;
+    /* background: url(https://tse4.mm.bing.net/th?id=OIP.bwkJGkRFN24Irs9-nb3xIAHaHa&pid=Api); */
+    background-image: url("./item-shop-assets/darkwoodplank3.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white !important;
+    text-shadow: 2px 2px black;
+    padding: 0 20px !important;
+    height: 90px !important;
+    min-width: 250px;
+    margin: 0 auto !important;
+    font-size: 1.65rem;
 }
 
 .premiumStoreTitle h2,
 .generalStoreTitle h2,
 .blacksmithTitle h2 {
-   font-size: 3rem;
-   color: #fff !important;
--webkit-text-stroke: 2px black;
+    font-size: 3rem;
+    color: #fff !important;
+    -webkit-text-stroke: 2px black;
 }
 
-.generalStoreTitle{
+.generalStoreTitle {
     border: 5px solid black;
     border-radius: 25px;
     background: url(https://s-media-cache-ak0.pinimg.com/originals/b9/4c/c9/b94cc9753e674518e4bb3ef1bc3fd9f3.jpg);
-    color:white;
+    color: white;
     text-shadow: 2px 2px black;
 
 }
-.premiumStoreTitle{
+
+.premiumStoreTitle {
     border: 5px solid black;
     border-radius: 25px;
     background: url(http://clipart-library.com/images/yTkrk8yGc.png);
@@ -38,13 +75,18 @@
     text-shadow: 2px 2px black;
 
 }
-.subTitle{
+
+.subTitle {
     margin: 20px;
     padding: 5px;
     width: fit-content;
-    
+
 }
-.itemList{
+
+.itemList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-    margin: 20px 130px;
+    margin: 20px auto;
 }

@@ -31,17 +31,20 @@ function ShopItem(props) {
   if (!loading && itemsList) {
     ShopItemXML = () => {
       return toMap.map((item, i) => (
-        <div key={item.name + "_" + i} className="itemContainer">
-          <div className="imgContainer">
-            <img
-              className="itemImg"
-              src={"data:image/png;base64," + item.itemImage}
-            />
-          </div>
-          <div className="itemInfo">
-            <h3>Name: {item.name || "loading"}</h3>
-            <p>{item.desc || "loading"}</p>
-            <button>${item.value || "loading"}</button>
+        <div className="item-outside-container">
+          <div key={item.name + "_" + i} className="itemContainer">
+            <div className="imgContainer">
+              <img
+                className="itemImg"
+                src={"data:image/png;base64," + item.itemImage}
+                alt={item.name}
+              />
+            </div>
+            <div className="itemInfo">
+              <h3>Name: {item.name || "loading"}</h3>
+              <p>{item.desc || "loading"}</p>
+              <button className="purchase-button">${item.value || "loading"}</button>
+            </div>
           </div>
         </div>
       ));

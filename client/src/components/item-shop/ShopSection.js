@@ -10,13 +10,15 @@ function ShopSection(props) {
         <h2>Blacksmith</h2>
       </div>
       <div>
-        <h3 className="subTitle blacksmithTitle">Armor:</h3>
+        <div className="subtitle-container">
+        <h3 className="subTitle blacksmithSubtitle">Armor:</h3>
+        </div>
         <div className="itemList">
           <ShopItem itemTypes="armor" />
         </div>
       </div>
       <div>
-        <h3 className="subTitle blacksmithTitle">Weapons:</h3>
+        <h3 className="subTitle blacksmithSubtitle">Weapons:</h3>
         <div className="itemList">
           <ShopItem itemTypes="weapons" />
         </div>
