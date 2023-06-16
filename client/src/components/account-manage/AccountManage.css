@@ -1,0 +1,76 @@
+.account-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.account-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.account-subtitle {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.account-form {
+  margin-bottom: 20px;
+}
+
+.account-input,
+.account-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.account-button {
+  background-color: #4caf50;
+  color: #fff;
+  cursor: pointer;
+}
+
+.account-button:hover {
+  background-color: #45a049;
+}
+
+.delete-account {
+  margin-top: 20px;
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #ccc;
+}
+
+.delete-account .account-button {
+  background-color: #ff5722;
+}
+
+.delete-account .account-button:hover {
+  background-color: #f44336;
+}
+
+.account-sections {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.account-section {
+  flex-basis: calc(50% - 10px);
+  /* Adjust this value as needed */
+  margin-bottom: 20px;
+  /* Add margin-bottom for spacing */
+}
