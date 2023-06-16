@@ -32,7 +32,7 @@ function ShopSection(props) {
         <h2>General Store</h2>
       </div>
       <div>
-        <h3 className="subTitle generalStoreTitle">Items:</h3>
+        <h3 className="subTitle generalStoreSubtitle">Items:</h3>
         <div className="itemList">
           <ShopItem itemTypes="consumables" />
         </div>
@@ -46,7 +46,7 @@ function ShopSection(props) {
         <h2>Premium Items</h2>
       </div>
       <div>
-        <h3 className="subTitle premiumStoreTitle">Currency:</h3>
+        <h3 className="subTitle premiumStoreSubtitle">Currency:</h3>
         <div className="itemList">
           <ShopItem itemTypes="premium" />
         </div>
