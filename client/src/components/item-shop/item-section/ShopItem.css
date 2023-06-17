@@ -50,6 +50,8 @@
   align-items: center;
   justify-content: center;
   width: 80%;
+  color: #3b3423 !important;
+  margin-top: 5px;
 }
 
 .btn-div {
@@ -66,6 +68,15 @@
   margin-top: 20px;
   padding: 5px;
   width: 100px;
+  border-radius: 15px;;
+  background-color: #3b3423;
+  color: #fff;
+  filter: drop-shadow(0 0 0.90rem rgb(92, 51, 59));
+}
+
+.purchase-button:hover {
+  background-color: #52462f;
+  filter: drop-shadow(0 0 0.90rem rgb(92, 51, 59));
 }
 
 .goldCoin {
