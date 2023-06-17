@@ -4,7 +4,7 @@ class GameObject extends Phaser.GameObjects.Sprite {
     
     
     constructor(scene, x,y,spriteSheet,frames ){
-        super(scene,x,y,spriteSheet,frames)
+        super(scene,x,y,spriteSheet,frames);
         
         scene.add.existing(this);
         scene.physics.add.existing(this);

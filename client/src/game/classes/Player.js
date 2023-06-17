@@ -51,7 +51,8 @@ class Player extends GameObject {
   }
 
   loseHealth(damage){
-    this.health -= (damage - this.defense)
+    this.health -= (damage - this.defense);
+    //insert damAGE animation
   }
 
   doDamage(){

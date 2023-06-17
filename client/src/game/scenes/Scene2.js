@@ -3,6 +3,7 @@ import Bat from "../game-assets/gameSprites/bat.png";
 import createPlayerAnimations from "../classes/animations/PlayerAnims";
 import Player from "../classes/Player";
 import createMinotaurAnimations from "../classes/animations/MinotaurAnims";
+import Minotaur from "../classes/enemies/Minotaur";
 
 
 
@@ -10,7 +11,7 @@ import createMinotaurAnimations from "../classes/animations/MinotaurAnims";
 class Scene2 extends Phaser.Scene {
   constructor() {
     super("play game");
-    this.minotaurs = [];
+    //this.minotaurs = [];
   }
 
   preload() {
@@ -70,6 +71,12 @@ class Scene2 extends Phaser.Scene {
     
     //! Map area end
 
+
+
+
+
+
+
       //!Player
     // this.playerSprite = this.add.sprite(0,0,'warrior')
 
@@ -80,16 +87,26 @@ class Scene2 extends Phaser.Scene {
 
     createMinotaurAnimations(this.anims);
     createPlayerAnimations(this.anims);
-  
 
-      this.physics.add.collider(this.player, this.minotaurs);
+
+  //! Enemies
+const randomX = Phaser.Math.Between(0, this.game.config.width);
+  const randomY = Phaser.Math.Between(0, this.game.config.height);
+  const randomXVelocity =
+    Phaser.Math.Between(-30, -20) + Phaser.Math.Between(0, 1) * 40;
+  const randomYVelocity =
+    Phaser.Math.Between(-30, -20) + Phaser.Math.Between(0, 1) * 40;
+
+ this.minotaur = new Minotaur(this, 500, 500, /*randomX, randomY,*/ 'minotaur',0, 100,50,this.player)
+
+      this.physics.add.collider(this.player, this.minotaur);
 
     
       this.physics.add.collider(this.player, map.objects);
   
       this.physics.add.collider(this.player, blockGroup );
 
-      this.physics.add.collider(this.minotaurs, blockGroup);
+      this.physics.add.collider(this.minotaur, blockGroup);
      
       this.cameras.main.setBounds(0, 0, 1632, 1632);
       this.cameras.main.startFollow(this.player, true, 0.09,0.09);
@@ -113,30 +130,30 @@ class Scene2 extends Phaser.Scene {
     createPlayerAnimations(this.anims);
 
 
-    const numMinotaurs = 3;
+    // const numMinotaurs = 3;
 
-    for (let i = 0; i < numMinotaurs; i++) {
-      const randomX = Phaser.Math.Between(0, this.game.config.width);
-      const randomY = Phaser.Math.Between(0, this.game.config.height);
-      const randomXVelocity =
-        Phaser.Math.Between(-30, -20) + Phaser.Math.Between(0, 1) * 40;
-      const randomYVelocity =
-        Phaser.Math.Between(-30, -20) + Phaser.Math.Between(0, 1) * 40;
+    // for (let i = 0; i < numMinotaurs; i++) {
+    //   const randomX = Phaser.Math.Between(0, this.game.config.width);
+    //   const randomY = Phaser.Math.Between(0, this.game.config.height);
+    //   const randomXVelocity =
+    //     Phaser.Math.Between(-30, -20) + Phaser.Math.Between(0, 1) * 40;
+    //   const randomYVelocity =
+    //     Phaser.Math.Between(-30, -20) + Phaser.Math.Between(0, 1) * 40;
 
-      const minotaur = this.add.sprite(randomX, randomY, "minotaur");//! change to new Minotaur
-      this.physics.add.existing(minotaur);
+    //   const minotaur = this.add.sprite(randomX, randomY, "minotaur");//! change
+    //   this.physics.add.existing(minotaur);
 
-      minotaur.body.velocity.setTo(randomXVelocity, randomYVelocity);
-      minotaur.body.bounce.set(1);
-      minotaur.body.collideWorldBounds = true;
+    //   minotaur.body.velocity.setTo(randomXVelocity, randomYVelocity);
+    //   minotaur.body.bounce.set(1);
+    //   minotaur.body.collideWorldBounds = true;
       
 
 
-      minotaur.setOrigin(0.5, 0.5);//! look into this
-      minotaur.play("minotaurAnimation");
+    //   minotaur.setOrigin(0.5, 0.5);//! look into this
+    //   minotaur.play("minotaurAnimation");
 
-      this.minotaurs.push(minotaur);
-    }
+    //   this.minotaurs.push(minotaur);
+    // }
 
     const batImg = new Image();
     batImg.onload = () => {
@@ -166,7 +183,7 @@ class Scene2 extends Phaser.Scene {
         const bat = this.add.sprite(randomX, randomY, "batSheet");
         this.physics.add.existing(bat);
         this.physics.add.collider(bat.body, this.player)
-        this.physics.add.collider(bat.body, this.minotaurs)
+        this.physics.add.collider(bat.body, this.minotaur)
         this.physics.add.collider(bat.body, blockGroup)
         bat.body.velocity.setTo(randomXVelocity, randomYVelocity);
         bat.body.bounce.set(1);
@@ -273,13 +290,13 @@ class Scene2 extends Phaser.Scene {
 
   
 
-    this.minotaurs.forEach((minotaur) => {
-      if (minotaur.body.velocity.x < 0) {
-        minotaur.setFlipX(true);
-      } else {
-        minotaur.setFlipX(false);
-      }
-    });
+    // this.minotaurs.forEach((minotaur) => {
+    //   if (minotaur.body.velocity.x < 0) {
+    //     minotaur.setFlipX(true);
+    //   } else {
+    //     minotaur.setFlipX(false);
+    //   }
+    // });
   }
 }
 
