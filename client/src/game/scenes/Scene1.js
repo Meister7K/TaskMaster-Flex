@@ -19,6 +19,8 @@ class Scene1 extends Phaser.Scene {
     super("loadGame");
   }
   preload() {
+
+    //this.load.image('warrior',Warrior0Front);
    
 
 
@@ -81,6 +83,7 @@ class Scene1 extends Phaser.Scene {
   create() {
     this.scale.displaySize.setAspectRatio(1632/1632);
     this.scale.refresh();
+    
     this.scene.start("play game");
     this.scene.start('HUD')
   }

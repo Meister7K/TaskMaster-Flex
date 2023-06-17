@@ -1,4 +1,4 @@
-import { GameObjects } from 'phaser';
+import Phaser, {GameObjects}from 'phaser';
 export class Text extends GameObjects.Text {
   constructor(scene, x, y, text) {
     super(scene, x, y, text, {

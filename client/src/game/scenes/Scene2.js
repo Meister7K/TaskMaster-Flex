@@ -23,15 +23,7 @@ class Scene2 extends Phaser.Scene {
 
   create() {
 
-    this.add.sprite('warrior', 'warrior0front')
-
-    this.player = new Player(this,816,816,"warrior",1,100);
-
-    console.log(this.player);
-
-
-    createMinotaurAnimations(this.anims);
-    createPlayerAnimations(this.anims);
+    
     
     this.physics.world.setBounds(0, 0, 1632, 1632);
     // this.background = this.add.image(0, 0, "background");
@@ -48,6 +40,10 @@ class Scene2 extends Phaser.Scene {
       0,
       0
     );
+
+
+
+
       const mapArr=[]
       console.log(map.objects);
 
@@ -75,7 +71,15 @@ class Scene2 extends Phaser.Scene {
     //! Map area end
 
       //!Player
+    // this.playerSprite = this.add.sprite(0,0,'warrior')
 
+    this.player = new Player(this,816,816,'warrior',0,100);
+
+    console.log(this.player);
+
+
+    createMinotaurAnimations(this.anims);
+    createPlayerAnimations(this.anims);
   
 
       this.physics.add.collider(this.player, this.minotaurs);
@@ -88,7 +92,7 @@ class Scene2 extends Phaser.Scene {
       this.physics.add.collider(this.minotaurs, blockGroup);
      
       this.cameras.main.setBounds(0, 0, 1632, 1632);
-      this.cameras.main.startFollow(this.player, true);
+      this.cameras.main.startFollow(this.player, true, 0.09,0.09);
       this.cameras.main.setZoom(3);
   
   
