@@ -58,7 +58,7 @@ const handleFormSubmit = async (event) => {
           <h2>Pick your lineage</h2>
           <label for="lineage">Lineage</label>
           <select name="lineage" className="lineage">
-            <option name='lineage' type='radio' value="knight" selected>knight</option>
+            <option name='lineage' type='radio' value="knight" selected>Knight</option>
             <option name='lineage' type='radio' value="mage">Mage</option>
             <option name='lineage' type='radio' value="assassin">Assassin</option>
             <option name='lineage' type='radio' value="berserker">Berserker</option>

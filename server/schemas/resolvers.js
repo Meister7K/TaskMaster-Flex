@@ -2,14 +2,15 @@ const { User, Task, Item, PlayerCharacter } = require("../models");
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
 const bcrypt = require("bcrypt");
+const mongoose = require('mongoose');
 
 const resolvers = {
   Query: {
     playerCharacters: async () => {
-      return await PlayerCharacter.find({}).populate("equipment");
+      return await PlayerCharacter.find({}).populate("inventory").populate('equipment');
     },
     users: async () => {
-      return await User.find({}).populate("playerChar");
+      return await User.find({}).populate({path : 'playerChar', populate: ['inventory','equipment']})
     },
     tasks: async () => {
       return await Task.find({}).populate("user");
@@ -26,6 +27,10 @@ const resolvers = {
     consumables: async () => {
       return await Item.find({ itemType: "consumable" });
     },
+    playerGold: async(parent, {userId})=>{
+      let user = await User.findOne({_id: userId}).populate({path : 'playerChar', populate: 'gold'});
+      return user.playerChar.gold;
+    }
   },
 
   Mutation: {
@@ -166,7 +171,7 @@ const resolvers = {
           { _id: user.playerChar._id },
           { $push: { inventory: itemId } },
           { new: true }
-        );
+        ).populate('inventory');
 
         return player;
       } catch (err) {
@@ -199,6 +204,39 @@ const resolvers = {
         );
         return player;
       } catch (err) {
+        
+        return err;
+      }
+    },
+
+    equipItem: async (parent, { userId, itemId }) => {
+      try {
+
+        
+        const user = await User.findOne({_id: userId}).populate({path: 'playerChar' , populate:'equipment'})//, playerChar: {inventory: {$in : [itemId]}}}).populate({path: 'playerCharacter', populate: ['inventory', 'equipment']});
+        console.log(user);
+        console.log(user.playerChar.inventory);
+        console.log(user.playerChar.inventory.includes(itemId))
+        if (user.playerChar.inventory.includes(itemId)) {
+
+          let player = await PlayerCharacter.findOneAndUpdate(
+            { _id: user.playerChar._id },
+            { $pull: {inventory: itemId}},
+            { new: true }
+          );
+
+         player = await PlayerCharacter.findOneAndUpdate(
+            { _id: user.playerChar._id },
+            { $push: { equipment: itemId } },
+            { new: true }
+          );
+
+          
+          return player;
+        }
+        return "Item not in inventory"
+      } catch (err) {
+        console.log(err)
         return err;
       }
     },

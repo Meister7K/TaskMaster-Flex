@@ -77,3 +77,10 @@ query consumables {
 }
 
 `;
+
+export const GET_GOLD = gql`
+query playerGold($userId: ID!) {
+  playerGold(userId: $userId)
+}
+
+`

@@ -246,15 +246,19 @@ function SignUpForm() {
       >
         <div className="modal-content">
           <img className="shield-image" src={ShieldPic} />
-          <h2>Error</h2>
-          {error && (
-            <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
-          )}
-          {passwordMismatchError && (
-            <div className="my-3 p-3 bg-danger text-white">
-              {passwordMismatchError}
-            </div>
-          )}
+          <h2>Error!</h2>
+          <div className="errorText">
+            {error && (
+              <div className="my-3 p-3 bg-danger text-white">
+                {error.message}
+              </div>
+            )}
+            {passwordMismatchError && (
+              <div className="my-3 p-3 bg-danger text-white">
+                {passwordMismatchError}
+              </div>
+            )}
+          </div>
           <button
             className="modal-button"
             onClick={() => setModalIsOpen(false)}

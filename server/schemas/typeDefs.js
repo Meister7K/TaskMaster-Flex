@@ -58,6 +58,7 @@ const typeDefs = gql`
     weapons: [Item]
     armors: [Item]
     consumables: [Item]
+    playerGold(userId: ID!): Int
   }
 
   type Mutation {
@@ -72,6 +73,7 @@ const typeDefs = gql`
     addToInventory(userId : ID!, itemId : ID!): PlayerCharacter
     addGold(userId : ID!, amount : Int!): PlayerCharacter
     removeGold(userId : ID!, amount : Int!): PlayerCharacter
+    equipItem(userId: ID!, itemId: ID!): PlayerCharacter
   }
 
   type UserDeleteResponse {
