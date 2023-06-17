@@ -87,4 +87,6 @@
   border: none;
   margin-left: 5px;
   margin-top: 10%;
+  position: relative;
+  top: 2px;
 }
