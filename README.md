@@ -80,6 +80,10 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 12. We used React-Modal to create the modal on the Sign-Up form when a field is entered incorrectly.  Here is a link to the documentation: https://www.npmjs.com/package/react-modal 
 
+13. We used a tutorial written by Written by Denis Kratos
+July 07, 2021 for support with charactr class setup.
+[link here](https://shakuro.com/blog/phaser-js-a-step-by-step-tutorial-on-making-a-phaser-3-game#part-2)
+
 ## License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)

@@ -51,7 +51,8 @@ class Player extends GameObject {
   }
 
   loseHealth(damage){
-    this.health -= (damage - this.defense)
+    this.health -= (damage - this.defense);
+    //insert damAGE animation
   }
 
   doDamage(){
@@ -81,6 +82,7 @@ class Player extends GameObject {
       this.body.velocity.x = -100;
       this.flipSprite();
       this.body.setOffset(16,0);
+      //!this.anims.isPlaying && this.anims.play('walk', true);
     }
 
     if ( this.inputKeys.right.isDown || this.inputKeys.right1.isDown) {

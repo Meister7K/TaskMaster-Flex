@@ -1,10 +1,14 @@
 import Enemies from "./Enemies";
 
+
 class Minotaur extends Enemies{
-    constructor(){
-        super()
+    constructor(scene,x,y,spriteSheet,frames,health, attack, target){
+        super(scene,x,y,spriteSheet,frames,health, attack, target);
+
+        this.setBody().setSize(32,32);
     }
 
+    
    
 }
 

@@ -1,6 +1,7 @@
 import Phaser from "phaser";
 import Scene1 from "./game/scenes/Scene1";
 import Scene2 from "./game/scenes/Scene2";
+import HUD from "./game/scenes/HUD";
 
 const config = {
   type: Phaser.AUTO,
@@ -34,7 +35,7 @@ const config = {
   audio: {
     disableWebAudio: false,
   },
-  scene: [Scene1, Scene2],
+  scene: [Scene1, Scene2, HUD],
 };
 
 window.sizeChanged = () => {
