@@ -41,8 +41,10 @@ function HomeSection() {
             <img className="warrior-2" src={Warrior2} alt="Warrior 2" />
           </div>
         </div>
+
+        {/* //TODO Make all 3 buttons appear when not logged in, and remove the 'Sign Up' button when logged in. */}
+
         <div className="home-bottom-container">
-          {/* <h1>&nbsp;</h1> */}
           {/* {isLoggedIn ? (
             <p>Thanks for logging in, you may now play the game!</p>
           ) : (
