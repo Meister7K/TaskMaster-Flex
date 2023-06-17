@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../button/Button";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
 import "./SignInForm.css";
+import { GET_GOLD } from "../../utils/queries";
 
 import Auth from "../../utils/auth";
 
@@ -11,6 +12,13 @@ const SignInForm = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
   const navigate = useNavigate();
+  const {
+    loading2,
+    data: wallet,
+    refetch: refetchWallet,
+  } = useQuery(GET_GOLD, {
+    variables: { userId: Auth.getProfile().data._id },
+  });
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -47,7 +55,35 @@ const SignInForm = (props) => {
   };
 
   const user = Auth.loggedIn() ? Auth.getProfile().data.username : null;
-  const helloUserClass = user && user.length > 15 ? "hello-user small-font" : "hello-user";
+
+  useEffect(() => {
+    const getGold = async () => {
+      await refetchWallet();
+    };
+
+    if (user) {
+      getGold();
+    }
+  }, [user, refetchWallet, wallet]);
+
+  let formattedPlayerGold = "";
+  let goldClass = "";
+
+  if (wallet) {
+    if (wallet.playerGold >= 10000 && wallet.playerGold < 10000000) {
+      formattedPlayerGold = `${Math.floor(wallet.playerGold / 1000)}K`;
+      goldClass = "thousands";
+    } else if (wallet.playerGold >= 10000000) {
+      formattedPlayerGold = `${Math.floor(wallet.playerGold / 1000000)}M`;
+      goldClass = "millions";
+    } else {
+      formattedPlayerGold = wallet.playerGold;
+      goldClass = "hundreds";
+    }
+  }
+
+  const helloUserClass =
+    user && user.length > 15 ? "hello-user small-font" : "hello-user";
 
   return (
     <div className="navbar-sign-in-form">
@@ -55,7 +91,13 @@ const SignInForm = (props) => {
         {user ? (
           <div className="logout-container">
             <div className="logout-wrapper">
-              <p className={helloUserClass}>{user}</p>
+              <div className="user-info">
+                <p className={helloUserClass}>{user}</p>
+                <div className="row">
+                  <p className={goldClass}>{formattedPlayerGold}</p>
+                  <div className="gold"></div>
+                </div>
+              </div>
               <div className="button-wrapper">
                 <button
                   className="navbar-btn login-submit-btn"
