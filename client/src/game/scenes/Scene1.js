@@ -54,25 +54,25 @@ class Scene1 extends Phaser.Scene {
 
     
 
-    // this.load.spritesheet("warrior1front", Warrior1Front, {
-    //   frameWidth: 141,
-    //   frameHeight: 90,
-    // });
+    this.load.spritesheet("warrior1front", Warrior1Front, {
+      frameWidth: 141,
+      frameHeight: 90,
+    });
 
-    // this.load.spritesheet("warrior1back", Warrior1Back, {
-    //   frameWidth: 141,
-    //   frameHeight: 90,
-    // });
+    this.load.spritesheet("warrior1back", Warrior1Back, {
+      frameWidth: 141,
+      frameHeight: 90,
+    });
 
-    // this.load.spritesheet("warrior1left", Warrior1Left, {
-    //   frameWidth: 141,
-    //   frameHeight: 90,
-    // });
+    this.load.spritesheet("warrior1left", Warrior1Left, {
+      frameWidth: 141,
+      frameHeight: 90,
+    });
 
-    // this.load.spritesheet("warrior1right", Warrior1Right, {
-    //   frameWidth: 141,
-    //   frameHeight: 90,
-    // });
+    this.load.spritesheet("warrior1right", Warrior1Right, {
+      frameWidth: 141,
+      frameHeight: 90,
+    });
 
     this.load.image("background", Back);
 
@@ -82,6 +82,7 @@ class Scene1 extends Phaser.Scene {
     this.scale.displaySize.setAspectRatio(1632/1632);
     this.scale.refresh();
     this.scene.start("play game");
+    this.scene.start('HUD')
   }
 
   update() {}
