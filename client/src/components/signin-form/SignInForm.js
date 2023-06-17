@@ -17,7 +17,7 @@ const SignInForm = (props) => {
     data: wallet,
     refetch: refetchWallet,
   } = useQuery(GET_GOLD, {
-    variables: { userId: Auth.getProfile().data._id },
+    variables: { userId: Auth.getProfile()?.data?._id },
   });
 
   // update state based on form input changes
@@ -55,15 +55,15 @@ const SignInForm = (props) => {
   };
 
   const user = Auth.loggedIn() ? Auth.getProfile().data.username : null;
-
+ 
   useEffect(() => {
-    const getGold = async () => {
-      await refetchWallet();
-    };
+     if (user) {
+       const getGold = async () => {
+         await refetchWallet();
+       };
 
-    if (user) {
-      getGold();
-    }
+       getGold();
+     }
   }, [user, refetchWallet, wallet]);
 
   let formattedPlayerGold = "";
