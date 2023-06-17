@@ -61,6 +61,7 @@ const AccountManage = () => {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const lowercaseEmail = updateEmail.toLowerCase();
+    const password = emailPassword;
 
     if (!emailRegex.test(lowercaseEmail)) {
       setModalContent({
@@ -79,7 +80,7 @@ const AccountManage = () => {
     } else {
       try {
         const { data } = await updateUser({
-          variables: { email: updateEmail },
+          variables: { email: lowercaseEmail, password: password },
         });
 
         if (!data) {
@@ -94,30 +95,31 @@ const AccountManage = () => {
             message:
               "Email successfully updated! You must sign in again to proceed.",
           });
-          Auth.logout();
         }
         setUpdateEmail("");
         setReenterEmail("");
         setEmailPassword("");
         setModalIsOpen(true);
+        Auth.logout();
       } catch (error) {
         console.error(error);
         if (
           error.message.includes(
             "duplicate key error collection: taskmaster-flex.users index: email"
-          )
-        ) {
-          setModalContent({
-            title: "Error!",
-            message: "Email already in use.",
-          });
-        } else if (error.message.includes("Current password is incorrect")) {
+            )
+            ) {
+              setModalContent({
+                title: "Error!",
+                message: "Email already in use.",
+              });
+        } else if (error.message.includes("Password incorrect, try again!")) {
           setModalContent({
             title: "Error!",
             message:
-              "Password verification failed. Please make sure you entered the correct password.",
+            "Password verification failed. Please make sure you entered the correct password.",
           });
         }
+        setEmailPassword("");
         setModalIsOpen(true);
       }
     }

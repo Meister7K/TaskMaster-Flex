@@ -32,10 +32,13 @@ const resolvers = {
     consumables: async () => {
       return await Item.find({ itemType: "consumable" });
     },
-    playerGold: async(parent, {userId})=>{
-      let user = await User.findOne({_id: userId}).populate({path : 'playerChar', populate: 'gold'});
+    playerGold: async (parent, { userId }) => {
+      let user = await User.findOne({ _id: userId }).populate({
+        path: "playerChar",
+        populate: "gold",
+      });
       return user.playerChar.gold;
-    }
+    },
   },
 
   Mutation: {
@@ -77,23 +80,22 @@ const resolvers = {
     },
     updateUser: async (parent, { user, email, password }, context) => {
       if (context.user) {
-        const user = await User.findOne({ email });
+        console.log(context.user.email);
+        const user = await User.findOne({ email: context.user.email });
 
         const correctPw = await user.isCorrectPassword(password);
 
         if (!correctPw) {
-          throw new AuthenticationError(
-            "Password incorrect, try again!"
-            );
+          throw new AuthenticationError("Password incorrect, try again!");
+        } else {
+          const updatedUser = await User.findByIdAndUpdate(
+            context.user._id,
+            { email },
+            { new: true }
+          );
+
+          return updatedUser;
         }
-
-        const updatedUser = await User.findByIdAndUpdate(
-          context.user._id,
-          { email, password },
-          { new: true }
-        );
-
-        return updatedUser;
       }
 
       throw new AuthenticationError("Not logged in");
