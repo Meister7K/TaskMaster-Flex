@@ -9,7 +9,6 @@ function Home () {
   return (
     <>
       <HomeSection />
-
       <Rules />
       <Footer />
     </>

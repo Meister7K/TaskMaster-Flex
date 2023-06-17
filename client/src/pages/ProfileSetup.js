@@ -8,7 +8,6 @@ function ProfileSetup() {
     <div className='profile-div'>
         <ProfileForm/>
     </div>
-    
     </>
   )
 }

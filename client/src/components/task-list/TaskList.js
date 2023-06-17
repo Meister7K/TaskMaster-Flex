@@ -22,6 +22,7 @@ function TaskList() {
     refetchQueries: [{ query: GET_TASKS }],
   });
   const user = Auth.getProfile();
+  console.log(user);
   const {
     loading,
     error: queryError,
