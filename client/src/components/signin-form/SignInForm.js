@@ -12,12 +12,14 @@ const SignInForm = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
   const navigate = useNavigate();
+  const userId = Auth.loggedIn() ? Auth.getProfile().data._id : null;
   const {
     loading2,
     data: wallet,
     refetch: refetchWallet,
   } = useQuery(GET_GOLD, {
-    variables: { userId: Auth.getProfile()?.data?._id },
+    skip: !userId,
+    variables: { userId },
   });
 
   // update state based on form input changes
@@ -41,8 +43,6 @@ const SignInForm = (props) => {
       const loggedInUser = Auth.loggedIn()
         ? Auth.getProfile().data.username
         : null;
-
-      window.location.assign(`/${loggedInUser}`);
     } catch (e) {
       console.error(e);
     }
@@ -55,15 +55,16 @@ const SignInForm = (props) => {
   };
 
   const user = Auth.loggedIn() ? Auth.getProfile().data.username : null;
- 
-  useEffect(() => {
-     if (user) {
-       const getGold = async () => {
-         await refetchWallet();
-       };
 
-       getGold();
-     }
+  useEffect(() => {
+    const getGold = async () => {
+      if (user) {
+        await refetchWallet();
+      }
+    };
+    if (user) {
+      getGold();
+    }
   }, [user, refetchWallet, wallet]);
 
   let formattedPlayerGold = "";
