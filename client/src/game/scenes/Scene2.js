@@ -123,14 +123,16 @@ class Scene2 extends Phaser.Scene {
       const randomYVelocity =
         Phaser.Math.Between(-30, -20) + Phaser.Math.Between(0, 1) * 40;
 
-      const minotaur = this.add.sprite(randomX, randomY, "minotaur");
+      const minotaur = this.add.sprite(randomX, randomY, "minotaur");//! change to new Minotaur
       this.physics.add.existing(minotaur);
 
       minotaur.body.velocity.setTo(randomXVelocity, randomYVelocity);
       minotaur.body.bounce.set(1);
       minotaur.body.collideWorldBounds = true;
+      
 
-      minotaur.setOrigin(0.5, 0.5);
+
+      minotaur.setOrigin(0.5, 0.5);//! look into this
       minotaur.play("minotaurAnimation");
 
       this.minotaurs.push(minotaur);

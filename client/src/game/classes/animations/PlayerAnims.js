@@ -1,4 +1,4 @@
-
+import GameObject from "../GameObject";
 
 const createPlayerAnimations = (anims)=>{
 
