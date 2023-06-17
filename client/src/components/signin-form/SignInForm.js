@@ -43,6 +43,7 @@ const SignInForm = (props) => {
       const loggedInUser = Auth.loggedIn()
         ? Auth.getProfile().data.username
         : null;
+      window.location.reload();
     } catch (e) {
       console.error(e);
     }
