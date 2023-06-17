@@ -100,7 +100,8 @@ function ShopItem(props) {
                 price={item.value}
                 identify={item._id}
               >
-                ${item.value || "loading"}
+                {item.value || "loading"}
+                <div className="goldCoin"></div>
               </button>
             </div>
           </div>
