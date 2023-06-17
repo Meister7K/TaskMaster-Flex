@@ -105,6 +105,41 @@ h5 {
   font-size: 0.75rem;
 }
 
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.thousands {
+  color: green;
+  font-size: .9rem;
+}
+
+.millions {
+  color: purple;
+  font-size: .9rem;
+}
+
+.hundreds {
+  color: white;
+  font-size: .8rem;
+}
+
+.gold {
+  background-image: url("../../../public/images/gold-coin.png");
+  background-size: cover;
+  width: 15px;
+  height: 15px;
+  border: none;
+  margin: auto;
+  margin-left: 5px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
 /* Logout User End */
 @media screen and (max-width: 960px) {
   .navbar-container {

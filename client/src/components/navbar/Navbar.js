@@ -9,6 +9,7 @@ import Music from "../music/Music";
 function Navbar() {
   const [click, setClick] = useState(false);
   const [user, setUser] = useState(null);
+  
 
   useEffect(() => {
     const loggedInUser = Auth.loggedIn()
@@ -69,13 +70,11 @@ function Navbar() {
                   Shop
                 </Link>
               </li>
-              <li>
-                
-              </li>
+              <li></li>
             </ul>
           </div>
           <SignInForm />
-          <Music/>
+          <Music />
         </nav>
       </>
     );
