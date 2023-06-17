@@ -23,12 +23,17 @@ class Scene2 extends Phaser.Scene {
   }
 
   create() {
+    // ! Level Logic section
+
+
 
     
     
     this.physics.world.setBounds(0, 0, 1632, 1632);
     // this.background = this.add.image(0, 0, "background");
     // this.background.setOrigin(0, 0);
+
+    // ! End logic Section
 
   
     //! Map area start
@@ -85,8 +90,7 @@ class Scene2 extends Phaser.Scene {
     console.log(this.player);
 
 
-    createMinotaurAnimations(this.anims);
-    createPlayerAnimations(this.anims);
+  //  !Player End
 
 
   //! Enemies
@@ -99,35 +103,23 @@ const randomX = Phaser.Math.Between(0, this.game.config.width);
 
  this.minotaur = new Minotaur(this, 500, 500, /*randomX, randomY,*/ 'minotaur',0, 100,50,this.player)
 
-      this.physics.add.collider(this.player, this.minotaur);
 
-    
-      this.physics.add.collider(this.player, map.objects);
-  
-      this.physics.add.collider(this.player, blockGroup );
-
-      this.physics.add.collider(this.minotaur, blockGroup);
      
       this.cameras.main.setBounds(0, 0, 1632, 1632);
       this.cameras.main.startFollow(this.player, true, 0.09,0.09);
       this.cameras.main.setZoom(3);
-  
-  
-  
-  // this.player.setCollideWorldBounds(true);
+  // !Enemies Ends 
 
-    // this.cursors = this.input.keyboard.createCursorKeys();
+      // ! Animations Section
+  
+   createMinotaurAnimations(this.anims);
+    createPlayerAnimations(this.anims);
+ 
 
-    // //! add wsad keys if time
-    // this.inputKeys = this.input.keyboard.addKeys({
-    //   up: Phaser.Input.Keyboard.KeyCodes.W,
-    //   down: Phaser.Input.Keyboard.KeyCodes.S,
-    //   left: Phaser.Input.Keyboard.KeyCodes.A,
-    //   right: Phaser.Input.Keyboard.KeyCodes.D,
-    //   attack: Phaser.Input.Keyboard.KeyCodes.SPACE,
-    // });
  
     createPlayerAnimations(this.anims);
+
+    //! End animations
 
 
     // const numMinotaurs = 3;
@@ -195,7 +187,18 @@ const randomX = Phaser.Math.Between(0, this.game.config.width);
       }
     };
     batImg.src = Bat;
+// ! Add collisions at the end of every create method for all game objects
 
+this.physics.add.collider(this.player, this.minotaur);
+
+    
+this.physics.add.collider(this.player, map.objects);
+
+this.physics.add.collider(this.player, blockGroup );
+
+this.physics.add.collider(this.minotaur, blockGroup);
+
+// ! End Collision section
    
   }
 
