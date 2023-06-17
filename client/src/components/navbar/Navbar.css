@@ -159,9 +159,9 @@
   }
 
   .nav-links:hover {
-    background-color: #fff;
-    color: #1a1a1a;
-    border-radius: 0;
+    background-color: rgba(0,0,0,.4);
+    color: #fff;
+    border-radius: 15px;
   }
 
   .navbar-project-name {
