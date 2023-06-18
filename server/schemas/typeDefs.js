@@ -8,7 +8,8 @@ const typeDefs = gql`
   health: Int
   energy: Int
   gold: Int
-  equipment: [Item]
+  playerArmor: Item
+  playerWeapon: Item
   inventory: [Item]
   
   }
@@ -73,7 +74,7 @@ const typeDefs = gql`
     addToInventory(userId : ID!, itemId : ID!): PlayerCharacter
     addGold(userId : ID!, amount : Int!): PlayerCharacter
     removeGold(userId : ID!, amount : Int!): PlayerCharacter
-    equipItem(userId: ID!, itemId: ID!): PlayerCharacter
+
   }
 
   type UserDeleteResponse {
@@ -84,5 +85,7 @@ const typeDefs = gql`
     message: String!
   }
 `;
+
+// equipItem(userId: ID!, itemId: ID!): PlayerCharacter
 
 module.exports = typeDefs;
