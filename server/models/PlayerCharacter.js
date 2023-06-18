@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const mongoose= require("mongoose");
 const Item = require("./Item");
 
 const playerSchema = new Schema({
@@ -36,8 +37,10 @@ const playerSchema = new Schema({
         ref: "item",
         required: true,
         validate : {
-            validator: (value)=>{
-                return value.itemType==='armor'
+            validator: async (value)=>{
+
+                const validType=await Item.findById(value)
+                return validType.itemType==='armor'
             },
             message: "Not armor"
         },
@@ -48,8 +51,10 @@ const playerSchema = new Schema({
         ref: "item",
         required: true,
         validate : {
-            validator: (value)=>{
-                return value.itemType==='weapon'
+            validator: async (value)=>{
+
+                const validType=await Item.findById(value)
+                return validType.itemType==='weapon'
             },
             message: "Not a weapon"
         },
