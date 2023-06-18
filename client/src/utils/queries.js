@@ -20,7 +20,7 @@ export const GET_TASKS = gql`
 `;
 
 export const ALL_ITEMS = gql`
-  query items{
+  query items {
     items {
       _id
       consumable
@@ -30,11 +30,12 @@ export const ALL_ITEMS = gql`
       name
       stats
       value
-    } 
-  }`;
+    }
+  }
+`;
 
 export const ALL_WEAPONS = gql`
-  query weapons{
+  query weapons {
     weapons {
       _id
       consumable
@@ -44,43 +45,41 @@ export const ALL_WEAPONS = gql`
       name
       stats
       value
+    }
   }
-}
-`
-;
-export const ALL_ARMORS= gql`
-query armors {
-  armors {
-    _id
-    name
-    itemType
-    stats
-    desc
-    consumable
-    value
-    itemImage
+`;
+export const ALL_ARMORS = gql`
+  query armors {
+    armors {
+      _id
+      name
+      itemType
+      stats
+      desc
+      consumable
+      value
+      itemImage
+    }
   }
-}`;
+`;
 
 export const ALL_CONSUMABLES = gql`
-query consumables {
-  consumables {
-    _id
-    name
-    itemType
-    stats
-    desc
-    consumable
-    value
-    itemImage
+  query consumables {
+    consumables {
+      _id
+      name
+      itemType
+      stats
+      desc
+      consumable
+      value
+      itemImage
+    }
   }
-}
-
 `;
 
 export const GET_GOLD = gql`
-query playerGold($userId: ID!) {
-  playerGold(userId: $userId)
-}
-
-`
+  query playerGold($userId: ID!) {
+    playerGold(userId: $userId)
+  }
+`;
