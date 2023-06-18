@@ -1,17 +1,17 @@
 import Phaser from "phaser";
 import Back from "../game-assets/map-files/Taskmap1.png";
 import Minotaur from '../game-assets/gameSprites/MinotaurSpritesheet.png';
-import Warrior0 from '../game-assets/gameSprites/Warrior0.png';
-import Warrior0Back from '../game-assets/gameSprites/Warrior0BackSpritesheet.png';
-import Warrior0Left from '../game-assets/gameSprites/Warrior0LeftSpritesheet.png';
-import Warrior0Right from '../game-assets/gameSprites/Warrior0RightSpritesheet.png';
-import Warrior1Front from '../game-assets/gameSprites/Warrior1FrontSpritesheet.png';
-import Warrior1Back from '../game-assets/gameSprites/Warrior1BackSpritesheet.png';
-import Warrior1Left from '../game-assets/gameSprites/Warrior1LeftSpritesheet.png';
-import Warrior1Right from '../game-assets/gameSprites/Warrior1RightSpritesheet.png';
+import Warrior1 from '../game-assets/gameSprites/Warrior1Packed.png';
+// import Warrior0Back from '../game-assets/gameSprites/Warrior0BackSpritesheet.png';
+// import Warrior0Left from '../game-assets/gameSprites/Warrior0LeftSpritesheet.png';
+// import Warrior0Right from '../game-assets/gameSprites/Warrior0RightSpritesheet.png';
+// import Warrior1Front from '../game-assets/gameSprites/Warrior1FrontSpritesheet.png';
+// import Warrior1Back from '../game-assets/gameSprites/Warrior1BackSpritesheet.png';
+// import Warrior1Left from '../game-assets/gameSprites/Warrior1LeftSpritesheet.png';
+// import Warrior1Right from '../game-assets/gameSprites/Warrior1RightSpritesheet.png';
 import startMap from '../game-assets/map-files/Map.json'
 import tiles from'../game-assets/map-files/tileSet1.png'
-import Warrior0Atlas from '../game-assets/gameSprites/Warrior0_atlas.json'
+import Warrior1Atlas from '../game-assets/gameSprites/Warrior1Packed.json'
 
 
 class Scene1 extends Phaser.Scene {
@@ -34,9 +34,10 @@ class Scene1 extends Phaser.Scene {
     });
 
     
-    this.load.atlas('a-warrior0','warrior0',Warrior0Atlas);
+     const dog = this.load.atlas('a-warrior1',Warrior1,Warrior1Atlas);
 
-this.load.image('warrior0',Warrior0);
+    console.log(dog);
+
     // this.load.spritesheet("warrior0front", Warrior0Front, {
     //   frameWidth: 90,
     //   frameHeight: 90,
