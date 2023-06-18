@@ -43,61 +43,78 @@ class Player extends GameObject {
 
   setAnims(){
     this.scene.anims.create({
-      key: 'idle',
-      frames: this.scene.anims.generateFrameNames('a-warrior0',{
-        prefix: 'idle-',
-        end: 1,
-      }),
-      frameRate: 1,
-    });
-    this.scene.anims.create({
-      key: 'walk-right',
-      frames: this.scene.anims.generateFrameNames('a-warrior0',{
-        prefix: 'walk-right-',
+      key: 'LeftRun',
+      frames: this.scene.anims.generateFrameNames('a-warrior1',{
+        prefix: '0_Warrior_LeftRun_',
         end: 14,
       }),
+      repeat: -1,
       frameRate: 14,
     });
     this.scene.anims.create({
-      key: 'walk-up',
-      frames: this.scene.anims.generateFrameNames('a-warrior0',{
-        prefix: 'walk-up-',
+      key: 'RightRun',
+      frames: this.scene.anims.generateFrameNames('a-warrior1',{
+        prefix: '0_Warrior_RightRun_',
         end: 14,
       }),
+      repeat: -1,
       frameRate: 14,
     });
     this.scene.anims.create({
-      key: 'walk-down',
-      frames: this.scene.anims.generateFrameNames('a-warrior0',{
-        prefix: 'walk-down-',
+      key: 'BackRun',
+      frames: this.scene.anims.generateFrameNames('a-warrior1',{
+        prefix: '0_Warrior_BackRun_',
         end: 14,
       }),
+      repeat: -1,
       frameRate: 14,
     });
     this.scene.anims.create({
-      key: 'attack-up',
-      frames: this.scene.anims.generateFrameNames('a-warrior0',{
-        prefix: 'attack-up-',
+      key: 'FrontRun',
+      frames: this.scene.anims.generateFrameNames('a-warrior1',{
+        prefix: '0_Warrior_FrontRun_',
         end: 14,
       }),
+      repeat: -1,
       frameRate: 14,
     });
     this.scene.anims.create({
-      key: 'attack-right',
-      frames: this.scene.anims.generateFrameNames('a-warrior0',{
-        prefix: 'attack-right-',
+      key: 'Attack_1',
+      frames: this.scene.anims.generateFrameNames('a-warrior1',{
+        prefix: '0_Warrior_Attack_1_',
         end: 14,
       }),
+      repeat: -1,
       frameRate: 14,
     });
     this.scene.anims.create({
-      key: 'attack-down',
-      frames: this.scene.anims.generateFrameNames('a-warrior0',{
-        prefix: 'attack-down-',
+      key: 'RightAttack',
+      frames: this.scene.anims.generateFrameNames('a-warrior1',{
+        prefix: '0_Warrior_RightAttack_1_',
         end: 14,
       }),
+      repeat: -1,
       frameRate: 14,
     });
+    this.scene.anims.create({
+      key: 'FrontAttack_1',
+      frames: this.scene.anims.generateFrameNames('a-warrior1',{
+        prefix: '0_Warrior_FrontAttack_1_',
+        end: 14,
+      }),
+      repeat: -1,
+      frameRate: 14,
+    });
+    this.scene.anims.create({
+      key: 'LeftAttack_1',
+      frames: this.scene.anims.generateFrameNames('a-warrior1',{
+        prefix: '0_Warrior_LeftAttack_1_',
+        end: 14,
+      }),
+      repeat: -1,
+      frameRate: 14,
+    });
+
   }
 
   gainExperience(exp){
@@ -120,9 +137,9 @@ class Player extends GameObject {
     this.health -= (damage - this.defense);
     this.healthValue.setText(this.health.toString());
     //insert damAGE animation
-    if(this.health <= 0){
-      this.destroy(); //!review 
-    }
+    // if(this.health <= 0){
+    //   this.destroy(); //!review 
+    // }
   }
 
   doDamage(){
@@ -143,7 +160,8 @@ class Player extends GameObject {
     this.setBody().setVelocity(0);
 
     this.healthValue.setPosition(this.x, this.y-this.height *.04);
-    this.healthValue.setOrigin(0.8,0.5);
+    this.healthValue.setOrigin(0.5,1.5);
+    this.healthValue.setScale(.5);
   
 
     
@@ -153,17 +171,15 @@ class Player extends GameObject {
 
     if ( this.inputKeys.left.isDown || this.inputKeys.left1.isDown) {
       this.body.velocity.x = -100;
-      this.flipSprite();
-      this.anims.isPlaying && this.anims.play('walk-left',true);
-      this.body.setOffset(20,0);
-      //!this.anims.isPlaying && this.anims.play('walk', true);
+      // !this.anims.isPlaying && this.anims.play('LeftRun',true);
+      // this.body.setOffset(20,0);
     }
 
     if ( this.inputKeys.right.isDown || this.inputKeys.right1.isDown) {
      
       this.body.velocity.x = 100;
-      this.flipSprite();
-      this.body.setOffset(0,0);
+      // !this.anims.isPlaying && this.anims.play('RightRun',true)
+      // this.body.setOffset(0,0);
    
     }
 
@@ -176,12 +192,12 @@ class Player extends GameObject {
 
     if ( this.inputKeys.up.isDown || this.inputKeys.up1.isDown) {
       this.body.velocity.y = -100;
-      this.anims.isPlaying && this.anims.play('walk-up',true);
+      // !this.anims.isPlaying && this.anims.play('BackRun',true)
     }
 
     if(this.inputKeys.down.isDown || this.inputKeys.down1.isDown){
       this.body.velocity.y = 100;
-      this.anims.isPlaying && this.anims.play('walk-down',true);
+      // !this.anims.isPlaying && this.anims.play('FrontRun',true)
     }
 
      if((this.inputKeys.up.isDown || this.inputKeys.up1.isDown) && (this.inputKeys.down.isDown || this.inputKeys.down1.isDown)){
