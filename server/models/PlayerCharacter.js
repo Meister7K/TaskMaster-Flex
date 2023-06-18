@@ -32,34 +32,31 @@ const playerSchema = new Schema({
           }
         //num
     },
-    playerArmor:{
+    playerArmor: {
         type: Schema.Types.ObjectId,
         ref: "item",
-        required: true,
-        validate : {
-            validator: async (value)=>{
-
-                const validType=await Item.findById(value)
-                return validType.itemType==='armor'
-            },
-            message: "Not armor"
+        validate: {
+          validator: async function (value) {
+            const validType = await Item.findById(value).exec();
+            return validType.itemType === "armor";
+          },
+          message: "Not armor",
         },
-        default:'648c862d1ff5615e1476ff95'
-    },
-    playerWeapon:{
+        
+      },
+    
+      playerWeapon: {
         type: Schema.Types.ObjectId,
         ref: "item",
-        required: true,
-        validate : {
-            validator: async (value)=>{
-
-                const validType=await Item.findById(value)
-                return validType.itemType==='weapon'
-            },
-            message: "Not a weapon"
+        validate: {
+          validator: async function (value) {
+            const validType = await Item.findById(value).exec();
+            return validType.itemType === "weapon";
+          },
+          message: "Not a weapon",
         },
-        default:'648c862d1ff5615e1476ff91'
-    },
+        
+      },
     inventory : {
 
         type: [Schema.Types.ObjectId],
@@ -69,6 +66,26 @@ const playerSchema = new Schema({
         //array of [items] ref Item.js
     }
 });
+
+
+
+async function getDefaultPlayerArmor() {
+    const lightArmor = await Item.findOne({ name: "Light Armor" }).exec();
+    return lightArmor ? lightArmor._id : null;
+  }
+  
+  async function getDefaultPlayerWeapon() {
+    const sword = await Item.findOne({ name: "Sword of Valor" }).exec();
+    return sword ? sword._id : null;
+  }
+
+
+playerSchema.pre('save', async function(){
+    if(!this.playerArmor)
+        this.playerArmor= await getDefaultPlayerArmor()
+    if(!this.playerWeapon)
+        this.playerWeapon= await getDefaultPlayerWeapon()
+})
 
 const PlayerCharacter = model("playerCharacter", playerSchema);
 module.exports=PlayerCharacter;
