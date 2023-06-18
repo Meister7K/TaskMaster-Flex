@@ -70,7 +70,7 @@ function Navbar() {
                   Shop
                 </Link>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link
                   to={`/${user}/profile`}
                   className="nav-links"
@@ -78,7 +78,7 @@ function Navbar() {
                 >
                   Profile
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
           <SignInForm />
