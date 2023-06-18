@@ -1,0 +1,114 @@
+{
+    "frames":[
+        {
+            "filename": "walk-right",
+            "frames": {
+                "w": 90,
+                "h": 90,
+                "x": 0,
+                "y": 0,
+                "rotated": 0 
+            },
+            "anchor": {
+                "x":0.5,
+                "y": 0.5
+            },
+            "filename": "walk-left",
+            "frames": {
+                "w": 90,
+                "h": 90,
+                "x": 0,
+                "y": 90,
+                "rotated": 0 
+            },
+            "anchor": {
+                "x":0.5,
+                "y": 0.5
+            },
+            "filename": "walk-down",
+            "frames": {
+                "w": 90,
+                "h": 90,
+                "x": 0,
+                "y": 180,
+                "rotated": 0 
+            },
+            "anchor": {
+                "x":0.5,
+                "y": 0.5
+            },
+            "filename": "walk-up",
+            "frames": {
+                "w": 90,
+                "h": 90,
+                "x": 0,
+                "y": 270,
+                "rotated": 0 
+            },
+            "anchor": {
+                "x":0.5,
+                "y": 0.5
+            },
+            "filename": "attack-right",
+            "frames": {
+                "w": 90,
+                "h": 90,
+                "x": 0,
+                "y": 360,
+                "rotated": 0 
+            },
+            "anchor": {
+                "x":0.5,
+                "y": 0.5
+            },
+            "filename": "attack-left",
+            "frames": {
+                "w": 90,
+                "h": 90,
+                "x": 0,
+                "y": 450,
+                "rotated": 0 
+            },
+            "anchor": {
+                "x":0.5,
+                "y": 0.5
+            },
+            "filename": "attack-down",
+            "frames": {
+                "w": 90,
+                "h": 90,
+                "x": 0,
+                "y": 540,
+                "rotated": 0 
+            },
+            "anchor": {
+                "x":0.5,
+                "y": 0.5
+            },
+            "filename": "attack-up",
+            "frames": {
+                "w": 90,
+                "h": 90,
+                "x": 0,
+                "y": 630,
+                "rotated": 0 
+            },
+            "anchor": {
+                "x":0.5,
+                "y": 0.5
+            },
+            "filename": "idle",
+            "frames": {
+                "w": 90,
+                "h": 90,
+                "x": 180,
+                "y": 180,
+                "rotated": 0 
+            },
+            "anchor": {
+                "x":0.5,
+                "y": 0.5
+            }
+        }
+    ]
+}

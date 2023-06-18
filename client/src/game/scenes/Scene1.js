@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 import Back from "../game-assets/map-files/Taskmap1.png";
 import Minotaur from '../game-assets/gameSprites/MinotaurSpritesheet.png';
-import Warrior0Front from '../game-assets/gameSprites/Warrior0FrontSpritesheet.png';
+import Warrior0 from '../game-assets/gameSprites/Warrior0.png';
 import Warrior0Back from '../game-assets/gameSprites/Warrior0BackSpritesheet.png';
 import Warrior0Left from '../game-assets/gameSprites/Warrior0LeftSpritesheet.png';
 import Warrior0Right from '../game-assets/gameSprites/Warrior0RightSpritesheet.png';
@@ -11,6 +11,7 @@ import Warrior1Left from '../game-assets/gameSprites/Warrior1LeftSpritesheet.png
 import Warrior1Right from '../game-assets/gameSprites/Warrior1RightSpritesheet.png';
 import startMap from '../game-assets/map-files/Map.json'
 import tiles from'../game-assets/map-files/tileSet1.png'
+import Warrior0Atlas from '../game-assets/gameSprites/Warrior0_atlas.json'
 
 
 class Scene1 extends Phaser.Scene {
@@ -32,49 +33,53 @@ class Scene1 extends Phaser.Scene {
       frameHeight: 80,
     });
 
-    this.load.spritesheet("warrior0front", Warrior0Front, {
-      frameWidth: 90,
-      frameHeight: 90,
-    });
+    
+    this.load.atlas('a-warrior0','warrior0',Warrior0Atlas);
 
-    this.load.spritesheet("warrior0back", Warrior0Back, {
-      frameWidth: 90,
-      frameHeight: 90,
-    });
+this.load.image('warrior0',Warrior0);
+    // this.load.spritesheet("warrior0front", Warrior0Front, {
+    //   frameWidth: 90,
+    //   frameHeight: 90,
+    // });
 
-    this.load.spritesheet("warrior0left", Warrior0Left, {
-      frameWidth: 90,
-      frameHeight: 90,
-    });
+    // this.load.spritesheet("warrior0back", Warrior0Back, {
+    //   frameWidth: 90,
+    //   frameHeight: 90,
+    // });
 
-    this.load.spritesheet("warrior0right", Warrior0Right, {
-      frameWidth: 90,
-      frameHeight: 90,
-    });
+    // this.load.spritesheet("warrior0left", Warrior0Left, {
+    //   frameWidth: 90,
+    //   frameHeight: 90,
+    // });
+
+    // this.load.spritesheet("warrior0right", Warrior0Right, {
+    //   frameWidth: 90,
+    //   frameHeight: 90,
+    // });
 
 
 
     
 
-    this.load.spritesheet("warrior1front", Warrior1Front, {
-      frameWidth: 141,
-      frameHeight: 90,
-    });
+    // this.load.spritesheet("warrior1front", Warrior1Front, {
+    //   frameWidth: 141,
+    //   frameHeight: 90,
+    // });
 
-    this.load.spritesheet("warrior1back", Warrior1Back, {
-      frameWidth: 141,
-      frameHeight: 90,
-    });
+    // this.load.spritesheet("warrior1back", Warrior1Back, {
+    //   frameWidth: 141,
+    //   frameHeight: 90,
+    // });
 
-    this.load.spritesheet("warrior1left", Warrior1Left, {
-      frameWidth: 141,
-      frameHeight: 90,
-    });
+    // this.load.spritesheet("warrior1left", Warrior1Left, {
+    //   frameWidth: 141,
+    //   frameHeight: 90,
+    // });
 
-    this.load.spritesheet("warrior1right", Warrior1Right, {
-      frameWidth: 141,
-      frameHeight: 90,
-    });
+    // this.load.spritesheet("warrior1right", Warrior1Right, {
+    //   frameWidth: 141,
+    //   frameHeight: 90,
+    // });
 
     this.load.image("background", Back);
 

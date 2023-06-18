@@ -9,6 +9,7 @@ class GameObject extends Phaser.GameObjects.Sprite {
         scene.add.existing(this);
         scene.physics.add.existing(this);
         this.setBody().setCollideWorldBounds(true);
+        
     }
     
   flipSprite(){

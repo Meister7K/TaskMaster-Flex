@@ -31,6 +31,9 @@ class Enemies extends GameObject {
     ) {
       this.setBody().setVelocityX(this.target.x - this.x);
       this.setBody().setVelocityY(this.target.y - this.y);
+      if(this.target === null){
+        this.setBody().setVelocity(0);
+      }
     } else {
       this.setBody().setVelocity(0); //!change to random within a range
     }
@@ -42,6 +45,9 @@ class Enemies extends GameObject {
 
   loseHealth(damage) {
     this.health -= damage;
+    if(this.health <= 0){
+      this.destroy();
+    }
   }
 
   doDamage() {

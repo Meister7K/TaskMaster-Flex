@@ -85,7 +85,7 @@ class Scene2 extends Phaser.Scene {
       //!Player
     // this.playerSprite = this.add.sprite(0,0,'warrior')
 
-    this.player = new Player(this,816,816,'warrior',0,100);
+    this.player = new Player(this,816,816,null,0,100);
 
     console.log(this.player);
 
@@ -101,7 +101,7 @@ const randomX = Phaser.Math.Between(0, this.game.config.width);
   const randomYVelocity =
     Phaser.Math.Between(-30, -20) + Phaser.Math.Between(0, 1) * 40;
 
- this.minotaur = new Minotaur(this, 500, 500, /*randomX, randomY,*/ 'minotaur',0, 100,50,this.player)
+ this.minotaur = new Minotaur(this, randomX, randomY, /*randomX, randomY,*/ 'minotaur',0, 100,50,this.player)
 
 
      
@@ -197,6 +197,11 @@ this.physics.add.collider(this.player, map.objects);
 this.physics.add.collider(this.player, blockGroup );
 
 this.physics.add.collider(this.minotaur, blockGroup);
+
+this.physics.add.collider(this.player, this.minotaur,(obj1,obj2)=>{
+  (obj1).loseHealth((obj2).doDamage());
+  // (obj1).bounce.set(1);
+})
 
 // ! End Collision section
    
