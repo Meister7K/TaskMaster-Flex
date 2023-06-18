@@ -2,12 +2,12 @@ import React from "react";
 import "../../App";
 import { Button } from "../button/Button";
 import "./HomeSection.css";
-import Warrior0 from './homeAssets/Warrior0.png';
-import Warrior1 from './homeAssets/Warrior1.png';
-import Warrior2 from './homeAssets/Warrior2.png';
-import Logo from './homeAssets/TaskmasterLogo.png';
-import Auth from "../../utils/auth"
-import homeMusic from '../../game/game-assets/music/Soliloquy.mp3'
+import Warrior0 from "./homeAssets/Warrior0.png";
+import Warrior1 from "./homeAssets/Warrior1.png";
+import Warrior2 from "./homeAssets/Warrior2.png";
+import Logo from "./homeAssets/TaskmasterLogo.png";
+import Auth from "../../utils/auth";
+import homeMusic from "../../game/game-assets/music/Soliloquy.mp3";
 
 function HomeSection() {
   const scrollToRules = () => {
@@ -22,8 +22,8 @@ function HomeSection() {
 
   const isLoggedIn = Auth.loggedIn();
   let user = null;
-  
-  if(isLoggedIn) {
+
+  if (isLoggedIn) {
     const userFind = Auth.getProfile();
     user = userFind.data.username;
   }
@@ -45,30 +45,17 @@ function HomeSection() {
         {/* //TODO Make all 3 buttons appear when not logged in, and remove the 'Sign Up' button when logged in. */}
 
         <div className="home-bottom-container">
-          {/* {isLoggedIn ? (
-            <p>Thanks for logging in, you may now play the game!</p>
-          ) : (
-            <p>Level up your life, one task at a time!</p>
-          )} */}
-          <div className="home-btns">
-            <Button
-              className="btns"
-              buttonstyle="btn-red"
-              buttonSize="btn-red-large"
-              onClick={scrollToRules}
-              destination="#rules"
-            >
-              Rules and Info
-            </Button>
-            <Button
-              className="btns play-btn"
-              buttonstyle="btn-red"
-              buttonSize="btn-red-large"
-              destination="/sign-up"
-            >
-              Sign Up Now!
-            </Button>
-            {isLoggedIn ? (
+          {isLoggedIn ? (
+            <div className="home-btns">
+              <Button
+                className="btns"
+                buttonstyle="btn-red"
+                buttonSize="btn-red-large"
+                onClick={scrollToRules}
+                destination="#rules"
+              >
+                Rules and Info
+              </Button>
               <Button
                 className="btns play-btn"
                 buttonstyle="btn-red"
@@ -77,7 +64,26 @@ function HomeSection() {
               >
                 Play Game <i className="far fa-play-circle" />
               </Button>
-            ) : (
+            </div>
+          ) : (
+            <div className="home-btns">
+              <Button
+                className="btns"
+                buttonstyle="btn-red"
+                buttonSize="btn-red-large"
+                onClick={scrollToRules}
+                destination="#rules"
+              >
+                Rules and Info
+              </Button>
+              <Button
+                className="btns play-btn"
+                buttonstyle="btn-red"
+                buttonSize="btn-red-large"
+                destination="/sign-up"
+              >
+                Sign Up Now!
+              </Button>
               <Button
                 className="btns play-btn"
                 buttonstyle="btn-red"
@@ -86,8 +92,8 @@ function HomeSection() {
               >
                 Play Game <i className="far fa-play-circle" />
               </Button>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </>
