@@ -59,25 +59,25 @@ function TaskList() {
     try {
       const task = taskData.tasks.find((task) => task._id === taskId);
       
-      console.log(task.difficulty);
+      let userId = user.data._id;
+      let amount = 0;
 
       const response = await completeTask({
         variables: { taskId },
       });
       if (task.difficulty === "Easy") {
-        const goldResponse = await addGold({
-          variables: { amount: 5 },
-        });
+        amount = 5;
       } else if (task.difficulty === "Medium") {
-        const goldResponse = await addGold({
-          variables: { amount: 10 },
-        });
+        amount = 10;
       } else if (task.difficulty === "Hard") {
-        const goldResponse = await addGold({
-          variables: { amount: 20 },
-        });
+        amount = 20;
       }
-      console.log(response);
+
+      const goldResponse = await addGold({
+        variables: { userId, amount },
+      });
+     
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }
