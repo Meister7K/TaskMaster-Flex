@@ -29,7 +29,7 @@ const itemSchema = new Schema({
   premium: {
     type: Boolean,
     required: true,
-
+    default: false,
   },
   consumable: {
     type: Boolean,
@@ -42,8 +42,8 @@ const itemSchema = new Schema({
     //$$$$$$$$$$$
   },
   itemImage: {
-    type: String
-  }
+    type: String,
+  },
 });
 
 const Item = model("item", itemSchema);
