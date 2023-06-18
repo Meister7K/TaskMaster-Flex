@@ -90,3 +90,22 @@
   position: relative;
   top: 2px;
 }
+
+.close-btn {
+    margin-left: 10px;
+    background-image: url("../../../../public/images/navlink-bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 140px;
+    height: 50%;
+    font-size: 100%;
+    color: white;
+    background-color: transparent;
+    border: none;
+}
+
+.close-btn:hover {
+  filter: drop-shadow(0 0 0.90rem crimson);
+  transform: scale(1.05);
+}

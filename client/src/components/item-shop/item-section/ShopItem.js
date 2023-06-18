@@ -146,7 +146,13 @@ function ShopItem(props) {
           <div className="errorText">
             <h2>Purchase Successful! Item obtained.</h2>
             {/* Add any additional content or styling for the success modal */}
-            <button onClick={closePurchaseSuccessModal}>Close</button>
+            <button
+              className="close-btn"
+              buttonstyle="signIn-btn"
+              onClick={closePurchaseSuccessModal}
+            >
+              Close
+            </button>
           </div>
         </div>
       </ReactModal>
@@ -161,7 +167,13 @@ function ShopItem(props) {
           <div className="errorText">
             <h2>Not enough gold, peasant.</h2>
             {/* Add any additional content or styling for the not enough gold modal */}
-            <button onClick={closeNotEnoughGoldModal}>Close</button>
+            <button
+              className="close-btn"
+              buttonstyle="signIn-btn"
+              onClick={closeNotEnoughGoldModal}
+            >
+              Close
+            </button>
           </div>
         </div>
       </ReactModal>
