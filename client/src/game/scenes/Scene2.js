@@ -189,7 +189,9 @@ const randomX = Phaser.Math.Between(0, this.game.config.width);
     batImg.src = Bat;
 // ! Add collisions at the end of every create method for all game objects
 
-this.physics.add.collider(this.player, this.minotaur);
+this.physics.add.collider(this.minotaur, this.player,(obj1,obj2)=>{
+  (obj2).loseHealth((obj1).doDamage());
+})
 
     
 this.physics.add.collider(this.player, map.objects);

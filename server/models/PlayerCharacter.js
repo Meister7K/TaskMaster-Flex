@@ -31,11 +31,29 @@ const playerSchema = new Schema({
           }
         //num
     },
-    equipment:{
-        type: [Schema.Types.ObjectId],
+    playerArmor:{
+        type: Schema.Types.ObjectId,
         ref: "item",
         required: true,
-        default: []
+        validate : {
+            validator: (value)=>{
+                return value.itemType==='armor'
+            },
+            message: "Not armor"
+        },
+        default:'648c862d1ff5615e1476ff95'
+    },
+    playerWeapon:{
+        type: Schema.Types.ObjectId,
+        ref: "item",
+        required: true,
+        validate : {
+            validator: (value)=>{
+                return value.itemType==='weapon'
+            },
+            message: "Not a weapon"
+        },
+        default:'648c862d1ff5615e1476ff91'
     },
     inventory : {
 

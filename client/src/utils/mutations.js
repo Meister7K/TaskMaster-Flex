@@ -107,7 +107,14 @@ export const REMOVE_GOLD = gql`
     }
   }
 `;
-
+export const ADD_GOLD = gql`
+  mutation addGold($userId : ID!, $amount: Int!){
+    addGold(userId: $userId, amount: $amount){
+      _id
+      gold
+    }
+  }
+`;
 export const ADD_TO_INVENTORY=gql`
 mutation addToInventory($userId: ID!, $itemId: ID!) {
   addToInventory(userId: $userId, itemId: $itemId) {

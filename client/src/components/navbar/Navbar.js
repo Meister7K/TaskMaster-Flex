@@ -70,7 +70,15 @@ function Navbar() {
                   Shop
                 </Link>
               </li>
-              <li></li>
+              <li className="nav-item">
+                <Link
+                  to={`/${user}/profile`}
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  Profile
+                </Link>
+              </li>
             </ul>
           </div>
           <SignInForm />

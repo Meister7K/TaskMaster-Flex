@@ -9,12 +9,14 @@ const resolvers = {
     playerCharacters: async () => {
       return await PlayerCharacter.find({})
         .populate("inventory")
-        .populate("equipment");
+        .populate("playerWeapon")
+        .populate("playerArmor")
+        //.populate("equipment");
     },
     users: async () => {
       return await User.find({}).populate({
         path: "playerChar",
-        populate: ["inventory", "equipment"],
+        populate: ["inventory","playerWeapon","playerArmor"],
       });
     },
     tasks: async () => {
@@ -223,36 +225,36 @@ const resolvers = {
       }
     },
 
-    equipItem: async (parent, { userId, itemId }) => {
-      try {
-        const user = await User.findOne({ _id: userId }).populate({
-          path: "playerChar",
-          populate: "equipment",
-        }); //, playerChar: {inventory: {$in : [itemId]}}}).populate({path: 'playerCharacter', populate: ['inventory', 'equipment']});
-        console.log(user);
-        console.log(user.playerChar.inventory);
-        console.log(user.playerChar.inventory.includes(itemId));
-        if (user.playerChar.inventory.includes(itemId)) {
-          let player = await PlayerCharacter.findOneAndUpdate(
-            { _id: user.playerChar._id },
-            { $pull: { inventory: itemId } },
-            { new: true }
-          );
+    // equipItem: async (parent, { userId, itemId }) => {
+    //   try {
+    //     const user = await User.findOne({ _id: userId }).populate({
+    //       path: "playerChar",
+    //       populate: "equipment",
+    //     }); //, playerChar: {inventory: {$in : [itemId]}}}).populate({path: 'playerCharacter', populate: ['inventory', 'equipment']});
+    //     console.log(user);
+    //     console.log(user.playerChar.inventory);
+    //     console.log(user.playerChar.inventory.includes(itemId));
+    //     if (user.playerChar.inventory.includes(itemId)) {
+    //       let player = await PlayerCharacter.findOneAndUpdate(
+    //         { _id: user.playerChar._id },
+    //         { $pull: { inventory: itemId } },
+    //         { new: true }
+    //       );
 
-          player = await PlayerCharacter.findOneAndUpdate(
-            { _id: user.playerChar._id },
-            { $push: { equipment: itemId } },
-            { new: true }
-          );
+    //       player = await PlayerCharacter.findOneAndUpdate(
+    //         { _id: user.playerChar._id },
+    //         { $push: { equipment: itemId } },
+    //         { new: true }
+    //       );
 
-          return player;
-        }
-        return "Item not in inventory";
-      } catch (err) {
-        console.log(err);
-        return err;
-      }
-    },
+    //       return player;
+    //     }
+    //     return "Item not in inventory";
+    //   } catch (err) {
+    //     console.log(err);
+    //     return err;
+    //   }
+    // },
   },
 };
 
