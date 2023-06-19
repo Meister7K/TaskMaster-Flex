@@ -20,11 +20,11 @@ class Scene2 extends Phaser.Scene {
     // let data = new Image();
     // data.src = dataURI
     // this.textures.addBase64(Pony, dataURI, data)
+
   }
 
   create() {
     // ! Level Logic section
-
 
 
     
@@ -101,7 +101,11 @@ const randomX = Phaser.Math.Between(0, this.game.config.width);
   const randomYVelocity =
     Phaser.Math.Between(-30, -20) + Phaser.Math.Between(0, 1) * 40;
 
- this.minotaur = new Minotaur(this, randomX, randomY, /*randomX, randomY,*/ 'minotaur',0, 100,50,this.player)
+
+    const minoutars = 5;
+    for(let i=0;i<minoutars;i++){
+       this.minotaur = new Minotaur(this, randomX, randomY, /*randomX, randomY,*/ 'minotaur',0, 100,50,this.player)
+    }
 
 
      
@@ -113,11 +117,7 @@ const randomX = Phaser.Math.Between(0, this.game.config.width);
       // ! Animations Section
   
    createMinotaurAnimations(this.anims);
-    createPlayerAnimations(this.anims);
- 
-
- 
-    createPlayerAnimations(this.anims);
+   
 
     //! End animations
 
