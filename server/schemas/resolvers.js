@@ -13,12 +13,12 @@ const resolvers = {
         .populate("playerArmor");
       //.populate("equipment");
     },
-    onePlayer: async (parent, {userId})=>{
+    onePlayer: async (parent, { userId }) => {
       let user = await User.findOne({ _id: userId }).populate({
         path: "playerChar",
-        populate: ["inventory","playerWeapon","playerArmor"],
+        populate: ["inventory", "playerWeapon", "playerArmor"],
       });
-      return user.playerChar
+      return user.playerChar;
     },
     users: async () => {
       return await User.find({}).populate({
@@ -232,44 +232,51 @@ const resolvers = {
       }
     },
 
-    equipItem: async (parent, {userId, itemId})=>{
-      try{
-        const user= await User.findById(userId)
-        const itemData=await Item.findById(itemId);
+    equipItem: async (parent, { userId, itemId }) => {
+      try {
+        const user = await User.findById(userId);
+        const itemData = await Item.findById(itemId);
 
-
-        const player=await PlayerCharacter.findOne({_id: user.playerChar._id, inventory: itemData})
-        .populate("inventory")
-        .populate("playerWeapon")
-        .populate("playerArmor");
-        
+        const player = await PlayerCharacter.findOne({
+          _id: user.playerChar._id,
+          inventory: itemData,
+        })
+          .populate("inventory")
+          .populate("playerWeapon")
+          .populate("playerArmor");
 
         //console.log(player);
-        
+
         // console.log("here");
         // console.log(player.inventory);
-        if(player /*&& player.inventory.includes(itemData._id)*/){
-
-          if(itemData.itemType==='weapon'){
-            const updatedPlayer= await PlayerCharacter.findByIdAndUpdate(player._id, {playerWeapon: itemId},{new: true}).populate("playerWeapon")
-            .populate("playerArmor");
-            return updatedPlayer
+        if (player /*&& player.inventory.includes(itemData._id)*/) {
+          if (itemData.itemType === "weapon") {
+            const updatedPlayer = await PlayerCharacter.findByIdAndUpdate(
+              player._id,
+              { playerWeapon: itemId },
+              { new: true }
+            )
+              .populate("playerWeapon")
+              .populate("playerArmor");
+            return updatedPlayer;
+          } else if (itemData.itemType === "armor") {
+            const updatedPlayer = await PlayerCharacter.findByIdAndUpdate(
+              player._id,
+              { playerArmor: itemId },
+              { new: true }
+            )
+              .populate("playerWeapon")
+              .populate("playerArmor");
+            return updatedPlayer;
           }
-          else if(itemData.itemType==='armor'){
-            const updatedPlayer= await PlayerCharacter.findByIdAndUpdate(player._id, {playerArmor: itemId}, {new: true}).populate("playerWeapon")
-            .populate("playerArmor");
-            return updatedPlayer
-          }
-          return player
-          
+          return player;
         }
-      }catch(err){
-        
+      } catch (err) {
         console.log(err);
         return err;
-        
       }
-    }
+    },
+    
   },
 };
 
