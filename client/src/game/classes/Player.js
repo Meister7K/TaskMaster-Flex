@@ -16,6 +16,7 @@ class Player extends GameObject {
     helmEquipped = 0,
     armorEquipped = 0,
     shieldEquipped = 0
+    
   ) {
     super(scene, x, y, spriteSheet, frames);
 
@@ -52,9 +53,12 @@ class Player extends GameObject {
     this.scene.game.events.emit();
 
     //     this.player = this.physics.add.sprite( 840, 780, "warrior0front");
+    this.scene.physics.world.enable(this);
+    this.body.setCircle(16, 36, 36);
 
-    this.setBody().setCircle(12, 0);
-
+    this.setOrigin(0.5, 0.5);
+    this.setPosition(x + this.width / 2, y + this.height / 2);
+    this.setScale(0.5);
     // this.physics.add.sprite(this.x, this.y, this.spriteSheet);
   }
 
