@@ -16,6 +16,7 @@ class Player extends GameObject {
     this.attack = 5 + weaponEquipped;
     this.health = health;
     this.healthValue = new Text(this.scene,this.x,this.y-this.height,this.health.toString())
+    this.hittable = true;
 
 
     this.setAnims();
@@ -33,6 +34,8 @@ class Player extends GameObject {
       interact: Phaser.Input.Keyboard.KeyCodes.SPACE,
       interact1: Phaser.Input.Keyboard.KeyCodes.F,
     });
+
+    this.scene.game.events.emit()
     
     //     this.player = this.physics.add.sprite( 840, 780, "warrior0front");
 
@@ -134,12 +137,23 @@ class Player extends GameObject {
   }
 
   loseHealth(damage){
+    if(this.hittable===true){
     this.health -= (damage - this.defense);
+    this.hittable=false;
+    this.setAlpha(.5);
+    this.scene.time.delayedCall(1000, ()=>{
+      this.hittable = true;
+      this.setAlpha(1);
+    })
+  }
     this.healthValue.setText(this.health.toString());
+
     //insert damAGE animation
-    // if(this.health <= 0){
-    //   this.destroy(); //!review 
-    // }
+    if(this.health <= 0){
+      //this.disableBody(true,false);
+        // this.scene.time.delayedCall(300, ()=>{
+        //   this.destroy()}) //!review 
+        this.setAlpha(.5);}
   }
 
   doDamage(){

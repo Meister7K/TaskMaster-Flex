@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 import Back from "../game-assets/map-files/Taskmap1.png";
 import Minotaur from '../game-assets/gameSprites/MinotaurSpritesheet.png';
-import Warrior1 from '../game-assets/gameSprites/Warrior1Packed.png';
+import Warrior1 from '../game-assets/gameSprites/Warrior1SpriteNEW.png';
 // import Warrior0Back from '../game-assets/gameSprites/Warrior0BackSpritesheet.png';
 // import Warrior0Left from '../game-assets/gameSprites/Warrior0LeftSpritesheet.png';
 // import Warrior0Right from '../game-assets/gameSprites/Warrior0RightSpritesheet.png';
@@ -11,7 +11,7 @@ import Warrior1 from '../game-assets/gameSprites/Warrior1Packed.png';
 // import Warrior1Right from '../game-assets/gameSprites/Warrior1RightSpritesheet.png';
 import startMap from '../game-assets/map-files/Map.json'
 import tiles from'../game-assets/map-files/tileSet1.png'
-import Warrior1Atlas from '../game-assets/gameSprites/Warrior1Packed.json'
+import Warrior1Atlas from '../game-assets/gameSprites/Warrior1ATLAS.json'
 
 
 class Scene1 extends Phaser.Scene {
@@ -33,10 +33,10 @@ class Scene1 extends Phaser.Scene {
       frameHeight: 80,
     });
 
-    
-     const dog = this.load.atlas('a-warrior1',Warrior1,Warrior1Atlas);
+    // this.load.spritesheet(Warrior1);
+    this.load.atlas('a-warrior1','../game-assets/gameSprites/Warrior1SpriteNEW.png','../game-assets/gameSprites/Warrior1ATLAS.json'
+    );
 
-    console.log(dog);
 
     // this.load.spritesheet("warrior0front", Warrior0Front, {
     //   frameWidth: 90,
