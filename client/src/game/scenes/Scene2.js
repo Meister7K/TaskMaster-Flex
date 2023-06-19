@@ -11,7 +11,7 @@ import Minotaur from "../classes/enemies/Minotaur";
 class Scene2 extends Phaser.Scene {
   constructor() {
     super("play game");
-    //this.minotaurs = [];
+    this.minotaurs = [];
   }
 
   preload() {
@@ -115,7 +115,7 @@ const randomX = Phaser.Math.Between(0, this.game.config.width);
        }
        minotaurs.push(this.minotaur);
     }
-
+       this.minotaurs = minotaurs;
 
      
       this.cameras.main.setBounds(0, 0, 1632, 1632);
@@ -198,22 +198,22 @@ const randomX = Phaser.Math.Between(0, this.game.config.width);
     batImg.src = Bat;
 // ! Add collisions at the end of every create method for all game objects
 
-this.physics.add.collider(minotaurs, this.player,(obj1,obj2)=>{
-  (obj2).loseHealth((obj1).doDamage());
-})
+    this.physics.add.collider(minotaurs, this.player,(obj1,obj2)=>{
+      (obj2).loseHealth((obj1).doDamage());
+    })
 
     
-this.physics.add.collider(this.player, map.objects);
+    this.physics.add.collider(this.player, map.objects);
 
-this.physics.add.collider(this.player, blockGroup );
+    this.physics.add.collider(this.player, blockGroup );
 
-this.physics.add.collider(minotaurs, blockGroup);
-this.physics.add.collider(minotaurs, minotaurs);
+    this.physics.add.collider(minotaurs, blockGroup);
+    this.physics.add.collider(minotaurs, minotaurs);
 
-this.physics.add.collider(this.player, minotaurs,(obj1,obj2)=>{
-  (obj1).loseHealth((obj2).doDamage());
+    this.physics.add.collider(this.player, minotaurs,(obj1,obj2)=>{
+      (obj1).loseHealth((obj2).doDamage());
 
-})
+    })
 
 // ! End Collision section
    
@@ -223,7 +223,10 @@ this.physics.add.collider(this.player, minotaurs,(obj1,obj2)=>{
     
 
     this.player.update();
-    this.minotaur.update();
+    
+    this.minotaurs.forEach((minotaur) => {
+      minotaur.update();
+    });
     
     this.scale.displaySize.setAspectRatio(
       window.innerWidth / window.innerHeight
