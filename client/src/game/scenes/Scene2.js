@@ -223,6 +223,7 @@ this.physics.add.collider(this.player, minotaurs,(obj1,obj2)=>{
     
 
     this.player.update();
+    this.minotaur.update();
     
     this.scale.displaySize.setAspectRatio(
       window.innerWidth / window.innerHeight
