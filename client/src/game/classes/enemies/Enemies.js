@@ -14,6 +14,7 @@ class Enemies extends GameObject {
   ) {
     super(scene, x, y, spriteSheet, frames);
 
+    this.flip=true;
     this.target = target;
     this.health = health;
     this.attack = attack;
@@ -38,10 +39,29 @@ class Enemies extends GameObject {
       this.setBody().setVelocityX(this.target.x - this.x);
       this.setBody().setVelocityY(this.target.y - this.y);
       if(this.target === null){
-        this.setBody().setVelocity(0);
+        if(this.flip === true){
+          this.setBody().setVelocity(20,0);
+          this.scene.time.delayedCall(10000, ()=>{
+            this.flip = false;
+          })}else if(this.flip === false){
+            this.setBody().setVelocity(-20,0);
+            this.scene.time.delayedCall(10000, ()=>{
+              this.flip = true;
+            })
+          }
       }
     } else {
-      this.setBody().setVelocity(0); //!change to random within a range
+      if(this.flip === true){
+        this.setBody().setVelocity(20,0);
+        this.scene.time.delayedCall(5000, ()=>{
+          this.flip = false;
+        })}else if(this.flip === false){
+          this.setBody().setVelocity(-20,0);
+          this.scene.time.delayedCall(5000, ()=>{
+            this.flip = true;
+          })
+        }
+    
     }
   }
 
@@ -74,6 +94,7 @@ class Enemies extends GameObject {
 
   update() {
     this.body.velocity.x < 0 ? this.setFlipX(true) : this.setFlipX(false);
+
   }
 }
 
