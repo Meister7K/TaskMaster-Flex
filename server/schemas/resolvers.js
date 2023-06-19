@@ -249,7 +249,6 @@ const resolvers = {
         // console.log("here");
         // console.log(player.inventory);
         if(player /*&& player.inventory.includes(itemData._id)*/){
-          console.log("2")
 
           if(itemData.itemType==='weapon'){
             const updatedPlayer= await PlayerCharacter.findByIdAndUpdate(player._id, {playerWeapon: itemId},{new: true}).populate("playerWeapon")
