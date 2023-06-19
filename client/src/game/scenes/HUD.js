@@ -1,7 +1,7 @@
 
 import Phaser from 'phaser'
 import Coins from '../classes/hud/Coins';
-import Text from '../classes/hud/Text';
+//import Text from '../classes/hud/Text';
 
 class HUD extends Phaser.Scene {
     constructor() {
