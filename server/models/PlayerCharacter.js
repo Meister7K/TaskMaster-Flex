@@ -28,6 +28,14 @@ const playerSchema = new Schema({
       validator: Number.isInteger,
       message: "{VALUE} is not an integer value",
     },
+
+    xp:{
+        type: Number,
+        default: 0,
+        required: true,
+    },
+  
+
     //num
   },
   playerArmor: {
@@ -39,6 +47,7 @@ const playerSchema = new Schema({
         return validType.itemType === "armor";
       },
       message: "Not armor",
+
     },
   },
 
@@ -72,10 +81,18 @@ async function getDefaultPlayerWeapon() {
   return sword ? sword._id : null;
 }
 
-playerSchema.pre("save", async function () {
-  if (!this.playerArmor) this.playerArmor = await getDefaultPlayerArmor();
-  if (!this.playerWeapon) this.playerWeapon = await getDefaultPlayerWeapon();
-});
+
+playerSchema.pre('save', async function(){
+    if(!this.playerArmor)
+        this.playerArmor= await getDefaultPlayerArmor()
+    if(!this.playerWeapon)
+        this.playerWeapon= await getDefaultPlayerWeapon()
+    if(this.xp>=this.level*100){
+        this.xp=(this.xp%(this.level*100));
+        this.level=this.level+1;
+    }
+})
+
 
 const PlayerCharacter = model("playerCharacter", playerSchema);
 module.exports = PlayerCharacter;

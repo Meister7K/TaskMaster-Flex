@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { ONE_PLAYER } from "../../utils/queries";
+
+import { EQUIP_ITEM, REMOVE_GOLD } from "../../utils/mutations";
+
 import Auth from "../../utils/auth";
 import ReactModal from "react-modal";
 
@@ -14,6 +17,15 @@ function PlayerCard() {
     variables: { userId: Auth.getProfile().data._id },
   });
 
+
+
+  function handleEquip(e){
+
+    
+
+  }
+
+
   //console.log(playerData.onePlayer);
   let playerInventoryXML = <h3>loading</h3>;
   if (!loading) {
@@ -25,8 +37,10 @@ function PlayerCard() {
           <li>{item.name}</li>
           <li>{item.value}</li>
         </ul>
-        <button>sell</button>
-        <button>equip</button>
+
+        <button cost={item.value}>sell</button>
+        <button itemId={item._id}>equip</button>
+
       </div>
     ));
   }
@@ -42,7 +56,9 @@ function PlayerCard() {
           <h3>Stats:</h3>
           <ul>
             <li>Level: {playerData.onePlayer.level}</li>
-            <li>XP: {playerData.onePlayer.level}</li>
+
+            <li>XP: {playerData.onePlayer.xp || 0}</li>
+
             <li>Max Health: {playerData.onePlayer.health}</li>
           </ul>
         </div>

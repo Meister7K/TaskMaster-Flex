@@ -81,6 +81,12 @@ export const ONE_PLAYER = gql`
   query onePlayer($userId: ID!) {
     onePlayer(userId: $userId) {
       _id
+      name
+      itemType
+      stats
+      desc
+      consumable
+      value
       level
       health
       energy
