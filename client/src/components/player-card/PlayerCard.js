@@ -26,7 +26,7 @@ function PlayerCard() {
   }
 
 
-  //console.log(playerData.onePlayer);
+  // console.log(playerData.onePlayer);
   let playerInventoryXML = <h3>loading</h3>;
   if (!loading) {
     playerInventoryXML = playerData.onePlayer.inventory.map((item, i) => (
