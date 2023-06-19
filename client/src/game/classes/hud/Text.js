@@ -7,7 +7,7 @@ export class Text extends GameObjects.Text {
       stroke: '#000',
       strokeThickness: 4,
     });
-    this.setOrigin(0, 0);
+    this.setOrigin(0.5, 0.5);
     scene.add.existing(this);
   }
 }

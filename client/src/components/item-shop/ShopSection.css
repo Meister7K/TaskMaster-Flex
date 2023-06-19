@@ -1,19 +1,18 @@
 .shopSection {
-    border: 5px solid black;
-    border-radius: 25px;
-    /* background: url(https://static.vecteezy.com/system/resources/previews/000/134/115/original/large-wood-planks-vector-background.jpg); */
-    background-image: url("./item-shop-assets/stonewall.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    padding: 20px;
-    margin: 20px 50px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    min-width:500px;
-    box-shadow:
-    inset 0 0 0 800px rgba(0, 0, 0, 0.3),
+  border: 5px solid black;
+  border-radius: 25px;
+  /* background: url(https://static.vecteezy.com/system/resources/previews/000/134/115/original/large-wood-planks-vector-background.jpg); */
+  background-image: url("./item-shop-assets/stonewall.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 20px;
+  margin: 20px 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-width: 500px;
+  box-shadow: inset 0 0 0 800px rgba(0, 0, 0, 0.3),
     inset 0 0 100px 10px rgba(0, 0, 0, 0.6),
     inset 0 0 100px 10px rgba(0, 0, 0, 0.4);
 }
@@ -21,50 +20,50 @@
 .blacksmithTitle,
 .generalStoreTitle,
 .premiumStoreTitle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 25px;
-    background-image: url("./item-shop-assets/darkwoodplank4.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    color: white !important;
-    text-shadow: 2px 2px black;
-    height: 124px;
-    padding: 0 20px !important;
-    width: 100%;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  background-image: url("./item-shop-assets/darkwoodplank4.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: white !important;
+  text-shadow: 2px 2px black;
+  height: 124px;
+  padding: 0 20px !important;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .blacksmithSubtitle,
 .generalStoreSubtitle,
 .premiumStoreSubtitle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* border: 5px solid black; */
-    border-radius: 25px;
-    /* background: url(https://tse4.mm.bing.net/th?id=OIP.bwkJGkRFN24Irs9-nb3xIAHaHa&pid=Api); */
-    background-image: url("./item-shop-assets/darkwoodplank3.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    color: white !important;
-    text-shadow: 2px 2px black;
-    padding: 0 20px !important;
-    height: 90px !important;
-    min-width: 250px;
-    margin: 0 auto !important;
-    font-size: 1.65rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 5px solid black; */
+  border-radius: 25px;
+  /* background: url(https://tse4.mm.bing.net/th?id=OIP.bwkJGkRFN24Irs9-nb3xIAHaHa&pid=Api); */
+  background-image: url("./item-shop-assets/darkwoodplank3.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: white !important;
+  text-shadow: 2px 2px black;
+  padding: 0 20px !important;
+  height: 90px !important;
+  min-width: 250px;
+  margin: 0 auto !important;
+  font-size: 1.65rem;
 }
 
 .premiumStoreTitle h2,
 .generalStoreTitle h2,
 .blacksmithTitle h2 {
-    font-size: 3rem;
-    color: #fff !important;
-    -webkit-text-stroke: 2px black;
+  font-size: 3rem;
+  color: #fff !important;
+  -webkit-text-stroke: 2px black;
 }
 
 /* .generalStoreTitle {
@@ -84,51 +83,43 @@
 } */
 
 .subTitle {
-    margin: 20px;
-    padding: 5px;
-    width: fit-content;
-
+  margin: 20px;
+  padding: 5px;
+  width: fit-content;
 }
 
 .itemList {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
 }
 
-@media (max-width:1599px) {
-
-    .blacksmithTitle,
-    .generalStoreTitle,
-    .premiumStoreTitle {
-        background-image: url("./item-shop-assets/darkwoodplank3.png");
-    }
-
+@media (max-width: 1599px) {
+  .blacksmithTitle,
+  .generalStoreTitle,
+  .premiumStoreTitle {
+    background-image: url("./item-shop-assets/darkwoodplank3.png");
+  }
 }
 
-@media (max-width:750px) {
+@media (max-width: 750px) {
+  .premiumStoreTitle h2,
+  .generalStoreTitle h2,
+  .blacksmithTitle h2 {
+    font-size: 2.25rem;
+  }
 
-    .premiumStoreTitle h2,
-    .generalStoreTitle h2,
-    .blacksmithTitle h2 {
-        font-size: 2.25rem;
-    }
-
-    .blacksmithSubtitle,
-    .generalStoreSubtitle,
-    .premiumStoreSubtitle {
-
-        font-size: 1.45rem;
-
-    }
-
+  .blacksmithSubtitle,
+  .generalStoreSubtitle,
+  .premiumStoreSubtitle {
+    font-size: 1.45rem;
+  }
 }
 
 @media (max-width: 600px) {
-    .shopSection {
-        margin: 20px 0px;
-    }
-
+  .shopSection {
+    margin: 20px 0px;
+  }
 }

@@ -9,8 +9,8 @@
   top: 0;
   z-index: 9999;
   border: 5px solid black;
-  filter: drop-shadow(0 0 0.75rem #201B15);
-  cursor: url("../../../public/images/dagger-cursor1.png")18 14, auto !important;
+  filter: drop-shadow(0 0 0.75rem #201b15);
+  cursor: url("../../../public/images/dagger-cursor1.png") 18 14, auto !important;
 }
 
 .navbar-container {
@@ -45,7 +45,7 @@
 
 .nav-menu li {
   margin-bottom: 0 !important;
-  font-size:1rem;
+  font-size: 1rem;
 }
 
 .nav-item {
@@ -59,7 +59,7 @@
 }
 
 .nav-item:hover {
-  filter: drop-shadow(0 0 0.90rem crimson);
+  filter: drop-shadow(0 0 0.9rem crimson);
   transform: scale(1.05);
 }
 
@@ -69,13 +69,13 @@
   display: flex;
   align-items: center;
   text-decoration: none;
-  padding: 0.5rem .5rem;
+  padding: 0.5rem 0.5rem;
   height: 100%;
   width: 125px;
   text-align: center;
   justify-content: center;
   user-select: none;
-  cursor: url("../../../public/images/dagger-cursor1.png")18 14, auto !important;
+  cursor: url("../../../public/images/dagger-cursor1.png") 18 14, auto !important;
 }
 
 .fa-bars {
@@ -92,7 +92,7 @@
 
 /* Navbar Sign In Form */
 .navbar-sign-in-form {
-  height:80px;
+  height: 80px;
   padding: 0 3px 0 3px;
   display: flex;
   align-items: center;
@@ -138,11 +138,10 @@
     opacity: 1;
     transition: all 0.5s ease;
     justify-content: flex-start;
-   
   }
 
   .nav-menu.active {
-    background: rgba(100, 100, 100, .5);
+    background: rgba(100, 100, 100, 0.5);
     box-shadow: 0 0 10px rgba(100, 100, 100, 1);
     border: blur(5px);
     left: 0;
@@ -159,7 +158,7 @@
   }
 
   .nav-links:hover {
-    background-color: rgba(0,0,0,.4);
+    background-color: rgba(0, 0, 0, 0.4);
     color: #fff;
     border-radius: 15px;
   }
@@ -208,11 +207,11 @@
   }
 
   .navbar-sign-in-form {
-  height:80px;
-  padding: 0 3px 0 3px;
-  display: flex;
-  align-items: center;
-  user-select: none;
-  justify-content: center;
-}
+    height: 80px;
+    padding: 0 3px 0 3px;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    justify-content: center;
+  }
 }

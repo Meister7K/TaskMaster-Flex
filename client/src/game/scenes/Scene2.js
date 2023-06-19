@@ -20,11 +20,11 @@ class Scene2 extends Phaser.Scene {
     // let data = new Image();
     // data.src = dataURI
     // this.textures.addBase64(Pony, dataURI, data)
+
   }
 
   create() {
     // ! Level Logic section
-
 
 
     
@@ -85,7 +85,7 @@ class Scene2 extends Phaser.Scene {
       //!Player
     // this.playerSprite = this.add.sprite(0,0,'warrior')
 
-    this.player = new Player(this,816,816,null,0,100);
+    this.player = new Player(this,816,816,'a-warrior1',0,100);
 
     console.log(this.player);
 
@@ -101,7 +101,15 @@ const randomX = Phaser.Math.Between(0, this.game.config.width);
   const randomYVelocity =
     Phaser.Math.Between(-30, -20) + Phaser.Math.Between(0, 1) * 40;
 
- this.minotaur = new Minotaur(this, randomX, randomY, /*randomX, randomY,*/ 'minotaur',0, 100,50,this.player)
+
+    const minoutarnum = 5;
+    const minotaurs = []
+    for(let i=0;i<minoutarnum;i++){
+      const randomX = Phaser.Math.Between(0, this.game.config.width);
+      const randomY = Phaser.Math.Between(0, this.game.config.height);
+       this.minotaur = new Minotaur(this, randomX, randomY, 'minotaur',0, 100,50,this.player);
+       minotaurs.push(this.minotaur);
+    }
 
 
      
@@ -112,12 +120,8 @@ const randomX = Phaser.Math.Between(0, this.game.config.width);
 
       // ! Animations Section
   
-   createMinotaurAnimations(this.anims);
-    createPlayerAnimations(this.anims);
- 
-
- 
-    createPlayerAnimations(this.anims);
+   //createMinotaurAnimations(this.anims);
+   
 
     //! End animations
 
@@ -175,7 +179,7 @@ const randomX = Phaser.Math.Between(0, this.game.config.width);
         const bat = this.add.sprite(randomX, randomY, "batSheet");
         this.physics.add.existing(bat);
         this.physics.add.collider(bat.body, this.player)
-        this.physics.add.collider(bat.body, this.minotaur)
+        this.physics.add.collider(bat.body, minotaurs)
         this.physics.add.collider(bat.body, blockGroup)
         bat.body.velocity.setTo(randomXVelocity, randomYVelocity);
         bat.body.bounce.set(1);
@@ -189,7 +193,7 @@ const randomX = Phaser.Math.Between(0, this.game.config.width);
     batImg.src = Bat;
 // ! Add collisions at the end of every create method for all game objects
 
-this.physics.add.collider(this.minotaur, this.player,(obj1,obj2)=>{
+this.physics.add.collider(minotaurs, this.player,(obj1,obj2)=>{
   (obj2).loseHealth((obj1).doDamage());
 })
 
@@ -198,11 +202,12 @@ this.physics.add.collider(this.player, map.objects);
 
 this.physics.add.collider(this.player, blockGroup );
 
-this.physics.add.collider(this.minotaur, blockGroup);
+this.physics.add.collider(minotaurs, blockGroup);
+this.physics.add.collider(minotaurs, minotaurs);
 
-this.physics.add.collider(this.player, this.minotaur,(obj1,obj2)=>{
+this.physics.add.collider(this.player, minotaurs,(obj1,obj2)=>{
   (obj1).loseHealth((obj2).doDamage());
-  // (obj1).bounce.set(1);
+
 })
 
 // ! End Collision section

@@ -3,7 +3,12 @@ import { useMutation, useQuery } from "@apollo/client";
 import "./TaskList.css";
 import Auth from "../../utils/auth";
 
-import { ADD_TASK, COMPLETE_TASK, DELETE_TASK } from "../../utils/mutations";
+import {
+  ADD_TASK,
+  COMPLETE_TASK,
+  DELETE_TASK,
+  ADD_GOLD,
+} from "../../utils/mutations";
 import { GET_TASKS } from "../../utils/queries";
 
 function TaskList() {
@@ -22,7 +27,6 @@ function TaskList() {
     refetchQueries: [{ query: GET_TASKS }],
   });
   const user = Auth.getProfile();
-  console.log(user);
   const {
     loading,
     error: queryError,
@@ -30,6 +34,8 @@ function TaskList() {
   } = useQuery(GET_TASKS, {
     variables: { userId: user.data._id },
   });
+
+  const [addGold, { error: goldError }] = useMutation(ADD_GOLD);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -56,10 +62,27 @@ function TaskList() {
 
   const handleCompleteTask = async (taskId) => {
     try {
+      const task = taskData.tasks.find((task) => task._id === taskId);
+
+      let userId = user.data._id;
+      let amount = 0;
+
       const response = await completeTask({
         variables: { taskId },
       });
-      console.log(response);
+      if (task.difficulty === "Easy") {
+        amount = 5;
+      } else if (task.difficulty === "Medium") {
+        amount = 10;
+      } else if (task.difficulty === "Hard") {
+        amount = 20;
+      }
+
+      const goldResponse = await addGold({
+        variables: { userId, amount },
+      });
+
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }

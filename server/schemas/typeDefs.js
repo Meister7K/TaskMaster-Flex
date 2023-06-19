@@ -1,17 +1,15 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-
-  type PlayerCharacter{
-  _id: ID
-  level: Int
-  health: Int
-  energy: Int
-  gold: Int
-  playerArmor: Item
-  playerWeapon: Item
-  inventory: [Item]
-  
+  type PlayerCharacter {
+    _id: ID
+    level: Int
+    health: Int
+    energy: Int
+    gold: Int
+    playerArmor: Item
+    playerWeapon: Item
+    inventory: [Item]
   }
 
   type User {
@@ -76,7 +74,6 @@ const typeDefs = gql`
     addGold(userId : ID!, amount : Int!): PlayerCharacter
     removeGold(userId : ID!, amount : Int!): PlayerCharacter
     equipItem(userId: ID!, itemId: ID!): PlayerCharacter
-
   }
   
 

@@ -20,6 +20,12 @@ class Enemies extends GameObject {
     this.ATTACK_RADIUS = 100; //px
     scene.add.existing(this);
     scene.physics.add.existing(this);
+    this.getHit=()=>{
+      if(Phaser.Math.Distance.BetweenPoints({x:this.x, y:this.y},
+        {x:this.target.x, y:this.target.y})<this.target.width){
+          this.loseHealth(target.doDamage())
+        }
+    }
   }
 
   preUpdate() {
@@ -46,13 +52,25 @@ class Enemies extends GameObject {
   loseHealth(damage) {
     this.health -= damage;
     if(this.health <= 0){
-      this.destroy();
+      this.disableBody(true,false);
+        this.scene.time.delayedCall(300, ()=>{
+          this.destroy();
+          this.drop();
+        })
     }
   }
 
-  doDamage() {
-    return this.attack;
+  drop(){
+    
   }
+
+  doDamage() {
+    if(this.target.health >0){
+      return this.attack;
+  } else {
+    return ''
+  }
+}
 
   update() {
     this.body.velocity.x < 0 ? this.setFlipX(true) : this.setFlipX(false);

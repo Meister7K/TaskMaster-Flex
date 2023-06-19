@@ -100,30 +100,33 @@ export const DELETE_TASK = gql`
 `;
 
 export const REMOVE_GOLD = gql`
-  mutation removeGold($userId : ID!, $amount: Int!){
-    removeGold(userId: $userId, amount: $amount){
+  mutation removeGold($userId: ID!, $amount: Int!) {
+    removeGold(userId: $userId, amount: $amount) {
       _id
       gold
     }
   }
 `;
+
 export const ADD_GOLD = gql`
-  mutation addGold($userId : ID!, $amount: Int!){
-    addGold(userId: $userId, amount: $amount){
+  mutation addGold($userId: ID!, $amount: Int!) {
+    addGold(userId: $userId, amount: $amount) {
       _id
       gold
     }
   }
 `;
-export const ADD_TO_INVENTORY=gql`
-mutation addToInventory($userId: ID!, $itemId: ID!) {
-  addToInventory(userId: $userId, itemId: $itemId) {
-    _id
-    inventory {
+
+export const ADD_TO_INVENTORY = gql`
+  mutation addToInventory($userId: ID!, $itemId: ID!) {
+    addToInventory(userId: $userId, itemId: $itemId) {
       _id
-      name
+      inventory {
+        _id
+        name
+      }
+      gold
     }
-    gold
   }
 }
 `;
@@ -143,5 +146,7 @@ mutation equipItem($userId: ID!, $itemId: ID!) {
     }
   }
 }
-
 `;
+
+
+
