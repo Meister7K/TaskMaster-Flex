@@ -47,20 +47,25 @@ class Scene2 extends Phaser.Scene {
       0
     );
 
+console.log(map);
+console.log(map.layers)
+
+const layer1 = map.createLayer('Layer1','set1',0,0);
+const layer2 = map.createLayer('Layer2','set1',0,0);
+const layer3 = map.createLayer('Layer3','set1',0,0);
 
 
-
-      const mapArr=[]
-      console.log(map.objects);
+    //   const mapArr=[]
+    
 
       
-    map.layers.forEach((layer,index)=>{
+    // map.layers.forEach((layer,index)=>{
       
-      let newlayer= map.createLayer(layer.name,'set1',0,0);
+    //   let newlayer= map.createLayer(layer.name,'set1',0,0);
 
-      mapArr.push(newlayer)
-    }
-    )
+    //   mapArr.push(newlayer)
+    // }
+    // )
 
     let blockGroup = [];
 
@@ -130,7 +135,10 @@ const randomX = Phaser.Math.Between(0, this.game.config.width);
 
     //! End animations
 
-
+    const layer4 = map.createLayer('Layer4','set1',0,0);
+    const layer5 = map.createLayer('Layer5','set1',0,0);
+    const layer6 = map.createLayer('Layer6','set1',0,0);
+    const layer7 = map.createLayer('Layer7','set1',0,0);
     // const numMinotaurs = 3;
 
     // for (let i = 0; i < numMinotaurs; i++) {
