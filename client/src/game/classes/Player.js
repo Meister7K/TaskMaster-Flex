@@ -1,6 +1,7 @@
 import GameObject from "./GameObject";
 import Phaser from "phaser";
 import Text from "./hud/Text";
+//import CONST from "./Const";
 
 class Player extends GameObject {
   _maxHealth = 100;
@@ -33,6 +34,7 @@ class Player extends GameObject {
       this.health.toString()
     );
     this.hittable = true;
+    this.isAttacking = false;
 
     this.setAnims();
 
@@ -50,7 +52,7 @@ class Player extends GameObject {
       interact1: Phaser.Input.Keyboard.KeyCodes.F,
     });
 
-    this.scene.game.events.emit();
+    //this.scene.game.events.emit();
 
     //     this.player = this.physics.add.sprite( 840, 780, "warrior0front");
     this.scene.physics.world.enable(this);
@@ -72,7 +74,7 @@ class Player extends GameObject {
         zeroPad: 3,
       }),
       repeat: -1,
-      frameRate: 14,
+      frameRate: 28,
     });
     this.scene.anims.create({
       key: "RightRun",
@@ -83,7 +85,7 @@ class Player extends GameObject {
         zeroPad: 3,
       }),
       repeat: -1,
-      frameRate: 14,
+      frameRate: 28,
     });
     this.scene.anims.create({
       key: "BackRun",
@@ -94,7 +96,7 @@ class Player extends GameObject {
         zeroPad: 3,
       }),
       repeat: -1,
-      frameRate: 14,
+      frameRate: 28,
     });
     this.scene.anims.create({
       key: "FrontRun",
@@ -105,7 +107,7 @@ class Player extends GameObject {
         zeroPad: 3,
       }),
       repeat: -1,
-      frameRate: 14,
+      frameRate: 28,
     });
     this.scene.anims.create({
       key: "Attack_1",
@@ -115,19 +117,19 @@ class Player extends GameObject {
         end: 14,
         zeroPad: 3,
       }),
-      repeat: -1,
-      frameRate: 14,
+
+      frameRate: 28,
     });
     this.scene.anims.create({
-      key: "RightAttack",
+      key: "RightAttack_1",
       frames: this.scene.anims.generateFrameNames("a-warrior1", {
         prefix: "0_Warrior_RightAttack_1_",
-        start: 1,
+
         end: 14,
         zeroPad: 3,
       }),
-      repeat: -1,
-      frameRate: 14,
+
+      frameRate: 28,
     });
     this.scene.anims.create({
       key: "FrontAttack_1",
@@ -137,8 +139,8 @@ class Player extends GameObject {
         end: 14,
         zeroPad: 3,
       }),
-      repeat: -1,
-      frameRate: 14,
+
+      frameRate: 28,
     });
     this.scene.anims.create({
       key: "LeftAttack_1",
@@ -148,8 +150,8 @@ class Player extends GameObject {
         end: 14,
         zeroPad: 3,
       }),
-      repeat: -1,
-      frameRate: 14,
+
+      frameRate: 28,
     });
   }
 
@@ -174,23 +176,53 @@ class Player extends GameObject {
       this.health -= damage - this.defense;
       this.hittable = false;
       this.setAlpha(0.5);
-      this.scene.time.delayedCall(1000, () => {
+      if (this.health <= 0) {
+        //this.disableBody(true,false);
+        // this.scene.time.delayedCall(300, ()=>{
+        //   this.destroy()}) //!review
+        this.setAlpha(0.5);
+      }else{this.scene.time.delayedCall(1000, () => {
         this.hittable = true;
         this.setAlpha(1);
-      });
+      });}
+      
     }
     this.healthValue.setText(this.health.toString());
 
     //insert damAGE animation
-    if (this.health <= 0) {
-      //this.disableBody(true,false);
-      // this.scene.time.delayedCall(300, ()=>{
-      //   this.destroy()}) //!review
-      this.setAlpha(0.5);
-    }
+    
   }
 
   doDamage() {
+    //const {isFacing}  =  this.body.velocity;
+    if(!this.isAttacking && this.body.y < 0){
+      this.anims.play("Attack_1");
+      this.isAttacking = true;
+      this.scene.time.delayedCall(500, ()=>{
+        this.isAttacking = false;
+      },this);
+    }
+    if(!this.isAttacking && this.body.y > 0){
+      this.anims.play("FrontAttack_1");
+      this.isAttacking = true;
+     this.scene.time.delayedCall(500, ()=>{
+        this.isAttacking = false;
+      },this);
+    }
+    if(!this.isAttacking && this.body.x > 0){
+      this.anims.play("RightAttack_1");
+      this.isAttacking = true;
+      this.scene.time.delayedCall(500, ()=>{
+        this.isAttacking = false;
+      },this);
+    }
+    if(!this.isAttacking && this.body.x < 0){
+      this.anims.play("LeftAttack_1");
+      this.isAttacking = true;
+      this.scene.time.delayedCall(500, ()=>{
+        this.isAttacking = false;
+      },this);
+    }
     return this.attack;
   }
 
@@ -224,9 +256,34 @@ class Player extends GameObject {
     this.healthValue.setOrigin(0.5, 1.5);
     this.healthValue.setScale(0.5);
 
-    // const { left, right, up, down, input } = this.cursors;
+    // if (this.inputKeys.attack.isDown && (this.inputKeys.left.isDown || this.inputKeys.left1.isDown)) {
+    //    this.anims.play("LeftAttack_1", true);
+    //   this.doDamage();
+    // }
+    // if (this.inputKeys.attack.isDown && (this.inputKeys.right.isDown || this.inputKeys.right1.isDown)) {
+    //   this.anims.play("RightAttack_1", true);
+    //   this.doDamage();
+    // }
+    // if (this.inputKeys.attack.isDown && (this.inputKeys.up.isDown || this.inputKeys.up1.isDown)) {
+    //   this.anims.play("Attack_1", true);
+    //   this.doDamage();
+    // }
+    // if (this.inputKeys.attack.isDown && (this.inputKeys.down.isDown || this.inputKeys.down1.isDown)) {
+    //   this.anims.play("FrontAttack_1", true);
+    //   this.doDamage();
+    //   this.scene.game.events.emit('attack');
+    // }
+  
+    if(this.inputKeys.attack.isDown){
+     
+      this.doDamage();
+      this.scene.game.events.emit('attack');
+    }
+    
 
-    //let isMoving = false;
+    if (this.inputKeys.interact.isDown) {
+      this.interact();
+    }
 
     if (this.inputKeys.left.isDown || this.inputKeys.left1.isDown) {
       this.body.velocity.x = -100;
@@ -274,14 +331,14 @@ class Player extends GameObject {
     // }
 
     // //TODO add attack animation & interaction
-    if (this.inputKeys.attack.isDown) {
-      // this.player.anims.play("warrior1AttackAnimation", true);
-      this.doDamage();
-    }
+    // if (this.inputKeys.attack.isDown) {
+    //   // this.player.anims.play("warrior1AttackAnimation", true);
+    //   this.doDamage();
+    // }
 
-    if (this.inputKeys.interact.isDown) {
-      this.interact();
-    }
+    // if (this.inputKeys.interact.isDown) {
+    //   this.interact();
+    // }
 
     // // Adjust camera bounds when character reaches near the edge
     // let cameraBounds = this.cameras.main.getBounds();

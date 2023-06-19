@@ -85,7 +85,7 @@ class Scene2 extends Phaser.Scene {
       //!Player
     // this.playerSprite = this.add.sprite(0,0,'warrior')
 
-    this.player = new Player(this,816,816,'a-warrior1',0,100);
+    this.player = new Player(this,760,750,'a-warrior1',0,100);
 
     console.log(this.player);
 
@@ -107,7 +107,12 @@ const randomX = Phaser.Math.Between(0, this.game.config.width);
     for(let i=0;i<minoutarnum;i++){
       const randomX = Phaser.Math.Between(0, this.game.config.width);
       const randomY = Phaser.Math.Between(0, this.game.config.height);
+      
+
        this.minotaur = new Minotaur(this, randomX, randomY, 'minotaur',0, 100,50,this.player);
+       if (this.minotaur.velocity === 0){
+        this.minotaur.velocity.setTo(randomXVelocity,randomYVelocity);
+       }
        minotaurs.push(this.minotaur);
     }
 
@@ -215,6 +220,7 @@ this.physics.add.collider(this.player, minotaurs,(obj1,obj2)=>{
   }
 
   update() {
+    
 
     this.player.update();
     
