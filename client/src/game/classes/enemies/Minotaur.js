@@ -4,7 +4,7 @@ class Minotaur extends Enemies {
   constructor(scene, x, y, spriteSheet, frames, health, attack, target) {
     super(scene, x, y, spriteSheet, frames, health, attack, target);
 
-    this.setBody().setSize(32, 32);
+    this.setBody().setSize(70, 100);
 
     this.setScale(0.5);
 
