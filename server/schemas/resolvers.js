@@ -276,7 +276,39 @@ const resolvers = {
         return err;
       }
     },
-    
+    removeItem : async (parent, { userId, itemId }) => {
+
+      try {
+        const user = await User.findById(userId);
+        const itemData = await Item.findById(itemId);
+
+        const player = await PlayerCharacter.findOne({
+          _id: user.playerChar._id,
+          inventory: itemData,
+        })
+          .populate("inventory")
+          .populate("playerWeapon")
+          .populate("playerArmor");
+        
+        // if(player.playerWeapon._id ===itemData._id || player.playerArmor. ===itemData._id){
+        //   return "Cant sell equipped item";
+        // }
+        const newInv = player.inventory.filter(item => {
+          
+          return !Object.is(item._id, itemData._id)});
+        
+        //console.log(newInv);
+        player.inventory=newInv;
+        await player.save();
+        return player;
+
+
+      }catch(err){
+        console.log(err);
+        return err;
+      }
+
+    }
   },
 };
 
