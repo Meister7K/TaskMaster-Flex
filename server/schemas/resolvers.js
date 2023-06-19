@@ -13,6 +13,13 @@ const resolvers = {
         .populate("playerArmor")
         //.populate("equipment");
     },
+    onePlayer: async (parent, {userId})=>{
+      let user = await User.findOne({ _id: userId }).populate({
+        path: "playerChar",
+        populate: ["inventory","playerWeapon","playerArmor"],
+      });
+      return user.playerChar
+    },
     users: async () => {
       return await User.find({}).populate({
         path: "playerChar",
