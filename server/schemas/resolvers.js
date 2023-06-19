@@ -10,20 +10,20 @@ const resolvers = {
       return await PlayerCharacter.find({})
         .populate("inventory")
         .populate("playerWeapon")
-        .populate("playerArmor")
-        //.populate("equipment");
+        .populate("playerArmor");
+      //.populate("equipment");
     },
-    onePlayer: async (parent, {userId})=>{
+    onePlayer: async (parent, { userId }) => {
       let user = await User.findOne({ _id: userId }).populate({
         path: "playerChar",
-        populate: ["inventory","playerWeapon","playerArmor"],
+        populate: ["inventory", "playerWeapon", "playerArmor"],
       });
-      return user.playerChar
+      return user.playerChar;
     },
     users: async () => {
       return await User.find({}).populate({
         path: "playerChar",
-        populate: ["inventory","playerWeapon","playerArmor"],
+        populate: ["inventory", "playerWeapon", "playerArmor"],
       });
     },
     tasks: async () => {

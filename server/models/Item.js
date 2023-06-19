@@ -47,4 +47,4 @@ const itemSchema = new Schema({
 });
 
 const Item = model("item", itemSchema);
-module.exports=Item;
+module.exports = Item;

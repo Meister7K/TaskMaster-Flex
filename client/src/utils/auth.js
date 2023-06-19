@@ -33,7 +33,7 @@ class AuthService {
   }
 
   destroyToken() {
-    localStorage.removeItem("id_token")
+    localStorage.removeItem("id_token");
   }
 
   login(idToken) {

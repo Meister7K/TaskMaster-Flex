@@ -3,7 +3,12 @@ import { useMutation, useQuery } from "@apollo/client";
 import "./TaskList.css";
 import Auth from "../../utils/auth";
 
-import { ADD_TASK, COMPLETE_TASK, DELETE_TASK, ADD_GOLD } from "../../utils/mutations";
+import {
+  ADD_TASK,
+  COMPLETE_TASK,
+  DELETE_TASK,
+  ADD_GOLD,
+} from "../../utils/mutations";
 import { GET_TASKS } from "../../utils/queries";
 
 function TaskList() {
@@ -29,7 +34,7 @@ function TaskList() {
   } = useQuery(GET_TASKS, {
     variables: { userId: user.data._id },
   });
- 
+
   const [addGold, { error: goldError }] = useMutation(ADD_GOLD);
 
   const handleChange = (event) => {
@@ -58,7 +63,7 @@ function TaskList() {
   const handleCompleteTask = async (taskId) => {
     try {
       const task = taskData.tasks.find((task) => task._id === taskId);
-      
+
       let userId = user.data._id;
       let amount = 0;
 
@@ -76,7 +81,7 @@ function TaskList() {
       const goldResponse = await addGold({
         variables: { userId, amount },
       });
-     
+
       window.location.reload();
     } catch (error) {
       console.error(error);

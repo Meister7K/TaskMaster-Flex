@@ -9,11 +9,11 @@
   border-top: 5px solid black;
 }
 
-
 @media screen and (max-width: 820px) {
   .social-media-wrap {
     flex-direction: column;
   }
 }
 
-@media screen and (max-width: 768px) {}
+@media screen and (max-width: 768px) {
+}

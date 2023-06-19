@@ -11,8 +11,8 @@ const config = {
   height: 1632,
   scale: {
     mode: Phaser.Scale.NONE,
-	height: window.innerHeight-100,
-	width: window.innerWidth,
+    height: window.innerHeight - 100,
+    width: window.innerWidth,
   },
   physics: {
     default: "arcade",
@@ -21,17 +21,17 @@ const config = {
       debug: true,
     },
   },
-  render:{
+  render: {
     antialiasGL: false,
     pixelArt: true,
   },
   callbacks: {
-    postBoot:()=>{
+    postBoot: () => {
       window.sizeChanged();
     },
   },
   canvasStyle: `display:block; width: 100%, height: 100%`,
-  autoFocus:true,
+  autoFocus: true,
   audio: {
     disableWebAudio: false,
   },
@@ -43,8 +43,10 @@ window.sizeChanged = () => {
     setTimeout(() => {
       window.game.scale.resize(window.innerWidth, window.innerHeight);
       window.game.canvas.setAttribute(
-        'style',
-        `display: block; width: ${window.innerWidth}px; height: ${window.innerHeight - 100}px;`,
+        "style",
+        `display: block; width: ${window.innerWidth}px; height: ${
+          window.innerHeight - 100
+        }px;`
       );
     }, 100);
   }
