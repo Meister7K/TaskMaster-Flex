@@ -46,73 +46,89 @@ class Player extends GameObject {
 
   setAnims(){
     this.scene.anims.create({
-      key: 'LeftRun',
-      frames: this.scene.anims.generateFrameNames('a-warrior1',{
-        prefix: '0_Warrior_LeftRun_',
+      key: "LeftRun",
+      frames: this.scene.anims.generateFrameNames("a-warrior1", {
+        prefix: "0_Warrior_LeftRun_",
+        start: 1,
         end: 14,
+        zeroPad: 3,
       }),
       repeat: -1,
       frameRate: 14,
     });
     this.scene.anims.create({
-      key: 'RightRun',
-      frames: this.scene.anims.generateFrameNames('a-warrior1',{
-        prefix: '0_Warrior_RightRun_',
+      key: "RightRun",
+      frames: this.scene.anims.generateFrameNames("a-warrior1", {
+        prefix: "0_Warrior_RightRun_",
+        start: 1,
         end: 14,
+        zeroPad: 3,
       }),
       repeat: -1,
       frameRate: 14,
     });
     this.scene.anims.create({
-      key: 'BackRun',
-      frames: this.scene.anims.generateFrameNames('a-warrior1',{
-        prefix: '0_Warrior_BackRun_',
+      key: "BackRun",
+      frames: this.scene.anims.generateFrameNames("a-warrior1", {
+        prefix: "0_Warrior_BackRun_",
+        start: 1,
         end: 14,
+        zeroPad: 3,
       }),
       repeat: -1,
       frameRate: 14,
     });
     this.scene.anims.create({
-      key: 'FrontRun',
-      frames: this.scene.anims.generateFrameNames('a-warrior1',{
-        prefix: '0_Warrior_FrontRun_',
+      key: "FrontRun",
+      frames: this.scene.anims.generateFrameNames("a-warrior1", {
+        prefix: "0_Warrior_FrontRun_",
+        start: 1,
         end: 14,
+        zeroPad: 3,
       }),
       repeat: -1,
       frameRate: 14,
     });
     this.scene.anims.create({
-      key: 'Attack_1',
-      frames: this.scene.anims.generateFrameNames('a-warrior1',{
-        prefix: '0_Warrior_Attack_1_',
+      key: "Attack_1",
+      frames: this.scene.anims.generateFrameNames("a-warrior1", {
+        prefix: "0_Warrior_Attack_1_",
+        start: 1,
         end: 14,
+        zeroPad: 3,
       }),
       repeat: -1,
       frameRate: 14,
     });
     this.scene.anims.create({
-      key: 'RightAttack',
-      frames: this.scene.anims.generateFrameNames('a-warrior1',{
-        prefix: '0_Warrior_RightAttack_1_',
+      key: "RightAttack",
+      frames: this.scene.anims.generateFrameNames("a-warrior1", {
+        prefix: "0_Warrior_RightAttack_1_",
+        start: 1,
         end: 14,
+        zeroPad: 3,
       }),
       repeat: -1,
       frameRate: 14,
     });
     this.scene.anims.create({
-      key: 'FrontAttack_1',
-      frames: this.scene.anims.generateFrameNames('a-warrior1',{
-        prefix: '0_Warrior_FrontAttack_1_',
+      key: "FrontAttack_1",
+      frames: this.scene.anims.generateFrameNames("a-warrior1", {
+        prefix: "0_Warrior_FrontAttack_1_",
+        start: 1,
         end: 14,
+        zeroPad: 3,
       }),
       repeat: -1,
       frameRate: 14,
     });
     this.scene.anims.create({
-      key: 'LeftAttack_1',
-      frames: this.scene.anims.generateFrameNames('a-warrior1',{
-        prefix: '0_Warrior_LeftAttack_1_',
+      key: "LeftAttack_1",
+      frames: this.scene.anims.generateFrameNames("a-warrior1", {
+        prefix: "0_Warrior_LeftAttack_1_",
+        start: 1,
         end: 14,
+        zeroPad: 3,
       }),
       repeat: -1,
       frameRate: 14,
