@@ -8,33 +8,37 @@ class Minotaur extends Enemies {
 
     this.setScale(0.5);
 
-    this.scene.anims.create({
-      key: "MinotaurRightRun",
-      frames: this.scene.anims.generateFrameNames("minotaur", {
-        prefix: "Minotaur_02_Walking_",
-        start: 1,
-        end: 5,
-        zeroPad: 3,
-      }),
-      repeat: -1,
-      frameRate: 16,
-    });
+    if (!this.scene.anims.exists("MinotaurRightRun")) {
+      this.scene.anims.create({
+        key: "MinotaurRightRun",
+        frames: this.scene.anims.generateFrameNames("minotaur", {
+          prefix: "Minotaur_02_Walking_",
+          start: 1,
+          end: 5,
+          zeroPad: 3,
+        }),
+        repeat: -1,
+        frameRate: 16,
+      });
+    }
 
-    const leftFrames = this.scene.anims
-      .generateFrameNames("minotaur", {
-        prefix: "Minotaur_02_Walking_",
-        start: 1,
-        end: 5,
-        zeroPad: 3,
-      })
-      .reverse();
+    if (!this.scene.anims.exists("MinotaurLeftRun")) {
+      const leftFrames = this.scene.anims
+        .generateFrameNames("minotaur", {
+          prefix: "Minotaur_02_Walking_",
+          start: 1,
+          end: 5,
+          zeroPad: 3,
+        })
+        .reverse();
 
-    this.scene.anims.create({
-      key: "MinotaurLeftRun",
-      frames: leftFrames,
-      repeat: -1,
-      frameRate: 16,
-    });
+      this.scene.anims.create({
+        key: "MinotaurLeftRun",
+        frames: leftFrames,
+        repeat: -1,
+        frameRate: 16,
+      });
+    }
 
     this.anims.play("MinotaurRightRun", true);
   }
