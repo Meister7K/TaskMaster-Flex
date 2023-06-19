@@ -56,6 +56,7 @@ const typeDefs = gql`
     tasks: [Task]
     items: [Item]
     playerCharacters: [PlayerCharacter]
+    onePlayer(userId: ID!): PlayerCharacter
     weapons: [Item]
     armors: [Item]
     consumables: [Item]
