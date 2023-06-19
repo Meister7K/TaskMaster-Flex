@@ -64,14 +64,14 @@ function SignUpForm() {
 
       Auth.login(data.addUser.token);
     } catch (e) {
-      if(!e.message) {
-         console.error(e);
+      if (!e.message) {
+        console.error(e);
       } else {
-         console.error(e.message);
+        console.error(e.message);
       }
-      
+
       if (e.message.includes("username: Path `username` is required.")) {
-        console.log(e)
+        console.log(e);
         e.message = "You must enter a username.";
       } else if (
         e.message.includes(

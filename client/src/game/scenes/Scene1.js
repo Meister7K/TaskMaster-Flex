@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 import Back from "../game-assets/map-files/Taskmap1.png";
 import Minotaur from '../game-assets/gameSprites/MinotaurSpritesheet.png';
-import Warrior1 from '../game-assets/gameSprites/Warrior1SpriteNEW.png';
+import Warrior1 from "../game-assets/gameSprites/Warrior1SpriteNEW.png";
 // import Warrior0Back from '../game-assets/gameSprites/Warrior0BackSpritesheet.png';
 // import Warrior0Left from '../game-assets/gameSprites/Warrior0LeftSpritesheet.png';
 // import Warrior0Right from '../game-assets/gameSprites/Warrior0RightSpritesheet.png';
@@ -34,7 +34,12 @@ class Scene1 extends Phaser.Scene {
     });
 
     // this.load.spritesheet(Warrior1);
-    this.load.atlas('a-warrior1','../game-assets/gameSprites/Warrior1SpriteNEW.png','../game-assets/gameSprites/Warrior1ATLAS.json'
+    this.load.atlas(
+      "a-warrior1",
+      Warrior1,
+      Warrior1Atlas,
+      null,
+      Phaser.Loader.TEXTURE_ATLAS_JSON_HASH
     );
 
 

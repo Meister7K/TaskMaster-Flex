@@ -1,17 +1,15 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-
-  type PlayerCharacter{
-  _id: ID
-  level: Int
-  health: Int
-  energy: Int
-  gold: Int
-  playerArmor: Item
-  playerWeapon: Item
-  inventory: [Item]
-  
+  type PlayerCharacter {
+    _id: ID
+    level: Int
+    health: Int
+    energy: Int
+    gold: Int
+    playerArmor: Item
+    playerWeapon: Item
+    inventory: [Item]
   }
 
   type User {
@@ -72,10 +70,9 @@ const typeDefs = gql`
     addTask(name: String!, difficulty: String, category: String): Task
     completeTask(taskId: ID!): Task
     deleteTask(taskId: ID!): TaskDeleteResponse!
-    addToInventory(userId : ID!, itemId : ID!): PlayerCharacter
-    addGold(userId : ID!, amount : Int!): PlayerCharacter
-    removeGold(userId : ID!, amount : Int!): PlayerCharacter
-
+    addToInventory(userId: ID!, itemId: ID!): PlayerCharacter
+    addGold(userId: ID!, amount: Int!): PlayerCharacter
+    removeGold(userId: ID!, amount: Int!): PlayerCharacter
   }
 
   type UserDeleteResponse {

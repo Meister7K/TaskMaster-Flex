@@ -1,19 +1,18 @@
-
 body {
   background-color: #1a1a1a;
   color: #fff;
 }
 
 .shop-page-title {
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
 .shop-page-title-wrapper {
-  width:80%;
-  max-width:1250px;
+  width: 80%;
+  max-width: 1250px;
   padding: 20px 30px 0 30px;
 }
 

@@ -68,15 +68,15 @@
   margin-top: 20px;
   padding: 5px;
   width: 100px;
-  border-radius: 15px;;
+  border-radius: 15px;
   background-color: #3b3423;
   color: #fff;
-  filter: drop-shadow(0 0 0.80rem rgb(34, 34, 34));
+  filter: drop-shadow(0 0 0.8rem rgb(34, 34, 34));
 }
 
 .purchase-button:hover {
   background-color: #52462f;
-  filter: drop-shadow(0 0 0.80rem rgb(54, 54, 54));
+  filter: drop-shadow(0 0 0.8rem rgb(54, 54, 54));
 }
 
 .goldCoin {
@@ -92,20 +92,20 @@
 }
 
 .close-btn {
-    margin-left: 10px;
-    background-image: url("../../../../public/images/navlink-bg.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    width: 140px;
-    height: 50%;
-    font-size: 100%;
-    color: white;
-    background-color: transparent;
-    border: none;
+  margin-left: 10px;
+  background-image: url("../../../../public/images/navlink-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 140px;
+  height: 50%;
+  font-size: 100%;
+  color: white;
+  background-color: transparent;
+  border: none;
 }
 
 .close-btn:hover {
-  filter: drop-shadow(0 0 0.90rem crimson);
+  filter: drop-shadow(0 0 0.9rem crimson);
   transform: scale(1.05);
 }
