@@ -1,23 +1,37 @@
 import GameObject from "./GameObject";
 import Phaser from "phaser";
-import Text from './hud/Text'
+import Text from "./hud/Text";
 
 class Player extends GameObject {
   _maxHealth = 100;
 
-
-  constructor(scene,x, y, spriteSheet, frames, health=100, weaponEquipped = 0, helmEquipped = 0, armorEquipped =0, shieldEquipped=0) {
-    super(scene,x, y, spriteSheet, frames);
+  constructor(
+    scene,
+    x,
+    y,
+    spriteSheet,
+    frames,
+    health = 100,
+    weaponEquipped = 0,
+    helmEquipped = 0,
+    armorEquipped = 0,
+    shieldEquipped = 0
+  ) {
+    super(scene, x, y, spriteSheet, frames);
 
     this.height = 32;
     this.experience = 0;
     this.coins = 0;
-    this.defense = helmEquipped + armorEquipped + shieldEquipped; 
+    this.defense = helmEquipped + armorEquipped + shieldEquipped;
     this.attack = 5 + weaponEquipped;
     this.health = health;
-    this.healthValue = new Text(this.scene,this.x,this.y-this.height,this.health.toString())
+    this.healthValue = new Text(
+      this.scene,
+      this.x,
+      this.y - this.height,
+      this.health.toString()
+    );
     this.hittable = true;
-
 
     this.setAnims();
 
@@ -35,16 +49,16 @@ class Player extends GameObject {
       interact1: Phaser.Input.Keyboard.KeyCodes.F,
     });
 
-    this.scene.game.events.emit()
-    
+    this.scene.game.events.emit();
+
     //     this.player = this.physics.add.sprite( 840, 780, "warrior0front");
 
-    this.setBody().setCircle(12,0);
-    
-  // this.physics.add.sprite(this.x, this.y, this.spriteSheet);
+    this.setBody().setCircle(12, 0);
+
+    // this.physics.add.sprite(this.x, this.y, this.spriteSheet);
   }
 
-  setAnims(){
+  setAnims() {
     this.scene.anims.create({
       key: "LeftRun",
       frames: this.scene.anims.generateFrameNames("a-warrior1", {
@@ -133,104 +147,116 @@ class Player extends GameObject {
       repeat: -1,
       frameRate: 14,
     });
-
   }
 
-  gainExperience(exp){
+  gainExperience(exp) {
     this.experience += exp;
   }
 
-  getCoins(num){
+  getCoins(num) {
     this.coins += num;
   }
 
-  gainHealth(heal){
-    if(this.health + heal > this._maxHealth){
+  gainHealth(heal) {
+    if (this.health + heal > this._maxHealth) {
       this.health = this._maxHealth;
-    } else{
+    } else {
       this.health += heal;
     }
   }
 
-  loseHealth(damage){
-    if(this.hittable===true){
-    this.health -= (damage - this.defense);
-    this.hittable=false;
-    this.setAlpha(.5);
-    this.scene.time.delayedCall(1000, ()=>{
-      this.hittable = true;
-      this.setAlpha(1);
-    })
-  }
+  loseHealth(damage) {
+    if (this.hittable === true) {
+      this.health -= damage - this.defense;
+      this.hittable = false;
+      this.setAlpha(0.5);
+      this.scene.time.delayedCall(1000, () => {
+        this.hittable = true;
+        this.setAlpha(1);
+      });
+    }
     this.healthValue.setText(this.health.toString());
 
     //insert damAGE animation
-    if(this.health <= 0){
+    if (this.health <= 0) {
       //this.disableBody(true,false);
-        // this.scene.time.delayedCall(300, ()=>{
-        //   this.destroy()}) //!review 
-        this.setAlpha(.5);}
+      // this.scene.time.delayedCall(300, ()=>{
+      //   this.destroy()}) //!review
+      this.setAlpha(0.5);
+    }
   }
 
-  doDamage(){
+  doDamage() {
     return this.attack;
   }
 
-  traverseMap(){
+  traverseMap() {
     //if (playerposition = specific map position){
-      //call next scene function
+    //call next scene function
     //}
   }
-  interact(){
-    return'';
+  interact() {
+    return "";
   }
 
-
   update() {
+    const { velocity } = this.body;
+
+    if (velocity.y < 0) {
+      this.anims.play("BackRun", true);
+    } else if (velocity.y > 0) {
+      this.anims.play("FrontRun", true);
+    } else if (velocity.x < 0) {
+      this.anims.play("LeftRun", true);
+    } else if (velocity.x > 0) {
+      this.anims.play("RightRun", true);
+    } else {
+      this.anims.stop();
+    }
+
     this.setBody().setVelocity(0);
 
-    this.healthValue.setPosition(this.x, this.y-this.height *.04);
-    this.healthValue.setOrigin(0.5,1.5);
-    this.healthValue.setScale(.5);
-  
+    this.healthValue.setPosition(this.x, this.y - this.height * 0.04);
+    this.healthValue.setOrigin(0.5, 1.5);
+    this.healthValue.setScale(0.5);
 
-    
     // const { left, right, up, down, input } = this.cursors;
 
     //let isMoving = false;
 
-    if ( this.inputKeys.left.isDown || this.inputKeys.left1.isDown) {
+    if (this.inputKeys.left.isDown || this.inputKeys.left1.isDown) {
       this.body.velocity.x = -100;
-      // !this.anims.isPlaying && this.anims.play('LeftRun',true);
+      !this.anims.isPlaying && this.anims.play("LeftRun", true);
       // this.body.setOffset(20,0);
     }
 
-    if ( this.inputKeys.right.isDown || this.inputKeys.right1.isDown) {
-     
+    if (this.inputKeys.right.isDown || this.inputKeys.right1.isDown) {
       this.body.velocity.x = 100;
-      // !this.anims.isPlaying && this.anims.play('RightRun',true)
+      !this.anims.isPlaying && this.anims.play("RightRun", true);
       // this.body.setOffset(0,0);
-   
     }
 
-   
-
-    if((this.inputKeys.right.isDown ||this.inputKeys.right1.isDown)&& (this.inputKeys.left.isDown || this.inputKeys.left1.isDown)){
+    if (
+      (this.inputKeys.right.isDown || this.inputKeys.right1.isDown) &&
+      (this.inputKeys.left.isDown || this.inputKeys.left1.isDown)
+    ) {
       this.body.velocity.x = 0;
-  
     }
 
-    if ( this.inputKeys.up.isDown || this.inputKeys.up1.isDown) {
+    if (this.inputKeys.up.isDown || this.inputKeys.up1.isDown) {
       this.body.velocity.y = -100;
-      // !this.anims.isPlaying && this.anims.play('BackRun',true)
+      !this.anims.isPlaying && this.anims.play("BackRun", true);
     }
 
-    if(this.inputKeys.down.isDown || this.inputKeys.down1.isDown){
+    if (this.inputKeys.down.isDown || this.inputKeys.down1.isDown) {
       this.body.velocity.y = 100;
-      // !this.anims.isPlaying && this.anims.play('FrontRun',true)
+      !this.anims.isPlaying && this.anims.play("FrontRun", true);
     }
 
-     if((this.inputKeys.up.isDown || this.inputKeys.up1.isDown) && (this.inputKeys.down.isDown || this.inputKeys.down1.isDown)){
+    if (
+      (this.inputKeys.up.isDown || this.inputKeys.up1.isDown) &&
+      (this.inputKeys.down.isDown || this.inputKeys.down1.isDown)
+    ) {
       this.body.velocity.y = 0;
     }
     //   this.anims.play("warrior0BackAnimation", true);
@@ -249,7 +275,7 @@ class Player extends GameObject {
       this.doDamage();
     }
 
-    if(this.inputKeys.interact.isDown ){
+    if (this.inputKeys.interact.isDown) {
       this.interact();
     }
 
