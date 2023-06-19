@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { ONE_PLAYER } from "../../utils/queries";
-
+import "./PlayerCard.css";
 import { EQUIP_ITEM, REMOVE_GOLD } from "../../utils/mutations";
 
 import Auth from "../../utils/auth";
@@ -108,9 +108,13 @@ function PlayerCard() {
   }
 
   return (
-    <div>
-      {playerXML}
-      {playerInventoryXML}
+    <div className="player-container">
+      <div className="player-wrapper">
+        <div className="player-content-wrapper">
+          {playerXML}
+          {playerInventoryXML}
+        </div>
+      </div>
     </div>
   );
 }
