@@ -13,18 +13,26 @@ function PlayerCard() {
     window.location.assign("/");
   }
 
-  const { loading, data: playerData } = useQuery(ONE_PLAYER, {
+  const { loading, data: playerData, refetch: refetchInv } = useQuery(ONE_PLAYER, {
     variables: { userId: Auth.getProfile().data._id },
   });
 
+  const [equipItem]= useMutation(EQUIP_ITEM, {
+    onError: (error) => {
+      console.log(error);
+    },
+  })
 
 
-  function handleEquip(e){
 
+  async function handleEquip(e){
+    const itemToEquip=e.currentTarget.getAttribute("itemidentifier")
+    const newPlayer= await equipItem({ variables : {userId: user._id, itemId: itemToEquip}});
+    refetchInv();
     
 
   }
-
+  
 
   // console.log(playerData.onePlayer);
   let playerInventoryXML = <h3>loading</h3>;
@@ -39,7 +47,7 @@ function PlayerCard() {
         </ul>
 
         <button cost={item.value}>sell</button>
-        <button itemId={item._id}>equip</button>
+        <button itemidentifier={item._id} onClick={item.itemType==='consumable'? null : handleEquip} >{item.itemType==='consumable'? 'use':'equip'}</button>
 
       </div>
     ));
