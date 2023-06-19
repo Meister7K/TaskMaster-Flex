@@ -6,46 +6,45 @@ import React, { useState } from "react";
 function ProfileForm() {
   const [characterName, setCharacterName] = useState("");
   const [lineage, setLineage] = useState("");
-  const [ customization, setCustomization] = useState("");
+  const [customization, setCustomization] = useState("");
   const [formState, setFormState] = useState({
     characterName: "",
     lineage: "",
     customization: "",
   });
 
- //TODO const[addCharacter, {error, data}] = useMutation(ADD-CHARACTER)
+  //TODO const[addCharacter, {error, data}] = useMutation(ADD-CHARACTER)
 
- const handleChange = (event) => {
-  const { name, value } = event.target;
+  const handleChange = (event) => {
+    const { name, value } = event.target;
 
-  setFormState({
-    ...formState,
-    [name]: value,
-  });
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
 
-  if (name === "characterName") {
-    setCharacterName(value);
-  }
-  
-  if (name === "lineage") {
-    setLineage(value);
-  }
+    if (name === "characterName") {
+      setCharacterName(value);
+    }
 
-  if (name === "customization") {
-    setCustomization(value);
-  }
-};
+    if (name === "lineage") {
+      setLineage(value);
+    }
 
-const handleFormSubmit = async (event) => {
-  event.preventDefault();
+    if (name === "customization") {
+      setCustomization(value);
+    }
+  };
 
-  if(characterName.length < 3 || characterName.length >30){
-    alert("Character name must be between 3 and 20 characters.");
-    return;
-  }
-}
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
 
-  
+    if (characterName.length < 3 || characterName.length > 30) {
+      alert("Character name must be between 3 and 20 characters.");
+      return;
+    }
+  };
+
   return (
     <>
       <form className="profile-form" onSubmit={handleFormSubmit}>
@@ -58,21 +57,39 @@ const handleFormSubmit = async (event) => {
           <h2>Pick your lineage</h2>
           <label for="lineage">Lineage</label>
           <select name="lineage" className="lineage">
-            <option name='lineage' type='radio' value="knight" selected>Knight</option>
-            <option name='lineage' type='radio' value="mage">Mage</option>
-            <option name='lineage' type='radio' value="assassin">Assassin</option>
-            <option name='lineage' type='radio' value="berserker">Berserker</option>
-            <option name='lineage' type='radio' value="cleric">Cleric</option>
+            <option name="lineage" type="radio" value="knight" selected>
+              Knight
+            </option>
+            <option name="lineage" type="radio" value="mage">
+              Mage
+            </option>
+            <option name="lineage" type="radio" value="assassin">
+              Assassin
+            </option>
+            <option name="lineage" type="radio" value="berserker">
+              Berserker
+            </option>
+            <option name="lineage" type="radio" value="cleric">
+              Cleric
+            </option>
           </select>
         </div>
         <div className="form-q3">
-            <h2>customize your Fit</h2>
-            <label for='customization'>color</label>
-            <div className="color-div"/>
-            <input name='customization' className="customization" type='range' min='-360' max='360' />
-            {/* add formatting to change character color(hue?) */}
+          <h2>customize your Fit</h2>
+          <label for="customization">color</label>
+          <div className="color-div" />
+          <input
+            name="customization"
+            className="customization"
+            type="range"
+            min="-360"
+            max="360"
+          />
+          {/* add formatting to change character color(hue?) */}
         </div>
-        <input className='hidden submit-btn' type='submit' value='submit'><button>Save</button></input>
+        <input className="hidden submit-btn" type="submit" value="submit">
+          <button>Save</button>
+        </input>
       </form>
     </>
   );

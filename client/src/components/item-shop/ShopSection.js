@@ -2,7 +2,6 @@ import React from "react";
 import ShopItem from "./item-section/ShopItem";
 import "./ShopSection.css";
 
-
 function ShopSection(props) {
   const blacksmith = (
     <div className="shopSection" id="blacksmithShop">
@@ -11,7 +10,7 @@ function ShopSection(props) {
       </div>
       <div>
         <div className="subtitle-container">
-        <h3 className="subTitle blacksmithSubtitle">Armor:</h3>
+          <h3 className="subTitle blacksmithSubtitle">Armor:</h3>
         </div>
         <div className="itemList">
           <ShopItem itemTypes="armor" />

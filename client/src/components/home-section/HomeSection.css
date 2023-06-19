@@ -74,8 +74,6 @@ video {
 
 /* Changing the background color for our buttons only on the HomeSection */
 
-
-
 @media screen and (max-width: 960px) {
   .home-container h1 {
     font-size: 70px;
@@ -95,7 +93,7 @@ video {
     width: 200px;
   }
 
-  .home-btns { 
+  .home-btns {
     display: flex;
     flex-direction: row;
   }
@@ -120,7 +118,7 @@ video {
     width: 100%;
   }
 
-  .home-btns { 
+  .home-btns {
     display: flex;
     flex-direction: column;
     margin-top: 40px;

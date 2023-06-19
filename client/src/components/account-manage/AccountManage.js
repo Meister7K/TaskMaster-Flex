@@ -106,17 +106,17 @@ const AccountManage = () => {
         if (
           error.message.includes(
             "duplicate key error collection: taskmaster-flex.users index: email"
-            )
-            ) {
-              setModalContent({
-                title: "Error!",
-                message: "Email already in use.",
-              });
+          )
+        ) {
+          setModalContent({
+            title: "Error!",
+            message: "Email already in use.",
+          });
         } else if (error.message.includes("Password incorrect, try again!")) {
           setModalContent({
             title: "Error!",
             message:
-            "Password verification failed. Please make sure you entered the correct password.",
+              "Password verification failed. Please make sure you entered the correct password.",
           });
         }
         setEmailPassword("");

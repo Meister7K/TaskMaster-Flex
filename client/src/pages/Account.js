@@ -5,7 +5,7 @@ import PlayerCard from "../components/player-card/PlayerCard";
 function Account() {
   return (
     <>
-      <PlayerCard/>
+      <PlayerCard />
       <AccountManage />
     </>
   );

@@ -56,7 +56,7 @@
   width: 90px;
   height: 50%;
   font-size: 80%;
-  cursor: url("../../../public/images/dagger-cursor1.png")18 14, auto !important;
+  cursor: url("../../../public/images/dagger-cursor1.png") 18 14, auto !important;
 }
 
 h5 {
@@ -81,7 +81,7 @@ h5 {
 
 .hello-user {
   color: #fff;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 .button-wrapper {
@@ -97,7 +97,7 @@ h5 {
 
 .login-warning-message {
   color: white;
-  font-size: .75rem;
+  font-size: 0.75rem;
   max-width: 75px;
 }
 
@@ -112,17 +112,17 @@ h5 {
 
 .thousands {
   color: green;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 .millions {
   color: purple;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 .hundreds {
   color: white;
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 .gold {
