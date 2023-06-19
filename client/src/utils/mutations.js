@@ -128,25 +128,21 @@ export const ADD_TO_INVENTORY = gql`
       gold
     }
   }
-}
 `;
 
-export const EQUIP_ITEM=gql`
-mutation equipItem($userId: ID!, $itemId: ID!) {
-  equipItem(userId: $userId, itemId: $itemId) {
-    playerArmor {
-      name
-    }
-    inventory {
-      name
-      value
-    }
-    playerWeapon {
-      name
+export const EQUIP_ITEM = gql`
+  mutation equipItem($userId: ID!, $itemId: ID!) {
+    equipItem(userId: $userId, itemId: $itemId) {
+      playerArmor {
+        name
+      }
+      inventory {
+        name
+        value
+      }
+      playerWeapon {
+        name
+      }
     }
   }
-}
 `;
-
-
-

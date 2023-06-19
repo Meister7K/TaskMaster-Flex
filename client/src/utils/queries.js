@@ -77,9 +77,15 @@ export const ALL_CONSUMABLES = gql`
     }
   }
 `;
-export const ONE_PLAYER = gql`
-  query onePlayer($userId: ID!) {
-    onePlayer(userId: $userId) {
+export const ONE_PLAYER=gql`
+query onePlayer($userId: ID!) {
+  onePlayer(userId: $userId) {
+    _id
+    level
+    health
+    energy
+    gold
+    playerArmor {
       _id
       name
       itemType
@@ -87,43 +93,29 @@ export const ONE_PLAYER = gql`
       desc
       consumable
       value
-      level
-      health
-      energy
-      gold
-      playerArmor {
-        _id
-        name
-        itemType
-        stats
-        desc
-        consumable
-        value
-        itemImage
-      }
-      playerWeapon {
-        _id
-        name
-        itemType
-        stats
-        desc
-        consumable
-        value
-        itemImage
-      }
-      inventory {
-        _id
-        name
-        itemType
-        stats
-        desc
-        consumable
-        value
-        itemImage
-      }
+      itemImage
+    }
+    playerWeapon {
+      _id
+      name
+      itemType
+      stats
+      desc
+      consumable
+      value
+      itemImage
+    }
+    inventory {
+      _id
+      name
+      itemType
+      stats
+      desc
+      consumable
+      value
     }
   }
-`;
+}`;
 
 export const GET_GOLD = gql`
   query playerGold($userId: ID!) {
