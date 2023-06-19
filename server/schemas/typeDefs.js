@@ -75,8 +75,10 @@ const typeDefs = gql`
     addToInventory(userId : ID!, itemId : ID!): PlayerCharacter
     addGold(userId : ID!, amount : Int!): PlayerCharacter
     removeGold(userId : ID!, amount : Int!): PlayerCharacter
+    equipItem(userId: ID!, itemId: ID!): PlayerCharacter
 
   }
+  
 
   type UserDeleteResponse {
     message: String!

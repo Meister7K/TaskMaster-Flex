@@ -127,3 +127,21 @@ mutation addToInventory($userId: ID!, $itemId: ID!) {
   }
 }
 `;
+
+export const EQUIP_ITEM=gql`
+mutation equipItem($userId: ID!, $itemId: ID!) {
+  equipItem(userId: $userId, itemId: $itemId) {
+    playerArmor {
+      name
+    }
+    inventory {
+      name
+      value
+    }
+    playerWeapon {
+      name
+    }
+  }
+}
+
+`;

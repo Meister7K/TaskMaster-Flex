@@ -113,7 +113,6 @@ query onePlayer($userId: ID!) {
       desc
       consumable
       value
-      itemImage
     }
   }
 }`;

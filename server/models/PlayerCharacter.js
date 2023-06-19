@@ -8,6 +8,11 @@ const playerSchema = new Schema({
         default: 1,
         required: true,
     },
+    xp:{
+        type: Number,
+        default: 0,
+        required: true,
+    },
     health: {
 
         type: Number,
@@ -85,6 +90,10 @@ playerSchema.pre('save', async function(){
         this.playerArmor= await getDefaultPlayerArmor()
     if(!this.playerWeapon)
         this.playerWeapon= await getDefaultPlayerWeapon()
+    if(this.xp>=this.level*100){
+        this.xp=(this.xp%(this.level*100));
+        this.level=this.level+1;
+    }
 })
 
 const PlayerCharacter = model("playerCharacter", playerSchema);
