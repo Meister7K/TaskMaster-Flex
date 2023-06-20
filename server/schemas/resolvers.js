@@ -18,6 +18,7 @@ const resolvers = {
         path: "playerChar",
         populate: ["inventory", "playerWeapon", "playerArmor"],
       });
+      console.log(user.playerChar);
       return user.playerChar;
     },
     users: async () => {

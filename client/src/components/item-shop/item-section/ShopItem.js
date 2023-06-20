@@ -109,7 +109,7 @@ function ShopItem(props) {
             <div className="imgContainer">
               <img
                 className="itemImg"
-                src={"data:image/png;base64," + item.itemImage}
+                src={item.itemImage}
                 alt={item.name}
               />
             </div>
