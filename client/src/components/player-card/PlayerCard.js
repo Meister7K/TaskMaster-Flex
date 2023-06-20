@@ -62,7 +62,9 @@ function PlayerCard() {
           {user.username}
         </div>
         <div className="playerStats">
-          <h3>Stats:</h3>
+          <div className="player-stats-title">
+            <h3>Stats:</h3>
+          </div>
           <div className="stats-container">
             <div className="player-stat-wrapper">
               Level: {playerData.onePlayer.level}
@@ -79,10 +81,10 @@ function PlayerCard() {
         </div>
         <div className="armorEquip">
             <div className="current-armor-title">
-              <h4>Current Armor:</h4>
+              <h3>Current Armor:</h3>
             </div>
-            <div className="armor-image">
-              <img
+            <div className="armor-image-wrapper">
+              <img className="armor-image" 
               src={
                 "data:image/png;base64," +
                 playerData.onePlayer.playerArmor.itemImage
@@ -126,7 +128,7 @@ function PlayerCard() {
           </div>
           <div className="weaponEquip">
             <div className="current-weapon-title">
-              <h4>Current Weapon</h4>
+              <h3>Current Weapon</h3>
             </div>
             <div className="armor-image">
               <img className="weapon-image"
