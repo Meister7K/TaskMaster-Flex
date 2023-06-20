@@ -5,11 +5,7 @@ connection.on("error", (err) => err);
 const imgToString = require("./imageData");
 
 connection.once("open", async () => {
-  console.log(
-    imgToString("utils/shopAssets/Warrior1.png", (result) => {
-      return result;
-    })
-  );
+  
   await Item.deleteMany({});
   const items = [
     {
