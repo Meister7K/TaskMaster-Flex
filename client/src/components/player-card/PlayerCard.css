@@ -67,6 +67,7 @@
   color: #3b3423 !important;
   font-size:2.5rem;
   margin-top:20px;
+  font-weight: bold;
 }
 
 .weaponEquip,
@@ -93,7 +94,8 @@
   width:100%;
 }
 
-.armor-container {
+.armor-container,
+.weapon-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -101,14 +103,11 @@
   width: 100%;
 }
 
-.level-wrapper,
-.health-wrapper,
-.xp-wrapper,
 .armor-image,
-.armor-name-wrapper,
-.armor-stats-wrapper,
-.armor-desc-wrapper,
-.armor-value-wrapper,
+.weapon-image,
+.player-stat-wrapper,
+.armor-stat-wrapper,
+.weapon-stat-wrapper,
 .current-armor-title,
 .current-weapon-title {
   display:flex;
