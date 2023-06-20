@@ -63,7 +63,74 @@
   width:80%;
 }
 
+.username {
+  color: #3b3423 !important;
+  font-size:2.5rem;
+  margin-top:20px;
+  font-weight: bold;
+}
+
+.weaponEquip,
+.armorEquip,
 .playerStats {
-  /* display: flex;
-  justify-content: left; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+  padding:30px;
+  margin-top:10px;
+  border: 2px solid #3b3423;
+  border-radius:15px;
+  color: #3b3423 !important;
+  font-weight:bold;
+}
+
+.stats-container {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width:100%;
+}
+
+.armor-container,
+.weapon-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.armor-image,
+.weapon-image,
+.player-stat-wrapper,
+.armor-stat-wrapper,
+.weapon-stat-wrapper,
+.current-armor-title,
+.current-weapon-title {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding:15px;
+}
+
+.current-armor-title,
+.current-weapon-title {
+  font-size: 1.5rem;
+}
+
+.stat-label {
+  text-decoration: underline;
+  margin-right: 10px;
+}
+
+.stat-data {
+
+}
+
+.weapon-image {
+  max-width:400px;
 }
