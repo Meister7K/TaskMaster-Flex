@@ -58,37 +58,80 @@ function PlayerCard() {
   if (!loading) {
     playerXML = (
       <div className="playerCard">
-        <h2>{user.username}</h2>
+        <div className="username">{user.username}</div>
 
+        {/* //adding divs instead of UL */}
         <div className="playerStats">
           <h3>Stats:</h3>
-          <ul>
-            <li>Level: {playerData.onePlayer.level}</li>
+          <div className="stats-container">
+            <div className="level-wrapper">
+              Level: {playerData.onePlayer.level}
+            </div>
 
-            <li>XP: {playerData.onePlayer.xp || 0}</li>
+            <div className="xp-wrapper">
+              XP: {playerData.onePlayer.xp || 0}
+            </div>
 
-            <li>Max Health: {playerData.onePlayer.health}</li>
-          </ul>
+            <div className="health-wrapper">
+              Max Health: {playerData.onePlayer.health}
+            </div>
+          </div>
         </div>
-        <div className="playerEquip">
+        <div className="armorEquip">
           <div>
-            <h4>Current Armor:</h4>
-            <img
+            <div className="current-armor-title">
+              <h4>Current Armor:</h4>
+            </div>
+            <div className="armor-image">
+              <img
               src={
                 "data:image/png;base64," +
                 playerData.onePlayer.playerArmor.itemImage
               }
-            ></img>
-            <ul>
-              <li>Name: {playerData.onePlayer.playerArmor.name}</li>
-              <li>Stats: {playerData.onePlayer.playerArmor.stats}</li>
-              <li>Description: {playerData.onePlayer.playerArmor.desc}</li>
-              <li>Value: {playerData.onePlayer.playerArmor.value}</li>
-            </ul>
+              ></img>
+            </div>
+            <div className="armor-container">
+              <div className="armor-name-wrapper">
+                <div className="stat-label">
+                  Name: 
+                </div>
+                <div className="stat-data">
+                  {playerData.onePlayer.playerArmor.name}
+                </div>
+              </div>
+              <div className="armor-stats-wrapper">
+                <div className="stat-label">
+                  Stats: 
+                </div>
+                <div className="stat-data">
+                  {playerData.onePlayer.playerArmor.stats}
+                </div>
+              </div>
+              <div className="armor-desc-wrapper">
+                <div className="stat-label">
+                  Description: 
+                </div>
+                <div className="stat-data">
+                  {playerData.onePlayer.playerArmor.desc}
+                </div>
+              </div>
+              <div className="armor-value-wrapper">
+                <div className="stat-label">
+                  Value: 
+                </div>
+                <div className="stat-data">
+                  {playerData.onePlayer.playerArmor.value}
+                </div>
+              </div>
+            </div>
           </div>
+          </div>
+          <div className="weaponEquip">
           <div>
-            <h4>Current Weapon</h4>
-            <img
+            <div className="current-weapon-title">
+              <h4>Current Weapon</h4>
+            </div>
+            <img className="weapon-image"
               src={
                 "data:image/png;base64," +
                 playerData.onePlayer.playerWeapon.itemImage
