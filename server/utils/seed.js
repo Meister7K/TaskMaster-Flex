@@ -19,7 +19,7 @@ connection.once("open", async () => {
       desc: "A legendary sword imbued with great power.",
       consumable: false,
       value: 1000,
-      itemImage: await imgToString("utils/shopAssets/SwordOfValor.png"),
+      itemImage: "https://res.cloudinary.com/dqkftercz/image/upload/v1687230608/SwordOfValor_puza8g.png",
     },
     {
       name: "Shield of Protection",
@@ -28,7 +28,7 @@ connection.once("open", async () => {
       desc: "A sturdy shield that provides excellent protection.",
       consumable: false,
       value: 800,
-      itemImage: await imgToString("utils/shopAssets/Shield.png"),
+      itemImage: "https://res.cloudinary.com/dqkftercz/image/upload/v1687230608/Shield_ri9ag4.png",
     },
     {
       name: "Health Potion",
@@ -37,7 +37,7 @@ connection.once("open", async () => {
       desc: "A magical potion that restores health.",
       consumable: true,
       value: 50,
-      itemImage: await imgToString("utils/shopAssets/hp_potion.png"),
+      itemImage: "https://res.cloudinary.com/dqkftercz/image/upload/v1687230608/hp_potion_albcwf.png",
     },
     {
       name: "Plate Armor",
@@ -46,7 +46,7 @@ connection.once("open", async () => {
       desc: "Heavy armor made from sturdy plates.",
       consumable: false,
       value: 1200,
-      itemImage: await imgToString("utils/shopAssets/Warrior2.png"),
+      itemImage: "https://res.cloudinary.com/dqkftercz/image/upload/v1687230608/Warrior2_ekxqdz.png",
     },
     {
       name: "Light Armor",
@@ -55,7 +55,7 @@ connection.once("open", async () => {
       desc: "Lightweight armor made from supple leather.",
       consumable: false,
       value: 300,
-      itemImage: await imgToString("utils/shopAssets/Warrior1.png"),
+      itemImage: "https://res.cloudinary.com/dqkftercz/image/upload/v1687230608/Warrior1_xs3aly.png",
     },
 
     {
@@ -65,7 +65,7 @@ connection.once("open", async () => {
       desc: "A potion that replenishes energy.",
       consumable: true,
       value: 75,
-      itemImage: await imgToString("utils/shopAssets/mana_potion.png"),
+      itemImage: "https://res.cloudinary.com/dqkftercz/image/upload/v1687230608/mana_potion_yswq1q.png",
     },
     {
       name: "Amulet of Vitality",
@@ -74,7 +74,7 @@ connection.once("open", async () => {
       desc: "An enchanted amulet that boosts vitality and health.",
       consumable: false,
       value: 600,
-      itemImage: await imgToString("utils/shopAssets/amulet.png"),
+      itemImage: "https://res.cloudinary.com/dqkftercz/image/upload/v1687230608/amulet_ehycdt.png",
     },
     {
       name: "Elixir of Strength",
@@ -83,7 +83,7 @@ connection.once("open", async () => {
       desc: "An elixir that temporarily enhances physical strength.",
       consumable: true,
       value: 100,
-      itemImage: await imgToString("utils/shopAssets/strength_potion.png"),
+      itemImage: "https://res.cloudinary.com/dqkftercz/image/upload/v1687230608/strength_potion_pxpagq.png",
     },
   ];
 

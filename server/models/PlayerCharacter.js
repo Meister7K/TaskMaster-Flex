@@ -50,7 +50,6 @@ const playerSchema = new Schema({
 
     },
   },
-
   playerWeapon: {
     type: Schema.Types.ObjectId,
     ref: "item",

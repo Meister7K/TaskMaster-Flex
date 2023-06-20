@@ -85,11 +85,7 @@ function PlayerCard() {
             </div>
             <div className="armor-image-wrapper">
               <img className="armor-image" 
-              src={
-                "data:image/png;base64," +
-                playerData.onePlayer.playerArmor.itemImage
-              }
-              ></img>
+              src={playerData.onePlayer.playerArmor.itemImage}></img>
             </div>
             <div className="armor-container">
               <div className="armor-stat-wrapper">
@@ -132,11 +128,7 @@ function PlayerCard() {
             </div>
             <div className="armor-image">
               <img className="weapon-image"
-                src={
-                "data:image/png;base64," +
-                playerData.onePlayer.playerWeapon.itemImage
-                }
-              ></img>
+                src={playerData.onePlayer.playerWeapon.itemImage}></img>
             </div>
             <div className="weapon-container">
               <div className="weapon-stat-wrapper">
