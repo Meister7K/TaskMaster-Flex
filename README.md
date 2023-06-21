@@ -1,4 +1,6 @@
-# TaskMaster-Flex
+![taskmaster logo](client/public/images/TaskmasterLogoREADME.png)
+
+
 Many of us struggle with balancing time to be productive and leisure time. TaskMaster-Flex is a game that gives you the best of both worlds. While fun and challenging, TMF is rewarding in all the ways of your favorite dungeon crawlers, while incentivizing you to accomplish all of the tasks and goals you set for yourself each day.
 
 ## Description
@@ -35,52 +37,58 @@ Overall, the app aims to address motivational challenges, improve task managemen
 
 ## Installation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+No additional installation is required to use Taskmaster Flex.
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+Deployed Link: https://taskmaster-flex-be1c20d82d58.herokuapp.com/ 
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+To use Taskmaster Flex, navigate to the deployed link and sign up to create an account.  Once you have registered, you can go to the Tasks page to add new tasks to your list.  Once you complete a task, you can mark it as 'complete' to move the task to Completed Tasks and receive your reward.  After you have earned enough gold, you can go to the Shop page to purchase items that will help make your character stronger.  Click on Game to access the game and begin playing.  You can move your character around the map with the arrow keys or WSAD keys.  You can click on the Account tab to view your current stats or change your account email or password.
+  
+  Home Page:
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+  ![home page](client/public/images/screenshot-home.png)
+
+  Sign Up:
+
+  ![sign up](client/public/images/screenshot-signup.png)
+
+  Tasks Page:
+
+  ![tasks](client/public/images/screenshot-tasks.png)
+
+  Shop Page:
+
+  ![shop](client/public/images/screenshot-shop.png)
+
+  Game:
+
+  ![game](client/public/images/screenshot-game.png)
+  
 
 ## Credits
 
-1. The home background video is royalty-free and has no license requirements as provided by pexels.com.  Here is a link to the [video](https://www.pexels.com/video/digital-projection-of-abstract-geometrical-lines-3129671/) 
+1. The youtube video "React Website Tutorial - Beginner React JS Project Fully Responsive" by Brian Design inspired some component and css.  Here is a link to the [video](https://www.youtube.com/watch?v=I2UBjN5ER4s&t=5244s) 
 
-2. The images used are free to use under the Unsplash License as provided by unsplash.com.  Here are links to the images used:
-    <ul>
-      <li><a href="https://unsplash.com/photos/feXpdV001o4">About Us Keyboard Header</a></li>
+2. The article 'Element size and scrolling' from javascript.info was used to learn about offset properties when calculating the desired scroll locations needed to scroll to a certain position with an onclick event. Here is a link to the [article](https://javascript.info/size-and-scroll) 
 
-      <li><a href="https://unsplash.com/photos/sIHKeZjSVNI">About Us Alternate Header</a></li>
+3. The article 'Element: scrollTo() method' from developer.mozilla.org was used to figure out how to use the offset properties to navigate up and down our page.  Here is a link to the [article](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTo) 
 
-      <li><a href="https://unsplash.com/photos/mZnx9429i94">Bio Card Placeholders</a></li>
-    </ul>
+4. We used the article "Loading Assets as Data URI in Phaser 3" to help figure out URI errors when rendering the bat spritesheet in Phaser.  Here is a link to the [article](https://supernapie.com/blog/loading-assets-as-data-uri-in-phaser-3/) 
 
-3. The youtube video "React Website Tutorial - Beginner React JS Project Fully Responsive" by Brian Design inspired some component and css.  Here is a link to the [video](https://www.youtube.com/watch?v=I2UBjN5ER4s&t=5244s) 
+5. We used this thread "Random Spawning" to learn how to randomly spawn multiple bat sprites.  Here is a link to the [page](https://phaser.discourse.group/t/random-spawning/3318/3) 
 
-4. The article 'Element size and scrolling' from javascript.info was used to learn about offset properties when calculating the desired scroll locations needed to scroll to a certain position with an onclick event. Here is a link to the [article](https://javascript.info/size-and-scroll) 
+6. We used the github repo "Phaser Cheatsheet" to learn how to add physics to the bat sprites.  Here is a link to the [page](https://gist.github.com/woubuc/6ef002051aeef453a95b)
 
-5. The article 'Element: scrollTo() method' from developer.mozilla.org was used to figure out how to use the offset properties to navigate up and down our page.  Here is a link to the [article](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTo) 
+7. Augusta and Augusta font shadow used from Copyright (c) Typographer Mediengestaltung, 2000. All rights reserved. Full character set added by Dieter Steffmann, Kreuztal. Link to [page](https://www.1001fonts.com/augusta-font.html).
 
-6. We used the article "Loading Assets as Data URI in Phaser 3" to help figure out URI errors when rendering the bat spritesheet in Phaser.  Here is a link to the [article](https://supernapie.com/blog/loading-assets-as-data-uri-in-phaser-3/) 
+8. Special Thanks to the Man SuperTommy at Ourcade: https://www.youtube.com/@ourcadetv.
 
-7. We used this thread "Random Spawning" to learn how to randomly spawn multiple bat sprites.  Here is a link to the [page](https://phaser.discourse.group/t/random-spawning/3318/3) 
+9. We found the way to customize the scroll bar look on our Task List containers from the Stack Overflow question "change scrollbar height" in an answer from the user "jilykate."  Here is a link to the [page](https://stackoverflow.com/questions/50817727/change-scrollbar-height)
 
-8. We used the github repo "Phaser Cheatsheet" to learn how to add physics to the bat sprites.  Here is a link to the [page](https://gist.github.com/woubuc/6ef002051aeef453a95b)
+10. We used React-Modal to create the modal on the Sign-Up form when a field is entered incorrectly.  Here is a link to the [documentation](https://www.npmjs.com/package/react-modal)
 
-9. Augusta and Augusta font shadow used from Copyright (c) Typographer Mediengestaltung, 2000. All rights reserved. Full character set added by Dieter Steffmann, Kreuztal. Link to [page](https://www.1001fonts.com/augusta-font.html).
-
-10. Special Thanks to the Man SuperTommy at Ourcade: https://www.youtube.com/@ourcadetv.
-
-11. We found the way to customize the scroll bar look on our Task List containers from the Stack Overflow question "change scrollbar height" in an answer from the user "jilykate."  Here is a link to the page: https://stackoverflow.com/questions/50817727/change-scrollbar-height 
-
-12. We used React-Modal to create the modal on the Sign-Up form when a field is entered incorrectly.  Here is a link to the documentation: https://www.npmjs.com/package/react-modal 
-
-13. We used a tutorial written by Written by Denis Kratos
+11. We used a tutorial written by Written by Denis Kratos
 July 07, 2021 for support with charactr class setup.
 [link here](https://shakuro.com/blog/phaser-js-a-step-by-step-tutorial-on-making-a-phaser-3-game#part-2)
 

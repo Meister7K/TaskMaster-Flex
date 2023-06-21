@@ -246,6 +246,7 @@ const AccountManage = () => {
 
   return (
     <>
+    <div className="account-page-container">
       <div className="account-container">
         <h1 className="account-title">{user.username}</h1>
         <div className="account-info">
@@ -323,6 +324,7 @@ const AccountManage = () => {
           </button>
         </div>
       </div>
+    </div>
       <ReactModal
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
