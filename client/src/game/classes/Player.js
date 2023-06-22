@@ -1,7 +1,6 @@
 import GameObject from "./GameObject";
 import Phaser from "phaser";
 import Text from "./hud/Text";
-//import CONST from "./Const";
 
 class Player extends GameObject {
   _maxHealth = 100;
@@ -17,7 +16,6 @@ class Player extends GameObject {
     helmEquipped = 0,
     armorEquipped = 0,
     shieldEquipped = 0
-    
   ) {
     super(scene, x, y, spriteSheet, frames);
 
@@ -52,16 +50,13 @@ class Player extends GameObject {
       interact1: Phaser.Input.Keyboard.KeyCodes.F,
     });
 
-    //this.scene.game.events.emit();
-
-    //     this.player = this.physics.add.sprite( 840, 780, "warrior0front");
     this.scene.physics.world.enable(this);
     this.body.setCircle(16, 36, 36);
 
     this.setOrigin(0.5, 0.5);
     this.setPosition(x + this.width / 2, y + this.height / 2);
     this.setScale(0.5);
-    // this.physics.add.sprite(this.x, this.y, this.spriteSheet);
+    this.direction = "Front";
   }
 
   setAnims() {
@@ -154,100 +149,42 @@ class Player extends GameObject {
       frameRate: 28,
     });
   }
-
-  gainExperience(exp) {
-    this.experience += exp;
-  }
-
-  getCoins(num) {
-    this.coins += num;
-  }
-
-  gainHealth(heal) {
-    if (this.health + heal > this._maxHealth) {
-      this.health = this._maxHealth;
-    } else {
-      this.health += heal;
-    }
-  }
-
-  loseHealth(damage) {
-    if (this.hittable === true) {
-      this.health -= damage - this.defense;
-      this.hittable = false;
-      this.setAlpha(0.5);
-      if (this.health <= 0) {
-        //this.disableBody(true,false);
-        // this.scene.time.delayedCall(300, ()=>{
-        //   this.destroy()}) //!review
-        this.setAlpha(0.5);
-      }else{this.scene.time.delayedCall(1000, () => {
-        this.hittable = true;
-        this.setAlpha(1);
-      });}
-      
-    }
-    this.healthValue.setText(this.health.toString());
-
-    //insert damAGE animation
-    
-  }
-
-  doDamage() {
-    //const {isFacing}  =  this.body.velocity;
-    if(!this.isAttacking && this.body.y < 0){
-      this.anims.play("Attack_1");
-      this.isAttacking = true;
-      this.scene.time.delayedCall(500, ()=>{
-        this.isAttacking = false;
-      },this);
-    }
-    if(!this.isAttacking && this.body.y > 0){
-      this.anims.play("FrontAttack_1");
-      this.isAttacking = true;
-     this.scene.time.delayedCall(500, ()=>{
-        this.isAttacking = false;
-      },this);
-    }
-    if(!this.isAttacking && this.body.x > 0){
-      this.anims.play("RightAttack_1");
-      this.isAttacking = true;
-      this.scene.time.delayedCall(500, ()=>{
-        this.isAttacking = false;
-      },this);
-    }
-    if(!this.isAttacking && this.body.x < 0){
-      this.anims.play("LeftAttack_1");
-      this.isAttacking = true;
-      this.scene.time.delayedCall(500, ()=>{
-        this.isAttacking = false;
-      },this);
-    }
-    return this.attack;
-  }
-
-  traverseMap() {
-    //if (playerposition = specific map position){
-    //call next scene function
-    //}
-  }
-  interact() {
-    return "";
-  }
-
   update() {
     const { velocity } = this.body;
 
-    if (velocity.y < 0) {
-      this.anims.play("BackRun", true);
-    } else if (velocity.y > 0) {
-      this.anims.play("FrontRun", true);
-    } else if (velocity.x < 0) {
-      this.anims.play("LeftRun", true);
-    } else if (velocity.x > 0) {
-      this.anims.play("RightRun", true);
-    } else {
-      this.anims.stop();
+    let isMoving = false;
+
+    if (this.inputKeys.up.isDown || this.inputKeys.up1.isDown) {
+      this.body.velocity.y = -100;
+      this.direction = "Back";
+      !this.anims.isPlaying && this.anims.play("BackRun", true);
+      isMoving = true;
+    }
+
+    if (this.inputKeys.down.isDown || this.inputKeys.down1.isDown) {
+      this.body.velocity.y = 100;
+      this.direction = "Front";
+      !this.anims.isPlaying && this.anims.play("FrontRun", true);
+      isMoving = true;
+    }
+
+    if (this.inputKeys.left.isDown || this.inputKeys.left1.isDown) {
+      this.body.velocity.x = -100;
+      this.direction = "Left";
+      !this.anims.isPlaying && this.anims.play("LeftRun", true);
+      isMoving = true;
+    }
+
+    if (this.inputKeys.right.isDown || this.inputKeys.right1.isDown) {
+      this.body.velocity.x = 100;
+      this.direction = "Right";
+      !this.anims.isPlaying && this.anims.play("RightRun", true);
+      isMoving = true;
+    }
+
+    if (this.inputKeys.attack.isDown && !this.isAttacking) {
+      this.doDamage();
+      this.scene.game.events.emit("attack");
     }
 
     this.setBody().setVelocity(0);
@@ -256,30 +193,10 @@ class Player extends GameObject {
     this.healthValue.setOrigin(0.5, 1.5);
     this.healthValue.setScale(0.5);
 
-    // if (this.inputKeys.attack.isDown && (this.inputKeys.left.isDown || this.inputKeys.left1.isDown)) {
-    //    this.anims.play("LeftAttack_1", true);
-    //   this.doDamage();
-    // }
-    // if (this.inputKeys.attack.isDown && (this.inputKeys.right.isDown || this.inputKeys.right1.isDown)) {
-    //   this.anims.play("RightAttack_1", true);
-    //   this.doDamage();
-    // }
-    // if (this.inputKeys.attack.isDown && (this.inputKeys.up.isDown || this.inputKeys.up1.isDown)) {
-    //   this.anims.play("Attack_1", true);
-    //   this.doDamage();
-    // }
-    // if (this.inputKeys.attack.isDown && (this.inputKeys.down.isDown || this.inputKeys.down1.isDown)) {
-    //   this.anims.play("FrontAttack_1", true);
-    //   this.doDamage();
-    //   this.scene.game.events.emit('attack');
-    // }
-  
-    if(this.inputKeys.attack.isDown){
-     
+    if (this.inputKeys.attack.isDown) {
       this.doDamage();
-      this.scene.game.events.emit('attack');
+      this.scene.game.events.emit("attack");
     }
-    
 
     if (this.inputKeys.interact.isDown) {
       this.interact();
@@ -288,20 +205,11 @@ class Player extends GameObject {
     if (this.inputKeys.left.isDown || this.inputKeys.left1.isDown) {
       this.body.velocity.x = -100;
       !this.anims.isPlaying && this.anims.play("LeftRun", true);
-      // this.body.setOffset(20,0);
     }
 
     if (this.inputKeys.right.isDown || this.inputKeys.right1.isDown) {
       this.body.velocity.x = 100;
       !this.anims.isPlaying && this.anims.play("RightRun", true);
-      // this.body.setOffset(0,0);
-    }
-
-    if (
-      (this.inputKeys.right.isDown || this.inputKeys.right1.isDown) &&
-      (this.inputKeys.left.isDown || this.inputKeys.left1.isDown)
-    ) {
-      this.body.velocity.x = 0;
     }
 
     if (this.inputKeys.up.isDown || this.inputKeys.up1.isDown) {
@@ -315,74 +223,83 @@ class Player extends GameObject {
     }
 
     if (
+      (this.inputKeys.right.isDown || this.inputKeys.right1.isDown) &&
+      (this.inputKeys.left.isDown || this.inputKeys.left1.isDown)
+    ) {
+      this.body.velocity.x = 0;
+    }
+
+    if (
       (this.inputKeys.up.isDown || this.inputKeys.up1.isDown) &&
       (this.inputKeys.down.isDown || this.inputKeys.down1.isDown)
     ) {
       this.body.velocity.y = 0;
     }
-    //   this.anims.play("warrior0BackAnimation", true);
-    //   isMoving = true;
-    // } else if ( this.inputKeys.down.isDown) {
-    //   this.setVelocityY(100);
-    //   this.player.anims.play("warrior0FrontAnimation", true);
-    //   isMoving = true;
-    // } else {
-    //   this.player.setVelocityY(0);
-    // }
+  }
 
-    // //TODO add attack animation & interaction
-    // if (this.inputKeys.attack.isDown) {
-    //   // this.player.anims.play("warrior1AttackAnimation", true);
-    //   this.doDamage();
-    // }
+  doDamage() {
+    if (!this.isAttacking) {
+      this.isAttacking = true;
+      let attackAnim;
 
-    // if (this.inputKeys.interact.isDown) {
-    //   this.interact();
-    // }
+      switch (this.direction) {
+        case "Back":
+          attackAnim = this.anims.play("Attack_1", true);
+          break;
+        case "Front":
+          attackAnim = this.anims.play("FrontAttack_1", true);
+          break;
+        case "Left":
+          attackAnim = this.anims.play("LeftAttack_1", true);
+          break;
+        case "Right":
+          attackAnim = this.anims.play("RightAttack_1", true);
+          break;
+      }
+      attackAnim.on("animationcomplete", () => {
+        this.isAttacking = false;
+      });
+    }
+    return this.attack;
+  }
 
-    // // Adjust camera bounds when character reaches near the edge
-    // let cameraBounds = this.cameras.main.getBounds();
-    // let buffer = 0;
+  // gainExperience(exp) {
+  //   this.experience += exp;
+  // }
 
-    // if (this.player.x < cameraBounds.x + buffer) {
-    //   this.cameras.main.setBounds(
-    //     this.player.x - buffer,
-    //     cameraBounds.y,
-    //     cameraBounds.width,
-    //     cameraBounds.height
-    //   );
-    // } else if (this.player.x > cameraBounds.x + cameraBounds.width - buffer) {
-    //   this.cameras.main.setBounds(
-    //     this.player.x + buffer - cameraBounds.width,
-    //     cameraBounds.y,
-    //     cameraBounds.width,
-    //     cameraBounds.height
-    //   );
-    // }
+  // getCoins(num) {
+  //   this.coins += num;
+  // }
 
-    // if (this.player.y < cameraBounds.y + buffer) {
-    //   this.cameras.main.setBounds(
-    //     cameraBounds.x,
-    //     this.player.y - buffer,
-    //     cameraBounds.width,
-    //     cameraBounds.height
-    //   );
-    // } else if (this.player.y > cameraBounds.y + cameraBounds.height - buffer) {
-    //   this.cameras.main.setBounds(
-    //     cameraBounds.x,
-    //     this.player.y + buffer - cameraBounds.height,
-    //     cameraBounds.width,
-    //     cameraBounds.height
-    //   );
-    // }
+  // gainHealth(heal) {
+  //   if (this.health + heal > this._maxHealth) {
+  //     this.health = this._maxHealth;
+  //   } else {
+  //     this.health += heal;
+  //   }
+  // }
 
-    //!normalize
+  // loseHealth(damage) {
+  //   if (this.hittable === true) {
+  //     this.health -= damage - this.defense;
+  //     this.hittable = false;
+  //     this.setAlpha(0.5);
+  //     if (this.health <= 0) {
+  //       this.setAlpha(0.5);
+  //     } else {
+  //       this.scene.time.delayedCall(1000, () => {
+  //         this.hittable = true;
+  //         this.setAlpha(1);
+  //       });
+  //     }
+  //   }
+  //   this.healthValue.setText(this.health.toString());
+  // }
 
-    // if (!isMoving) {
-    //   this.anims.stop();
-    // } else {
-    //   this.anims.resume();
-    // }
+  // traverseMap() {}
+
+  interact() {
+    return "";
   }
 }
 
