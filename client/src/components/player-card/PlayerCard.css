@@ -119,6 +119,13 @@
   margin-right: 10px;
 }
 
+.inventory-item-value {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+}
+
 .armor-image,
 .weapon-image {
   max-width:400px;
@@ -131,6 +138,12 @@
   gap:20px;
 }
 
+.toggle-button-container {
+  display: flex;
+  gap:20px;
+}
+
+.toggle-button,
 .sell-button,
 .equip-button {
   display: flex;
@@ -144,6 +157,11 @@
   filter: drop-shadow(0 0 0.8rem rgb(34, 34, 34));
 }
 
+.toggle-button {
+  width:200px;
+}
+
+.toggle-button:hover,
 .sell-button:hover,
 .equip-button:hover {
   background-color: #52462f;
