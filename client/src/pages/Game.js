@@ -19,17 +19,16 @@ function Game() {
   }, []);
 
   useEffect(() => {
-    if (user && location.pathname === `/${user}/play`) {
-      game = new Phaser.Game(config);
-    } else if (game) {
-      game.destroy();
+
+    if(game) {
+      game.destroy(true);
     }
 
-    return () => {
-      if (game) {
-        game.destroy();
-      }
-    };
+    if (user && location.pathname === `/${user}/play`) {
+      game = new Phaser.Game(config);
+    } 
+
+    return;
   }, [location, user]);
 
   return <div id="phaser-container" />;
