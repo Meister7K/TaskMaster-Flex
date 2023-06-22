@@ -223,6 +223,11 @@ const randomX = Phaser.Math.Between(0, this.game.config.width);
 
     })
 
+    this.physics.add.collider(minotaurs, this.player.attack,(obj1,obj2)=>{
+      (obj1).loseHealth((obj2).doDamage());
+
+    })
+
 // ! End Collision section
    
   }
