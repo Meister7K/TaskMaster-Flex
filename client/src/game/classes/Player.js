@@ -113,7 +113,7 @@ class Player extends GameObject {
         zeroPad: 3,
       }),
       repeat:0,
-      frameRate: 28,
+      frameRate: 40,
     });
     this.scene.anims.create({
       key: "RightAttack_1",
@@ -124,7 +124,7 @@ class Player extends GameObject {
         zeroPad: 3,
       }),
       repeat:0,
-      frameRate: 28,
+      frameRate: 40,
     });
     this.scene.anims.create({
       key: "FrontAttack_1",
@@ -135,7 +135,7 @@ class Player extends GameObject {
         zeroPad: 3,
       }),
       repeat:0,
-      frameRate: 28,
+      frameRate: 40,
     });
     this.scene.anims.create({
       key: "LeftAttack_1",
@@ -146,7 +146,7 @@ class Player extends GameObject {
         zeroPad: 3,
       }),
       repeat:0,
-      frameRate: 28,
+      frameRate: 40,
     });
      this.scene.anims.create({
        key: "LeftIdle",
@@ -295,7 +295,6 @@ class Player extends GameObject {
     } else if (velocity.x > 0 && this.isAttacking) {
       this.anims.play("RightAttack_1", true);
     } else if (!this.isAttacking) {
-       this.anims.stop();
        if(this.direction === "Right") {
         this.anims.play("RightIdle", true);
        } else if (this.direction === "Left") {
@@ -313,24 +312,6 @@ class Player extends GameObject {
     this.healthValue.setOrigin(0.5, 1.5);
     this.healthValue.setScale(0.5);
 
-    // if (this.inputKeys.attack.isDown && (this.inputKeys.left.isDown || this.inputKeys.left1.isDown)) {
-    //    this.anims.play("LeftAttack_1", true);
-    //   this.doDamage();
-    // }
-    // if (this.inputKeys.attack.isDown && (this.inputKeys.right.isDown || this.inputKeys.right1.isDown)) {
-    //   this.anims.play("RightAttack_1", true);
-    //   this.doDamage();
-    // }
-    // if (this.inputKeys.attack.isDown && (this.inputKeys.up.isDown || this.inputKeys.up1.isDown)) {
-    //   this.anims.play("Attack_1", true);
-    //   this.doDamage();
-    // }
-    // if (this.inputKeys.attack.isDown && (this.inputKeys.down.isDown || this.inputKeys.down1.isDown)) {
-    //   this.anims.play("FrontAttack_1", true);
-    //   this.doDamage();
-    //   this.scene.game.events.emit('attack');
-    // }
-
     if (this.inputKeys.attack.isDown) {
       this.doDamage();
       this.scene.game.events.emit("attack");
@@ -343,25 +324,21 @@ class Player extends GameObject {
     if (this.inputKeys.left.isDown || this.inputKeys.left1.isDown) {
       this.body.velocity.x = -100;
       this.direction = "Left";
-      // !this.anims.isPlaying && this.anims.play("LeftRun", true);
     }
 
     if (this.inputKeys.right.isDown || this.inputKeys.right1.isDown) {
       this.body.velocity.x = 100;
       this.direction = "Right";
-      // !this.anims.isPlaying && this.anims.play("RightRun", true);
     }
 
     if (this.inputKeys.up.isDown || this.inputKeys.up1.isDown) {
       this.body.velocity.y = -100;
       this.direction = "Back";
-      // !this.anims.isPlaying && this.anims.play("BackRun", true);
     }
 
     if (this.inputKeys.down.isDown || this.inputKeys.down1.isDown) {
       this.body.velocity.y = 100;
       this.direction = "Front";
-      // !this.anims.isPlaying && this.anims.play("FrontRun", true);
     }
 
     if (
