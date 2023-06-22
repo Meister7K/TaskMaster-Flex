@@ -39,6 +39,7 @@
   padding: 20% 10%;
 }
 
+.inventoryCard,
 .playerCard {
   display: flex;
   justify-content: center;
@@ -47,13 +48,18 @@
   width:80%;
 }
 
+.lastCard {
+  margin-bottom:50px;
+}
+
 .username {
   color: #3b3423 !important;
   font-size:2.5rem;
-  margin-top:20px;
+  margin-top:50px;
   font-weight: bold;
 }
 
+.inventoryEquip,
 .weaponEquip,
 .armorEquip,
 .playerStats {
@@ -101,6 +107,7 @@
   padding:15px;
 }
 
+.inventory-title,
 .player-stats-title,
 .current-armor-title,
 .current-weapon-title {
@@ -117,6 +124,38 @@
   max-width:400px;
 }
 
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:20px;
+}
+
+.sell-button,
+.equip-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 5px;
+  width: 100px;
+  border-radius: 15px;
+  background-color: #3b3423;
+  color: #fff;
+  filter: drop-shadow(0 0 0.8rem rgb(34, 34, 34));
+}
+
+.sell-button:hover,
+.equip-button:hover {
+  background-color: #52462f;
+  filter: drop-shadow(0 0 0.8rem rgb(54, 54, 54));
+}
+
+@media (max-width:1350px) {
+  .lastCard {
+    margin-bottom: 150px;
+  }
+}
+
 @media (max-width: 999px) {
 
   .username {
@@ -129,4 +168,14 @@
     max-width: 200px;
   }
 
+  .lastCard {
+    margin-bottom: 150px;
+  }
+
+}
+
+@media (max-width:800px) {
+  .lastCard {
+    margin-bottom: 200px;
+  }
 }

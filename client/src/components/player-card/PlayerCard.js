@@ -67,18 +67,24 @@ function PlayerCard() {
   let playerInventoryXML = <h3>loading</h3>;
   if (!loading) {
     playerInventoryXML = playerData.onePlayer.inventory.map((item, i) => (
-      <div key={"playerinv" + i}>
-        {/*include code to hover and see more details*/}
-        <h4>Inventory</h4>
-        <ul>
-          <li>{item.name}</li>
-          <li>{item.value}</li>
-        </ul>
-
-        <button cost={item.value} itemidentifier={item._id} index={i} onClick={handleSell}>sell</button>
-        <button itemidentifier={item._id} index={i} onClick={item.itemType==='consumable'? null : handleEquip} >{item.itemType==='consumable'? 'use':'equip'}</button>
-
-      </div>
+      // <div className="playerCard">
+        <div className="inventoryEquip">
+          <div key={"playerinv" + i}>
+            {/*include code to hover and see more details*/}
+            <div className="current-armor-title">
+              <h3>Inventory</h3>
+            </div>
+            <ul>
+              <li>{item.name}</li>
+              <li>{item.value}</li>
+            </ul>
+            <div className="button-container">
+              <button className="sell-button" cost={item.value} itemidentifier={item._id} index={i} onClick={handleSell}>Sell</button>
+              <button className="equip-button" itemidentifier={item._id} index={i} onClick={item.itemType==='consumable'? null : handleEquip} >{item.itemType==='consumable'? 'Use':'Equip'}</button>
+            </div>
+          </div>
+        </div>
+      // </div>
     ));
   }
 
@@ -204,7 +210,9 @@ function PlayerCard() {
       <div className="player-wrapper">
         <div className="player-content-wrapper">
           {playerXML}
-          {playerInventoryXML}
+          <div className="inventoryCard lastCard">
+            {playerInventoryXML}
+          </div>
         </div>
       </div>
     </div>
