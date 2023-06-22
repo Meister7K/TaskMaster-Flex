@@ -353,6 +353,7 @@ class Player extends GameObject {
     if (!this.isAttacking) {
       this.isAttacking = true;
       let attackAnim;
+      
 
       switch (this.direction) {
         case "Back":
