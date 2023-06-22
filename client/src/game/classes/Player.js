@@ -33,6 +33,7 @@ class Player extends GameObject {
     );
     this.hittable = true;
     this.isAttacking = false;
+    
 
     this.setAnims();
 
@@ -57,6 +58,7 @@ class Player extends GameObject {
     this.setPosition(x + this.width / 2, y + this.height / 2);
     this.setScale(0.5);
     this.direction = "Front";
+    // this.attackBox = this.physics.add.r
   }
 
   setAnims() {
@@ -193,18 +195,18 @@ class Player extends GameObject {
        frameRate: 28,
      });
   }
-  update() {
-    const { velocity } = this.body;
+  // update() {
+  //   const { velocity } = this.body;
 
-    let isMoving = false;
+  //   let isMoving = false;
 
-    if (this.inputKeys.up.isDown || this.inputKeys.up1.isDown) {
-      this.body.velocity.y = -100;
-      this.direction = "Back";
-      !this.anims.isPlaying && this.anims.play("BackRun", true);
-      isMoving = true;
-    }
-  }
+  //   if (this.inputKeys.up.isDown || this.inputKeys.up1.isDown) {
+  //     this.body.velocity.y = -100;
+  //     this.direction = "Back";
+  //     !this.anims.isPlaying && this.anims.play("BackRun", true);
+  //     isMoving = true;
+  //   }
+  // }
 
   loseHealth(damage) {
     if (this.hittable === true) {
@@ -228,43 +230,19 @@ class Player extends GameObject {
     //insert damAGE animation
   }
 
-  doDamage() {
-    this.isAttacking = true;
-    //const {isFacing}  =  this.body.velocity;
-    // if(!this.isAttacking && this.body.y < 0){
-    //   this.anims.play("Attack_1");
-    //   this.isAttacking = true;
-    //   this.scene.time.delayedCall(500, ()=>{
-    //     this.isAttacking = false;
-    //   },this);
-    // }
-    // if(!this.isAttacking && this.body.y > 0){
-    //   this.anims.play("FrontAttack_1");
-    //   this.isAttacking = true;
-    //  this.scene.time.delayedCall(500, ()=>{
-    //     this.isAttacking = false;
-    //   },this);
-    // }
-    // if(!this.isAttacking && this.body.x > 0){
-    //   this.anims.play("RightAttack_1");
-    //   this.isAttacking = true;
-    //   this.scene.time.delayedCall(500, ()=>{
-    //     this.isAttacking = false;
-    //   },this);
-    // }
-    // if(!this.isAttacking && this.body.x < 0){
-    //   this.anims.play("LeftAttack_1");
-    //   this.isAttacking = true;
-    this.scene.time.delayedCall(
-      500,
-      () => {
-        this.isAttacking = false;
-      },
-      this
-    );
-    // }
-    return this.attack;
-  }
+  // doDamage() {
+  //   this.isAttacking = true;
+    
+  //   this.scene.time.delayedCall(
+  //     500,
+  //     () => {
+  //       this.isAttacking = false;
+  //     },
+  //     this
+  //   );
+  
+  //   return this.attack;
+  // }
 
   traverseMap() {
     //if (playerposition = specific map position){
@@ -314,6 +292,7 @@ class Player extends GameObject {
 
     if (this.inputKeys.attack.isDown) {
       this.doDamage();
+      this.scene.physics.world.add(this.attackBox.body);
       this.scene.game.events.emit("attack");
     }
 
