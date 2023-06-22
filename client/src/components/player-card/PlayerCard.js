@@ -107,7 +107,7 @@ function PlayerCard() {
 
   if (!loading) {
     playerXML = (
-      <div className="playerCard">
+      <div className="playerCard lastCard">
         {/* <div className="username">
           {user.username}
         </div> */}
