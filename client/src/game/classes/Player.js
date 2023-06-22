@@ -219,8 +219,11 @@ class Player extends GameObject {
     //insert damAGE animation
   }
 
- createAttackBox(){
-  new AttackType(this.scene, this.x, this.y)
+ createAttackBox(posX,posY, w, h){
+  new AttackType(this.scene, this.x +this.body.velocity.x +posX, this.y+this.body.velocity.y+posY, w, h);
+ }
+ removeAttackBox(){
+  
  }
   
 
@@ -273,7 +276,7 @@ class Player extends GameObject {
 
     if (this.inputKeys.attack.isDown) {
       this.doDamage();
-      this.createAttackBox();
+      
       this.scene.game.events.emit("attack");
     }
 
@@ -320,20 +323,25 @@ class Player extends GameObject {
     if (!this.isAttacking) {
       this.isAttacking = true;
       let attackAnim;
-      
 
       switch (this.direction) {
         case "Back":
           attackAnim = this.anims.play("Attack_1", true);
+          this.createAttackBox(0,-30, 30,10);
           break;
         case "Front":
           attackAnim = this.anims.play("FrontAttack_1", true);
+          this.createAttackBox(0,30,30,10);
           break;
         case "Left":
           attackAnim = this.anims.play("LeftAttack_1", true);
+          
+          this.createAttackBox(-30,0, 10,30);
           break;
         case "Right":
           attackAnim = this.anims.play("RightAttack_1", true);
+          
+          this.createAttackBox(30,0, 10,30);
           break;
       }
       attackAnim.on("animationcomplete", () => {
