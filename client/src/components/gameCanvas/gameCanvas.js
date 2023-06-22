@@ -9,8 +9,6 @@ import Scene2 from "../../game/scenes/Scene2";
 function GameCanvas() {
     //TODO fix script for phazer
 
-    
-
     const config = {
       type: Phaser.CANVAS,
       canvas: document.querySelector("#gameDisplay"),
@@ -35,12 +33,9 @@ function GameCanvas() {
       },
       scene: [Scene1,Scene2],
     }
-    let game = new Phaser.Game(config);
-    
     return (
       <>
        <button>START</button>
-      
       </>
     );
   }

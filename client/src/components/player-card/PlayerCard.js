@@ -8,6 +8,18 @@ import Auth from "../../utils/auth";
 import ReactModal from "react-modal";
 
 function PlayerCard() {
+  const [showPlayerXML, setShowPlayerXML] = useState(true);
+  const [showPlayerInventoryXML, setShowPlayerInventoryXML] = useState(false);
+
+  const handlePlayerXMLClick = () => {
+    setShowPlayerXML(true);
+    setShowPlayerInventoryXML(false);
+  };
+
+  const handlePlayerInventoryXMLClick = () => {
+    setShowPlayerXML(false);
+    setShowPlayerInventoryXML(true);
+  };
 
   //logged in
   const user = Auth.loggedIn() ? Auth.getProfile().data : null;
@@ -67,24 +79,27 @@ function PlayerCard() {
   let playerInventoryXML = <h3>loading</h3>;
   if (!loading) {
     playerInventoryXML = playerData.onePlayer.inventory.map((item, i) => (
-      // <div className="playerCard">
+      <div className="playerCard">
         <div className="inventoryEquip">
           <div key={"playerinv" + i}>
             {/*include code to hover and see more details*/}
             <div className="current-armor-title">
-              <h3>Inventory</h3>
+              <h3>{item.name}</h3>
             </div>
-            <ul>
+            <div className="inventory-item-value">
+              Item Value: {item.value}
+            </div>
+            {/* <ul>
               <li>{item.name}</li>
               <li>{item.value}</li>
-            </ul>
+            </ul> */}
             <div className="button-container">
               <button className="sell-button" cost={item.value} itemidentifier={item._id} index={i} onClick={handleSell}>Sell</button>
               <button className="equip-button" itemidentifier={item._id} index={i} onClick={item.itemType==='consumable'? null : handleEquip} >{item.itemType==='consumable'? 'Use':'Equip'}</button>
             </div>
           </div>
         </div>
-      // </div>
+      </div>
     ));
   }
 
@@ -92,10 +107,10 @@ function PlayerCard() {
 
   if (!loading) {
     playerXML = (
-      <div className="playerCard">
-        <div className="username">
+      <div className="playerCard lastCard">
+        {/* <div className="username">
           {user.username}
-        </div>
+        </div> */}
         <div className="playerStats">
           <div className="player-stats-title">
             <h3>Stats:</h3>
@@ -205,14 +220,31 @@ function PlayerCard() {
     );
   }
 
+  let content = null;
+
+  if (showPlayerXML) {
+    content = (
+      [playerXML]
+    )
+
+  } else if (showPlayerInventoryXML) {
+    content = (
+      [playerInventoryXML]
+    )
+  }
+
   return (
     <div className="player-container">
       <div className="player-wrapper">
         <div className="player-content-wrapper">
-          {playerXML}
-          <div className="inventoryCard lastCard">
-            {playerInventoryXML}
+          <div className="username">
+            {user.username}
           </div>
+          <div className="toggle-button-container">
+            <button className="toggle-button" onClick={handlePlayerXMLClick}>View Account</button>
+            <button className="toggle-button" onClick={handlePlayerInventoryXMLClick}>View Inventory</button>
+          </div>
+          {content}
         </div>
       </div>
     </div>
