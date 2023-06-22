@@ -12,4 +12,4 @@ class AttackType extends GameObject {
     }
   }
   
-  export default GameObject;
+  export default AttackType;
