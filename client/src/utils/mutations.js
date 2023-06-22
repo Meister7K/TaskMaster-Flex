@@ -146,3 +146,15 @@ export const EQUIP_ITEM = gql`
     }
   }
 `;
+
+
+export const REMOVE_ITEM = gql`
+mutation removeItem($userId: ID!, $index: Int!) {
+  removeItem(userId: $userId, index: $index) {
+    inventory {
+      _id
+      name
+      value
+    }
+  }
+}`
