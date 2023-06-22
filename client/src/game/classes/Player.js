@@ -112,7 +112,7 @@ class Player extends GameObject {
         end: 14,
         zeroPad: 3,
       }),
-
+      repeat:0,
       frameRate: 28,
     });
     this.scene.anims.create({
@@ -123,7 +123,7 @@ class Player extends GameObject {
         end: 14,
         zeroPad: 3,
       }),
-
+      repeat:0,
       frameRate: 28,
     });
     this.scene.anims.create({
@@ -134,7 +134,7 @@ class Player extends GameObject {
         end: 14,
         zeroPad: 3,
       }),
-
+      repeat:0,
       frameRate: 28,
     });
     this.scene.anims.create({
@@ -145,9 +145,53 @@ class Player extends GameObject {
         end: 14,
         zeroPad: 3,
       }),
-
+      repeat:0,
       frameRate: 28,
     });
+     this.scene.anims.create({
+       key: "LeftIdle",
+       frames: this.scene.anims.generateFrameNames("a-warrior1", {
+         prefix: "0_Warrior_LeftRun_",
+         start: 1,
+         end: 1,
+         zeroPad: 3,
+       }),
+       repeat: -1,
+       frameRate: 28,
+     });
+     this.scene.anims.create({
+       key: "RightIdle",
+       frames: this.scene.anims.generateFrameNames("a-warrior1", {
+         prefix: "0_Warrior_RightRun_",
+         start: 1,
+         end: 1,
+         zeroPad: 3,
+       }),
+       repeat: -1,
+       frameRate: 28,
+     });
+     this.scene.anims.create({
+       key: "BackIdle",
+       frames: this.scene.anims.generateFrameNames("a-warrior1", {
+         prefix: "0_Warrior_BackRun_",
+         start: 1,
+         end: 1,
+         zeroPad: 3,
+       }),
+       repeat: -1,
+       frameRate: 28,
+     });
+     this.scene.anims.create({
+       key: "FrontIdle",
+       frames: this.scene.anims.generateFrameNames("a-warrior1", {
+         prefix: "0_Warrior_FrontRun_",
+         start: 1,
+         end: 1,
+         zeroPad: 3,
+       }),
+       repeat: -1,
+       frameRate: 28,
+     });
   }
   update() {
     const { velocity } = this.body;
@@ -160,31 +204,107 @@ class Player extends GameObject {
       !this.anims.isPlaying && this.anims.play("BackRun", true);
       isMoving = true;
     }
+  }
 
-    if (this.inputKeys.down.isDown || this.inputKeys.down1.isDown) {
-      this.body.velocity.y = 100;
-      this.direction = "Front";
-      !this.anims.isPlaying && this.anims.play("FrontRun", true);
-      isMoving = true;
+  loseHealth(damage) {
+    if (this.hittable === true) {
+      this.health -= damage - this.defense;
+      this.hittable = false;
+      this.setAlpha(0.5);
+      if (this.health <= 0) {
+        //this.disableBody(true,false);
+        // this.scene.time.delayedCall(300, ()=>{
+        //   this.destroy()}) //!review
+        this.setAlpha(0.5);
+      } else {
+        this.scene.time.delayedCall(1000, () => {
+          this.hittable = true;
+          this.setAlpha(1);
+        });
+      }
     }
+    this.healthValue.setText(this.health.toString());
 
-    if (this.inputKeys.left.isDown || this.inputKeys.left1.isDown) {
-      this.body.velocity.x = -100;
-      this.direction = "Left";
-      !this.anims.isPlaying && this.anims.play("LeftRun", true);
-      isMoving = true;
-    }
+    //insert damAGE animation
+  }
 
-    if (this.inputKeys.right.isDown || this.inputKeys.right1.isDown) {
-      this.body.velocity.x = 100;
-      this.direction = "Right";
-      !this.anims.isPlaying && this.anims.play("RightRun", true);
-      isMoving = true;
-    }
+  doDamage() {
+    this.isAttacking = true;
+    //const {isFacing}  =  this.body.velocity;
+    // if(!this.isAttacking && this.body.y < 0){
+    //   this.anims.play("Attack_1");
+    //   this.isAttacking = true;
+    //   this.scene.time.delayedCall(500, ()=>{
+    //     this.isAttacking = false;
+    //   },this);
+    // }
+    // if(!this.isAttacking && this.body.y > 0){
+    //   this.anims.play("FrontAttack_1");
+    //   this.isAttacking = true;
+    //  this.scene.time.delayedCall(500, ()=>{
+    //     this.isAttacking = false;
+    //   },this);
+    // }
+    // if(!this.isAttacking && this.body.x > 0){
+    //   this.anims.play("RightAttack_1");
+    //   this.isAttacking = true;
+    //   this.scene.time.delayedCall(500, ()=>{
+    //     this.isAttacking = false;
+    //   },this);
+    // }
+    // if(!this.isAttacking && this.body.x < 0){
+    //   this.anims.play("LeftAttack_1");
+    //   this.isAttacking = true;
+    this.scene.time.delayedCall(
+      500,
+      () => {
+        this.isAttacking = false;
+      },
+      this
+    );
+    // }
+    return this.attack;
+  }
 
-    if (this.inputKeys.attack.isDown && !this.isAttacking) {
-      this.doDamage();
-      this.scene.game.events.emit("attack");
+  traverseMap() {
+    //if (playerposition = specific map position){
+    //call next scene function
+    //}
+  }
+  interact() {
+    return "";
+  }
+
+  update() {
+    const { velocity } = this.body;
+
+    if (velocity.y < 0 && !this.isAttacking) {
+      this.anims.play("BackRun", true);
+    } else if (velocity.y > 0 && !this.isAttacking) {
+      this.anims.play("FrontRun", true);
+    } else if (velocity.x < 0 && !this.isAttacking) {
+      this.anims.play("LeftRun", true);
+    } else if (velocity.x > 0 && !this.isAttacking) {
+      this.anims.play("RightRun", true);
+    } else if (velocity.y < 0 && this.isAttacking) {
+      this.anims.play("Attack_1", true);
+    } else if (velocity.y > 0 && this.isAttacking) {
+      this.anims.play("FrontAttack_1", true);
+    } else if (velocity.x < 0 && this.isAttacking) {
+      this.anims.play("LeftAttack_1", true);
+    } else if (velocity.x > 0 && this.isAttacking) {
+      this.anims.play("RightAttack_1", true);
+    } else if (!this.isAttacking) {
+       this.anims.stop();
+       if(this.direction === "Right") {
+        this.anims.play("RightIdle", true);
+       } else if (this.direction === "Left") {
+        this.anims.play("LeftIdle", true);
+       } else if (this.direction === "Front") {
+        this.anims.play("FrontIdle", true);
+       } else if (this.direction === "Back") {
+        this.anims.play("BackIdle", true);
+       }
     }
 
     this.setBody().setVelocity(0);
@@ -192,6 +312,24 @@ class Player extends GameObject {
     this.healthValue.setPosition(this.x, this.y - this.height * 0.04);
     this.healthValue.setOrigin(0.5, 1.5);
     this.healthValue.setScale(0.5);
+
+    // if (this.inputKeys.attack.isDown && (this.inputKeys.left.isDown || this.inputKeys.left1.isDown)) {
+    //    this.anims.play("LeftAttack_1", true);
+    //   this.doDamage();
+    // }
+    // if (this.inputKeys.attack.isDown && (this.inputKeys.right.isDown || this.inputKeys.right1.isDown)) {
+    //   this.anims.play("RightAttack_1", true);
+    //   this.doDamage();
+    // }
+    // if (this.inputKeys.attack.isDown && (this.inputKeys.up.isDown || this.inputKeys.up1.isDown)) {
+    //   this.anims.play("Attack_1", true);
+    //   this.doDamage();
+    // }
+    // if (this.inputKeys.attack.isDown && (this.inputKeys.down.isDown || this.inputKeys.down1.isDown)) {
+    //   this.anims.play("FrontAttack_1", true);
+    //   this.doDamage();
+    //   this.scene.game.events.emit('attack');
+    // }
 
     if (this.inputKeys.attack.isDown) {
       this.doDamage();
@@ -204,22 +342,26 @@ class Player extends GameObject {
 
     if (this.inputKeys.left.isDown || this.inputKeys.left1.isDown) {
       this.body.velocity.x = -100;
-      !this.anims.isPlaying && this.anims.play("LeftRun", true);
+      this.direction = "Left";
+      // !this.anims.isPlaying && this.anims.play("LeftRun", true);
     }
 
     if (this.inputKeys.right.isDown || this.inputKeys.right1.isDown) {
       this.body.velocity.x = 100;
-      !this.anims.isPlaying && this.anims.play("RightRun", true);
+      this.direction = "Right";
+      // !this.anims.isPlaying && this.anims.play("RightRun", true);
     }
 
     if (this.inputKeys.up.isDown || this.inputKeys.up1.isDown) {
       this.body.velocity.y = -100;
-      !this.anims.isPlaying && this.anims.play("BackRun", true);
+      this.direction = "Back";
+      // !this.anims.isPlaying && this.anims.play("BackRun", true);
     }
 
     if (this.inputKeys.down.isDown || this.inputKeys.down1.isDown) {
       this.body.velocity.y = 100;
-      !this.anims.isPlaying && this.anims.play("FrontRun", true);
+      this.direction = "Front";
+      // !this.anims.isPlaying && this.anims.play("FrontRun", true);
     }
 
     if (

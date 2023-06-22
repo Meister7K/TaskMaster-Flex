@@ -2,35 +2,64 @@ import React, { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { ONE_PLAYER } from "../../utils/queries";
 import "./PlayerCard.css";
-import { EQUIP_ITEM, REMOVE_GOLD } from "../../utils/mutations";
+import { EQUIP_ITEM, ADD_GOLD, REMOVE_ITEM } from "../../utils/mutations";
 
 import Auth from "../../utils/auth";
 import ReactModal from "react-modal";
 
 function PlayerCard() {
+
+  //logged in
   const user = Auth.loggedIn() ? Auth.getProfile().data : null;
   if (!user) {
     window.location.assign("/");
   }
 
+  //get player inventory
   const { loading, data: playerData, refetch: refetchInv } = useQuery(ONE_PLAYER, {
     variables: { userId: Auth.getProfile().data._id },
   });
 
+
+  //equip data and functions
   const [equipItem]= useMutation(EQUIP_ITEM, {
     onError: (error) => {
       console.log(error);
     },
   })
-
-
-
+  
   async function handleEquip(e){
     const itemToEquip=e.currentTarget.getAttribute("itemidentifier")
     const newPlayer= await equipItem({ variables : {userId: user._id, itemId: itemToEquip}});
     refetchInv();
     
 
+  }
+
+  //sell data and functions
+  const [removeItem]= useMutation(REMOVE_ITEM, {
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const [addGold] = useMutation(ADD_GOLD, {
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  async function handleSell(event){
+    console.log("here")
+    let price=event.currentTarget.getAttribute("cost")
+    let itemIndex=event.currentTarget.getAttribute("index")
+    if(itemIndex>=0){
+      await addGold({variables : {userId: Auth.getProfile().data._id , amount: +price}});
+      await removeItem({variables : {userId: Auth.getProfile().data._id, index: +itemIndex}})
+
+    }
+    
+    refetchInv()
   }
   
 
@@ -46,8 +75,8 @@ function PlayerCard() {
           <li>{item.value}</li>
         </ul>
 
-        <button cost={item.value}>sell</button>
-        <button itemidentifier={item._id} onClick={item.itemType==='consumable'? null : handleEquip} >{item.itemType==='consumable'? 'use':'equip'}</button>
+        <button cost={item.value} itemidentifier={item._id} index={i} onClick={handleSell}>sell</button>
+        <button itemidentifier={item._id} index={i} onClick={item.itemType==='consumable'? null : handleEquip} >{item.itemType==='consumable'? 'use':'equip'}</button>
 
       </div>
     ));
