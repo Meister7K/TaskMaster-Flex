@@ -34,7 +34,6 @@ class Player extends GameObject {
     );
     this.hittable = true;
     this.isAttacking = false;
-    
 
     this.setAnims();
 
@@ -59,7 +58,7 @@ class Player extends GameObject {
     this.setPosition(x + this.width / 2, y + this.height / 2);
     this.setScale(0.5);
     this.direction = "Front";
-    // this.attackBox = this.physics.add.r
+    this.loadState();
   }
 
   setAnims() {
@@ -115,7 +114,7 @@ class Player extends GameObject {
         end: 14,
         zeroPad: 3,
       }),
-      repeat:0,
+      repeat: 0,
       frameRate: 40,
     });
     this.scene.anims.create({
@@ -126,7 +125,7 @@ class Player extends GameObject {
         end: 14,
         zeroPad: 3,
       }),
-      repeat:0,
+      repeat: 0,
       frameRate: 40,
     });
     this.scene.anims.create({
@@ -137,7 +136,7 @@ class Player extends GameObject {
         end: 14,
         zeroPad: 3,
       }),
-      repeat:0,
+      repeat: 0,
       frameRate: 40,
     });
     this.scene.anims.create({
@@ -148,53 +147,85 @@ class Player extends GameObject {
         end: 14,
         zeroPad: 3,
       }),
-      repeat:0,
+      repeat: 0,
       frameRate: 40,
     });
-     this.scene.anims.create({
-       key: "LeftIdle",
-       frames: this.scene.anims.generateFrameNames("a-warrior1", {
-         prefix: "0_Warrior_LeftRun_",
-         start: 1,
-         end: 1,
-         zeroPad: 3,
-       }),
-       repeat: -1,
-       frameRate: 28,
-     });
-     this.scene.anims.create({
-       key: "RightIdle",
-       frames: this.scene.anims.generateFrameNames("a-warrior1", {
-         prefix: "0_Warrior_RightRun_",
-         start: 1,
-         end: 1,
-         zeroPad: 3,
-       }),
-       repeat: -1,
-       frameRate: 28,
-     });
-     this.scene.anims.create({
-       key: "BackIdle",
-       frames: this.scene.anims.generateFrameNames("a-warrior1", {
-         prefix: "0_Warrior_BackRun_",
-         start: 1,
-         end: 1,
-         zeroPad: 3,
-       }),
-       repeat: -1,
-       frameRate: 28,
-     });
-     this.scene.anims.create({
-       key: "FrontIdle",
-       frames: this.scene.anims.generateFrameNames("a-warrior1", {
-         prefix: "0_Warrior_FrontRun_",
-         start: 1,
-         end: 1,
-         zeroPad: 3,
-       }),
-       repeat: -1,
-       frameRate: 28,
-     });
+    this.scene.anims.create({
+      key: "LeftIdle",
+      frames: this.scene.anims.generateFrameNames("a-warrior1", {
+        prefix: "0_Warrior_LeftRun_",
+        start: 1,
+        end: 1,
+        zeroPad: 3,
+      }),
+      repeat: -1,
+      frameRate: 28,
+    });
+    this.scene.anims.create({
+      key: "RightIdle",
+      frames: this.scene.anims.generateFrameNames("a-warrior1", {
+        prefix: "0_Warrior_RightRun_",
+        start: 1,
+        end: 1,
+        zeroPad: 3,
+      }),
+      repeat: -1,
+      frameRate: 28,
+    });
+    this.scene.anims.create({
+      key: "BackIdle",
+      frames: this.scene.anims.generateFrameNames("a-warrior1", {
+        prefix: "0_Warrior_BackRun_",
+        start: 1,
+        end: 1,
+        zeroPad: 3,
+      }),
+      repeat: -1,
+      frameRate: 28,
+    });
+    this.scene.anims.create({
+      key: "FrontIdle",
+      frames: this.scene.anims.generateFrameNames("a-warrior1", {
+        prefix: "0_Warrior_FrontRun_",
+        start: 1,
+        end: 1,
+        zeroPad: 3,
+      }),
+      repeat: -1,
+      frameRate: 28,
+    });
+  }
+
+  saveState() {
+    const playerState = {
+      x: this.x,
+      y: this.y,
+      health: this.health,
+      coins: this.coins,
+      experience: this.experience,
+      weaponEquipped: this.weaponEquipped,
+      helmEquipped: this.helmEquipped,
+      armorEquipped: this.armorEquipped,
+      shieldEquipped: this.shieldEquipped,
+    };
+
+    window.localStorage.setItem("playerState", JSON.stringify(playerState));
+  }
+
+  loadState() {
+    const playerState = JSON.parse(window.localStorage.getItem("playerState"));
+
+    if (playerState) {
+      this.x = playerState.x;
+      this.y = playerState.y;
+      this.health = playerState.health;
+      this.coins = playerState.coins;
+      this.experience = playerState.experience;
+      this.weaponEquipped = playerState.weaponEquipped;
+      this.helmEquipped = playerState.helmEquipped;
+      this.armorEquipped = playerState.armorEquipped;
+      this.shieldEquipped = playerState.shieldEquipped;
+    }
   }
 
   loseHealth(damage) {
@@ -219,11 +250,9 @@ class Player extends GameObject {
     //insert damAGE animation
   }
 
- createAttackBox(){
-  new AttackType(this.scene, this.x, this.y)
- }
-  
-
+  createAttackBox() {
+    new AttackType(this.scene, this.x, this.y);
+  }
 
   traverseMap() {
     //if (playerposition = specific map position){
@@ -254,15 +283,15 @@ class Player extends GameObject {
     } else if (velocity.x > 0 && this.isAttacking) {
       this.anims.play("RightAttack_1", true);
     } else if (!this.isAttacking) {
-       if(this.direction === "Right") {
+      if (this.direction === "Right") {
         this.anims.play("RightIdle", true);
-       } else if (this.direction === "Left") {
+      } else if (this.direction === "Left") {
         this.anims.play("LeftIdle", true);
-       } else if (this.direction === "Front") {
+      } else if (this.direction === "Front") {
         this.anims.play("FrontIdle", true);
-       } else if (this.direction === "Back") {
+      } else if (this.direction === "Back") {
         this.anims.play("BackIdle", true);
-       }
+      }
     }
 
     this.setBody().setVelocity(0);
@@ -284,21 +313,25 @@ class Player extends GameObject {
     if (this.inputKeys.left.isDown || this.inputKeys.left1.isDown) {
       this.body.velocity.x = -100;
       this.direction = "Left";
+      this.saveState();
     }
 
     if (this.inputKeys.right.isDown || this.inputKeys.right1.isDown) {
       this.body.velocity.x = 100;
       this.direction = "Right";
+      this.saveState();
     }
 
     if (this.inputKeys.up.isDown || this.inputKeys.up1.isDown) {
       this.body.velocity.y = -100;
       this.direction = "Back";
+      this.saveState();
     }
 
     if (this.inputKeys.down.isDown || this.inputKeys.down1.isDown) {
       this.body.velocity.y = 100;
       this.direction = "Front";
+      this.saveState();
     }
 
     if (
