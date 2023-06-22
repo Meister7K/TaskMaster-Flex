@@ -1,6 +1,7 @@
 import GameObject from "./GameObject";
 import Phaser from "phaser";
 import Text from "./hud/Text";
+import AttackType from './AttackType'
 
 class Player extends GameObject {
   _maxHealth = 100;
@@ -195,18 +196,6 @@ class Player extends GameObject {
        frameRate: 28,
      });
   }
-  // update() {
-  //   const { velocity } = this.body;
-
-  //   let isMoving = false;
-
-  //   if (this.inputKeys.up.isDown || this.inputKeys.up1.isDown) {
-  //     this.body.velocity.y = -100;
-  //     this.direction = "Back";
-  //     !this.anims.isPlaying && this.anims.play("BackRun", true);
-  //     isMoving = true;
-  //   }
-  // }
 
   loseHealth(damage) {
     if (this.hittable === true) {
@@ -230,19 +219,11 @@ class Player extends GameObject {
     //insert damAGE animation
   }
 
-  // doDamage() {
-  //   this.isAttacking = true;
-    
-  //   this.scene.time.delayedCall(
-  //     500,
-  //     () => {
-  //       this.isAttacking = false;
-  //     },
-  //     this
-  //   );
+ createAttackBox(){
+  new AttackType(this.scene, this.x, this.y)
+ }
   
-  //   return this.attack;
-  // }
+
 
   traverseMap() {
     //if (playerposition = specific map position){
@@ -292,7 +273,7 @@ class Player extends GameObject {
 
     if (this.inputKeys.attack.isDown) {
       this.doDamage();
-      this.scene.physics.world.add(this.attackBox.body);
+      this.createAttackBox();
       this.scene.game.events.emit("attack");
     }
 
@@ -339,6 +320,7 @@ class Player extends GameObject {
     if (!this.isAttacking) {
       this.isAttacking = true;
       let attackAnim;
+      
 
       switch (this.direction) {
         case "Back":
