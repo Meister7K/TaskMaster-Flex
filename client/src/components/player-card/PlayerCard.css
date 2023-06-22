@@ -111,10 +111,13 @@
 .player-stats-title,
 .current-armor-title,
 .current-weapon-title {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
+  font-weight:bold;
 }
 
 .stat-label {
+  font-size: 1.35rem;
+  font-weight:bold;
   text-decoration: underline;
   margin-right: 10px;
 }
@@ -128,7 +131,7 @@
 
 .armor-image,
 .weapon-image {
-  max-width:400px;
+  max-width:350px;
 }
 
 .button-container {
