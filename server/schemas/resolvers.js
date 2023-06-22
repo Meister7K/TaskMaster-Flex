@@ -18,7 +18,7 @@ const resolvers = {
         path: "playerChar",
         populate: ["inventory", "playerWeapon", "playerArmor"],
       });
-      console.log(user.playerChar);
+      
       return user.playerChar;
     },
     users: async () => {
@@ -90,7 +90,7 @@ const resolvers = {
     },
     updateUser: async (parent, { user, email, password }, context) => {
       if (context.user) {
-        console.log(context.user.email);
+        //console.log(context.user.email);
         const user = await User.findOne({ email: context.user.email });
 
         const correctPw = await user.isCorrectPassword(password);
@@ -277,16 +277,15 @@ const resolvers = {
         return err;
       }
     },
-    removeItem : async (parent, { userId, itemId }) => {
+    removeItem : async (parent, { userId, index }) => {
 
       try {
-        const user = await User.findById(userId);
-        const itemData = await Item.findById(itemId);
 
-        const player = await PlayerCharacter.findOne({
-          _id: user.playerChar._id,
-          inventory: itemData,
-        })
+        console.log("test")
+        const user = await User.findById(userId);
+       
+
+        const player = await PlayerCharacter.findOne({_id: user.playerChar._id})
           .populate("inventory")
           .populate("playerWeapon")
           .populate("playerArmor");
@@ -294,13 +293,15 @@ const resolvers = {
         // if(player.playerWeapon._id ===itemData._id || player.playerArmor. ===itemData._id){
         //   return "Cant sell equipped item";
         // }
-        const newInv = player.inventory.filter(item => {
-          
-          return !Object.is(item._id, itemData._id)});
+        if(index >=0){
+          player.inventory.splice(index,1)
+          await player.save();
+        }
+        
         
         //console.log(newInv);
-        player.inventory=newInv;
-        await player.save();
+        
+        
         return player;
 
 
@@ -309,7 +310,9 @@ const resolvers = {
         return err;
       }
 
-    }
+    },
+
+    
   },
 };
 
