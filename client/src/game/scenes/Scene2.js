@@ -236,6 +236,7 @@ const randomX = Phaser.Math.Between(0, this.game.config.width);
     
 
     this.player.update();
+   
     
     this.minotaurs.forEach((minotaur) => {
       minotaur.update();

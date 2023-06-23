@@ -1,5 +1,6 @@
 import GameObject from "../GameObject";
 import Phaser from "phaser";
+import Text from "../hud/Text";
 
 class Enemies extends GameObject {
   constructor(
@@ -11,12 +12,19 @@ class Enemies extends GameObject {
     health,
     attack,
     target
-  ) {
+  )  {
     super(scene, x, y, spriteSheet, frames);
 
+    this.height = 50;
     this.flip=true;
     this.target = target;
     this.health = health;
+    this.healthValue = new Text(
+      this.scene,
+      this.x,
+      this.y - this.height,
+      this.health.toString()
+    );
     this.attack = attack;
     this.ATTACK_RADIUS = 100; //px
     scene.add.existing(this);
@@ -71,6 +79,7 @@ class Enemies extends GameObject {
 
   loseHealth(damage) {
     this.health -= damage;
+    this.healthValue.setText(this.health.toString());
     if(this.health <= 0){
       this.disableBody(true,false);
         this.scene.time.delayedCall(300, ()=>{
@@ -94,6 +103,10 @@ class Enemies extends GameObject {
 
   update() {
     this.body.velocity.x < 0 ? this.setFlipX(true) : this.setFlipX(false);
+
+    this.healthValue.setPosition(this.body.x, this.body.y - this.height * 0.04);
+    this.healthValue.setOrigin(0.5, 1.5);
+    this.healthValue.setScale(0.5);
 
   }
 }
