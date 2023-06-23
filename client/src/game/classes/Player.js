@@ -9,7 +9,7 @@ class Player extends GameObject {
   constructor(
     scene,
     x,
-    y,
+    y, 
     spriteSheet,
     frames,
     health = 100,
@@ -251,11 +251,16 @@ class Player extends GameObject {
   }
 
  createAttackBox(posX,posY, w, h){
-  new AttackType(this.scene, this.x +this.body.velocity.x +posX, this.y+this.body.velocity.y+posY, w, h);
+  let playerAttack = new AttackType(this.scene, this.x +posX, this.y+posY, w, h);
+  playerAttack.setBody().setVelocityX(this.body.velocity.x)
+  playerAttack.setBody().setVelocityY(this.body.velocity.y);
+  console.log(playerAttack);
+
+  this.scene.time.delayedCall(400, () => {
+    playerAttack.destroy();
+  });
  }
- removeAttackBox(){
-  
- }
+
 
 
   traverseMap() {
@@ -268,6 +273,7 @@ class Player extends GameObject {
   }
 
   update() {
+    
     const { velocity } = this.body;
 
     if (velocity.y < 0 && !this.isAttacking) {
