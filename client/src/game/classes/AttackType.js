@@ -14,12 +14,14 @@ class AttackType extends GameObject {
       scene.physics.add.existing(this);
       this.body.setSize(w,h);
       this.body.setCollideWorldBounds(true);
+      this.body.setImmovable(true);
+      //scene.physics.world.enableBody(this);
     scene.physics.world.on('collide', this.handleCollision, this);
   }
 
-  handleCollision(obj1, obj2) {
+  handleCollision(obj1, obj2, attack) {
     if (obj2 instanceof Enemies){
-        obj2.loseHealth(obj1.doDamage())
+        obj2.loseHealth(obj1.doDamage(attack));
     }
   }
 }

@@ -89,8 +89,9 @@ const layer3 = map.createLayer('Layer3','set1',0,0);
 
       //!Player
     // this.playerSprite = this.add.sprite(0,0,'warrior')
+    let sword= 10;
 
-    this.player = new Player(this,760,750,'a-warrior1',0,100);
+    this.player = new Player(this,760,750,'a-warrior1',0,100,sword);
 
     console.log(this.player);
 
@@ -223,7 +224,7 @@ const randomX = Phaser.Math.Between(0, this.game.config.width);
 
     })
 
-    this.physics.add.collider(minotaurs, this.player.attack,(obj1,obj2)=>{
+    this.physics.add.collider(minotaurs, this.player.playerAttack,(obj1,obj2)=>{
       (obj1).loseHealth((obj2).doDamage());
 
     })
@@ -236,6 +237,7 @@ const randomX = Phaser.Math.Between(0, this.game.config.width);
     
 
     this.player.update();
+   
     
     this.minotaurs.forEach((minotaur) => {
       minotaur.update();

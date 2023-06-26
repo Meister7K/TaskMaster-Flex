@@ -2,6 +2,7 @@ import GameObject from "./GameObject";
 import Phaser from "phaser";
 import Text from "./hud/Text";
 import AttackType from './AttackType'
+import Enemies from "./enemies/Enemies";
 
 class Player extends GameObject {
   _maxHealth = 100;
@@ -9,7 +10,7 @@ class Player extends GameObject {
   constructor(
     scene,
     x,
-    y,
+    y, 
     spriteSheet,
     frames,
     health = 100,
@@ -250,13 +251,46 @@ class Player extends GameObject {
     //insert damAGE animation
   }
 
- createAttackBox(posX,posY, w, h){
-  new AttackType(this.scene, this.x +this.body.velocity.x +posX, this.y+this.body.velocity.y+posY, w, h);
- }
- removeAttackBox(){
   
+
+ createAttackBox(w, h,vx,vy){
+  let playerAttack = new AttackType(this.scene, this.x, this.y, w, h);
+  playerAttack.setActive(true);
+
+  switch (this.direction) {
+    case "Back":
+      playerAttack.body.velocity.x += vx;
+      playerAttack.body.velocity.y += vy - 100;
+      break;
+    case "Front":
+      playerAttack.body.velocity.x += vx;
+      playerAttack.body.velocity.y += vy + 100;
+      break;
+    case "Left":
+      playerAttack.body.velocity.x += vx - 100;
+      playerAttack.body.velocity.y += vy;
+      break;
+    case "Right":
+      playerAttack.body.velocity.x += vx+ 100;
+      playerAttack.body.velocity.y += vy;
+      break;
+  }
+  
+  this.scene.physics.add.overlap(playerAttack,  Enemies, this.handleAttack,null,this);
+  // playerAttack.handleCollision();
+  console.log(this.scene.physics.add.overlap(playerAttack,  Enemies, this.handleAttack,null,this));
+
+  this.scene.time.delayedCall(400, () => {
+    playerAttack.destroy();
+  });
  }
 
+handleAttack(attack,enemy){
+
+    enemy.loseHealth(attack);
+    console.log(enemy);
+
+  }
 
   traverseMap() {
     //if (playerposition = specific map position){
@@ -268,6 +302,9 @@ class Player extends GameObject {
   }
 
   update() {
+
+    
+    
     const { velocity } = this.body;
 
     if (velocity.y < 0 && !this.isAttacking) {
@@ -297,6 +334,7 @@ class Player extends GameObject {
         this.anims.play("BackIdle", true);
       }
     }
+    // console.log(velocity.x,velocity.y)
 
     this.setBody().setVelocity(0);
 
@@ -304,11 +342,7 @@ class Player extends GameObject {
     this.healthValue.setOrigin(0.5, 1.5);
     this.healthValue.setScale(0.5);
 
-    if (this.inputKeys.attack.isDown) {
-      this.doDamage();
-      
-      this.scene.game.events.emit("attack");
-    }
+   
 
     if (this.inputKeys.interact.isDown) {
       this.interact();
@@ -351,37 +385,46 @@ class Player extends GameObject {
     ) {
       this.body.velocity.y = 0;
     }
+
+    if (this.inputKeys.attack.isDown) {
+      this.doDamage(this.body.velocity.x, this.body.velocity.y);
+      //console.log(this.doDamage());
+      this.scene.game.events.emit("attack");
+    }
   }
 
-  doDamage() {
+  doDamage(vx,vy) {
+
     if (!this.isAttacking) {
+      
       this.isAttacking = true;
       let attackAnim;
-
+    
       switch (this.direction) {
         case "Back":
           attackAnim = this.anims.play("Attack_1", true);
-          this.createAttackBox(0,-30, 30,10);
+          this.createAttackBox(30,10,vx,vy);  
           break;
         case "Front":
           attackAnim = this.anims.play("FrontAttack_1", true);
-          this.createAttackBox(0,30,30,10);
+          this.createAttackBox(30,10,vx,vy);
           break;
         case "Left":
           attackAnim = this.anims.play("LeftAttack_1", true);
           
-          this.createAttackBox(-30,0, 10,30);
+          this.createAttackBox(10,30,vx,vy);
           break;
         case "Right":
           attackAnim = this.anims.play("RightAttack_1", true);
           
-          this.createAttackBox(30,0, 10,30);
+          this.createAttackBox(10,30,vx,vy);
           break;
       }
       attackAnim.on("animationcomplete", () => {
         this.isAttacking = false;
       });
     }
+
     return this.attack;
   }
 
