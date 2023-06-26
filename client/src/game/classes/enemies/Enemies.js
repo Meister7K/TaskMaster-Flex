@@ -3,6 +3,7 @@ import Phaser from "phaser";
 import Text from "../hud/Text";
 
 class Enemies extends GameObject {
+  _maxHealth=100;
   constructor(
     scene,
     x,
@@ -12,29 +13,30 @@ class Enemies extends GameObject {
     health,
     attack,
     target
-  )  {
+  ) {
     super(scene, x, y, spriteSheet, frames);
 
-    this.height = 50;
+    
     this.flip=true;
     this.target = target;
     this.health = health;
     this.healthValue = new Text(
       this.scene,
       this.x,
-      this.y - this.height,
+      this.y,
       this.health.toString()
     );
     this.attack = attack;
     this.ATTACK_RADIUS = 100; //px
     scene.add.existing(this);
     scene.physics.add.existing(this);
-    this.getHit=()=>{
-      if(Phaser.Math.Distance.BetweenPoints({x:this.x, y:this.y},
-        {x:this.target.x, y:this.target.y})<this.target.width){
-          this.loseHealth(target.doDamage())
-        }
-    }
+    this.scene.physics.world.enable(this);
+    // this.getHit=()=>{
+    //   if(Phaser.Math.Distance.BetweenPoints({x:this.x, y:this.y},
+    //     {x:this.target.x, y:this.target.y})<this.target.width){
+    //       this.loseHealth(target.doDamage())
+    //     }
+    // }
   }
 
   preUpdate() {
@@ -79,7 +81,12 @@ class Enemies extends GameObject {
 
   loseHealth(damage) {
     this.health -= damage;
-    this.healthValue.setText(this.health.toString());
+    
+    this.setAlpha(0.5);
+    this.scene.time.delayedCall(100, () => {
+      this.setAlpha(1);
+    });
+
     if(this.health <= 0){
       this.disableBody(true,false);
         this.scene.time.delayedCall(300, ()=>{
@@ -87,6 +94,7 @@ class Enemies extends GameObject {
           this.drop();
         })
     }
+    this.healthValue.setText(this.health.toString());
   }
 
   drop(){
@@ -104,9 +112,9 @@ class Enemies extends GameObject {
   update() {
     this.body.velocity.x < 0 ? this.setFlipX(true) : this.setFlipX(false);
 
-    this.healthValue.setPosition(this.body.x, this.body.y - this.height * 0.04);
+    this.healthValue.setPosition(this.x, this.y-10);
     this.healthValue.setOrigin(0.5, 1.5);
-    this.healthValue.setScale(0.5);
+    this.healthValue.setScale(0.4);
 
   }
 }

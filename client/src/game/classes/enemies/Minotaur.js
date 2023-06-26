@@ -55,6 +55,10 @@ class Minotaur extends Enemies {
     } else if (velocity.x === 0) {
       this.anims.stop();
     }
+
+    this.healthValue.setPosition(this.x, this.y-20);
+    this.healthValue.setOrigin(0.5, 1.5);
+    this.healthValue.setScale(0.4);
   }
 }
 

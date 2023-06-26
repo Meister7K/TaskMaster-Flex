@@ -2,6 +2,7 @@ import GameObject from "./GameObject";
 import Phaser from "phaser";
 import Text from "./hud/Text";
 import AttackType from './AttackType'
+import Enemies from "./enemies/Enemies";
 
 class Player extends GameObject {
   _maxHealth = 100;
@@ -250,8 +251,11 @@ class Player extends GameObject {
     //insert damAGE animation
   }
 
+  
+
  createAttackBox(w, h,vx,vy){
   let playerAttack = new AttackType(this.scene, this.x, this.y, w, h);
+  playerAttack.setActive(true);
 
   switch (this.direction) {
     case "Back":
@@ -272,16 +276,21 @@ class Player extends GameObject {
       break;
   }
   
-
-  // playerAttack.setBody().setVelocityY(this.body.velocity.y)
-  playerAttack.handleCollision();
+  this.scene.physics.add.overlap(playerAttack,  Enemies, this.handleAttack,null,this);
+  // playerAttack.handleCollision();
+  console.log(this.scene.physics.add.overlap(playerAttack,  Enemies, this.handleAttack,null,this));
 
   this.scene.time.delayedCall(400, () => {
     playerAttack.destroy();
   });
  }
 
+handleAttack(attack,enemy){
 
+    enemy.loseHealth(attack);
+    console.log(enemy);
+
+  }
 
   traverseMap() {
     //if (playerposition = specific map position){
@@ -379,13 +388,12 @@ class Player extends GameObject {
 
     if (this.inputKeys.attack.isDown) {
       this.doDamage(this.body.velocity.x, this.body.velocity.y);
-      
+      //console.log(this.doDamage());
       this.scene.game.events.emit("attack");
     }
   }
 
   doDamage(vx,vy) {
-    console.log(vx,vy);
 
     if (!this.isAttacking) {
       
@@ -416,6 +424,7 @@ class Player extends GameObject {
         this.isAttacking = false;
       });
     }
+
     return this.attack;
   }
 
